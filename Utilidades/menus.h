@@ -4,5 +4,8 @@
 
 void menuPrincipal();
 
+void menuCompras();
+
+void menuVentas();
 
 #endif // MENUS_H_INCLUDED

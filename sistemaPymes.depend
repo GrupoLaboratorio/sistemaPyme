@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1603059837 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+	<iostream>
+	"Utilidades/menus.h"
+
+1603061131 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
+
+1600925322 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.cpp
+	<iostream>
+	<cstring>
+	"ui.h"
+	"rlutil.h"
+
+1600742332 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.h
+
+1600742332 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1603060124 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+	<iostream>
+	<cstdio>
+	<stdlib.h>
+	<ctime>
+	<string.h>
+	<cstring>
+	<cctype>
+	<algorithm>
+	<iomanip>
+	"../Utilidades/ui.h"
+	"../Utilidades/rlutil.h"
+
