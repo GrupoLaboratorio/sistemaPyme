@@ -8,4 +8,6 @@ void menuCompras();
 
 void menuVentas();
 
+void menuInventario();
+
 #endif // MENUS_H_INCLUDED
