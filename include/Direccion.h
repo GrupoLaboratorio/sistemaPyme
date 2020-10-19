@@ -15,8 +15,8 @@ class Direccion{
 		int piso;
 
 	public:
-		//Direccion(char * = " ", int = 0000, int = 0000, char * = " ", int = 0);
-		Direccion(){};
+		Direccion(char *, int, int, char *, int);
+		Direccion();
 		virtual ~Direccion(){};
 		void cargarDireccion();
 		void setCalle(char * _calle){strcpy(calle, _calle);}
@@ -25,7 +25,6 @@ class Direccion{
         void setLocalidad(char* _localidad){strcpy(localidad, _localidad);}
         void setPiso(int _piso){piso = _piso;}
         void mostrarDireccion();
-
         const char* getCalle(){return calle;}
         int getNumero(){return numero;}
         int getCodPost(){return codPost;}

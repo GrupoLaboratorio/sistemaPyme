@@ -6,7 +6,7 @@
 
 using namespace std;
 
-/*Direccion::Direccion(char * _calle, int _numero, int _codPost, char * _localidad, int _piso){
+Direccion::Direccion(char * _calle, int _numero, int _codPost, char * _localidad, int _piso){
 
     strcpy(calle, _calle);
     numero = _numero;
@@ -14,7 +14,17 @@ using namespace std;
     strcpy(localidad, _localidad);
     piso = _piso;
 
-}*/
+}
+
+Direccion::Direccion(){
+
+    strcpy(calle, "NS/NC");
+    numero = 0;
+    codPost = 0;
+    strcpy(localidad, "NS/NC");
+    piso = 0;
+
+}
 
 void Direccion::cargarDireccion(){
 
@@ -34,9 +44,9 @@ void Direccion::cargarDireccion(){
 void Direccion::mostrarDireccion(){
 
 	cout << left;
-	cout << setw(10) << "CALLE Y ALTURA:" << setw(30) << this->calle << "\t" << this->numero << endl;
-	cout << setw(10) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
-	cout << setw(10) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
-	cout << setw(10) << "PISO:" << setw(30) << this->piso << endl;
+	cout << setw(40) << "CALLE Y ALTURA:" << setw(25) << this->calle << setw(5) << this->numero << endl;
+	cout << setw(40) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
+	cout << setw(40) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
+	cout << setw(40) << "PISO:" << setw(30) << this->piso << endl;
 
 }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1603081554 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603138746 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	"Utilidades/menus.h"
@@ -98,14 +98,14 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
 
-1603082896 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
+1603138720 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
 	<iostream>
 	<cstring>
 	<iomanip>
 	"Persona.h"
 	"Fecha.h"
 
-1603081023 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
+1603135886 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
 	"Direccion.h"
 	"Fecha.h"
 
@@ -121,7 +121,7 @@
 
 1603077779 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.h
 
-1603082926 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\fecha.cpp
+1603137668 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\fecha.cpp
 	<iostream>
 	<cstdlib>
 	<iomanip>
@@ -129,7 +129,7 @@
 	"Direccion.h"
 	"Fecha.h"
 
-1603080692 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\direccion.h
+1603138687 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\direccion.h
 	"Direccion.h"
 	"Fecha.h"
 	"string.h"
@@ -145,9 +145,9 @@
 	"../Utilidades/validaciones.h"
 	"Cliente.h"
 
-1603080247 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\cliente.h
+1603140297 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\cliente.h
 
-1603081427 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
+1603137399 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
 	<iostream>
 	<cstdlib>
 	<iomanip>

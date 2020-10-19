@@ -38,7 +38,7 @@ bool Fecha::esbisiesto(int a)
 
 void Fecha::MostrarFecha(){
 
-  cout << setw(10) << this->dia << "/" << setw(10) << this->mes << "/" << setw(10) << this->anio;
+  cout << this->dia << "/" << this->mes << "/" << this->anio;
   //cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
 
 }//¿Qué modificación habría que hacer para que siempre muestre DD/MM/AAAA?

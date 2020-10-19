@@ -8,7 +8,15 @@ using namespace std;
 
 
 Persona::Persona(){
-    //ctor
+
+    strcpy(this->apenom, "NN");
+    this->fecNac.setDia(0);
+    this->fecNac.setMes(0);
+    this->fecNac.setAnio(0);
+    this->nDoc= 0;
+    //this->domicilio.Direccion();
+    this->activo = false;
+
 }
 void Persona::cargarPersona(){
 
@@ -20,27 +28,48 @@ void Persona::cargarPersona(){
     cin >> nDoc;
     cout<<"Direccion: ";
     domicilio.cargarDireccion();
+    this->activo = true;
 }
 
 void Persona::mostrarPersona(){
 
 	cout << left;
-    cout << setw(10) << "Nombre y apellido:" << setw(30) << this->apenom << endl;
-    cout << setw(10) << "Fecha de nacimiento:\t" << setw(30);
+    cout << setw(40) << "NOMBRE Y APELLIDO:" << setw(30) << this->apenom << endl;
+    cout << setw(40) << "FECHA DE NACIMIENTO:\t";
     fecNac.MostrarFecha();
     cout << endl;
-    cout << setw(10) << "DNI:" << setw(30) << this->nDoc << endl;
+    cout << setw(40) << "DNI:" << setw(30) << this->nDoc << endl;
     domicilio.mostrarDireccion();
 
 }
+void Persona::setApenom(){
+
+    cout << "NOMBRE Y APELLIDO:\t";
+    cin.getline(this->apenom,50,'n');
+
+}
+
+void Persona::setNDoc(){
+
+    cout << "DNI:\t";
+    cin >> this->nDoc;
+
+}
+
+void Persona::setNacimiento(){
+
+    this->fecNac.setFecha();
+
+}
+void Persona::setDomicilio(){
+
+    this->domicilio.cargarDireccion();
+
+}
+
 
 /*
-void Persona::setApenom(){}
-void Persona::setNDoc(){}
-void Persona::setNacimiento(){}
-void Persona::setDomicilio(){}
-const char * Persona::getApenom(){}
-int Persona::getNDoc(){}
+
 //Fecha Persona::getNacimiento(){}
 //Direccion Persona::getDomicilio(){}
 */

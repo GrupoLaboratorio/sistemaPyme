@@ -12,10 +12,10 @@ int main(){
 
 	//menuPrincipal();
 
-	Persona persoUno;
+	Cliente cliente1;
 
-	persoUno.cargarPersona();
-	persoUno.mostrarPersona();
+	cliente1.cargarCliente();
+	cliente1.mostrarCliente();
 
     return 0;
 }
