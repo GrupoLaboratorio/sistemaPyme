@@ -1,7 +1,6 @@
 #ifndef DIRECCION_H
 #define DIRECCION_H
 
-#include "Inmueble.h"
 #include "Direccion.h"
 #include "Fecha.h"
 #include "string.h"

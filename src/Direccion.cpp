@@ -1,11 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-#include "Inmueble.h"
+#include <iomanip>
 #include "Direccion.h"
 #include "Fecha.h"
-
-using namespace std;
-#include <iostream>
 
 using namespace std;
 
@@ -19,21 +16,16 @@ using namespace std;
 
 }*/
 
-
-
-
 void Direccion::cargarDireccion(){
 
+	cin.ignore();
 	cout << "Calle:\t";
-	cin >> this->calle;
-	cout << endl;	cout << "Altura:\t";
+	cin.getline(calle,30,'\n');	cout << "Altura:\t";
 	cin >> this->numero;
-	cout << endl;
 	cout << "Codigo postal:\t";
-	cin >> this->codPost;
-	cout << endl;	cout << "Localidad:\t";
-	cin >> this->localidad;
-	cout << endl;
+	cin >> this->codPost;	cin.ignore();
+	cout << "Localidad:\t";
+	cin.getline(localidad,30,'\n');
 	cout << "Piso:\t";
 	cin >> this->piso;
 	cout << endl;
@@ -41,9 +33,10 @@ void Direccion::cargarDireccion(){
 
 void Direccion::mostrarDireccion(){
 
-	cout << "Calle y altura:\t" << calle << "   " << numero << endl;
-	cout << "Codigo postal:\t" << codPost << endl;
-	cout << "Localidad:\t" << localidad << endl;
-	cout << "Piso:\t" << piso << endl;
+	cout << left;
+	cout << setw(10) << "CALLE Y ALTURA:" << setw(30) << this->calle << "\t" << this->numero << endl;
+	cout << setw(10) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
+	cout << setw(10) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
+	cout << setw(10) << "PISO:" << setw(30) << this->piso << endl;
 
 }

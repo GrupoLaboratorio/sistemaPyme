@@ -1,15 +1,17 @@
 #ifndef PERSONA_H
 #define PERSONA_H
 
+#include "Direccion.h"
+#include "Fecha.h"
 
-class Persona
-{
+class Persona{
+
     protected:
         char apenom[50];
         int nDoc;
         bool activo;
-//        Fecha nacimiento;
-       // Domicilio direccion;
+        Fecha fecNac;
+        Direccion domicilio;
     public:
         Persona();
         //~Persona();
@@ -19,8 +21,8 @@ class Persona
         void setNDoc();
         void setNacimiento();
         void setDomicilio();
-        const char * getApenom();
-        int getNDoc();
+        const char * getApenom(){return this->apenom;}
+        int getNDoc(){return this->nDoc;}
 //        Fecha getNacimiento();
 //        Direccion getDomicilio();
 };
