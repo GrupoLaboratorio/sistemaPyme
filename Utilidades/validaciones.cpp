@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+
 #include "rlutil.h"
 #include "ui.h"
 #include "menus.h"
+
 #include "../Include/Persona.h"
 #include "validaciones.h"
 

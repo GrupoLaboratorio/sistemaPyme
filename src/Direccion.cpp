@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cstdlib>
+
 //#include "Inmueble.h"
 #include "../include/Direccion.h"
 //#include "Fecha.h"
+
 
 using namespace std;
 
@@ -23,12 +25,14 @@ void Direccion::cargarDireccion(){
 
 	cout << "Calle:\t";
 	cin >> this->calle;
-	cout << endl;	cout << "Altura:\t";
+	cout << endl;
+	cout << "Altura:\t";
 	cin >> this->numero;
 	cout << endl;
 	cout << "Codigo postal:\t";
 	cin >> this->codPost;
-	cout << endl;	cout << "Localidad:\t";
+	cout << endl;
+	cout << "Localidad:\t";
 	cin >> this->localidad;
 	cout << endl;
 	cout << "Piso:\t";
