@@ -32,7 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Utilidades/menus.cpp" />
+		<Unit filename="Utilidades/menus.h" />
+		<Unit filename="Utilidades/rlutil.h" />
+		<Unit filename="Utilidades/ui.cpp" />
+		<Unit filename="Utilidades/ui.h" />
+		<Unit filename="Utilidades/validaciones.cpp" />
+		<Unit filename="include/Direccion.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Direccion.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

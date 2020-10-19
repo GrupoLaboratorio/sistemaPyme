@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1603059837 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603068438 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	"Utilidades/menus.h"
+	"Include/Persona.h"
 
-1603061131 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
+1603061340 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
 
 1600925322 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.cpp
 	<iostream>
@@ -27,7 +28,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1603060124 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+1603067987 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>
@@ -37,6 +38,87 @@
 	<cctype>
 	<algorithm>
 	<iomanip>
+	"../Utilidades/menus.h"
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
+
+1603067987 ated upstream
+
+1603075522 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\main.cpp
+	<iostream>
+	"Utilidades/menus.h"
+	"Include/Persona.h"
+
+1603061752 d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\menus.h
+
+1603061752 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\ui.cpp
+	<iostream>
+	<cstring>
+	"ui.h"
+	"rlutil.h"
+
+1603061752 d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\ui.h
+
+1603061752 d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1603075522 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\validaciones.cpp
+	<iostream>
+	<string.h>
+	<stdlib.h>
+	"../Utilidades/rlutil.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/menus.h"
+	"../Include/Persona.h"
+	"validaciones.h"
+
+1603067612 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1603067565 d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\include\persona.h
+
+1603075522 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\menus.cpp
+	<iostream>
+	<cstdio>
+	<stdlib.h>
+	<ctime>
+	<string.h>
+	<cstring>
+	<cctype>
+	<algorithm>
+	<iomanip>
+	"../Utilidades/menus.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/rlutil.h"
+
+1603067987 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1603067987 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
+
+1603067987 shed changes
+
+1603075745 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\direccion.cpp
+	<iostream>
+	<cstdlib>
+	"../include/Direccion.h"
+
+1603075742 d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\include\direccion.h
+	"Direccion.h"
+	"string.h"
 
