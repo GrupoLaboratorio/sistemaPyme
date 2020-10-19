@@ -37,10 +37,10 @@ void menuPrincipal(){
         switch(opcion)
         {
         case 1:
-            menuCompras();
+//            menuCompras();
             break;
         case 2:
-            menuVentas();
+//            menuVentas();
             break;
         case 4:
             //menuConfig();
@@ -142,7 +142,7 @@ void menuVentas(){
     }
 }
 
-void menuVentas(){
+void menuInventario(){
 
     while(true){
         cls();
