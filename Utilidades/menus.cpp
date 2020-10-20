@@ -10,6 +10,7 @@
 #include "../Utilidades/menus.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
+#include "../Include/Cliente.h"
 
 using namespace rlutil;
 using namespace std;
@@ -37,10 +38,10 @@ void menuPrincipal(){
         switch(opcion)
         {
         case 1:
-//            menuCompras();
+            menuCompras();
             break;
         case 2:
-//            menuVentas();
+            menuVentas();
             break;
         case 4:
             //menuConfig();
@@ -71,7 +72,7 @@ void menuCompras(){
         cout<<"6 - LISTAR PROVEEDORES"<<endl; /// proveedores.dat
 
         cout<<"------------------------"<<endl;
-        cout<<"0 - SALIR   "<<endl;
+        cout<<"0 - MENU PRINCIPAL   "<<endl;
         int opcion;
         cout<<"> ";
         cin>>opcion;
@@ -79,18 +80,18 @@ void menuCompras(){
         system("cls");
         switch(opcion){
         case 1:
-            //menuUsuarios();
+
             break;
         case 2:
-            //menuRutinas();
+
             break;
         case 4:
-            //menuConfig();
+
         case 5:
-            //menuPreParcial();
+
             break;
         case 6:
-            //menuParcial();
+
         case 0:
             return;
         default:
@@ -100,6 +101,8 @@ void menuCompras(){
 }
 
 void menuVentas(){
+
+        Cliente clientePiloto;
 
     while(true){
         cls();
@@ -113,7 +116,7 @@ void menuVentas(){
         cout<<"6 - LISTAR CLIENTES"<<endl;
 
         cout<<"------------------------"<<endl;
-        cout<<"0 - SALIR   "<<endl;
+        cout<<"0 - MENU PRINCIPAL   "<<endl;
         int opcion;
         cout<<"> ";
         cin>>opcion;
@@ -122,18 +125,20 @@ void menuVentas(){
         switch(opcion)
         {
         case 1:
-            //menuUsuarios();
+
             break;
         case 2:
-            //menuRutinas();
+
             break;
         case 4:
-            //menuConfig();
+//        clientePiloto.cargarCliente();
+//        clientePiloto.grabarEnDisco();
+                break;
         case 5:
-            //menuPreParcial();
+
             break;
         case 6:
-            //menuParcial();
+
         case 0:
             return;
         default:

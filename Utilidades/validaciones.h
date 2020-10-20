@@ -3,6 +3,6 @@
 
 bool validarNombresApellidos(char *nombres, int tam); /// Valida que un nombre no esté vacio
 
-bool validarFecha( int dia, int mes, int anio);
+bool validarFecha(int dia, int mes, int anio);
 
 #endif // VALIDACIONES_H_INCLUDED

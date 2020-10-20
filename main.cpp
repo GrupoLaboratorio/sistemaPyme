@@ -4,18 +4,13 @@
 #include "Include/Persona.h"
 #include "Utilidades/validaciones.h"
 #include "Direccion.h"
-#include "Cliente.h"
+#include "Include/Cliente.h"
 
 using namespace std;
 
 int main(){
 
-	//menuPrincipal();
-
-	Cliente cliente1;
-
-	cliente1.cargarCliente();
-	cliente1.mostrarCliente();
+	menuPrincipal();
 
     return 0;
 }

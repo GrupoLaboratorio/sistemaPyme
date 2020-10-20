@@ -1,8 +1,11 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
+#include "../Include/Persona.h"
 
-class Cliente: public Persona {
+const char *FILE_CLIENTES = "../Archivos/Clientes.dat";
+
+class Cliente: public Persona{
 
 	private:
         char razonSocial[50];
@@ -14,8 +17,14 @@ class Cliente: public Persona {
 		//virtual ~Cliente();
 		void cargarCliente();
 		void mostrarCliente();
-		bool guardarClienteDisco();
-
+        void setRazonSocial(char *);
+        void setMail(char *);
+        void setTipoCliente(int);
+        bool grabarEnDisco();
+        //bool leerDeDisco(int);
+        const char* getRazonSocial(){return this->razonSocial;}
+        const char* getMail(){return this->mail;}
+        int getTipoCliente(){return this->tipoCliente;}
 
 };
 
