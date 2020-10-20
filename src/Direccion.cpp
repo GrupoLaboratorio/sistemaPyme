@@ -6,14 +6,12 @@
 
 using namespace std;
 
-Direccion::Direccion(char * _calle, int _numero, int _codPost, char * _localidad, int _piso){
+Direccion::Direccion(char * _calle, int _numero, int _codPost, char * _localidad){
 
     strcpy(calle, _calle);
     numero = _numero;
     codPost = _codPost;
     strcpy(localidad, _localidad);
-    piso = _piso;
-
 }
 
 Direccion::Direccion(){
@@ -22,7 +20,6 @@ Direccion::Direccion(){
     numero = 0;
     codPost = 0;
     strcpy(localidad, "NS/NC");
-    piso = 0;
 
 }
 
@@ -36,9 +33,6 @@ void Direccion::cargarDireccion(){
 	cin >> this->codPost;	cin.ignore();
 	cout << "LOCALIDAD:\t";
 	cin.getline(localidad,30,'\n');
-	cout << "PISO:\t";
-	cin >> this->piso;
-	cout << endl;
 }
 
 void Direccion::mostrarDireccion(){
@@ -47,6 +41,5 @@ void Direccion::mostrarDireccion(){
 	cout << setw(40) << "CALLE Y ALTURA:" << setw(25) << this->calle << setw(5) << this->numero << endl;
 	cout << setw(40) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
 	cout << setw(40) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
-	cout << setw(40) << "PISO:" << setw(30) << this->piso << endl;
 
 }

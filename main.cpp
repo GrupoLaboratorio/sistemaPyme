@@ -10,11 +10,9 @@ using namespace std;
 
 int main(){
 
-	Cliente cli1;
 
-	//menuPrincipal();
-	//cout << "Size:" << sizeof(Cliente);
-	cli1.setNDoc();
+	menuPrincipal();
+
 
     return 0;
 }

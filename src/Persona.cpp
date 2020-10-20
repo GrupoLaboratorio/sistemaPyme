@@ -22,9 +22,7 @@ Persona::Persona(){
 void Persona::cargarPersona(){
 
     setApenom();
-    cin.getline(apenom, 50, '\n');
-    cout<<"DNI: ";
-    cin >> nDoc;
+    setNDoc();
     domicilio.cargarDireccion();
     this->activo = true;
 }
@@ -51,17 +49,13 @@ void Persona::setApenom(){
 void Persona::setNDoc(){
 
     cout << "DNI:\t";
-    cin.getline(this->nDoc,8,'\n');
+    cin.getline(this->nDoc,9,'\n');
     while(!validarDocumento(nDoc)){
             msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
             cout << "DNI:\t";
-            cin.getline(this->nDoc,8,'\n');
+            cin.getline(this->nDoc,9,'\n');
     }
 
 }
 
-void Persona::setDomicilio(){
-
-    this->domicilio.cargarDireccion();
-
-}
+void Persona::setDomicilio(){this->domicilio.cargarDireccion();}

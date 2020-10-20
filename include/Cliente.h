@@ -25,7 +25,7 @@ class Cliente: public Persona{
         bool leerDeDisco(int);
         const char* getRazonSocial(){return this->razonSocial;}
         const char* getMail(){return this->mail;}
-        int getTipoCliente(){return this->tipoCliente;}
+        int getTipo(){return this->tipoCliente;}
         int getIdCliente(){return this->idCliente;}
 
 };

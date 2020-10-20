@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1603211712 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603218563 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	"Utilidades/menus.h"
@@ -99,7 +99,7 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
 
-1603210369 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
+1603218069 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
 	<iostream>
 	<cstring>
 	<iomanip>
@@ -113,7 +113,7 @@
 	"Direccion.h"
 	"Fecha.h"
 
-1603211284 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.cpp
+1603217952 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.cpp
 	<iostream>
 	<string>
 	<string.h>
@@ -134,7 +134,7 @@
 	"Direccion.h"
 	"Fecha.h"
 
-1603138687 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\direccion.h
+1603218166 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\direccion.h
 	"Direccion.h"
 	"Fecha.h"
 	"string.h"
@@ -155,10 +155,10 @@
 	"../Utilidades/validaciones.h"
 	"Cliente.h"
 
-1603162635 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\cliente.h
+1603219181 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\cliente.h
 	"../Include/Persona.h"
 
-1603161979 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
+1603218175 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
 	<iostream>
 	<cstdlib>
 	<iomanip>

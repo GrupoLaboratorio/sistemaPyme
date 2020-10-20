@@ -28,8 +28,8 @@ Cliente::Cliente():Persona(){
 
 void Cliente::cargarCliente(){
 
-    //title("NUEVO CLIENTE", BLACK, CYAN); -> ARREGLAR
-    locate(0,5);
+    title("NUEVO CLIENTE", BLACK, CYAN); //-> ARREGLAR
+    locate(3,3);
     cargarPersona();
     cin.ignore();
     cout << "RAZON SOCIAL:\t";
@@ -102,6 +102,10 @@ bool Cliente::leerDeDisco(int posicion){
         return leyo;
 }
 
+
+///--------------------- GLOBALES -------------------------
+
+
 void listarClientePorID(){
 
     Cliente *cliAux;
@@ -143,26 +147,102 @@ int crearIdClientes(){
 
 void listarClientes(){
 
-    Cliente *cliAux;
+    int i=0;
+    Cliente cliAux;
     bool estadoAux;
-    FILE *p;
-    int idAux;
 
-    p = fopen(FILE_CLIENTES, "rb");
-    if(p==NULL){
-            cout << "Error de archivo\n";
-            system("pause");
-            return;
-    }
-
-        while(fread(cliAux,sizeof(Cliente),1,p)==1){
-            estadoAux = cliAux->getEstado();
-            if(estadoAux == true){
-                cliAux->mostrarCliente();
+    cout << left;
+    cout << setw(22) << "RAZON SOCIAL" << setw(22) << "CATEGORIA" << endl;
+    cout << endl;
+        while(cliAux.leerDeDisco(i++)){
+                estadoAux = cliAux.getEstado();
+                if(estadoAux == true){
+                cout << setw(22);
+                cout << cliAux.getRazonSocial();
+                cout << setw(22);
+                switch(cliAux.getTipo()){
+                case 1:
+                    cout << setw(22) << "Monotributista";
+                break;
+                case 2:
+                    cout << setw(22) << "Responsable Inscripto";
+                break;
+                case 3:
+                    cout << setw(22) << "Otro";
+                break;
+                default:
+                    cout << "CATEGORIA INCORRECTA";
+                break;
+                }
+                cout << endl;
             }
-        }
-    system("pause");
-    fclose(p);
-    return;
+    }
 }
 
+
+//void listarClientes(){
+//
+//    Cliente *cliAux;
+//    bool estadoAux;
+//    FILE *p;
+//    int idAux;
+//
+//    p = fopen(FILE_CLIENTES, "rb");
+//    if(p==NULL){
+//            cout << "Error de archivo\n";
+//            system("pause");
+//            return;
+//    }
+//
+//        while(fread(cliAux,sizeof(Cliente),1,p)==1){
+//            estadoAux = cliAux->getEstado();
+//            if(estadoAux == true){
+//                cliAux->mostrarCliente();
+//            }
+//        }
+//    system("pause");
+//    fclose(p);
+//    return;
+//}
+
+//void listarClientes(){
+//
+//    Cliente *cliAux;
+//    bool estadoAux;
+//    FILE *p;
+//    int idAux;
+//
+//    p = fopen(FILE_CLIENTES, "rb");
+//    if(p==NULL){
+//            cout << "Error de archivo\n";
+//            system("pause");
+//            return;
+//    }
+//        cout << setw(22) << "RAZON SOCIAL" << setw(22) << "CATEGORIA" << endl;
+//        while(fread(cliAux,sizeof(Cliente),1,p)==1){
+//                estadoAux = cliAux->getEstado();
+//                if(estadoAux == true){
+//                cout << left;
+//                cout << setw(22) << cliAux->getRazonSocial();
+//
+//                cout << setw(22);
+//                switch(cliAux->getTipo()){
+//                case 1:
+//                    cout << "Monotributista";
+//                break;
+//                case 2:
+//                    cout << "Responsable Inscripto";
+//                break;
+//                case 3:
+//                    cout << "Otro";
+//                break;
+//                default:
+//                    cout << "CATEGORIA INCORRECTA";
+//                break;
+//                }
+//            }
+//        }
+//    system("pause");
+//    fclose(p);
+//    return;
+//}

@@ -39,7 +39,7 @@ bool validarNombresApellidos(char *nombres){
 
 bool validarDocumento(char *nDoc){
 
-    if(strlen(nDoc)==8){
+    if(strlen(nDoc) == 8){
         return true;
     }else{
         return false;

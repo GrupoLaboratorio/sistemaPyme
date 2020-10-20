@@ -12,10 +12,9 @@ class Direccion{
 		int numero;
 		int codPost;
 		char localidad[30];
-		int piso;
 
 	public:
-		Direccion(char *, int, int, char *, int);
+		Direccion(char *, int, int, char *);
 		Direccion();
 		virtual ~Direccion(){};
 		void cargarDireccion();
@@ -23,14 +22,11 @@ class Direccion{
 		void setNumero (int _numero){numero = _numero;}
 		void setCodPost(int _codPost){codPost = _codPost;}
         void setLocalidad(char* _localidad){strcpy(localidad, _localidad);}
-        void setPiso(int _piso){piso = _piso;}
         void mostrarDireccion();
         const char* getCalle(){return calle;}
         int getNumero(){return numero;}
         int getCodPost(){return codPost;}
         const char* getLocalidad(){return localidad;}
-        int getPiso(){return piso;}
-
 };
 
 #endif // DIRECCION_H
