@@ -3,22 +3,25 @@
 #include <iomanip>
 #include "Persona.h"
 #include "Fecha.h"
+#include "../Utilidades/rlutil.h"
+#include "../Utilidades/ui.h"
+#include "../Utilidades/validaciones.h"
 
+using namespace rlutil;
 using namespace std;
 
 
 Persona::Persona(){
 
     strcpy(this->apenom, "NN");
-    this->nDoc= 0;
+    strcpy(this->nDoc, "00000000");
     //this->domicilio.Direccion();
     this->activo = false;
 
 }
 void Persona::cargarPersona(){
 
-    cin.ignore();
-    cout<<"NOMBRE Y APELLIDO:\t";
+    setApenom();
     cin.getline(apenom, 50, '\n');
     cout<<"DNI: ";
     cin >> nDoc;
@@ -37,14 +40,23 @@ void Persona::mostrarPersona(){
 void Persona::setApenom(){
 
     cout << "NOMBRE Y APELLIDO:\t";
-    cin.getline(this->apenom,50,'n');
-
+    cin.getline(this->apenom,50,'\n');
+    while(!validarNombresApellidos(this->apenom)){
+            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
+            cout << "NOMBRE Y APELLIDO:\t";
+            cin.getline(this->apenom,50,'\n');
+    }
 }
 
 void Persona::setNDoc(){
 
     cout << "DNI:\t";
-    cin >> this->nDoc;
+    cin.getline(this->nDoc,8,'\n');
+    while(!validarDocumento(nDoc)){
+            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
+            cout << "DNI:\t";
+            cin.getline(this->nDoc,8,'\n');
+    }
 
 }
 

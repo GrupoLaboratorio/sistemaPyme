@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <string.h>
 #include <stdlib.h>
 #include "../Utilidades/rlutil.h"
@@ -10,21 +11,17 @@
 using namespace std;
 using namespace rlutil;
 
-bool validarNombresApellidos(char *nombres, int tam){
+bool validarNombresApellidos(char *nombres){
 
     int  cadena = 0, contEspacios=0;
     cadena = strlen(nombres);
     bool valorFinal = true;
 
-     while (cadena == 0){
+     if(cadena == 0){
 		system("cls");
-        msj("Campo vacio",WHITE,RED,130,TEXT_LEFT);
-        gotoxy(1,5);
-        title("NUEVO USUARIO");
-        locate(1,5);cout << "Nombre : ";
-        cin.getline(nombres, tam);
-         cadena = strlen (nombres);}
-
+        msj("CAMPO VACIO",WHITE,RED,130,TEXT_LEFT);
+        return false;
+        }
 
     for(int i=0; i <= cadena; i++){
         if(nombres[i]==' '){
@@ -34,11 +31,20 @@ bool validarNombresApellidos(char *nombres, int tam){
             return false;
         }
     }
-    if(contEspacios>=2){
+    if(contEspacios>=3){
         return false;
     }
     return valorFinal;
-} /// Falta revisar la parte de tamaños
+}
+
+bool validarDocumento(char *nDoc){
+
+    if(strlen(nDoc)==8){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 /*
 bool validarFecha( int dia, int mes, int anio){

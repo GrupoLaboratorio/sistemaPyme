@@ -13,6 +13,7 @@
 const char * FILE_CLIENTES = "Archivos/Clientes.dat";
 
 using namespace std;
+using namespace rlutil;
 
 Cliente::Cliente():Persona(){
 
@@ -27,6 +28,8 @@ Cliente::Cliente():Persona(){
 
 void Cliente::cargarCliente(){
 
+    //title("NUEVO CLIENTE", BLACK, CYAN); -> ARREGLAR
+    locate(0,5);
     cargarPersona();
     cin.ignore();
     cout << "RAZON SOCIAL:\t";

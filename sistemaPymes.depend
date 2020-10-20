@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1603157084 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603211712 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	"Utilidades/menus.h"
@@ -32,7 +32,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1603163925 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+1603205929 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>
@@ -99,19 +99,23 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
 
-1603162363 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
+1603210369 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
 	<iostream>
 	<cstring>
 	<iomanip>
 	"Persona.h"
 	"Fecha.h"
+	"../Utilidades/rlutil.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/validaciones.h"
 
-1603162839 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
+1603211764 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
 	"Direccion.h"
 	"Fecha.h"
 
-1603157967 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.cpp
+1603211284 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.cpp
 	<iostream>
+	<string>
 	<string.h>
 	<stdlib.h>
 	"../Utilidades/rlutil.h"
@@ -120,7 +124,7 @@
 	"../Include/Persona.h"
 	"validaciones.h"
 
-1603157955 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.h
+1603211836 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\validaciones.h
 
 1603137668 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\fecha.cpp
 	<iostream>
@@ -138,7 +142,7 @@
 1602556475 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\fecha.h
 	<time.h>
 
-1603163743 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\cliente.cpp
+1603208411 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\cliente.cpp
 	<iostream>
 	<iomanip>
 	<cstring>
