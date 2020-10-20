@@ -88,8 +88,9 @@ bool validarFecha( int dia, int mes, int anio){
     return fec;
 }*/
 
-bool validarFecha(Fecha regAux){
+/*bool validarFecha(Fecha regAux){
 
 
 
 }
+*/

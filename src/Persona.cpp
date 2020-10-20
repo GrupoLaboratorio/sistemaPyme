@@ -20,6 +20,7 @@ Persona::Persona(){
 }
 void Persona::cargarPersona(){
 
+    cin.ignore();
     cout<<"Nombre y apellido:\t";
     cin.getline(apenom, 50, '\n');
     cout<<"Fecha de Nacimiento: ";

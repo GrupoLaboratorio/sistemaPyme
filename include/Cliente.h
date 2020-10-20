@@ -3,7 +3,7 @@
 
 #include "../Include/Persona.h"
 
-const char *FILE_CLIENTES = "../Archivos/Clientes.dat";
+
 
 class Cliente: public Persona{
 

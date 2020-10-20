@@ -10,6 +10,8 @@
 #include "../Utilidades/validaciones.h"
 #include "Cliente.h"
 
+const char * FILE_CLIENTES = "../Archivos/Clientes.dat";
+
 using namespace std;
 
 Cliente::Cliente():Persona(){
@@ -25,7 +27,8 @@ Cliente::Cliente():Persona(){
 
 void Cliente::cargarCliente(){
 
-    cargarPersona();
+    cargarPersona(); /// Falta cambiar a mayusculas
+    cin.ignore();
     cout << "RAZON SOCIAL:\t";
     cin.getline(this->razonSocial,50,'\n');
     cout << "EMAIL:\t";

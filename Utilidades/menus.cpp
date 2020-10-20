@@ -131,8 +131,8 @@ void menuVentas(){
 
             break;
         case 4:
-//        clientePiloto.cargarCliente();
-//        clientePiloto.grabarEnDisco();
+        clientePiloto.cargarCliente();
+        clientePiloto.grabarEnDisco();
                 break;
         case 5:
 
