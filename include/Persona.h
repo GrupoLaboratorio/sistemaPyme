@@ -10,7 +10,6 @@ class Persona{
         char apenom[50];
         int nDoc;
         bool activo;
-        Fecha fecNac;
         Direccion domicilio;
     public:
         Persona();
@@ -21,11 +20,10 @@ class Persona{
         void setApenom(char * ape_nom){strcpy(apenom, ape_nom);}
         void setNDoc();
         void setNDoc(int _nDoc){this->nDoc = _nDoc;}
-        void setNacimiento();
         void setDomicilio();
         const char * getApenom(){return this->apenom;}
         int getNDoc(){return this->nDoc;}
-        Fecha getNacimiento(){return this->fecNac;}
+        bool getEstado(){return this->activo;}
         Direccion getDomicilio(){return this->domicilio;}
 
 };

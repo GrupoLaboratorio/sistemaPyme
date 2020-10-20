@@ -10,7 +10,7 @@
 #include "../Utilidades/validaciones.h"
 #include "Cliente.h"
 
-const char * FILE_CLIENTES = "../Archivos/Clientes.dat";
+const char * FILE_CLIENTES = "Archivos/Clientes.dat";
 
 using namespace std;
 
@@ -27,7 +27,7 @@ Cliente::Cliente():Persona(){
 
 void Cliente::cargarCliente(){
 
-    cargarPersona(); /// Falta cambiar a mayusculas
+    cargarPersona();
     cin.ignore();
     cout << "RAZON SOCIAL:\t";
     cin.getline(this->razonSocial,50,'\n');
@@ -35,6 +35,7 @@ void Cliente::cargarCliente(){
     cin.getline(this->mail,50,'\n');
     cout << "CATEGORIA:\t";
     cin >> tipoCliente;
+    this->idCliente = crearIdClientes();
 
 }
 
@@ -44,6 +45,7 @@ void Cliente::mostrarCliente(){
 	cout << setw(40) << "RAZON SOCIAL:" << setw(30) << this->razonSocial << endl;
 	cout << setw(40) << "EMAIL:" << setw(30) << this->mail << endl;
 	cout << setw(40) << "CATEGORIA:" << setw(30) << this->tipoCliente << endl;
+	cout << setw(40) << "ID:" << setw(30) << this->idCliente << endl;
 
 }
 
@@ -59,7 +61,7 @@ bool Cliente::grabarEnDisco(){
     FILE *p;
     bool chequeo;
 
-    p = fopen(FILE_CLIENTES,"ab");
+    p = fopen(FILE_CLIENTES,"wb");
     if(p==NULL){
 		cout << "Error al abrir el archivo \n";
         return false;
@@ -84,7 +86,6 @@ bool Cliente::grabarEnDisco(){
 
 }
 
-/*
 bool Cliente::leerDeDisco(int posicion){
         bool leyo;
         FILE *p;
@@ -92,9 +93,73 @@ bool Cliente::leerDeDisco(int posicion){
         if (p == NULL){
             return false;
         }
-        fseek(p, posicion * sizeof(Examen), 0);
-        leyo = fread(this, sizeof(Examen), 1, p);
+        fseek(p, posicion * sizeof(Cliente), 0);
+        leyo = fread(this, sizeof(Cliente), 1, p);
         fclose(p);
         return leyo;
+}
+
+void listarClientePorID(){
+
+    Cliente *cliAux;
+    FILE *p;
+    int idAux;
+
+    cout << "Ingrese ID a buscar:\t";
+    cin >> idAux;
+
+    p = fopen(FILE_CLIENTES, "rb");
+    if(p==NULL){
+            return;
     }
-*/
+
+        while(fread(cliAux,sizeof(Cliente),1,p)){
+            if(cliAux->getIdCliente() == idAux){
+                cliAux->mostrarCliente();
+            }
+        }
+
+    fclose(p);
+    return;
+}
+
+int crearIdClientes(){
+
+    int bytes, cant;
+    FILE *p = fopen(FILE_CLIENTES, "rb");
+    if (p == NULL){
+        return 1;
+    }
+    fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+    cant = bytes / sizeof(Cliente);
+    return cant+1;
+
+}
+
+void listarClientes(){
+
+    Cliente *cliAux;
+    bool estadoAux;
+    FILE *p;
+    int idAux;
+
+    p = fopen(FILE_CLIENTES, "rb");
+    if(p==NULL){
+            cout << "Error de archivo\n";
+            system("pause");
+            return;
+    }
+
+        while(fread(cliAux,sizeof(Cliente),1,p)==1){
+            estadoAux = cliAux->getEstado();
+            if(estadoAux == true){
+                cliAux->mostrarCliente();
+            }
+        }
+    system("pause");
+    fclose(p);
+    return;
+}
+

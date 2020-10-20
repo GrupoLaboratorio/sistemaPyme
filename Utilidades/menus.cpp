@@ -43,6 +43,9 @@ void menuPrincipal(){
         case 2:
             menuVentas();
             break;
+        case 3:
+        menuInventario();
+        break;
         case 4:
             //menuConfig();
         case 5:
@@ -113,7 +116,7 @@ void menuVentas(){
         cout<<"3 - LISTAR TODAS LAS VENTAS"<<endl;
         cout<<"4 - CARGAR CLIENTE"<<endl; /// clientes.dat
         cout<<"5 - LISTAR CLIENTE POR ID"<<endl;
-        cout<<"6 - LISTAR CLIENTES"<<endl;
+        cout<<"6 - LISTAR TODOS LOS CLIENTES"<<endl;
 
         cout<<"------------------------"<<endl;
         cout<<"0 - MENU PRINCIPAL   "<<endl;
@@ -122,23 +125,25 @@ void menuVentas(){
         cin>>opcion;
 
         system("cls");
-        switch(opcion)
-        {
+        switch(opcion){
         case 1:
 
-            break;
+        break;
         case 2:
 
-            break;
+        break;
         case 4:
         clientePiloto.cargarCliente();
+        clientePiloto.mostrarCliente();
         clientePiloto.grabarEnDisco();
-                break;
+        system("pause");
+        break;
         case 5:
-
-            break;
+        listarClientePorID();
+        break;
         case 6:
-
+        listarClientes();
+        break;
         case 0:
             return;
         default:
@@ -159,7 +164,7 @@ void menuInventario(){
         //cout<<"3 - LISTAR PRODUCTOS POR PROVEEDOR"<<endl;
 
         cout<<"------------------------"<<endl;
-        cout<<"0 - SALIR   "<<endl;
+        cout<<"0 - MENU PRINCIPAL   "<<endl;
         int opcion;
         cout<<"> ";
         cin>>opcion;

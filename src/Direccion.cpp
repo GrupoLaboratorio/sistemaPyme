@@ -29,14 +29,14 @@ Direccion::Direccion(){
 void Direccion::cargarDireccion(){
 
 	cin.ignore();
-	cout << "Calle:\t";
-	cin.getline(calle,30,'\n');	cout << "Altura:\t";
+	cout << "CALLE:\t";
+	cin.getline(calle,30,'\n');	cout << "ALTURA:\t";
 	cin >> this->numero;
-	cout << "Codigo postal:\t";
+	cout << "CODIGO POSTAL:\t";
 	cin >> this->codPost;	cin.ignore();
-	cout << "Localidad:\t";
+	cout << "LOCALIDAD:\t";
 	cin.getline(localidad,30,'\n');
-	cout << "Piso:\t";
+	cout << "PISO:\t";
 	cin >> this->piso;
 	cout << endl;
 }
