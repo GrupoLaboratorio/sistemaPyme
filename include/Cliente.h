@@ -20,7 +20,7 @@ class Cliente: public Persona{
 		void mostrarCliente();
         void setRazonSocial(char *);
         void setMail(char *);
-        void setTipoCliente(int);
+        void setTipoCliente();
         bool grabarEnDisco();
         bool leerDeDisco(int);
         const char* getRazonSocial(){return this->razonSocial;}
@@ -34,6 +34,6 @@ void listarClientePorID(); /// Lista un cliente por un id que pregunta dentro de
 
 int crearIdClientes(); /// Crea un id autonumerico para el cliente
 
-void listarClientes();
+void listarClientes(); /// Lista todos los clientes del archivo
 
 #endif // CLIENTE_H

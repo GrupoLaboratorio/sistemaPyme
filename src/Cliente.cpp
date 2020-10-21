@@ -56,7 +56,14 @@ void Cliente::setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razo
 
 void Cliente::setMail(char * _mail){strcpy(this->mail,_mail);}
 
-void Cliente::setTipoCliente(int _tipo){this->tipoCliente = _tipo;}
+void Cliente::setTipoCliente(){
+    cout << "CATEGORIA:";
+    cin >> this->tipoCliente;
+        while(this->tipoCliente<0 || this->tipoCliente > 3){
+            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
+            cin >> this->tipoCliente;
+        }
+}
 
 bool Cliente::grabarEnDisco(){
 
@@ -64,7 +71,7 @@ bool Cliente::grabarEnDisco(){
     FILE *p;
     bool chequeo;
 
-    p = fopen(FILE_CLIENTES,"wb");
+    p = fopen(FILE_CLIENTES,"ab");
     if(p==NULL){
 		cout << "Error al abrir el archivo \n";
         return false;
@@ -152,9 +159,10 @@ void listarClientes(){
     bool estadoAux;
 
     cout << left;
-    cout << setw(22) << "RAZON SOCIAL" << setw(22) << "CATEGORIA" << endl;
+    cout << setw(22) << "ID CLIENTE" << setw(22) << "RAZON SOCIAL" << setw(22) << "CATEGORIA" << endl;
     cout << endl;
         while(cliAux.leerDeDisco(i++)){
+                estadoAux = cliAux.getIdCliente();
                 estadoAux = cliAux.getEstado();
                 if(estadoAux == true){
                 cout << setw(22);
@@ -168,7 +176,7 @@ void listarClientes(){
                     cout << setw(22) << "Responsable Inscripto";
                 break;
                 case 3:
-                    cout << setw(22) << "Otro";
+                    cout << setw(22) << "Consumidor final";
                 break;
                 default:
                     cout << "CATEGORIA INCORRECTA";
@@ -182,7 +190,7 @@ void listarClientes(){
 
 //void listarClientes(){
 //
-//    Cliente *cliAux;
+//    Cliente cliAux;
 //    bool estadoAux;
 //    FILE *p;
 //    int idAux;
@@ -194,10 +202,10 @@ void listarClientes(){
 //            return;
 //    }
 //
-//        while(fread(cliAux,sizeof(Cliente),1,p)==1){
-//            estadoAux = cliAux->getEstado();
+//        while(fread(&cliAux,sizeof(Cliente),1,p)==1){
+//            estadoAux = cliAux.getEstado();
 //            if(estadoAux == true){
-//                cliAux->mostrarCliente();
+//                cliAux.mostrarCliente();
 //            }
 //        }
 //    system("pause");
@@ -207,7 +215,7 @@ void listarClientes(){
 
 //void listarClientes(){
 //
-//    Cliente *cliAux;
+//    Cliente cliAux;
 //    bool estadoAux;
 //    FILE *p;
 //    int idAux;
@@ -219,14 +227,14 @@ void listarClientes(){
 //            return;
 //    }
 //        cout << setw(22) << "RAZON SOCIAL" << setw(22) << "CATEGORIA" << endl;
-//        while(fread(cliAux,sizeof(Cliente),1,p)==1){
-//                estadoAux = cliAux->getEstado();
+//        while(fread(&cliAux,sizeof(Cliente),1,p)==1){
+//                estadoAux = cliAux.getEstado();
 //                if(estadoAux == true){
 //                cout << left;
-//                cout << setw(22) << cliAux->getRazonSocial();
+//                cout << cliAux.getRazonSocial();
 //
 //                cout << setw(22);
-//                switch(cliAux->getTipo()){
+//                switch(cliAux.getTipo()){
 //                case 1:
 //                    cout << "Monotributista";
 //                break;
