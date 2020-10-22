@@ -2,13 +2,14 @@
 #include<cstdlib>
 #include<cstdio>
 #include<cstring>
+#include "../Include/Producto.h"
 
 using namespace std;
-#include "Producto.h"
 
 ///ESTADO: CONTINUAR HACIENDO QUE LEA UN ARCHIVO DE PRODUCTOS QUE SERIA EL REGISTRO GENERAL DE PRODUCTOS.
 
 const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
+
    /*Producto::Producto(int cero,const char* nada){
         id=codProv=planCta=stock=stockMin=precioCosto=iva=cero;
         estado=cero;

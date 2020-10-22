@@ -5,11 +5,15 @@
 #include <conio.h>
 #include <time.h>
 #include "Ventas.h"
-#include "funcionesG.h"
+#include "../include/Producto.h"
+
 
 using namespace std;
 
 const char * FILE_VENTAS = "Achivos/Ventas.dat";
+const char * FILE_FACTURAA = "Archivos/FacturaA.dat";
+const char * FILE_FACTURAB = "Archivos/FacturaB.dat";
+//const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
 //Ventas::Ventas(){
 //    Bonificacion=0;
@@ -145,52 +149,53 @@ int Ventas::getcantProd(){
 }
 
 
- bool Producto::grabarEnDisco(){
-
-        system("cls");
-        FILE *p;
-        bool chequeo;
-
-        p = fopen(FILE_PRODUCTOS,"ab");
-        if(p==NULL){
-            cout << "Error al abrir el archivo \n";
-            return false;
-        }
-        chequeo = fwrite(this, sizeof(Producto),1,p);
-        if(chequeo==1){
-
-            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-            //cout << "Registro exitoso";
-            fclose(p);
-            //system("pause");
-            return true;
-        }
-        else{
-            //cout << "El registro no pudo guardarse \n\n";
-            fclose(p);
-            //system("pause");
-            return false;
-        }
-    }
+//bool Producto::grabarEnDisco(){
+//
+//        system("cls");
+//        FILE *p;
+//        bool chequeo;
+//
+//        p = fopen(FILE_PRODUCTOS,"ab");
+//        if(p==NULL){
+//            cout << "Error al abrir el archivo \n";
+//            return false;
+//        }
+//        chequeo = fwrite(this, sizeof(Producto),1,p);
+//        if(chequeo==1){
+//
+//            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
+//            //cout << "Registro exitoso";
+//            fclose(p);
+//            //system("pause");
+//            return true;
+//        }
+//        else{
+//            //cout << "El registro no pudo guardarse \n\n";
+//            fclose(p);
+//            //system("pause");
+//            return false;
+//        }
+//    }
 
     int crearId(char tipo='B'){
     int bytes, cant;
+
     if(tipo == 'A' || tipo == 'a')  {
-    FILE *p = fopen("FacturaA.dat", "rb");
+    FILE *p = fopen(FILE_FACTURAA, "rb");
      if (p == NULL){
         return 13;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
     }
       fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
+            bytes = ftell(p);
+            fclose(p);
     }else{
-    FILE *p = fopen("FacturaB.dat", "rb");
-     if (p == NULL){
-        return 18;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
+        FILE *p = fopen(FILE_FACTURAB, "rb");
+         if (p == NULL){
+            return 18;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
     }
       fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
+            bytes = ftell(p);
+            fclose(p);
      }
     cant = bytes / sizeof(Ventas);
     return cant+1;

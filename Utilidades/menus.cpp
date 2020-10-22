@@ -10,15 +10,17 @@
 #include "../Utilidades/menus.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
-#include "../Include/Cliente.h"
+#include "../Include/Entidad.h"
 
 using namespace rlutil;
 using namespace std;
 
+///---------------------------------------------- MENU PRINCIPAL
+
 void menuPrincipal(){
 
         const int POSMENUX = 0;
-        const int POSMENUY = 1;
+        const int POSMENUY = 0;
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
         const int FONDO = RED;
@@ -95,8 +97,7 @@ void menuPrincipal(){
                 menuVentas();
         break;
         case 3:
-                cout << "Opcion 3";
-                system("pause");
+				menuInventario();
         break;
         case 4:
                 cout << "Opcion 4";
@@ -120,6 +121,8 @@ void menuPrincipal(){
     return;
 }
 
+///---------------------------------------------- MENU COMPRAS
+
 void menuCompras(){
 
         const int POSMENUX = 0;
@@ -127,6 +130,7 @@ void menuCompras(){
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
         const int FONDO = BLUE;
+        Entidad EntidadPiloto;
 
 
     setlocale(LC_ALL, "spanish");
@@ -195,18 +199,19 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-                menuCompras();
+                //menuCompras();
         break;
         case 2:
-                menuVentas();
+                //menuVentas();
         break;
         case 3:
                 cout << "Opcion 3";
                 system("pause");
         break;
         case 4:
-                cout << "Opcion 4";
-                system("pause");
+                EntidadPiloto.cargarProveedor();
+                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.grabarEnDisco(2);
         break;
         case 5:
                 cout << "Opcion 5";
@@ -227,6 +232,8 @@ void menuCompras(){
 
 }
 
+///---------------------------------------------- MENU VENTAS
+
 void menuVentas(){
 
         const int POSMENUX = 0;
@@ -234,7 +241,7 @@ void menuVentas(){
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
         const int FONDO = BLUE;
-        Cliente clientePiloto;
+        Entidad EntidadPiloto;
 
 
     setlocale(LC_ALL, "spanish");
@@ -258,7 +265,7 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. LISTAR TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. CARGAR CLIENTE";
+      cout << "4. CARGAR CLIENTE"; /// ver como validad que no cargue en el arhcivo incorrecto
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. LISTAR CLIENTE POR ID";
       locate(POSMENUX+3,POSMENUY+8);
@@ -314,17 +321,17 @@ void menuVentas(){
                 system("pause");
         break;
         case 4:
-                clientePiloto.cargarCliente();
-                clientePiloto.mostrarCliente();
-                clientePiloto.grabarEnDisco();
+                EntidadPiloto.cargarCliente();
+                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.grabarEnDisco(1);
                 system("pause");
         break;
         case 5:
-                listarClientePorID();
+                //listarEntidadPorID(); -> Falta armar
                 system("pause");
         break;
         case 6:
-                listarClientes();
+                listarEntidades(1);
                 system("pause");
         break;
         case 0:

@@ -1,6 +1,5 @@
 #ifndef VENTAS_H
 #define VENTAS_H
-#include "funcionesG.h"
 
 class Ventas{
 
@@ -25,24 +24,26 @@ class Ventas{
     void setNrofactura(); /// Asigna el numero de factura autonumerico
     void setModoPago(); ///Asigna el modo de pago
     void setBonificacion();  /// Asigna la bonificacion que requiera de acuerdo al modo de pago
-     void setProducto(); /// Asigna el Id de producto ingresado
-     void setPrecio(); ///Asigna el Precio Unitario del producto
-     void setCantProd(); ///Asigna la cantidad de producto en stock
-     void setImpuesto(); ///Asigna el impuesto
+    void setProducto(); /// Asigna el Id de producto ingresado
+    void setPrecio(); ///Asigna el Precio Unitario del producto
+    void setCantProd(); ///Asigna la cantidad de producto en stock
+    void setImpuesto(); ///Asigna el impuesto
     void setprecioFinal();  /// Calcula el precio aplicando la bonificacion
     char getTipoFact();  /// Muestra el tipo de factura
     int getNroFactura();  /// Muestra el numero de la factura
     int getModoPago(); ///Muestra  el modo de pago
     float getBonificacion(); ///  Muestra la bonificacion aplicada
     float getPrecioFinal();  /// Muestra el precio con la bonificacion aplicada
-     int getProducto(); /// Muestra el numero de  id del producto
-     int getcantProd(); ///Muestra la cantidad de producto corroborado en setCantProd
+    int getProducto(); /// Muestra el numero de  id del producto
+    int getcantProd(); ///Muestra la cantidad de producto corroborado en setCantProd
     float getPrecio();  ///Muestra el precio unitario del producto
     float getImpuesto(); ///Muestra el Impuesto aplicado.
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 };
 
-///-----------------------PROTOTIPOS GLOBALES
+///----------------------- PROTOTIPOS GLOBALES -----------------------
+
+
 int crearId(char);
 
 #endif // VENTAS_H

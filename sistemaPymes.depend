@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1603248474 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603399218 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	"Utilidades/menus.h"
 	"Include/Persona.h"
 	"Utilidades/validaciones.h"
 	"Direccion.h"
-	"Include/Cliente.h"
+	"Include/Entidad.h"
 	"Include/Ventas.h"
 
 1603061340 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
@@ -33,7 +33,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1603205929 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+1603398399 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>
@@ -46,7 +46,7 @@
 	"../Utilidades/menus.h"
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
-	"../Include/Cliente.h"
+	"../Include/Entidad.h"
 
 1603067768 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\main.cpp
 	<iostream>
@@ -100,7 +100,7 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
 
-1603218069 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
+1603399234 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\persona.cpp
 	<iostream>
 	<cstring>
 	<iomanip>
@@ -110,7 +110,7 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/validaciones.h"
 
-1603211764 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
+1603399227 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\persona.h
 	"Direccion.h"
 	"Fecha.h"
 
@@ -143,7 +143,7 @@
 1602556475 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\fecha.h
 	<time.h>
 
-1603239220 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\cliente.cpp
+1603249273 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\cliente.cpp
 	<iostream>
 	<iomanip>
 	<cstring>
@@ -183,27 +183,52 @@
 
 1603246205 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\calculadora.h
 
-1603246237 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\compras.cpp
+1603382103 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\compras.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
 	<cstring>
 	<conio.h>
 	<time.h>
-	"Compras.h"
+	"../include/Compras.h"
+	"../include/Producto.h"
 
-1603246329 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\compras.h
+1603381234 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\compras.h
 
-1603248662 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\ventas.cpp
+1603382131 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\ventas.cpp
 	<cstdlib>
 	<iostream>
 	<cstdio>
 	<cstring>
 	<conio.h>
 	<time.h>
-	"../Include/Ventas.h"
-	"../Include/Operacion.h"
+	"Ventas.h"
+	"../include/Producto.h"
 
-1603247597 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\ventas.h
-	"Operacion.h"
+1603381048 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\ventas.h
+
+1603381547 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\producto.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	"../Include/Producto.h"
+
+1603329156 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\producto.h
+
+1603399425 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\entidad.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	<cstdio>
+	<stdlib.h>
+	"../Utilidades/menus.h"
+	"Persona.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/rlutil.h"
+	"../Utilidades/validaciones.h"
+	"Entidad.h"
+
+1603398367 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\entidad.h
+	"../Include/Persona.h"
 

@@ -4,19 +4,14 @@
 #include "Include/Persona.h"
 #include "Utilidades/validaciones.h"
 #include "Direccion.h"
-#include "Include/Cliente.h"
+#include "Include/Entidad.h"
 #include "Include/Ventas.h"
 
 using namespace std;
 
 int main(){
 
-	Ventas ventaUno;
-	//menuPrincipal();
-
-	ventaUno.CargarVtas();
-	ventaUno.MostrarVtas();
-
+	menuPrincipal();
 
     return 0;
 }

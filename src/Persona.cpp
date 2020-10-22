@@ -14,7 +14,6 @@ using namespace std;
 Persona::Persona(){
 
     strcpy(this->apenom, "NN");
-    strcpy(this->nDoc, "00000000");
     //this->domicilio.Direccion();
     this->activo = false;
 
@@ -22,7 +21,6 @@ Persona::Persona(){
 void Persona::cargarPersona(){
 
     setApenom();
-    setNDoc();
     domicilio.cargarDireccion();
     this->activo = true;
 }
@@ -31,7 +29,6 @@ void Persona::mostrarPersona(){
 
 	cout << left;
     cout << setw(40) << "NOMBRE Y APELLIDO:" << setw(30) << this->apenom << endl;
-    cout << setw(40) << "DNI:" << setw(30) << this->nDoc << endl;
     domicilio.mostrarDireccion();
 
 }
@@ -46,16 +43,16 @@ void Persona::setApenom(){
     }
 }
 
-void Persona::setNDoc(){
-
-    cout << "DNI:\t";
-    cin.getline(this->nDoc,9,'\n');
-    while(!validarDocumento(nDoc)){
-            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-            cout << "DNI:\t";
-            cin.getline(this->nDoc,9,'\n');
-    }
-
-}
+//void Persona::setNDoc(){
+//
+//    cout << "DNI:\t";
+//    cin.getline(this->nDoc,9,'\n');
+//    while(!validarDocumento(nDoc)){
+//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
+//            cout << "DNI:\t";
+//            cin.getline(this->nDoc,9,'\n');
+//    }
+//
+//}
 
 void Persona::setDomicilio(){this->domicilio.cargarDireccion();}
