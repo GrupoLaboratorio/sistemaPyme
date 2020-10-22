@@ -143,9 +143,6 @@ bool Entidad::grabarEnDisco(int _tipoEntidad){
     break;
 
     }
-
-
-
 }
 
 bool Entidad::leerDeDisco(int posicion,int _tipoEntidad){ /// Modificar

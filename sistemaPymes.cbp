@@ -42,7 +42,7 @@
 		<Unit filename="Utilidades/validaciones.cpp" />
 		<Unit filename="Utilidades/validaciones.h" />
 		<Unit filename="include/Calculadora.h" />
-		<Unit filename="include/Compras.h" />
+		<Unit filename="include/Compra.h" />
 		<Unit filename="include/Direccion.h" />
 		<Unit filename="include/Entidad.h" />
 		<Unit filename="include/Fecha.h" />
@@ -51,7 +51,7 @@
 		<Unit filename="include/Ventas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Calculadora.cpp" />
-		<Unit filename="src/Compras.cpp" />
+		<Unit filename="src/Compra.cpp" />
 		<Unit filename="src/Direccion.cpp" />
 		<Unit filename="src/Entidad.cpp" />
 		<Unit filename="src/Fecha.cpp" />

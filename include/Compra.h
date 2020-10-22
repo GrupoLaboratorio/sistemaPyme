@@ -16,7 +16,7 @@ class Compras{
      ///Producto  mercad;
 
     public:
-    void CargarCompras();  /// Carga los datos de las ventas
+    void cargarCompras();  /// Carga los datos de las ventas
     void MostrarCompras(); /// Muestra los datos de las ventas
     void setTipoFact(); /// Asigna el tipo de factura
     void setnrofactura(); /// Asigna el numero de factura autonumerico

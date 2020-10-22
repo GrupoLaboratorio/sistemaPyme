@@ -11,6 +11,7 @@
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
 #include "../Include/Entidad.h"
+#include "../Include/Compra.h"
 
 using namespace rlutil;
 using namespace std;
@@ -131,6 +132,7 @@ void menuCompras(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
+        Compras compraPiloto;
 
 
     setlocale(LC_ALL, "spanish");
@@ -199,7 +201,8 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-                //menuCompras();
+			compraPiloto.cargarCompras();
+			compraPiloto.grabarEnDisco();
         break;
         case 2:
                 //menuVentas();

@@ -4,19 +4,18 @@
 #include <cstring>
 #include <conio.h>
 #include <time.h>
-#include "../include/Compras.h"
+#include "../include/Compra.h"
 #include "../include/Producto.h"
 
 using namespace std;
 
 const char * FILE_COMPRAS = "Achivos/Compras.dat";
-//const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
-void Compras::CargarCompras(){
+void Compras::cargarCompras(){
 
     setTipoFact();
-    setnrofactura();
     setpuntoVta();
+    setnrofactura();
     setProducto();
     setCantProd();
     setPrecio();
@@ -105,30 +104,31 @@ int Compras::getpuntoVta(){
    return puntoVta;
 }
 
-//bool Producto::grabarEnDisco(){
-//
-//        system("cls");
-//        FILE *p;
-//        bool chequeo;
-//
-//        p = fopen(FILE_PRODUCTOS,"ab");
-//        if(p==NULL){
-//            cout << "Error al abrir el archivo \n";
-//            return false;
-//        }
-//        chequeo = fwrite(this, sizeof(Producto),1,p);
-//        if(chequeo==1){
-//
-//            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-//            //cout << "Registro exitoso";
-//            fclose(p);
-//            //system("pause");
-//            return true;
-//        }
-//        else{
-//            //cout << "El registro no pudo guardarse \n\n";
-//            fclose(p);
-//            //system("pause");
-//            return false;
-//        }
-//    }
+bool Compras::grabarEnDisco(){
+
+    system("cls");
+    FILE *p;
+    bool chequeo;
+
+        p = fopen(FILE_COMPRAS,"ab");
+        if(p==NULL){
+            cout << "Error al abrir el archivo clientes\n";
+            return false;
+        }
+        chequeo = fwrite(this, sizeof(Compras),1,p);
+        if(chequeo==1){
+
+            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
+            cout << "Registro exitoso";
+            fclose(p);
+            system("pause");
+            // cls();
+            return true;
+        }
+        else{
+            cout << "El registro no pudo guardarse en compras\n\n";
+            fclose(p);
+            system("pause");
+            return false;
+        }
+}
