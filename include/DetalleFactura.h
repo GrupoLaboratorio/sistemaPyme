@@ -15,4 +15,5 @@ class DetalleFactura
         bool leerDeDisco(int posicion);
 };
 void listado_facturas();
+void mostrarDetalle();
 #endif // DETALLEFACTURA_H

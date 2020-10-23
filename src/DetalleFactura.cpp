@@ -6,6 +6,7 @@ using namespace std;
 #include <cstdio>
 #include <iomanip>
 #include "DetalleFactura.h"
+#include "Entidad.h"
 const char * FILE_DETFAC = "Archivos/DetalleFacturas.dat";
 void DetalleFactura::CDetalleFactura(
    int _nroFactura,
@@ -56,25 +57,103 @@ bool DetalleFactura::guardarEnDisco(int posicion){
         fclose(p);
         return leyo;
     }
-
     void listado_facturas(){
         DetalleFactura aux;
         int i = 0;
         cout << left;
-        cout<<"***************************************************************************************"<<endl;
-        cout<<"DETALLE DE FACTURA"<<endl;
-        cout<<"***************************************************************************************"<<endl;
-        cout<<"---------------------------------------------------------------------------------------"<<endl;
-        cout << setw(4) << "ID" << setw(10) << "#FACTURA" << setw(10) << "CODPROD." << setw(10) << "CANTIDAD";
-        cout<< setw(10)<<"_PRECIO_"<<setw(10)<<"TOT_IVA."<<setw(10)<<"SUB_TOT."<<setw(7)<<"TOTAL";
-        cout<<setw(6)<<"PCTA"<<setw(7)<<"C_ENT"<<setw(5)<<"ENT"<<endl;
-        cout<<"---------------------------------------------------------------------------------------"<<endl;
+        cout<<"*****************************************************************************************"<<endl;
+        cout<<"*_______________________________DETALLE DE FACTURA"<<setw(40)<<"______________________________________*"<<endl;
+        cout<<"*****************************************************************************************"<<endl;
+        cout<<endl;
+        cout<<setw(4)  <<"ID";
+        cout<<setw(10)<<"#FACTURA";
+        cout<<setw(10)<<"CODPROD.";
+        cout<<setw(10)<<"CANTIDAD";
+        cout<<setw(10)<<"_PRECIO_";
+        cout<<setw(10)<<"TOT_IVA.";
+        cout<<setw(10)<<"SUB_TOT.";
+        cout<<setw(7)  <<"TOTAL";
+        cout<<setw(6)  <<"PCTA";
+        cout<<setw(7)  <<"C_ENT";
+        cout<<setw(5)  <<"ENT";
+        cout<<endl;
+        cout<<"________________________________________________________________________________________"<<endl;
         while (aux.leerDeDisco(i++)){
-        cout << right;
-        cout << setw(4) <<"01"<< setw(10) << aux.nroFactura<< setw(10) << aux.codProd << setw(10) << aux.cantidad;
-        cout<< setw(10)<<aux.precioCosto<<setw(10)<<aux.ivaTotalProd<<setw(10)<<aux.subTotalProd<<setw(7)<<aux.TotalProd;
-        cout<<setw(6)<<aux.planCta<<setw(7)<<aux.codEnt<<setw(5)<<aux.tipoEnt<<endl;
-//        cout << endl;
-        cout<<"---------------------------------------------------------------------------------------"<<endl;
+        cout<< right;
+        cout<< setw(2)<<"01";
+        cout<< setw(8)<< aux.nroFactura;
+        cout<< setw(10) << aux.codProd;
+        cout<< setw(10) << aux.cantidad;
+        cout<< setw(10)<<aux.precioCosto;
+        cout<<setw(10)<<aux.ivaTotalProd;
+        cout<<setw(10)<<aux.subTotalProd;
+        cout<<setw(10)<<aux.TotalProd;
+        cout<<setw(6)<<aux.planCta;
+        cout<<setw(5)<<aux.codEnt;
+        cout<<setw(5)<<"CL";
+        cout<<endl;
+        cout<<"________________________________________________________________________________________"<<endl;
+
         }
         }
+void  mostrarDetalle(){
+    float  sTot, sIva, tTot, tPrUn;
+          DetalleFactura aux;
+          Entidad cli;
+          cli.leerDeDisco(aux.codEnt, 'CLIENTE');
+        int i = 0;
+
+        cout << left;
+        cout<<"*__________________________FACTURA____________________________*"<<endl;
+        cout<<"***************************************************************"<<endl;
+//        cout<<setfill('*');
+//        cout<<setw(63)<<endl;
+        cout<<setw(42)<<""<<"Nro Fac: 0000-"<<aux.nroFactura<<endl;
+        cout<<cli.getApenom()<<endl;
+        cout<<endl;
+        cout<<right;
+        cout<< "TONGA GESTION SRL   "<<setw(20)<<""<<"R.SOCIAL: "<<setw(13)<<"LARA COLA SRL"<<endl;
+        cout<< "info@tongagest.com  "<<setw(20)<<""<<"MAIL:"<<setw(13)<<"info@briancola.com"<<endl;
+        cout<< "Dir: Yrigoyen 197   "<<setw(20)<<""<<"DIR :     "<<setw(13)<<"Games F"<<endl;
+        cout<< "Cod Post : 1640     "<<setw(20)<<""<<"TEL :     "<<setw(13)<<"458-4584"<<endl;
+        cout<< "Cuit: 30-12345678-0 "<<setw(20)<<""<<"CUIT:     "<<setw(13)<<"44-44444444-4"<<endl;
+//        cout<<setw(4)  <<"ID";
+        cout<<endl;
+        cout<<endl;
+        cout << left;
+        cout<<"_______________________________________________________________"<<endl;
+        cout<<setw(8)<<"#__";
+        cout<<setw(10)<<"CODPROD.";
+        cout<<setw(10)<<"CANTIDAD";
+        cout<<setw(10)<<"_PRECIO_";
+        cout<<setw(10)<<"TOT_IVA.";
+        cout<<setw(10)<<"SUB_TOT.";
+        cout<<setw(7)  <<"TOTAL";
+        cout<<endl;
+        cout<<"_______________________________________________________________"<<endl;
+        while (aux.leerDeDisco(i++)){
+
+        cout<< right;
+        cout<< setw(10) << aux.codProd;
+        cout<< setw(10) << aux.cantidad;
+        cout<< setw(10)<<aux.precioCosto;
+        cout<<setw(10)<<aux.ivaTotalProd;
+        cout<<setw(10)<<aux.subTotalProd;
+        cout<<setw(10)<<aux.TotalProd;
+        cout<<endl;
+         tPrUn+=aux.precioCosto;
+        sIva+=aux.ivaTotalProd;
+         sTot+=aux.subTotalProd;
+        tTot+=aux.TotalProd;
+//        cout<<"________________________________________________________________________________________"<<endl;
+
+        }
+        cout<<endl;
+        cout<<endl;
+        cout<< right;
+        cout<<setw(50)<<"SubTotal: "<<setw(9)<<sTot<<endl;
+        cout<<setw(50)<<"Total Iva: "<<setw(9)<<sIva<<endl;
+        cout<<setw(50)<<"Total Final: "<<setw(9)<<tTot<<endl;
+        cout<<"_______________________________________________________________"<<endl;
+
+}
