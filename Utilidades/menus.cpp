@@ -7,18 +7,19 @@
 #include <cctype>
 #include <algorithm>
 #include <iomanip>
+using namespace std;
 #include "../Utilidades/menus.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
 #include "../Include/Entidad.h"
 #include "../Include/Compra.h"
 #include "../Include/DetalleFactura.h"
-
+#include "../Include/Login.h"
 using namespace rlutil;
-using namespace std;
+
 
 ///---------------------------------------------- MENU PRINCIPAL
-
+Login oLogout;
 void menuPrincipal(){
 
         const int POSMENUX = 0;
@@ -28,7 +29,7 @@ void menuPrincipal(){
         const int FONDO = RED;
 
     setlocale(LC_ALL, "spanish");
-    setConsoleTitle("TONGA GESTION");
+//    setConsoleTitle("TONGA GESTION");
     const int ANCHO_MENU = 75;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
@@ -39,8 +40,10 @@ void menuPrincipal(){
       system("cls");
       opc=1;
       setColor(LETRA);
-      //setBackgroundColor(FONDO);
+//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
+//      locate(POSMENUX+5,POSMENUY+2);
+//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION", WHITE, RED);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. COMPRAS";
@@ -113,8 +116,8 @@ void menuPrincipal(){
                 cout << "Opcion 6";
                 system("pause");
         break;
-        case 0:
-        return;
+        case 0: return;
+//        oLogout.setLogin(false);
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
                 break;
@@ -265,7 +268,7 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. CARGAR VENTA";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "2. LISTAR VENTA POR ID";
+      cout << "2. IMPRIMIR ULTIMA FACTURA";
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. LISTAR TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
@@ -317,21 +320,20 @@ void menuVentas(){
                 system("pause");
         break;
         case 2:
-                cout << "Opcion 3";
+                 mostrarDetalle();
                 system("pause");
         break;
         case 3:
-                listado_facturas();
+               listado_facturas();
                 system("pause");
-        break;
-        case 4:
+        break;        case 4:
                 EntidadPiloto.cargarCliente();
                 EntidadPiloto.mostrarEntidad();
                 EntidadPiloto.grabarEnDisco(1);
                 system("pause");
         break;
         case 5:
-                //listarEntidadPorID(); -> Falta armar
+//            mostrarDetalle();
                 system("pause");
         break;
         case 6:

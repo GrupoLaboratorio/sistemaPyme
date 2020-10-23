@@ -98,62 +98,61 @@ bool DetalleFactura::guardarEnDisco(int posicion){
         }
 void  mostrarDetalle(){
     float  sTot, sIva, tTot, tPrUn;
-          DetalleFactura aux;
-          Entidad cli;
-          cli.leerDeDisco(aux.codEnt, 'CLIENTE');
-        int i = 0;
+    DetalleFactura aux;
+    Entidad cli;
+    cli.leerDeDisco(aux.codEnt, 'CLIENTE');
+    int i = 0;
 
         cout << left;
-        cout<<"*__________________________FACTURA____________________________*"<<endl;
-        cout<<"***************************************************************"<<endl;
-//        cout<<setfill('*');
-//        cout<<setw(63)<<endl;
-        cout<<setw(42)<<""<<"Nro Fac: 0000-"<<aux.nroFactura<<endl;
+        cout<<"_______________________________________________________________________________"<<endl;
+        cout<<"___________________________________FACTURA_____________________________________"<<endl;
+        cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+        cout<<setw(55)<<""<<"Nro Fac: 0000-"<<aux.nroFactura<<endl;
         cout<<cli.getApenom()<<endl;
         cout<<endl;
+        cout<<"_______________________________________________________________________________"<<endl;
         cout<<right;
-        cout<< "TONGA GESTION SRL   "<<setw(20)<<""<<"R.SOCIAL: "<<setw(13)<<"LARA COLA SRL"<<endl;
-        cout<< "info@tongagest.com  "<<setw(20)<<""<<"MAIL:"<<setw(13)<<"info@briancola.com"<<endl;
-        cout<< "Dir: Yrigoyen 197   "<<setw(20)<<""<<"DIR :     "<<setw(13)<<"Games F"<<endl;
-        cout<< "Cod Post : 1640     "<<setw(20)<<""<<"TEL :     "<<setw(13)<<"458-4584"<<endl;
-        cout<< "Cuit: 30-12345678-0 "<<setw(20)<<""<<"CUIT:     "<<setw(13)<<"44-44444444-4"<<endl;
-//        cout<<setw(4)  <<"ID";
-        cout<<endl;
+        cout<< "TONGA GESTION SRL   "<<setw(32)<<""<<"R.SOCIAL: "<<setw(13)<<"LARA COLA SRL"<<endl;
+        cout<< "info@tongagest.com  "<<setw(32)<<""<<"MAIL:"<<setw(13)<<"info@briancola.com"<<endl;
+        cout<< "Dir: Yrigoyen 197   "<<setw(32)<<""<<"DIR :     "<<setw(13)<<"Games F"<<endl;
+        cout<< "Cod Post : 1640     "<<setw(32)<<""<<"TEL :     "<<setw(13)<<"458-4584"<<endl;
+        cout<< "Cuit: 30-12345678-0 "<<setw(32)<<""<<"CUIT:     "<<setw(13)<<"44-44444444-4"<<endl;
+//        cout<<endl;
         cout<<endl;
         cout << left;
-        cout<<"_______________________________________________________________"<<endl;
-        cout<<setw(8)<<"#__";
-        cout<<setw(10)<<"CODPROD.";
-        cout<<setw(10)<<"CANTIDAD";
-        cout<<setw(10)<<"_PRECIO_";
-        cout<<setw(10)<<"TOT_IVA.";
-        cout<<setw(10)<<"SUB_TOT.";
-        cout<<setw(7)  <<"TOTAL";
+        cout<<"_______________________________________________________________________________"<<endl;
+        cout<<setw(3)<<" # ";
+        cout<<setw(20)<<"    DESCRIPCION     ";
+        cout<<setw(8)<<"CODPROD";
+        cout<<setw(10)<<" CANTIDAD ";
+        cout<<setw(8)<<" PRECIO ";
+        cout<<setw(9)<<" TOT_IVA ";
+        cout<<setw(10)<<" SUB_TOT. ";
+        cout<<setw(7)  <<" TOTAL ";
         cout<<endl;
-        cout<<"_______________________________________________________________"<<endl;
+        cout<<"_______________________________________________________________________________"<<endl;
         while (aux.leerDeDisco(i++)){
-
-        cout<< right;
-        cout<< setw(10) << aux.codProd;
-        cout<< setw(10) << aux.cantidad;
-        cout<< setw(10)<<aux.precioCosto;
-        cout<<setw(10)<<aux.ivaTotalProd;
-        cout<<setw(10)<<aux.subTotalProd;
-        cout<<setw(10)<<aux.TotalProd;
+        cout<< setw(3) <<" 2 ";
+        cout<< setw(20) << "descripcion del prod";
+        cout<< setw(4) <<" "<< aux.codProd;
+        cout<< setw(4) <<" "<< aux.cantidad;
+        cout<< setw(6)<<""<<aux.precioCosto;
+        cout<<setw(6)<<""<<aux.ivaTotalProd;
+        cout<<setw(6)<<""<<aux.subTotalProd;
+        cout<<setw(6 )<<""<<aux.TotalProd;
         cout<<endl;
-         tPrUn+=aux.precioCosto;
+        tPrUn+=aux.precioCosto;
         sIva+=aux.ivaTotalProd;
-         sTot+=aux.subTotalProd;
+        sTot+=aux.subTotalProd;
         tTot+=aux.TotalProd;
-//        cout<<"________________________________________________________________________________________"<<endl;
-
         }
-        cout<<endl;
-        cout<<endl;
+        cout<<"_______________________________________________________________________________"<<endl;
+//        cout<<endl;
+//        cout<<endl;
         cout<< right;
-        cout<<setw(50)<<"SubTotal: "<<setw(9)<<sTot<<endl;
-        cout<<setw(50)<<"Total Iva: "<<setw(9)<<sIva<<endl;
-        cout<<setw(50)<<"Total Final: "<<setw(9)<<tTot<<endl;
-        cout<<"_______________________________________________________________"<<endl;
-
+        cout<<setw(70)<<"SubTotal: "<<setw(9)<<sTot<<endl;
+        cout<<setw(70)<<"Total Iva: "<<setw(9)<<sIva<<endl;
+        cout<<setw(70)<<"Total Final: "<<setw(9)<<tTot<<endl;
+        cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+        cout<<"_______________________________________________________________________________"<<endl;
 }
