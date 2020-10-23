@@ -12,6 +12,7 @@
 #include "../Utilidades/rlutil.h"
 #include "../Include/Entidad.h"
 #include "../Include/Compra.h"
+#include "../Include/DetalleFactura.h"
 
 using namespace rlutil;
 using namespace std;
@@ -320,7 +321,7 @@ void menuVentas(){
                 system("pause");
         break;
         case 3:
-                cout << "Opcion 3";
+                listado_facturas();
                 system("pause");
         break;
         case 4:
