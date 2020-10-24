@@ -43,20 +43,24 @@
 		<Unit filename="Utilidades/validaciones.h" />
 		<Unit filename="include/Calculadora.h" />
 		<Unit filename="include/Compra.h" />
+		<Unit filename="include/DetalleFactura.h" />
 		<Unit filename="include/Direccion.h" />
 		<Unit filename="include/Entidad.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Persona.h" />
 		<Unit filename="include/Producto.h" />
+		<Unit filename="include/Usuario.h" />
 		<Unit filename="include/Ventas.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Calculadora.cpp" />
 		<Unit filename="src/Compra.cpp" />
+		<Unit filename="src/DetalleFactura.cpp" />
 		<Unit filename="src/Direccion.cpp" />
 		<Unit filename="src/Entidad.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Persona.cpp" />
 		<Unit filename="src/Producto.cpp" />
+		<Unit filename="src/Usuario.cpp" />
 		<Unit filename="src/Ventas.cpp" />
 		<Extensions>
 			<code_completion />

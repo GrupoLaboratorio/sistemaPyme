@@ -2,8 +2,8 @@
 #define PRODUCTO_H
 
 
-class Producto
-{
+class Producto{
+
     private:
         int id,codProv,planCta,stock,stockMin;
         float precioCosto,iva;
@@ -22,14 +22,9 @@ class Producto
         void setIva();///**HECHO**
         void setStockMin();
         void setEstado();
-
-
         bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
         bool leerDeDisco(int posicion);///Lee de disco un producto cuya posicion se pasa como parámetro **HECHA
         int buscarProdxId(int idAux);///DEVUELVE LA POSICION DE UN PRODUCTO POR ID QUE ES PASADO COMO PARAMETRO **HECHA
-
-
-
         void getId();///MUESTRA EL ID DE UN OBJETO TIPO PRODUCTO **FALTA**
         void getCodProv();
         void getDescripcion();
@@ -39,11 +34,6 @@ class Producto
         void getIva();///**HECHO**
         void getStockMin();///
         void getEstado();
-
-
-
-
-
         void listarProductos();///LISTA LOS PRODUCTOS QUE SE ENCUENTRAN EN EL ARCHIVO DE PRODUCTOS (INVENTARIO)
         void getProducto();/// Devuelve un producto producto recibiendo su id como parametro.**HECHA**
 };

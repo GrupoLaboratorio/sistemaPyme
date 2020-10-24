@@ -5,6 +5,7 @@
 #include <string.h>
 #include <cstdio>
 using namespace std;
+
 #include "Utilidades/menus.h"
 #include "Include/Persona.h"
 #include "Utilidades/validaciones.h"
@@ -12,19 +13,13 @@ using namespace std;
 #include "Include/Entidad.h"
 #include "Include/Ventas.h"
 #include "DetalleFactura.h"
-#include "Ususario.h"
-#include "Login.h"
+#include "Include/Usuario.h"
 
 
-int main()
-{
-//    Login oLog;
-//    oLog.login();
-//    if(oLog.acceso==true){
-//        cout << "\n\n\t\t\t\t\t TONGO GESTION" << endl;
-//        cout << "\n\n\t\t\t\t\t";oLog.getUser();
-        menuPrincipal();
+int main(){
 
-//    }
+        //menuPrincipal();
+        crearUsuario();
+
     return 0;
 }

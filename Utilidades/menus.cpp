@@ -14,12 +14,12 @@ using namespace std;
 #include "../Include/Entidad.h"
 #include "../Include/Compra.h"
 #include "../Include/DetalleFactura.h"
-#include "../Include/Login.h"
+//#include "../Include/Login.h"
 using namespace rlutil;
 
 
 ///---------------------------------------------- MENU PRINCIPAL
-Login oLogout;
+//Login oLogout;
 void menuPrincipal(){
 
         const int POSMENUX = 0;
@@ -320,7 +320,7 @@ void menuVentas(){
                 system("pause");
         break;
         case 2:
-                 mostrarDetalle();
+				mostrarDetalle();
                 system("pause");
         break;
         case 3:
