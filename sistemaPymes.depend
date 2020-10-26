@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1603570941 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1603740692 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	<cstdlib>
@@ -15,7 +15,7 @@
 	"DetalleFactura.h"
 	"Include/Usuario.h"
 
-1603061340 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
+1603740706 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.h
 
 1600925322 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.cpp
 	<iostream>
@@ -39,7 +39,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1603565525 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+1603740952 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>
@@ -55,6 +55,7 @@
 	"../Include/Entidad.h"
 	"../Include/Compra.h"
 	"../Include/DetalleFactura.h"
+	"../Include/Usuario.h"
 
 1603067768 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\main.cpp
 	<iostream>
@@ -224,7 +225,7 @@
 
 1603404507 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\producto.h
 
-1603400611 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\entidad.cpp
+1603739184 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\entidad.cpp
 	<iostream>
 	<iomanip>
 	<cstring>
@@ -237,7 +238,7 @@
 	"../Utilidades/validaciones.h"
 	"Entidad.h"
 
-1603398367 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\entidad.h
+1603738961 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\entidad.h
 	"../Include/Persona.h"
 
 1603400743 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\compra.cpp
@@ -252,15 +253,19 @@
 
 1603400375 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\compra.h
 
-1603491375 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\detallefactura.cpp
+1603733984 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\detallefactura.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<string.h>
 	<cstdio>
 	<iomanip>
+	<conio.h>
 	"DetalleFactura.h"
 	"Entidad.h"
+	"../Utilidades/centrarTabla.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/rlutil.h"
 
 1603491375 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\detallefactura.h
 
@@ -268,7 +273,7 @@
 
 1603568857 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\login.h
 
-1603570902 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\usuario.cpp
+1603740883 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\usuario.cpp
 	<iostream>
 	<iomanip>
 	<cstdlib>
@@ -279,5 +284,7 @@
 	"../Utilidades/rlutil.h"
 	"Usuario.h"
 
-1603573114 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\usuario.h
+1603739416 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\usuario.h
+
+1603726407 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\centrartabla.h
 

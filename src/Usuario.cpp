@@ -6,10 +6,13 @@
 #include <cstdio>
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
+#include "Usuario.h"
+
 using namespace std;
 using namespace rlutil;
 
-#include "Usuario.h"
+
+
 
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
@@ -45,10 +48,8 @@ bool Usuario::grabarEnDisco(){
         if(chequeo==1){
 
             msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-            cout << "Registro exitoso";
             fclose(c);
-            system("pause");
-            // cls();
+            system("cls");
             return true;
         }
         else{
@@ -106,9 +107,9 @@ void listarUsuarios(){
             while(fread(&usuAux,sizeof(Usuario),1,c)==1){
                 estadoAux = usuAux.getEstado();
                 if(estadoAux == true){
-                    cout << setw(30) << "USER:" << usuAux.getNombreUser() <<
-                    cout << setw(30) << "PASSWORD:" << usuAux.getPassword();
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
                 }
+                cout << endl;
             }
         system("pause");
         fclose(c);
@@ -118,8 +119,8 @@ void listarUsuarios(){
 bool login(){
 
     Usuario userLog, usuAux;
-    int atempts = 3, passAux;
-    char * nombreAux;
+    int passAux;
+    char *nombreAux;
     bool estadoAux;
     FILE *c;
 
@@ -131,33 +132,34 @@ bool login(){
                 cout << "Error de archivo usuarios\n";
                 system("pause");
                 return false;
-        }
-	while(atempts > 0){
+        }
+        while(fread(&usuAux,sizeof(Usuario),1,c)==1){
 
-            while(fread(&usuAux,sizeof(Usuario),1,c)==1){
-				/// chequear si no pasa al siguiente usuario cuando se reingresa por error de tipeo
                 estadoAux = usuAux.getEstado();
-                strcpy(nombreAux, usuAux.getNombreUser());
+                nombreAux = usuAux.getNombreUser();
                 passAux = usuAux.getPassword();
-                if(estadoAux == true){
+
+//                cout << "Estado aux:" << estadoAux << endl;
+//                cout << "Nombre aux:" << nombreAux << endl;
+//                cout << "Password aux:" << passAux << endl;
+
+                if(estadoAux == true || estadoAux == 1){
+
                     if(strcmp(userLog.getNombreUser(), nombreAux)== 0){
                         if(userLog.getPassword() == passAux){
                             cout << "BIENVENIDO";
                             fclose(c);
                             return true;
                         }else{
-							atempts--;
-							cout << "CONTRASENIA";
-							userLog.setPassword();
+							cout << "CONTRASENIA INCORRECTA";
+							break;
                         }
                     }else{
-                        atempts--;
                     	cout << "USUARIO INCORRECTO";
-                    	userLog.setNombreUser();
+                    	break;
                     }
                 }
             }
-	}
 		return false;
         system("pause");
         fclose(c);

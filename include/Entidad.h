@@ -33,6 +33,8 @@ class Entidad: public Persona{
 
 void listarEntidadPorID(int); /// Lista un Entidad por un id que pregunta dentro de la funcion
 
+bool existenciaEntidad(int, int); /// Corrobora si una entidad existe en el archivo de entidades
+
 int crearIdEntidades(int); /// Crea un id autonumerico para el Entidad
 
 void listarEntidades(int); /// Lista todos los Entidads del archivo

@@ -15,11 +15,9 @@ using namespace std;
 #include "DetalleFactura.h"
 #include "Include/Usuario.h"
 
-
 int main(){
 
-        //menuPrincipal();
-        crearUsuario();
+    menuLogin();
 
     return 0;
 }

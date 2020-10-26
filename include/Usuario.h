@@ -4,7 +4,7 @@
 
 class Usuario{
 	private:
-		char nombreUser[15];
+		char nombreUser[25];
 		int password;
 		bool estado;
 	public:
@@ -17,9 +17,10 @@ class Usuario{
         void ingresarUsuario();
         bool grabarEnDisco();
         bool leerDeDisco(int);
-        const char* getNombreUser(){return this->nombreUser;}
-        int getPassword(){return this->password;}
-        bool getEstado(){return this->estado;}
+        char* getNombreUser(){return this->nombreUser;}
+        const char* getNombreUser(char* nombAux){strcpy(nombAux, this->nombreUser);}
+        int getPassword(){return password;}
+        bool getEstado(){return estado;}
 };
 
 ///--------------------------------- GLOBAL
@@ -27,6 +28,8 @@ class Usuario{
 void crearUsuario();
 
 bool login();
+
+void listarUsuarios();
 
 
 

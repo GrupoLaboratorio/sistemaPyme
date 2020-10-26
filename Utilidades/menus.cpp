@@ -14,12 +14,41 @@ using namespace std;
 #include "../Include/Entidad.h"
 #include "../Include/Compra.h"
 #include "../Include/DetalleFactura.h"
+#include "../Include/Usuario.h"
 //#include "../Include/Login.h"
 using namespace rlutil;
 
 
 ///---------------------------------------------- MENU PRINCIPAL
 //Login oLogout;
+
+void menuLogin(){
+
+	int attempts = 3;
+	bool chequeo;
+
+    while(attempts != 0){
+
+		system("pause");
+		system("cls");
+        chequeo = login();
+
+        if(chequeo == true){
+            attempts = 0;
+        }else{
+        attempts--;
+		}
+    }
+    if(chequeo == true){
+        menuPrincipal();
+    }else{
+        cout << "Demasiados intentos";
+        return;
+    }
+
+
+}
+
 void menuPrincipal(){
 
         const int POSMENUX = 0;
@@ -42,8 +71,6 @@ void menuPrincipal(){
       setColor(LETRA);
 //      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION", WHITE, RED);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. COMPRAS";
@@ -320,11 +347,11 @@ void menuVentas(){
                 system("pause");
         break;
         case 2:
-				mostrarDetalle();
+				//mostrarDetalle();
                 system("pause");
         break;
         case 3:
-               listado_facturas();
+               //listado_facturas();
                 system("pause");
         break;        case 4:
                 EntidadPiloto.cargarCliente();

@@ -219,17 +219,50 @@ void listarEntidadPorID(int _tipoEntidad){
         fclose(p);
         return;
     break;
-
-
-
     }
 }
+
+bool existenciaEntidad(int idAux, int _tipoEntidad){
+
+    Entidad *entiAux;
+    FILE *p, *c;
+
+    switch(_tipoEntidad){
+
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
+        if(c==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,c)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(c);
+                return true;
+                }
+            }
+
+    break;
+
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
+        if(p==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,p)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(p);
+                return true;
+                }
+            }
+    break;
+    }
+
+    return false;
+}
+
 
 int crearIdEntidades(int _tipoEntidad){
 
     int bytes, cant;
     FILE *c, *p;
-    cout << "Llego a la funcion";
     system("pause");
     switch(_tipoEntidad){
     case 1:
@@ -246,7 +279,7 @@ int crearIdEntidades(int _tipoEntidad){
     case 2:
         p = fopen(FILE_CLIENTES, "rb");
         if (p == NULL){
-            return 2000000;
+            return 1;
         }
         fseek(p, 0, SEEK_SET);
         bytes = ftell(p);
