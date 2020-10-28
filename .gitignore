@@ -34,4 +34,7 @@
 *.layout
 *.exe
 
-Eugenio/
+
+*.depend
+*.layout
+*.o
