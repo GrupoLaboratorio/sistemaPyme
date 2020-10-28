@@ -95,7 +95,6 @@ void listarUsuarios(){
     Usuario usuAux;
     bool estadoAux;
     FILE *c;
-    int idAux;
 
         c = fopen(FILE_USUARIOS, "rb");
         if(c==NULL){
@@ -139,23 +138,21 @@ bool login(){
                 nombreAux = usuAux.getNombreUser();
                 passAux = usuAux.getPassword();
 
-//                cout << "Estado aux:" << estadoAux << endl;
-//                cout << "Nombre aux:" << nombreAux << endl;
-//                cout << "Password aux:" << passAux << endl;
-
                 if(estadoAux == true || estadoAux == 1){
 
                     if(strcmp(userLog.getNombreUser(), nombreAux)== 0){
                         if(userLog.getPassword() == passAux){
-                            cout << "BIENVENIDO";
+                            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
                             fclose(c);
                             return true;
                         }else{
-							cout << "CONTRASENIA INCORRECTA";
+							msj("CONTRASEÑA INCORRECTA",WHITE,RED,130,TEXT_LEFT);
+							cout << endl;
 							break;
                         }
                     }else{
-                    	cout << "USUARIO INCORRECTO";
+                    	msj("USUARIO INEXISTENTE",WHITE,RED,130,TEXT_LEFT);
+                    	cout << endl;
                     	break;
                     }
                 }
@@ -163,4 +160,32 @@ bool login(){
 		return false;
         system("pause");
         fclose(c);
+}
+
+void bagaLogicaUsuario(){
+
+    Usuario usuAux;
+    bool estadoAux;
+    FILE *c;
+    int idAux;
+
+    cout << "INGESE:\t";
+    cin >> idAux;
+
+        c = fopen(FILE_USUARIOS, "rb");
+        if(c==NULL){
+                cout << "Error de archivo usuarios\n";
+                system("pause");
+                return;
+        }
+
+            while(fread(&usuAux,sizeof(Usuario),1,c)==1){
+                if(usuAux.getId == idAux){
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
+                }
+                cout << endl;
+            }
+        system("pause");
+        fclose(c);
+        return;
 }

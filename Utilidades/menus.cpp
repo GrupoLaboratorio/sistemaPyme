@@ -27,10 +27,11 @@ void menuLogin(){
 	int attempts = 3;
 	bool chequeo;
 
-    while(attempts != 0){
 
-		system("pause");
-		system("cls");
+    while(attempts != 0){
+		title("LOGIN", WHITE, BLUE);
+		cout << endl << endl;
+
         chequeo = login();
 
         if(chequeo == true){
@@ -38,15 +39,15 @@ void menuLogin(){
         }else{
         attempts--;
 		}
+		system("pause");
+		system("cls");
     }
     if(chequeo == true){
         menuPrincipal();
     }else{
-        cout << "Demasiados intentos";
+        msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
     }
-
-
 }
 
 void menuPrincipal(){
