@@ -204,7 +204,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
         case 1:
             c = fopen(FILE_CLIENTES, "rb");
             if(c==NULL){
-                    cout << "Error de archivo\n";
+                    cout << "eerror de archivo\n";
                     system("pause");
                     return;
             }

@@ -13,6 +13,7 @@ class Entidad: public Persona{
         char razonSocial[50];
         int idEntidad;
 	public:
+
 		Entidad();
 		Entidad(char*, char*, int);
 		//virtual ~Entidad();
