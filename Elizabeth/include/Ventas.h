@@ -14,7 +14,7 @@ class Ventas{
     int idVenta, idCliente,IdProd, modoPago;
     char tipoFactura;
     int  nroFactura;
-    ///Fecha fecha;
+    Fecha fecha;
     DetalleFactura dato;
     calculadora calculo;
     Producto prod;
@@ -25,6 +25,7 @@ class Ventas{
     void cargarVtas();  /// Carga los datos de las ventas
     void mostrarVtas(int); /// Muestra los datos de las ventas
     void setIdVenta();  /// Asigna el Id de venta
+   /// void setFecha(){fecha.dia=}
     void setTipoFact();/// Se ingresa factura A O B
     void setIdCliente(char); /// Corrobora el si el id de Cliente existe, sino pide que lo cargue
     void setNroFact();  /// Numero autoincremental
