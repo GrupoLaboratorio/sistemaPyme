@@ -173,7 +173,6 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
     }*/
 
-
     void Producto::mostrarProducto(){
         cout<<getId()<<endl;
         cout<<getCodProv()<<endl;

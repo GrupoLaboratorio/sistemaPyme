@@ -25,11 +25,13 @@ class Entidad: public Persona{
         bool grabarEnDisco(int);
         bool leerDeDisco(int, int);
         const char* getRazonSocial(){return this->razonSocial;}
+        const char* getRazonSocial(int id);
         const char* getMail(){return this->mail;}
         int getTipoEntidad(){return this->tipoEntidad;}
         int getIdEntidad(){return this->idEntidad;}
         void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
+
 
 
 };

@@ -22,8 +22,7 @@ int main()
 {
 
     ///TEST DE PRODUCTOS
-Productos obj;
-obj.listarProdXIdProv(4);
+
 /*
 ///test de entidades
 Entidad ent;
@@ -38,8 +37,11 @@ ent.listarEntidadesTabla(2);
     cout<<endl;
     obj.setIdProveedor();
 ///Fin test detallecompras
+*/
+//Productos obj;
+//obj.listarProductos();
 
 ///Menu
-    menuPrincipal();*/
+    menuPrincipal();
     return 0;
 }
