@@ -24,9 +24,7 @@ void DetalleCompra::setProducto(){
     cin>>idp;
     this->producto.buscarProdxId(idp);
     producto.getProducto();
-    cout<<producto.getDescripcion();
-
-
+    producto.getDescripcion();
 }
-void DetalleCompra::setIdProducto(){int idProducto= producto.getIdProducto();}
+void DetalleCompra::setIdProducto(){ this->idProducto= producto.getId();}
 Producto DetalleCompra::getProducto(){return this->producto;}

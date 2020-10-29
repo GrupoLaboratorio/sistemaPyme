@@ -1,6 +1,6 @@
 #ifndef DETALLECOMPRA_H
 #define DETALLECOMPRA_H
-
+#include "Producto.h"
 
 class DetalleCompra
 {
@@ -17,12 +17,9 @@ class DetalleCompra
         int idCuenta;///Cuenta Contable para los balances
         int cantidad;  /// Cantidad del producto
         int impuesto;  /// Valor del Impuesto aplicado
-
         float preBruto;  /// Precio unitario del producto
         float preTotal; /// Total a pagar, calculado con el impuesto, el precio y la cantidad
-
         bool cierra;
-
 //        Compra compra;
         Entidad proveedor;
         Producto producto;
@@ -40,6 +37,7 @@ class DetalleCompra
 
         void cargarCompras();
         void grabarEnDisco();
+        int setIdProducto();
 
 
 //        int getIdProveedor();

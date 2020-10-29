@@ -16,7 +16,7 @@ using namespace rlutil;
 #include "../Include/Entidad.h"
 #include "../Include/Compra.h"
 #include "../Include/DetalleFactura.h"
-#include "../Include/DetalleCompra.h"
+
 
 
 ///---------------------------------------------- MENU PRINCIPAL
@@ -138,8 +138,6 @@ void menuCompras(){
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
 //        Compras compraPiloto;
-        DetalleCompra detComp;
-
 
 
     setlocale(LC_ALL, "spanish");
@@ -160,14 +158,16 @@ void menuCompras(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. CARGAR COMPRA";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "2. LISTAR TODAS LAS COMPRAS";
+      cout << "2. LISTAR COMPRA POR ID";
       locate(POSMENUX+3,POSMENUY+5);
-      cout << "3. CARGAR PROVEEDOR";
+      cout << "3. LISTAR TODAS LAS COMPRAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. BUSCAR PROVEEDOR POR RS";
+      cout << "4. CARGAR PROVEEDOR";
       locate(POSMENUX+3,POSMENUY+7);
-      cout << "5. LISTAR PROVEEDORES";
+      cout << "5. LISTAR PROVEEDOR POR ID";
       locate(POSMENUX+3,POSMENUY+8);
+      cout << "6. LISTAR PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+9);
       cout << "0. MENU PRINCIPAL\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -178,7 +178,7 @@ void menuCompras(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 5){
+            if(opc < 6){
                 opc++;
             }else{
                 opc=0;
@@ -188,14 +188,14 @@ void menuCompras(){
             if(opc > 0){
                 opc--;
             }else{
-                opc=5;
+                opc=6;
             }
             break;
         }
         if(opc != 0){
             cursorY = opc + POSMENUY + 2;
         }else{
-            cursorY = POSMENUY + 8;
+            cursorY = POSMENUY + 9;
         }
         locate(cursorX,cursorY);
         cout<<">";
@@ -206,28 +206,27 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-//			detComp.cargarCompras();
-//			detComp.grabarEnDisco();
+//			compraPiloto.cargarCompras();
+//			compraPiloto.grabarEnDisco();
         break;
         case 2:
-                cout <<"LISTAR TODAS LAS COMPRAS:"<<endl<<endl;
-                cout<<"aguarde por favor!... En proceso"<<endl<<endl<<endl;
-                cout <<"Esta cargando.... "<<endl<<endl<<endl<<endl;
-                system("pause");
+                //menuVentas();
         break;
         case 3:
-                EntidadPiloto.cargarProveedor();
-                EntidadPiloto.grabarEnDisco(2);
-                EntidadPiloto.mostrarEntidad();
+                cout << "Opcion 3";
                 system("pause");
         break;
         case 4:
-                detComp.setProveedor();
-                detComp.setIdProveedor();
-                system("pause");
+                EntidadPiloto.cargarProveedor();
+                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.grabarEnDisco(2);
         break;
         case 5:
-                    EntidadPiloto.listarEntidadesTabla(2);
+                cout << "Opcion 5";
+                system("pause");
+        break;
+        case 6:
+                cout << "Opcion 6";
                 system("pause");
         break;
         case 0:
