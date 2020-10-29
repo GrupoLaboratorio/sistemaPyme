@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1603740692 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
+1604002273 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\main.cpp
 	<iostream>
 	<iomanip>
 	<cstdlib>
 	<cstring>
 	<string.h>
 	<cstdio>
+	<cctype>
+	<algorithm>
 	"Utilidades/menus.h"
 	"Include/Persona.h"
 	"Utilidades/validaciones.h"
@@ -23,7 +25,7 @@
 	"ui.h"
 	"rlutil.h"
 
-1600742332 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.h
+1604004585 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\ui.h
 
 1600742332 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\rlutil.h
 	<iostream>
@@ -39,7 +41,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1603751480 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
+1604004987 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>
@@ -49,12 +51,13 @@
 	<cctype>
 	<algorithm>
 	<iomanip>
+	"ui.h"
+	"rlutil.h"
 	"../Utilidades/menus.h"
-	"../Utilidades/ui.h"
-	"../Utilidades/rlutil.h"
 	"../Include/Entidad.h"
 	"../Include/Compra.h"
 	"../Include/DetalleFactura.h"
+	"../Include/DetalleCompra.h"
 	"../Include/Usuario.h"
 
 1603067768 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\main.cpp
@@ -168,7 +171,7 @@
 1603249251 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\cliente.h
 	"../Include/Persona.h"
 
-1603218175 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
+1604005298 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\direccion.cpp
 	<iostream>
 	<cstdlib>
 	<iomanip>
@@ -225,7 +228,7 @@
 
 1603404507 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\producto.h
 
-1603739184 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\entidad.cpp
+1604003571 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\entidad.cpp
 	<iostream>
 	<iomanip>
 	<cstring>
@@ -237,8 +240,11 @@
 	"../Utilidades/rlutil.h"
 	"../Utilidades/validaciones.h"
 	"Entidad.h"
+	"../Utilidades/centrarTabla.h"
+	"../Utilidades/ui.h"
+	"../Utilidades/rlutil.h"
 
-1603738961 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\entidad.h
+1604003643 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\entidad.h
 	"../Include/Persona.h"
 
 1603400743 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\compra.cpp
@@ -253,7 +259,7 @@
 
 1603400375 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\compra.h
 
-1603733984 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\detallefactura.cpp
+1604004126 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\detallefactura.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -267,13 +273,13 @@
 	"../Utilidades/ui.h"
 	"../Utilidades/rlutil.h"
 
-1603491375 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\detallefactura.h
+1604004178 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\detallefactura.h
 
 1603570423 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\login.cpp
 
 1603568857 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\login.h
 
-1603740883 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\usuario.cpp
+1604004221 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\usuario.cpp
 	<iostream>
 	<iomanip>
 	<cstdlib>
@@ -284,7 +290,25 @@
 	"../Utilidades/rlutil.h"
 	"Usuario.h"
 
-1603739416 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\usuario.h
+1604001469 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\usuario.h
 
 1603726407 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\centrartabla.h
+
+1604004836 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\src\detallecompra.cpp
+	<iostream>
+	"Fecha.h"
+	"Entidad.h"
+	"Producto.h"
+	"Compra.h"
+	"DetalleCompra.h"
+
+1604004844 c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\include\detallecompra.h
+	"Producto.h"
+
+1603726407 source:c:\users\isi97\onedrive\escritorio\isidoro\facultad\2do cuatrimestre 2020\laboratorio ii\sistemapyme\utilidades\centrartabla.cpp
+	<iostream>
+	<iomanip>
+	<conio.h>
+	<sstream>
+	"centrarTabla.h"
 

@@ -1,8 +1,8 @@
 #ifndef UI_H_INCLUDED
 #define UI_H_INCLUDED
 
-#define SCREEN_WIDTH 82
-#define SCREEN_HEIGHT 30
+#define SCREEN_WIDTH 107
+#define SCREEN_HEIGHT 60
 
 #define APP_BACKCOLOR 0
 #define APP_FORECOLOR 15

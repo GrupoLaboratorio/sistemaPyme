@@ -34,6 +34,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Eugenio/include/DetalleCompra.h" />
+		<Unit filename="Utilidades/centrarTabla.cpp" />
+		<Unit filename="Utilidades/centrarTabla.h" />
 		<Unit filename="Utilidades/menus.cpp" />
 		<Unit filename="Utilidades/menus.h" />
 		<Unit filename="Utilidades/rlutil.h" />
@@ -43,6 +46,7 @@
 		<Unit filename="Utilidades/validaciones.h" />
 		<Unit filename="include/Calculadora.h" />
 		<Unit filename="include/Compra.h" />
+		<Unit filename="include/DetalleCompra.h" />
 		<Unit filename="include/DetalleFactura.h" />
 		<Unit filename="include/Direccion.h" />
 		<Unit filename="include/Entidad.h" />
@@ -54,6 +58,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Calculadora.cpp" />
 		<Unit filename="src/Compra.cpp" />
+		<Unit filename="src/DetalleCompra.cpp" />
 		<Unit filename="src/DetalleFactura.cpp" />
 		<Unit filename="src/Direccion.cpp" />
 		<Unit filename="src/Entidad.cpp" />

@@ -4,6 +4,8 @@
 #include <cstring>
 #include <string.h>
 #include <cstdio>
+#include <cctype>
+#include <algorithm>
 using namespace std;
 
 #include "Utilidades/menus.h"
@@ -18,6 +20,8 @@ using namespace std;
 int main(){
 
     menuLogin();
+//    crearUsuario();
+//    listarUsuarios();
 
     return 0;
 }

@@ -37,9 +37,10 @@ void Direccion::cargarDireccion(){
 
 void Direccion::mostrarDireccion(){
 
-	cout << left;
-	cout << setw(40) << "CALLE Y ALTURA:" << setw(25) << this->calle << setw(5) << this->numero << endl;
-	cout << setw(40) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
-	cout << setw(40) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
+//	cout << left;
+cout<<" "<<setw(20)<<this->calle ;
+//	cout << setw(40) << "CALLE Y ALTURA:" << setw(25) << this->calle << setw(5) << this->numero << endl;
+//	cout << setw(40) << "CODIGO POSTAL:" << setw(30) << this->codPost << endl;
+//	cout << setw(40) << "LOCALIDAD:" << setw(30) << this->localidad << endl;
 
 }

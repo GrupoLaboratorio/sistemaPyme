@@ -12,8 +12,6 @@ using namespace std;
 using namespace rlutil;
 
 
-
-
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
 void Usuario::setNombreUser(){
@@ -85,6 +83,7 @@ void crearUsuario(){
 	Usuario regAux;
 
 	regAux.ingresarUsuario();
+    regAux.setIdUser(crearIdUsuario());
 	regAux.setActivo();
 	regAux.grabarEnDisco();
 
@@ -106,7 +105,7 @@ void listarUsuarios(){
             while(fread(&usuAux,sizeof(Usuario),1,c)==1){
                 estadoAux = usuAux.getEstado();
                 if(estadoAux == true){
-                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword() << "\tID\t" << usuAux.getIdUser();
                 }
                 cout << endl;
             }
@@ -158,7 +157,6 @@ bool login(){
                 }
             }
 		return false;
-        system("pause");
         fclose(c);
 }
 
@@ -179,13 +177,30 @@ void bagaLogicaUsuario(){
                 return;
         }
 
-            while(fread(&usuAux,sizeof(Usuario),1,c)==1){
-                if(usuAux.getId == idAux){
+            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+                if(usuAux.getIdUser() == idAux){
                     cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
+                    usuAux.setInactivo();
                 }
                 cout << endl;
             }
         system("pause");
         fclose(c);
         return;
+}
+
+int crearIdUsuario(){
+
+
+    int bytes, cant;
+    FILE *p = fopen(FILE_USUARIOS, "rb");
+     if (p == NULL){
+        return 1;
+    }
+//	fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+	cant = bytes / sizeof(Usuario);
+    return cant+1;
+
 }

@@ -12,6 +12,7 @@ class Entidad: public Persona{
         char mail[50];
         int idEntidad;
         int tipoEntidad; /// -> diferencia a clientes de proveedores
+        char cuit[13];
 	public:
 		Entidad();
 		Entidad(char*, char*, int);
@@ -28,6 +29,8 @@ class Entidad: public Persona{
         const char* getMail(){return this->mail;}
         int getTipoEntidad(){return this->tipoEntidad;}
         int getIdEntidad(){return this->idEntidad;}
+        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
+        Entidad buscarRazonSocial(int);
 
 };
 

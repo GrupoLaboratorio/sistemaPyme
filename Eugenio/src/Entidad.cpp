@@ -278,7 +278,8 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     }
 }
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
-   Entidad user;
+
+Entidad user;
 char usIngresado[50];
 cout<<"\ningrese la razon social que busca : ";
 cin.getline(usIngresado, 50);
