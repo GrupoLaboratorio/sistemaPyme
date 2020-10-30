@@ -20,17 +20,19 @@ using namespace std;
 //#include "../Include/Login.h"
 using namespace rlutil;
 int main(){
+    menuPrincipal();
+
 //       Producto obj;
 //       obj.cargarProducto();
 //       obj.getProducto();
-//       Ventas obj2 ;
-       DetalleVenta obj2 ;
+//       Ventas obj ;
+//       DetalleVenta obj2 ;
 //        cout<<obj2.fecha.getDia();
 ////     obj.setIdVenta();
 ////     cout <<obj.getIdVenta()
-obj2.leerDeDisco(1);
-//     obj2.cargarVtas();
-//     obj2.leerDeDisco(0) ;
+    // obj.cargarVtas();
+//     obj.leerDeDisco(1) ;
+//    obj2.leerDeDisco(2);
 //    listarVentas();
     return 0;
 }

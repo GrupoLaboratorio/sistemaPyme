@@ -30,26 +30,7 @@ Ventas::Ventas()
 
 void Ventas::cargarVtas()
 {
-    int continuar=1;
-    while(true)
-    {  int opc;
-        system("cls");
-        cout<<"1 - Consultar el precio de un producto : "<<endl;
-        cout<<"2 - Venta : "<<endl;
-        cout<<"0 -  Finalizar : "<<endl;
-        cin>>opc;
-        switch(opc)
-        {
-        case 1:
-//             cout<<"Ingrese codigo producto : ";
-//            cin>>codigo;
-//            prod.buscarProdxId(codigo);
-//            prod.getPrecioCosto();
-//            system("pause");
-            break;
-        case 2:
-//            setIdVenta();
-            setTipoFact();
+               setTipoFact();
             setNroFact();
            if(grabarEnDisco() ){
             DetalleVenta  det;
@@ -59,16 +40,6 @@ void Ventas::cargarVtas()
                  system("pause");
                return;
            }
-            break;
-
-        case 0:
-            return;
-            break;
-        default:
-            cout<<"Opcion Incorrecta ";
-            break;
-        }
-    }
 }
 
 //void Ventas::finalVenta()

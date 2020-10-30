@@ -8,7 +8,7 @@ class DetalleVenta{
     float precio;
     Ventas dato;
     calculadora calculo;
-     Producto prod;
+    Producto prod;
     public:
     void cDetalleVenta();
     void setCodProducto();

@@ -7,13 +7,13 @@ using namespace std;
 
 string Convert (float number){
     std::ostringstream buff;
-    buff << number;
+    buff<<number;
     return buff.str();
 }
 
 string centrar(string cadena, int largo){
     int campo = cadena.length();
-    int diferncia = largo - campo;
+    int diferncia = largo -campo;
     int parte1 = diferncia/2;
     int parte2 = diferncia - parte1;
     return string(parte1, ' ') + cadena+string(parte2, ' ');
@@ -39,8 +39,8 @@ string centrarfloat(float dfloat, int largo){
     return string(parte1, ' ') + cadena+string(parte2, ' ');
 }
 string derechafloat(float dfloat, int largo){
-    string cadena = Convert(dfloat);
+    string cadena= Convert(dfloat);
     int campo = cadena.length();
     int diferncia = largo -campo;
-    return string(diferncia, ' ') + cadena;
+    return string(diferncia, ' ') +cadena;
 }
