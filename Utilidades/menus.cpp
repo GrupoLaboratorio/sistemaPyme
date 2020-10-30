@@ -368,7 +368,7 @@ void menuCompras(){
                 system("pause");
         break;
         case 5:
-				EntidadPiloto.listarEntidadesTabla(2);
+				listarEntidadesTabla(2);
                 system("pause");
         break;
         case 0:
@@ -480,7 +480,8 @@ void menuVentas(){
                 system("pause");
         break;
         case 6:
-                listarEntidades(1);
+//                listarEntidades(1);
+				listarEntidadesTabla(1);
                 system("pause");
         break;
         case 0:

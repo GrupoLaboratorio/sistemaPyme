@@ -179,116 +179,117 @@ bool Entidad::leerDeDisco(int posicion,int _tipoEntidad){ /// Modificar
         break;
     }
 }
-void Entidad::listarEntidadesTabla(int _tipoEntidad){
-
-    Entidad aux;
-    bool estadoAux;
-    FILE *p, *c;
-    int idAux;
-
-    const int POSMENUX = 1;
-    const int POSMENUY = 1;
-    const int COLOR_PANTALLA = BLACK;
-    const int LETRA = DARKGREY;
-    const int FONDO = RED;
-
-    setlocale(LC_ALL, "spanish");
-    const int ANCHO_MENU = 124;
-    const int ALTO_MENU = 8;
-    int key, opc, cursorX, cursorY;
+//void Entidad::listarEntidadesTabla(int _tipoEntidad){
 //
-      cursorX=POSMENUX+0;
-      cursorY=POSMENUY +1;
-      setBackgroundColor(COLOR_PANTALLA);
-      system("cls");
-      opc=1;
-      setColor(LETRA);
-    int i = 0;
-      cout<<endl;
-    switch(_tipoEntidad){
-        case 1:
-            c = fopen(FILE_CLIENTES, "rb");
-            if(c==NULL){
-                    cout << "eerror de archivo\n";
-                    system("pause");
-                    return;
-            }
+//    Entidad aux;
+//    bool estadoAux;
+//    FILE *p, *c;
+//    int idAux;
+//
+//    const int POSMENUX = 1;
+//    const int POSMENUY = 1;
+//    const int COLOR_PANTALLA = BLACK;
+//    const int LETRA = DARKGREY;
+//    const int FONDO = RED;
+//
+//    setlocale(LC_ALL, "spanish");
+//    const int ANCHO_MENU = 124;
+//    const int ALTO_MENU = 8;
+//    int key, opc, cursorX, cursorY;
+////
+//      cursorX=POSMENUX+0;
+//      cursorY=POSMENUY +1;
+//      setBackgroundColor(COLOR_PANTALLA);
+//      system("cls");
+//      opc=1;
+//      setColor(LETRA);
+//    int i = 0;
+//      cout<<endl;
+//    switch(_tipoEntidad){
+//        case 1:
+//            c = fopen(FILE_CLIENTES, "rb");
+//            if(c==NULL){
+//                    cout << "eerror de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//
+//        title("LISTADO DE CLIENTES", WHITE, RED);//system("color 0F");
+//        locate(cursorX,cursorY);
+//        setBackgroundColor(DARKGREY);
+//            ///Inicio de cabecera
+//            cout<<setfill(' ');
+//            cout<<"|"<<setw(4)<<centrar("ID", 4);
+//            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//
+//        while(aux.leerDeDisco(i++, 2)){
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+//                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+//                cout<<" "<<setw(20)<<aux.razonSocial;
+//                cout<<" "<<setw(16)<<aux.cuit;
+//                cout<<" "<<setw(20)<<aux.apenom;
+//                aux.domicilio.mostrarDireccion();
+//                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//            }
+//        }
+//            cout<<right;
+//            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//            fclose(p);
+//    //        return;
+//        break;
+//        case 2:
+//            p = fopen(FILE_PROVEEDORES, "rb");
+//            if(p==NULL){
+//                    cout << "Error de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+//        locate(cursorX,cursorY);
+//    //    int i = 0;
+//        setBackgroundColor(DARKGREY);
+//        ///Inicio de cabecera
+//          cout<<setfill(' ');
+//        cout<<"|"<<setw(4)<<centrar("ID", 4);
+//        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//        while (aux.leerDeDisco(i++, 2)){
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+//                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+//                cout<<" "<<setw(20)<<aux.razonSocial;
+//                cout<<" "<<setw(16)<<aux.cuit;
+//                cout<<" "<<setw(20)<<aux.apenom;
+//                aux.domicilio.mostrarDireccion();
+//                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//
+//            }
+//        }
+//        cout<<right;
+//        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//        fclose(p);
+//        //return;
+//        break;
+//    }
+//}
 
-        title("LISTADO DE  CLIENTES", WHITE, RED);//system("color 0F");
-        locate(cursorX,cursorY);
-        setBackgroundColor(DARKGREY);
-            ///Inicio de cabecera
-            cout<<setfill(' ');
-            cout<<"|"<<setw(4)<<centrar("ID", 4);
-            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
-            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
-            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
-            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
-            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
-        setBackgroundColor(BLACK);
-
-        while (aux.leerDeDisco(i++, 2)){
-            estadoAux = aux.getEstado();
-            if(estadoAux == true){
-                cout<<left;
-                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
-                cout<<" "<<setw(20)<<aux.razonSocial;
-                cout<<" "<<setw(16)<<aux.cuit;
-                cout<<" "<<setw(20)<<aux.apenom;
-                aux.domicilio.mostrarDireccion();
-                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
-            }
-        }
-            cout<<right;
-            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
-            fclose(p);
-    //        return;
-        break;
-        case 2:
-            p = fopen(FILE_PROVEEDORES, "rb");
-            if(p==NULL){
-                    cout << "Error de archivo\n";
-                    system("pause");
-                    return;
-            }
-        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
-        locate(cursorX,cursorY);
-    //    int i = 0;
-        setBackgroundColor(DARKGREY);
-        ///Inicio de cabecera
-          cout<<setfill(' ');
-        cout<<"|"<<setw(4)<<centrar("ID", 4);
-        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
-        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
-        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
-        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
-        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
-        setBackgroundColor(BLACK);
-        while (aux.leerDeDisco(i++, 2)){
-            estadoAux = aux.getEstado();
-            if(estadoAux == true){
-                cout<<left;
-                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
-                cout<<" "<<setw(20)<<aux.razonSocial;
-                cout<<" "<<setw(16)<<aux.cuit;
-                cout<<" "<<setw(20)<<aux.apenom;
-                aux.domicilio.mostrarDireccion();
-                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
-
-            }
-        }
-        cout<<right;
-        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
-        fclose(p);
-        //return;
-        break;
-    }
-}
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
 
 Entidad user;
 char usIngresado[50];
-cout<<"\ningrese la razon social que busca : ";
+cout<<"\nIngrese la razon social que busca : ";
 cin.getline(usIngresado, 50);
      FILE *archivo;
     ///abrimos el archivo
@@ -312,6 +313,7 @@ cin.getline(usIngresado, 50);
 }
 
 ///--------------------- GLOBALES -------------------------
+
 
 
 void listarEntidadPorID(int _tipoEntidad){
@@ -471,5 +473,334 @@ void listarEntidades(int _tipoEntidad){
         return;
     break;
 
+    }
+}
+
+//void listarEntidadesTabla(int _tipoEntidad){
+//
+//    Entidad aux;
+//    bool estadoAux;
+//    FILE *p, *c;
+//    int idAux;
+//    Direccion domicilioAux;
+//
+//    const int POSMENUX = 1;
+//    const int POSMENUY = 1;
+//    const int COLOR_PANTALLA = BLACK;
+//    const int LETRA = DARKGREY;
+//    const int FONDO = RED;
+//
+//    setlocale(LC_ALL, "spanish");
+//    const int ANCHO_MENU = 124;
+//    const int ALTO_MENU = 8;
+//    int key, opc, cursorX, cursorY;
+////
+//      cursorX=POSMENUX+0;
+//      cursorY=POSMENUY +1;
+//      setBackgroundColor(COLOR_PANTALLA);
+//      system("cls");
+//      opc=1;
+//      setColor(LETRA);
+//    int i = 0;
+//      cout<<endl;
+//    switch(_tipoEntidad){
+//        case 1:
+//            c = fopen(FILE_CLIENTES, "rb");
+//            if(c==NULL){
+//                    cout << "eerror de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//
+//        title("LISTADO DE CLIENTES", WHITE, RED);//system("color 0F");
+//        locate(cursorX,cursorY);
+//        setBackgroundColor(DARKGREY);
+//            ///Inicio de cabecera
+//            cout<<setfill(' ');
+//            cout<<"|"<<setw(4)<<centrar("ID", 4);
+//            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//
+//        while(aux.leerDeDisco(i++, 2)){
+//            domicilioAux = aux.getDomicilio();
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+//                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.getIdEntidad(), 4);
+//                cout<<" "<<setw(20)<<aux.getRazonSocial();
+//                cout<<" "<<setw(16)<<aux.getCuit();
+//                cout<<" "<<setw(20)<<aux.getApenom();
+//                cout<<" "<<setw(20)<<domicilioAux.getCalle();
+//                cout<<" "<<setw(20)<<" "<<endl;
+//                //cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//            }
+//        }
+//            cout<<right;
+//            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//            fclose(p);
+//    //        return;
+//        break;
+//        case 2:
+//            p = fopen(FILE_PROVEEDORES, "rb");
+//            if(p==NULL){
+//                    cout << "Error de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+//        locate(cursorX,cursorY);
+//    //    int i = 0;
+//        setBackgroundColor(DARKGREY);
+//        ///Inicio de cabecera
+//          cout<<setfill(' ');
+//        cout<<"|"<<setw(4)<<centrar("ID", 4);
+//        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//        while(aux.leerDeDisco(i++, 2)){
+//            domicilioAux = aux.getDomicilio();
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+//                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.getIdEntidad(), 4);
+//                cout<<" "<<setw(20)<<aux.getRazonSocial();
+//                cout<<" "<<setw(16)<<aux.getCuit();
+//                cout<<" "<<setw(20)<<aux.getApenom();
+//                cout<<" "<<setw(20)<<domicilioAux.getCalle();
+//                cout<<" "<<setw(20)<<" "<<endl;
+//                //cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//            }
+//        }
+//        cout<<right;
+//        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//        fclose(p);
+//        //return;
+//        break;
+//    }
+//}
+
+//void listarEntidadesTabla(int _tipoEntidad){
+//
+//    Entidad aux;
+//    bool estadoAux;
+//    FILE *p, *c;
+//    int idAux;
+//    Direccion domicilioAux;
+//
+//    const int POSMENUX = 1;
+//    const int POSMENUY = 1;
+//    const int COLOR_PANTALLA = BLACK;
+//    const int LETRA = DARKGREY;
+//    const int FONDO = RED;
+//
+//    setlocale(LC_ALL, "spanish");
+//    const int ANCHO_MENU = 124;
+//    const int ALTO_MENU = 8;
+//    int key, opc, cursorX, cursorY;
+////
+//      cursorX=POSMENUX+0;
+//      cursorY=POSMENUY +1;
+//      setBackgroundColor(COLOR_PANTALLA);
+//      system("cls");
+//      opc=1;
+//      setColor(LETRA);
+//    int i = 0;
+//      cout<<endl;
+//    switch(_tipoEntidad){
+//        case 1:
+//            c = fopen(FILE_CLIENTES, "rb");
+//            if(c==NULL){
+//                    cout << "eerror de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//
+//        title("LISTADO DE CLIENTES", WHITE, RED);//system("color 0F");
+//        locate(cursorX,cursorY);
+//        setBackgroundColor(DARKGREY);
+//            ///Inicio de cabecera
+//            cout<<setfill(' ');
+//            cout<<"|"<<setw(4)<<centrar("ID", 4);
+//            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//
+//        while(fread(&aux,sizeof(Entidad),1,c)==1){
+//            domicilioAux = aux.getDomicilio();
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+////                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.getIdEntidad(), 4);
+//                cout<<" "<<setw(20)<<aux.getRazonSocial();
+//                cout<<" "<<setw(16)<<aux.getCuit();
+//                cout<<" "<<setw(20)<<aux.getApenom();
+//                cout<<" "<<setw(20)<<domicilioAux.getCalle();
+////              cout<<" "<<setw(20)<<" "<<endl;
+//                //cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//            }
+//            cout << endl;
+//        }
+////            cout<<right;
+////            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//            fclose(p);
+//            return;
+//        break;
+//        case 2:
+//            p = fopen(FILE_PROVEEDORES, "rb");
+//            if(p==NULL){
+//                    cout << "Error de archivo\n";
+//                    system("pause");
+//                    return;
+//            }
+//        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+//        locate(cursorX,cursorY);
+//    //    int i = 0;
+//        setBackgroundColor(DARKGREY);
+//        ///Inicio de cabecera
+//          cout<<setfill(' ');
+//        cout<<"|"<<setw(4)<<centrar("ID", 4);
+//        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+//        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+//        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+//        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+//        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+//        setBackgroundColor(BLACK);
+//        while(fread(&aux,sizeof(Entidad),1,p)==1){
+//            domicilioAux = aux.getDomicilio();
+//            estadoAux = aux.getEstado();
+//            if(estadoAux == true){
+//                cout<<left;
+//                cout<<" "<<setw(4)<<centrarInt(aux.getIdEntidad(), 4);
+//                cout<<" "<<setw(20)<<aux.getRazonSocial();
+//                cout<<" "<<setw(16)<<aux.getCuit();
+//                cout<<" "<<setw(20)<<aux.getApenom();
+//                cout<<" "<<setw(20)<<domicilioAux.getCalle();
+//                cout<<" "<<setw(20)<<" "<<endl;
+//                //cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+//            }
+//        }
+//        cout<<right;
+//        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+//        fclose(p);
+//        //return;
+//        break;
+//    }
+//}
+
+
+void listarEntidadesTabla(int _tipoEntidad){
+
+    Entidad aux;
+    bool estadoAux;
+    FILE *p, *c;
+    int idAux;
+    Direccion domicilioAux;
+
+    const int POSMENUX = 1;
+    const int POSMENUY = 1;
+    const int COLOR_PANTALLA = BLACK;
+    const int LETRA = DARKGREY;
+    const int FONDO = RED;
+
+    setlocale(LC_ALL, "spanish");
+    const int ANCHO_MENU = 124;
+    const int ALTO_MENU = 8;
+    int key, opc, cursorX, cursorY;
+//
+      cursorX=POSMENUX+0;
+      cursorY=POSMENUY +1;
+      setBackgroundColor(COLOR_PANTALLA);
+      system("cls");
+      opc=1;
+      setColor(LETRA);
+    int i = 0;
+      cout<<endl;
+    switch(_tipoEntidad){
+        case 1:
+            c = fopen(FILE_CLIENTES, "rb");
+            if(c==NULL){
+                    cout << "eerror de archivo\n";
+                    system("pause");
+                    return;
+            }
+
+        title("LISTADO DE CLIENTES", WHITE, RED);//system("color 0F");
+        locate(cursorX,cursorY);
+        setBackgroundColor(DARKGREY);
+            ///Inicio de cabecera
+            cout<<setfill(' ');
+            cout<<"|"<<setw(4)<<centrar("ID", 4);
+            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+            cout << endl;
+        setBackgroundColor(BLACK);
+
+        while(fread(&aux,sizeof(Entidad),1,c)==1){
+            domicilioAux = aux.getDomicilio();
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+//                cout<<left;
+                cout<<centrarInt(aux.getIdEntidad(), 4);
+                cout<<aux.getRazonSocial();
+                cout<<aux.getCuit();
+                cout<<aux.getApenom();
+                cout<<domicilioAux.getCalle() << domicilioAux.getNumero();
+            }
+            cout << endl;
+        }
+            fclose(p);
+            return;
+        break;
+        case 2:
+            p = fopen(FILE_PROVEEDORES, "rb");
+            if(p==NULL){
+                    cout << "Error de archivo\n";
+                    system("pause");
+                    return;
+            }
+        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+        locate(cursorX,cursorY);
+    //    int i = 0;
+        setBackgroundColor(DARKGREY);
+        ///Inicio de cabecera
+          cout<<setfill(' ');
+        cout<<"|"<<setw(4)<<centrar("ID", 4);
+        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+        setBackgroundColor(BLACK);
+        while(fread(&aux,sizeof(Entidad),1,p)==1){
+            domicilioAux = aux.getDomicilio();
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+                cout<<left;
+                cout<<" "<<setw(4)<<centrarInt(aux.getIdEntidad(), 4);
+                cout<<" "<<setw(20)<<aux.getRazonSocial();
+                cout<<" "<<setw(16)<<aux.getCuit();
+                cout<<" "<<setw(20)<<aux.getApenom();
+                cout<<" "<<setw(20)<<domicilioAux.getCalle();
+                cout<<" "<<setw(20)<<" "<<endl;
+                //cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+            }
+        }
+        cout<<right;
+        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+        fclose(p);
+        //return;
+        break;
     }
 }

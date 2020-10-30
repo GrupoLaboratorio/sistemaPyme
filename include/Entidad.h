@@ -29,7 +29,8 @@ class Entidad: public Persona{
         const char* getMail(){return this->mail;}
         int getTipoEntidad(){return this->tipoEntidad;}
         int getIdEntidad(){return this->idEntidad;}
-        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
+        const char * getCuit(){return this->cuit;}
+//        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
 
 };
@@ -41,5 +42,7 @@ bool existenciaEntidad(int, int); /// Corrobora si una entidad existe en el arch
 int crearIdEntidades(int); /// Crea un id autonumerico para el Entidad
 
 void listarEntidades(int); /// Lista todos los Entidads del archivo
+
+void listarEntidadesTabla(int);
 
 #endif // Entidad_H
