@@ -15,18 +15,22 @@ using namespace std;
 #include "Include/Compra.h"
 #include "Include/DetalleFactura.h"
 #include "Include/Ventas.h"
+#include "Include/DetalleVenta.h"
+
 //#include "../Include/Login.h"
 using namespace rlutil;
 int main(){
 //       Producto obj;
 //       obj.cargarProducto();
 //       obj.getProducto();
-       Ventas obj2 ;
+//       Ventas obj2 ;
+       DetalleVenta obj2 ;
 //        cout<<obj2.fecha.getDia();
 ////     obj.setIdVenta();
-////     cout <<obj.getIdVenta();
-     obj2.cargarVtas();
-     obj2.leerDeDisco(0) ;
+////     cout <<obj.getIdVenta()
+obj2.leerDeDisco(1);
+//     obj2.cargarVtas();
+//     obj2.leerDeDisco(0) ;
 //    listarVentas();
     return 0;
 }

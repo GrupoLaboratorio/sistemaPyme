@@ -7,12 +7,14 @@
 using namespace std;
 #include "Ventas.h"
 #include "Fecha.h"
+#include "DetalleVenta.h"
+#include "DetalleVenta.h"
 #include "DetalleFactura.h"
 #include "Calculadora.h"
 #include "Producto.h"
 #include "../Utilidades/centrarTabla.h"
 #include "../Utilidades/ui.h"
-#include "../Utilidades/rlutil.h"
+#include "../Utilidades/menus.h"
 
 
 const char * FILE_VENTAS = "Archivos/Ventas.dat";
@@ -28,10 +30,9 @@ Ventas::Ventas()
 
 void Ventas::cargarVtas()
 {
-    int opc;
     int continuar=1;
     while(true)
-    {
+    {  int opc;
         system("cls");
         cout<<"1 - Consultar el precio de un producto : "<<endl;
         cout<<"2 - Venta : "<<endl;
@@ -40,31 +41,26 @@ void Ventas::cargarVtas()
         switch(opc)
         {
         case 1:
-            int codigo;
-            cout<<"Ingrese codigo producto : ";
-            cin>>codigo;
-            prod.buscarProdxId(codigo);
-            prod.getProducto();
-            system("pause");
+//             cout<<"Ingrese codigo producto : ";
+//            cin>>codigo;
+//            prod.buscarProdxId(codigo);
+//            prod.getPrecioCosto();
+//            system("pause");
             break;
         case 2:
-            setIdVenta();
+//            setIdVenta();
             setTipoFact();
             setNroFact();
-            grabarEnDisco() ;
-          do{
-            cout<<"Ingrese codigo producto : ";
-            cin>>codigo;
-            prod.buscarProdxId(codigo);
-            prod.getPrecioCosto();
-            prod.setStock();
-            prod.getStock();
-            // dato.guardarEnDiscoDetalle(idVenta);
-            system("pause");
-           cout<<"Comprar otro producto :    1- si , 0 - no " ;
-           cin>> continuar;
-            } while(continuar==1);
+           if(grabarEnDisco() ){
+            DetalleVenta  det;
+           det.cDetalleVenta();
+           }else{
+               cout<<"Fallo la grabacion, volver a intentar ";
+                 system("pause");
+               return;
+           }
             break;
+
         case 0:
             return;
             break;
@@ -75,76 +71,68 @@ void Ventas::cargarVtas()
     }
 }
 
-void Ventas::finalVenta()
-{
-    int opc;
-    system("cls");
-    if(tipoFactura == 'A')
-    {
-        cout<<"Precio de costo: " <<550<<endl;
-        cout<<"Impuesto aplicado : "<< 115.5<<endl;
-        cout<<"Total a pagar : "<<665.5<<endl;
-        cout<<"1- Abonar el total "<<endl ;
-        cout<<"2- Modificar  venta "<<endl ;
-        cin>>opc;
+//void Ventas::finalVenta()
+//{
+//    int opc;
+//    system("cls");
+//    if(tipoFactura == 'A')
+//    {
+//        cout<<"Precio de costo: " <<550<<endl;
+//        cout<<"Impuesto aplicado : "<< 115.5<<endl;
+//        cout<<"Total a pagar : "<<665.5<<endl;
+//        cout<<"1- Abonar el total "<<endl ;
+//        cout<<"2- Modificar  venta "<<endl ;
+//        cin>>opc;
+//
+//        if(opc == 1)
+//        {
+//            setOpcionPago();
+//            ///listado_facturas();    para imprimir la factura
+//        }
+//        else
+//        {
+//            if(opc==2)
+//            {
+//                ///modificar cantidad de un producto o dar de baja de la venta
+//            }
+//        }
+//    }
+//    else
+//    {
+//        if(tipoFactura == 'B')
+//        {
+//            cout<<"Total a pagar : "<<665.5<<endl;
+//            cout<<"1- Abonara el total "<<endl ;
+//            cout<<"2- Modificar venta "<<endl ;
+//            cin>>opc;
+//
+//            if(opc == 1)
+//            {
+//                setOpcionPago();
+//                ///listado_facturas();    para imprimir la factura
+//            }
+//            else
+//            {
+//                if(opc==2)
+//                {
+//                    ///modificar cantidad de un producto o dar de baja de la venta
+//                }
+//            }
+//        }
+//    }
+//}
 
-        if(opc == 1)
-        {
-            setOpcionPago();
-            ///listado_facturas();    para imprimir la factura
-        }
-        else
-        {
-            if(opc==2)
-            {
-                ///modificar cantidad de un producto o dar de baja de la venta
-            }
-        }
-    }
-    else
-    {
-        if(tipoFactura == 'B')
-        {
-            cout<<"Total a pagar : "<<665.5<<endl;
-            cout<<"1- Abonara el total "<<endl ;
-            cout<<"2- Modificar venta "<<endl ;
-            cin>>opc;
-
-            if(opc == 1)
-            {
-                setOpcionPago();
-                ///listado_facturas();    para imprimir la factura
-            }
-            else
-            {
-                if(opc==2)
-                {
-                    ///modificar cantidad de un producto o dar de baja de la venta
-                }
-            }
-        }
-    }
-}
+ void Ventas::setNroFact(){this->nroFactura=crearIdXFact(tipoFactura);}
 
 void Ventas::mostrarVtas(int posicion)
 {
-    cout<<"Fecha : "<<fecha.getDia()<<"-"<<fecha.getMes()<<endl;
-    cout<<"Id de ventas : "<<getIdVenta()<<endl;
+    cout<<"Fecha : "<<fechaVenta.getDia()<<"-"<<fechaVenta.getMes()<<endl;
+//    cout<<"Id de ventas : "<<getIdVenta()<<endl;
     cout<<"Id de cliente : "<<idCliente<<endl;
     cout<<"Tipo de factura" <<tipoFactura<<endl;
     cout<<"Numero de factura" <<nroFactura<<endl;
 }
 
-
-void Ventas::setIdVenta()
-{
-    this->idVenta=crearIdVentas();
-}
-
-int Ventas::getIdVenta()
-{
-    return idVenta;
-}
 
 void Ventas::setIdCliente(char tipo)
 {
@@ -163,11 +151,6 @@ void Ventas::setIdCliente(char tipo)
     }
 }
 
-int Ventas::getIdCliente()
-{
-    return idCliente;
-}
-
 
 void Ventas::setTipoFact()
 {
@@ -182,68 +165,53 @@ void Ventas::setTipoFact()
         cout<<"Tipo de factura : ";
         cin>>tipo;
     }
-    int crearIdXFact(tipo);
-    setIdCliente(tipo);
-    this ->tipoFactura=tipo;
+   this->tipoFactura=tipo;
+    int crearIdXFact(tipoFactura);
+    setIdCliente(tipoFactura);
 }
 
-char Ventas::getTipoFact()
-{
-    return tipoFactura;
-}
+//void Ventas::setOpcionPago()
+//{
+//    int modo;
+//    float desc=0.1;
+//    system("cls");
+//    cout<<"Opciones de pago :"<<endl;
+//    cout<<"1- Efectivo "<<endl;
+//    cout<<" 2- Transferencia "<<endl ;
+//    cout<<" 3 - Tarjeta de credito "<<endl;
+//    cin>>modo;
+//    switch(modo)
+//    {
+//    case 1:
+//        this->modoPago=modo;
+//        cout<< "Descuento del 5%"<<endl;
+//        calculo.setDescuento(desc);
+//        calculo.getDescuentoAplicado();
+//        cout<< "Total a pagar : "<<598.95<<endl;
+//        break;
+//
+//    case 2:
+//        this->modoPago=modo;
+//        cout<<"No posee descuentos ni recargos"<<endl;
+//        calculo.setTotlaImponible(5, 50);
+//        break;
+//
+//    case 3:
+//        this->modoPago=modo;
+//        cout<<"Recargo del 0.05 "<<endl;
+//        /calculo. Recargo o setDescuento?
+//        break;
+//
+//    default:
+//        cout<<"Opcion de pago incorrecto ";
+//        break;
+//    }
+//}
 
-void Ventas::setNroFact()
-{
-    this->nroFactura=crearIdXFact(tipoFactura) ;
-}
-
-int Ventas::getNroFact()
-{
-    return nroFactura;
-}
-
-void Ventas::setOpcionPago()
-{
-    int modo;
-    float desc=0.1;
-    system("cls");
-    cout<<"Opciones de pago :"<<endl;
-    cout<<"1- Efectivo "<<endl;
-    cout<<" 2- Transferencia "<<endl ;
-    cout<<" 3 - Tarjeta de credito "<<endl;
-    cin>>modo;
-    switch(modo)
-    {
-    case 1:
-        this->modoPago=modo;
-        cout<< "Descuento del 5%"<<endl;
-        calculo.setDescuento(desc);
-        calculo.getDescuentoAplicado();
-        cout<< "Total a pagar : "<<598.95<<endl;
-        break;
-
-    case 2:
-        this->modoPago=modo;
-        cout<<"No posee descuentos ni recargos"<<endl;
-        calculo.setTotlaImponible(5, 50);
-        break;
-
-    case 3:
-        this->modoPago=modo;
-        cout<<"Recargo del 0.05 "<<endl;
-        ///calculo. Recargo o setDescuento?
-        break;
-
-    default:
-        cout<<"Opcion de pago incorrecto ";
-        break;
-    }
-}
-
-int Ventas::getOpcionPago()
-{
-    return modoPago;
-}
+//int Ventas::getOpcionPago()
+//{
+//    return modoPago;
+//}
 
 bool Ventas::grabarEnDisco()
 {

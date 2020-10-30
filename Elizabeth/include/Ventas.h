@@ -2,6 +2,7 @@
 #define VENTAS_H
 #include "Fecha.h"
 #include "DetalleFactura.h"
+//#include "DetalleVenta.h"
 #include "Calculadora.h"
 #include "Producto.h"
 #include "Entidad.h"
@@ -14,29 +15,30 @@ class Ventas{
     int idVenta, idCliente,IdProd, modoPago;
     char tipoFactura;
     int  nroFactura;
-    Fecha fecha;
-    DetalleFactura dato;
-    calculadora calculo;
+    Fecha fechaVenta;
     Producto prod;
+//    DetalleVenta venta;
+
    Entidad cliente;
     public:
     Ventas();
    // ~Ventas();
-    void cargarVtas();  /// Carga los datos de las ventas
-    void mostrarVtas(int); /// Muestra los datos de las ventas
-    void setIdVenta();  /// Asigna el Id de venta
-   /// void setFecha(){fecha.dia=}
-    void setTipoFact();/// Se ingresa factura A O B
-    void setIdCliente(char); /// Corrobora el si el id de Cliente existe, sino pide que lo cargue
-    void setNroFact();  /// Numero autoincremental
-    void setOpcionPago(); /// Metodo de pago (1- efectivo, 2- transferencia, 3- tarjeta)
-    int getIdVenta();   /// Muestra el Id de ventas
-    int getIdCliente();
-    char getTipoFact();
-    int getNroFact();
-    int getOpcionPago();
-    void  finalVenta(); /// permite al cliente la opcion de modificar algunos de los productos de la venta, conecta con opcion de pago
-    bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
+   /// void setFechaVta();
+    void cargarVtas();
+    void mostrarVtas(int);
+//    void setIdVenta(){this->idVenta=crearIdVentas();}
+    void setTipoFact();
+    void setIdCliente(char);
+    void setNroFact();
+   // void setOpcionPago();
+  // Fecha getFechaVta(){}
+//    int getIdVenta(){return idVenta;}
+    int getIdCliente(){return idCliente;}
+    char getTipoFact(){return tipoFactura;}
+    int getNroFact(){return nroFactura;}
+   // int getOpcionPago();
+   // void  finalVenta();
+    bool grabarEnDisco();
      bool leerDeDisco(int);
 };
 
