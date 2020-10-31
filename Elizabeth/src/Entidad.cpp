@@ -6,6 +6,8 @@
 using namespace std;
 #include "../Utilidades/menus.h"
 #include "Persona.h"
+#include "../Utilidades/ui.h"
+#include "../Utilidades/rlutil.h"
 #include "../Utilidades/validaciones.h"
 #include "Entidad.h"
 #include "../Utilidades/centrarTabla.h"
@@ -15,6 +17,9 @@ using namespace rlutil;
 
 const char * FILE_CLIENTES = "Archivos/Clientes.dat";
 const char * FILE_PROVEEDORES = "Archivos/Proveedores.dat";
+
+using namespace std;
+using namespace rlutil;
 
 Entidad::Entidad():Persona(){
 
@@ -54,7 +59,7 @@ void Entidad::cargarProveedor(){
     cin.getline(this->mail,50,'\n');
     setTipoEntidad(2);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
-//grabarEnDisco(idEntidad);
+
 }
 
 void Entidad::mostrarEntidad(){
@@ -164,7 +169,7 @@ bool Entidad::leerDeDisco(int posicion,int _tipoEntidad){ /// Modificar
         case 2:
             p = fopen(FILE_PROVEEDORES, "rb");
             if (p == NULL){
-            cout << "Chotaaaa Error archivo de proveedores";
+            cout << "Error archivo de proveedores";
             return false;
             }
             fseek(p, posicion * sizeof(Entidad), 0);
@@ -198,78 +203,90 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
       system("cls");
       opc=1;
       setColor(LETRA);
-      cout<<endl;
-//      locate(POSMENUX+1,POSMENUY+1);
-    title("LISTADO DE  PROVEEDORES", WHITE, RED);
-//        system("color 0F");
-    locate(cursorX,cursorY);
-
-
-
-    switch(_tipoEntidad){
-    case 1:
-        c = fopen(FILE_CLIENTES, "rb");
-        if(c==NULL){
-                cout << "Error de archivo\n";
-                system("pause");
-                return;
-        }
-
-            while(fread(&aux,sizeof(Entidad),1,c)==1){
-                estadoAux = aux.getEstado();
-                if(estadoAux == true){
-                    aux.mostrarEntidad();
-                }
-            }
-        system("pause");
-        fclose(c);
-        return;
-    break;
-    case 2:
-        p = fopen(FILE_PROVEEDORES, "rb");
-        if(p==NULL){
-                cout << "Error de archivo\n";
-                system("pause");
-                return;
-        }
     int i = 0;
-    setBackgroundColor(DARKGREY);
-    ///Inicio de cabecera
-    cout<<"|"<<setw(4)<<centrar("ID", 4);
-    cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
-    cout<<"|"<<setw(16)<<centrar("CUIT", 16);
-    cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
-    cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
-    cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+      cout<<endl;
+    switch(_tipoEntidad){
+        case 1:
+            c = fopen(FILE_CLIENTES, "rb");
+            if(c==NULL){
+                    cout << "eerror de archivo\n";
+                    system("pause");
+                    return;
+            }
 
+        title("LISTADO DE  CLIENTES", WHITE, RED);//system("color 0F");
+        locate(cursorX,cursorY);
+        setBackgroundColor(DARKGREY);
+            ///Inicio de cabecera
+            cout<<setfill(' ');
+            cout<<"|"<<setw(4)<<centrar("ID", 4);
+            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+        setBackgroundColor(BLACK);
 
-    setBackgroundColor(BLACK);
-
-    while (aux.leerDeDisco(i++, 2)){
-        estadoAux = aux.getEstado();
-        if(estadoAux == true){
-            cout<<left;
-            cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
-            cout<<" "<<setw(20)<<aux.razonSocial;
-            cout<<" "<<setw(16)<<aux.cuit;
-            cout<<" "<<setw(20)<<aux.apenom;
-            aux.domicilio.mostrarDireccion();            cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
-//            cout<<"|"<<setw(106)<<setfill('_')<<"|"<<endl;
+        while (aux.leerDeDisco(i++, 2)){
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+                cout<<left;
+                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+                cout<<" "<<setw(20)<<aux.razonSocial;
+                cout<<" "<<setw(16)<<aux.cuit;
+                cout<<" "<<setw(20)<<aux.apenom;
+                aux.domicilio.mostrarDireccion();
+                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+            }
         }
-    }
-//    cout<<"|"<<setw(106)<<setfill(' ')<<"|"<<endl;
-cout<<right;
-    cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+            cout<<right;
+            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+            fclose(p);
+    //        return;
+        break;
+        case 2:
+            p = fopen(FILE_PROVEEDORES, "rb");
+            if(p==NULL){
+                    cout << "Error de archivo\n";
+                    system("pause");
+                    return;
+            }
+        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+        locate(cursorX,cursorY);
+    //    int i = 0;
+        setBackgroundColor(DARKGREY);
+        ///Inicio de cabecera
+          cout<<setfill(' ');
+        cout<<"|"<<setw(4)<<centrar("ID", 4);
+        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+        setBackgroundColor(BLACK);
+        while (aux.leerDeDisco(i++, 2)){
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+                cout<<left;
+                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+                cout<<" "<<setw(20)<<aux.razonSocial;
+                cout<<" "<<setw(16)<<aux.cuit;
+                cout<<" "<<setw(20)<<aux.apenom;
+                aux.domicilio.mostrarDireccion();
+                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
 
-        system("pause");
+            }
+        }
+        cout<<right;
+        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
         fclose(p);
-        return;
-    break;
-
+        //return;
+        break;
     }
 }
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
-   Entidad user;
+
+Entidad user;
 char usIngresado[50];
 cout<<"\ningrese la razon social que busca : ";
 cin.getline(usIngresado, 50);
@@ -283,12 +300,12 @@ cin.getline(usIngresado, 50);
                 cout<<user.cuit<<endl;
                 idEntidad=user.idEntidad;
                  cout<<idEntidad<<endl;
-            system("pause");
+            //system("pause");
                 fclose(archivo);
        }else{
             cout<<"dato no encontrado!!!!"<<endl;
             system("pause");
-            fclose(archivo);//            return -1;
+            fclose(archivo);
        }
     }
             return user;
@@ -338,17 +355,50 @@ void listarEntidadPorID(int _tipoEntidad){
         fclose(p);
         return;
     break;
-
-
-
     }
 }
+
+bool existenciaEntidad(int idAux, int _tipoEntidad){
+
+    Entidad *entiAux;
+    FILE *p, *c;
+
+    switch(_tipoEntidad){
+
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
+        if(c==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,c)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(c);
+                return true;
+                }
+            }
+
+    break;
+
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
+        if(p==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,p)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(p);
+                return true;
+                }
+            }
+    break;
+    }
+
+    return false;
+}
+
 
 int crearIdEntidades(int _tipoEntidad){
 
     int bytes, cant;
     FILE *c, *p;
-    cout << "Llego a la funcion";
     system("pause");
     switch(_tipoEntidad){
     case 2:
@@ -365,7 +415,7 @@ int crearIdEntidades(int _tipoEntidad){
     case 1:
         p = fopen(FILE_CLIENTES, "rb");
         if (p == NULL){
-            return 2000;
+            return 1;
         }
         fseek(p, 0, SEEK_SET);
         bytes = ftell(p);
@@ -423,4 +473,3 @@ void listarEntidades(int _tipoEntidad){
 
     }
 }
-

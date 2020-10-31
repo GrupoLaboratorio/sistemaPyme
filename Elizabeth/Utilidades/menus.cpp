@@ -12,11 +12,11 @@ using namespace std;
 #include "ui.h"
 #include "rlutil.h"
 using namespace rlutil;
-#include "../Utilidades/menus.h"
-#include "../Include/Entidad.h"
-#include "../Include/Compra.h"
-#include "../Include/DetalleFactura.h"
-#include "../Include/DetalleCompra.h"
+#include "menus.h"
+#include "Entidad.h"
+#include "Compra.h"
+#include "DetalleFactura.h"
+//#include "DetalleCompra.h"
 
 
 ///---------------------------------------------- MENU PRINCIPAL
@@ -138,7 +138,7 @@ void menuCompras(){
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
 //        Compras compraPiloto;
-        DetalleCompra detComp;
+//        DetalleCompra detComp;
 
 
 
@@ -222,8 +222,8 @@ void menuCompras(){
                 system("pause");
         break;
         case 4:
-                detComp.setProveedor();
-                detComp.setIdProveedor();
+//                detComp.setProveedor();
+//                detComp.setIdProveedor();
                 system("pause");
         break;
         case 5:

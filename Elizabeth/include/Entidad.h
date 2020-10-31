@@ -8,12 +8,12 @@
 class Entidad: public Persona{
 
 	private:
+        char razonSocial[50];
         char mail[50];
         int tipoEntidad; /// -> diferencia a clientes de proveedores
-        char razonSocial[50];
         char cuit[13];
-    public:
-         int idEntidad;
+	public:
+        int idEntidad;
 		Entidad();
 		Entidad(char*, char*, int);
 		//virtual ~Entidad();
@@ -32,12 +32,14 @@ class Entidad: public Persona{
         void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
 
-
 };
 
 void listarEntidadPorID(int); /// Lista un Entidad por un id que pregunta dentro de la funcion
 
+bool existenciaEntidad(int, int); /// Corrobora si una entidad existe en el archivo de entidades
+
 int crearIdEntidades(int); /// Crea un id autonumerico para el Entidad
 
 void listarEntidades(int); /// Lista todos los Entidads del archivo
+
 #endif // Entidad_H

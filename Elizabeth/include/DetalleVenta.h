@@ -9,6 +9,8 @@ class DetalleVenta{
     Ventas dato;
     calculadora calculo;
     Producto prod;
+    bool Estado;
+
     public:
     void cDetalleVenta();
     void setCodProducto();
@@ -18,8 +20,12 @@ class DetalleVenta{
     int getCantProducto(){return cantidad;}
     float getPrecio(){return precio;}
     void mostrarDetalleVenta(int);
+   bool  ModificarVta();
    bool grabarDetalleEnDisco();
    bool leerDeDisco(int posicion);
 };
+
+///-----------------------------FUNCIONES GLOBALES------
+ int buscarXCodProd(int );
 
 #endif // DETALLEVENTA_H
