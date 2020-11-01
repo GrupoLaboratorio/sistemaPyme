@@ -285,12 +285,14 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
     cout<<"\ningrese la razon social que busca : ";
     cin.getline(usIngresado, 50, '\n');
     ///abrimos el archivo
-    archivo = fopen(FILE_PROVEEDORES,"rb");
+    if(tipoEnt==1){
+        archivo = fopen(FILE_CLIENTES,"rb");
+    }else{
+        archivo = fopen(FILE_PROVEEDORES,"rb");
+    }
 
         ///buscamos y leemos en el;
-        while (this->leerDeDisco(i++, 2)){
-//    while(fread(this, sizeof(Entidad), 1, archivo)==1){
-
+        while (this->leerDeDisco(i++, tipoEnt)){
        if( strcmp(this->apenom, usIngresado)==0 ){//busca un valor string en el archivo
                 cout<<this->getRazonSocial()<<endl;
                 cout<<this->cuit<<endl;

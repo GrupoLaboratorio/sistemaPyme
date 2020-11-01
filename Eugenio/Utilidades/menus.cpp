@@ -341,7 +341,7 @@ void menuVentas(){
             system("pause");
         break;
         case 5:
-//            mostrarDetalle();
+            EntidadPiloto.buscarRazonSocial(1);
             system("pause");
         break;
         case 6:
