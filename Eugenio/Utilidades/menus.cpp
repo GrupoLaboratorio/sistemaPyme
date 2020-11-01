@@ -14,7 +14,9 @@ using namespace std;
 using namespace rlutil;
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
+#include "../Include/Ventas.h"
 #include "../Include/Compra.h"
+#include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
 
@@ -216,8 +218,8 @@ void menuCompras(){
                 system("pause");
         break;
         case 3:
-                EntidadPiloto.cargarProveedor();
-                EntidadPiloto.grabarEnDisco(2);
+                EntidadPiloto.cargarCliente();
+                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
@@ -251,7 +253,8 @@ void menuVentas(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
-
+        Ventas vtas;
+        DetalleVenta deta;
 
     setlocale(LC_ALL, "spanish");
     setConsoleTitle("TONGA GESTION");
@@ -270,11 +273,11 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. CARGAR VENTA";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "2. IMPRIMIR ULTIMA FACTURA";
+      cout << "2. IMPRIMIR FACTURA";
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. LISTAR TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. CARGAR CLIENTE"; /// ver como validad que no cargue en el arhcivo incorrecto
+      cout << "4. LISTADO DE FACTURAS"; /// ver como validad que no cargue en el arhcivo incorrecto
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. LISTAR CLIENTE POR ID";
       locate(POSMENUX+3,POSMENUY+8);
@@ -318,29 +321,31 @@ void menuVentas(){
       showcursor();
       switch(opc){
         case 1:
-                cout << "Opcion 3";
-                system("pause");
+           vtas.cargarVtas();
+            system("pause");
         break;
         case 2:
-                 mostrarDetalle();
-                system("pause");
+                deta.imprimirFactura();
+            system("pause");
         break;
         case 3:
-               listado_facturas();
-                system("pause");
+            deta.listado_detalle();
+
+            system("pause");
         break;
         case 4:
-                EntidadPiloto.cargarCliente();
-                EntidadPiloto.mostrarEntidad();
-                EntidadPiloto.grabarEnDisco(1);
-                system("pause");
+           vtas.listado_facturas();
+//            EntidadPiloto.cargarCliente();
+//            EntidadPiloto.mostrarEntidad();
+//            EntidadPiloto.grabarEnDisco(1);
+            system("pause");
         break;
         case 5:
 //            mostrarDetalle();
-                system("pause");
+            system("pause");
         break;
         case 6:
-                listarEntidades(1);
+               EntidadPiloto.listarEntidadesTabla(1);
                 system("pause");
         break;
         case 0:

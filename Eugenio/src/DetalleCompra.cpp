@@ -19,12 +19,12 @@ Entidad DetalleCompra::getProveedor(){return this->proveedor;}
 
 
 void DetalleCompra::setProducto(){
-    int idp=0;
-    cout<<"ingrese el id";
-    cin>>idp;
-    this->producto.buscarProdxId(idp);
-    producto.getProducto();
-    producto.getDescripcion();
+//    int idp=0;
+//    cout<<"ingrese el id";
+//    cin>>idp;
+//    this->producto.buscarProdxId(idp);
+//    producto.getProducto();
+//    producto.getDescripcion();
 }
-void DetalleCompra::setIdProducto(){ this->idProducto= producto.getId();}
-Producto DetalleCompra::getProducto(){return this->producto;}
+//void DetalleCompra::setIdProducto(){ this->idProducto= producto.getId();}
+//Producto DetalleCompra::getProducto(){return this->producto;}

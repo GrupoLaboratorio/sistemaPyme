@@ -191,20 +191,20 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     const int ANCHO_MENU = 124;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
-//
+    //
       cursorX=POSMENUX+0;
       cursorY=POSMENUY +1;
       setBackgroundColor(COLOR_PANTALLA);
       system("cls");
       opc=1;
       setColor(LETRA);
-    int i = 0;
+     int i = 0;
       cout<<endl;
     switch(_tipoEntidad){
         case 1:
             c = fopen(FILE_CLIENTES, "rb");
             if(c==NULL){
-                    cout << "eerror de archivo\n";
+                    cout << "Error de archivo\n";
                     system("pause");
                     return;
             }
@@ -222,7 +222,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
             cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
         setBackgroundColor(BLACK);
 
-        while (aux.leerDeDisco(i++, 2)){
+        while (aux.leerDeDisco(i++, 1)){
             estadoAux = aux.getEstado();
             if(estadoAux == true){
                 cout<<left;
@@ -235,8 +235,8 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
         }
             cout<<right;
             cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
-            fclose(p);
-    //        return;
+            fclose(c);
+        //        return;
         break;
         case 2:
             p = fopen(FILE_PROVEEDORES, "rb");
@@ -247,7 +247,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
             }
         title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
         locate(cursorX,cursorY);
-    //    int i = 0;
+        //    int i = 0;
         setBackgroundColor(DARKGREY);
         ///Inicio de cabecera
           cout<<setfill(' ');
@@ -278,27 +278,25 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     }
 }
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
-
-Entidad user;
-char usIngresado[50];
-cout<<"\ningrese la razon social que busca : ";
-cin.getline(usIngresado, 50);
-     FILE *archivo;
+    FILE *archivo;
+    Entidad user;
+    char usIngresado[50];
+    int i=0;
+    cout<<"\ningrese la razon social que busca : ";
+    cin.getline(usIngresado, 50, '\n');
     ///abrimos el archivo
     archivo = fopen(FILE_PROVEEDORES,"rb");
-    ///buscamos y leemos en el;
-    while(fread(&user, sizeof(Entidad), 1, archivo)){
-       if( strcmp(usIngresado, user.razonSocial)==NULL ){//busca un valor string en el archivo
-                cout<<user.razonSocial<<endl;
-                cout<<user.cuit<<endl;
-                idEntidad=user.idEntidad;
+
+        ///buscamos y leemos en el;
+        while (this->leerDeDisco(i++, 2)){
+//    while(fread(this, sizeof(Entidad), 1, archivo)==1){
+
+       if( strcmp(this->apenom, usIngresado)==0 ){//busca un valor string en el archivo
+                cout<<this->getRazonSocial()<<endl;
+                cout<<this->cuit<<endl;
+                idEntidad=this->idEntidad;
                  cout<<idEntidad<<endl;
-            //system("pause");
                 fclose(archivo);
-       }else{
-            cout<<"dato no encontrado!!!!"<<endl;
-            system("pause");
-            fclose(archivo);//            return -1;
        }
     }
             return user;
@@ -309,7 +307,7 @@ cin.getline(usIngresado, 50);
 
 void listarEntidadPorID(int _tipoEntidad){
 
-    Entidad *entiAux;
+    Entidad entiAux;
     FILE *p, *c;
     int idAux;
 
@@ -324,9 +322,9 @@ void listarEntidadPorID(int _tipoEntidad){
         return;
         }
 
-            while(fread(entiAux,sizeof(Entidad),1,c)){
-                if(entiAux->getIdEntidad() == idAux){
-                    entiAux->mostrarEntidad();
+            while(fread(&entiAux,sizeof(Entidad),1,c)){
+                if(entiAux.getIdEntidad() == idAux){
+                    entiAux.mostrarEntidad();
                 }
             }
 
@@ -339,47 +337,81 @@ void listarEntidadPorID(int _tipoEntidad){
         return;
         }
 
-            while(fread(entiAux,sizeof(Entidad),1,p)){
-                if(entiAux->getIdEntidad() == idAux){
-                    entiAux->mostrarEntidad();
+            while(fread(&entiAux,sizeof(Entidad),1,p)){
+                if(entiAux.getIdEntidad() == idAux){
+                    entiAux.mostrarEntidad();
                 }
             }
 
         fclose(p);
         return;
     break;
-
-
-
     }
 }
+
+bool existenciaEntidad(int idAux, int _tipoEntidad){
+
+    Entidad *entiAux;
+    FILE *p, *c;
+
+    switch(_tipoEntidad){
+
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
+        if(c==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,c)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(c);
+                return true;
+                }
+            }
+
+    break;
+
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
+        if(p==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,p)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(p);
+                return true;
+                }
+            }
+    break;
+    }
+
+    return false;
+}
+
 
 int crearIdEntidades(int _tipoEntidad){
 
     int bytes, cant;
     FILE *c, *p;
-    cout << "Llego a la funcion";
     system("pause");
     switch(_tipoEntidad){
-    case 2:
-        c = fopen(FILE_PROVEEDORES, "rb");
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
         if (c == NULL){
             return 1;
         }
-        fseek(c, 0, SEEK_SET);
+        fseek(c, 0, SEEK_END);
         bytes = ftell(c);
         fclose(c);
         cant = bytes / sizeof(Entidad);
         return cant+1;
     break;
-    case 1:
-        p = fopen(FILE_CLIENTES, "rb");
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
         if (p == NULL){
-            return 2000;
+            return 1;
         }
-        fseek(p, 0, SEEK_SET);
-        bytes = ftell(p);
-        fclose(p);
+         fseek(p, 0, SEEK_END);
+            bytes = ftell(p);
+            fclose(p);
+
         cant = bytes / sizeof(Entidad);
         return cant+1;
     break;

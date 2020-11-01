@@ -47,6 +47,7 @@
 		<Unit filename="include/Compra.h" />
 		<Unit filename="include/DetalleCompra.h" />
 		<Unit filename="include/DetalleFactura.h" />
+		<Unit filename="include/DetalleVenta.h" />
 		<Unit filename="include/Direccion.h" />
 		<Unit filename="include/Entidad.h" />
 		<Unit filename="include/Fecha.h" />
@@ -61,6 +62,7 @@
 		<Unit filename="src/Compra.cpp" />
 		<Unit filename="src/DetalleCompra.cpp" />
 		<Unit filename="src/DetalleFactura.cpp" />
+		<Unit filename="src/DetalleVenta.cpp" />
 		<Unit filename="src/Direccion.cpp" />
 		<Unit filename="src/Entidad.cpp" />
 		<Unit filename="src/Fecha.cpp" />

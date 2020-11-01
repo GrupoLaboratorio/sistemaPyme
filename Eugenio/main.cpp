@@ -22,6 +22,8 @@ int main()
 
 ///test de entidades
 //Entidad ent;
+//
+//listarEntidadPorID(2);
 //ent.cargarProveedor();
 //ent.grabarEnDisco(2);
 //ent.listarEntidadesTabla(2);

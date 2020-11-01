@@ -7,13 +7,15 @@
 #include <conio.h>
 using namespace std;
 #include "DetalleFactura.h"
+#include "Ventas.h"
 #include "Entidad.h"
 #include "../Utilidades/centrarTabla.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
+
 using namespace rlutil;
 
-const char * FILE_DETFAC = "Archivos/DetalleFacturas.dat";
+const char * FILE_DETFAC = "Archivos/DetalleVentas.dat";
 void DetalleFactura::CDetalleFactura(
    int _nroFactura,
    int _codProd,
@@ -24,7 +26,7 @@ void DetalleFactura::CDetalleFactura(
    float _ivaTotalProd,
    float _subTotalProd,
    float _TotalProd,
-   char _tipoEnt ){
+   char _tipoEnt){
     nroFactura    =    _nroFactura;
     codProd         =         _codProd;
     cantidad        =        _cantidad;
@@ -58,7 +60,8 @@ bool DetalleFactura::guardarEnDisco(int posicion){
 
             return false;
         }
-        fseek(p, posicion * sizeof(DetalleFactura), 0);
+//          fseek(p, 0, SEEK_END);
+        fseek(p, (posicion-1) * sizeof(DetalleFactura), SEEK_END);
         leyo = fread(this, sizeof(DetalleFactura), 1, p);
         fclose(p);
         return leyo;
@@ -97,72 +100,4 @@ void listado_facturas(){
         }
         }
 
-void  mostrarDetalle(){
-//    system("color 1E");
-    system("color 4F");
-    float  sTot, sIva, tTot, tPrUn;
-    DetalleFactura aux,fac;
-    fac.leerDeDisco(0);
-    Entidad cli;
-    cli.leerDeDisco(aux.codEnt, 1);
-//    cli.leerDeDisco();
-    char a='d'+42;
-    int i = 0;
-    //setBackgroundColor(RED);
-        cout<<endl;
-        cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
-        cout<<"|"<<setw(88)<<centrar("FACTURA", 88)<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;        cout<<"|"<<setw(69)<<""<<"Nro Fac: 0000-00"<<fac.nroFactura<<"|"<<endl;
-        //cout<<cli.getApenom()<<endl;
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<<right;
-        cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""<<"R.SOCIAL :"<<setw(27)<<"LARA COLA SRL"<<"|"<<endl;
-        cout<<"|"<< "info@tongagest.com  "<<setw(31)<<""<<"MAIL     :"<<setw(27)<<"info@briancola.com"<<"|"<<endl;
-        cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27)<<"Games F"<<"|"<<endl;
-        cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<""<<"TEL      :"<<setw(27)<<"458-4584"<<"|"<<endl;
-        cout<<"|"<< "Cuit: 30-12345678-0 "<<setw(31)<<""<<"CUIT     :"<<setw(27)<<"44-44444444-4"<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 
-        cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
-        cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
-        cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
-        cout<<"|"<<setw(10)<<centrar("PRECIO", 10);
-        cout<<"|"<<setw(7)<<centrar("IVA", 7);
-        cout<<"|"<<setw(9)<<centrar("SUB_TOT", 9);
-        cout<<"|"<<setw(9)<<centrar("TOTAL", 9)<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        while (aux.leerDeDisco(i++)){
-        cout<<"|"<< setw(9)<<centrarInt(aux.codProd, 9);
-        cout<<"|"<< setw(28)<<centrar("descripcion del prod", 28);
-        cout<<"|"<< setw(10)<<centrarInt(aux.cantidad, 10);
-        cout<<"|"<< setw(10)<<centrarfloat(aux.precioCosto,10);
-        cout<<"|"<<setw(7)<<centrarfloat(aux.ivaTotalProd,7);
-        cout<<"|"<<setw(9)<<centrarfloat(aux.subTotalProd,9);
-        cout<<"|"<<setw(9 )<<centrarfloat(aux.TotalProd, 9)<<"|"<<endl;
-        //cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
-        tPrUn+=aux.precioCosto;
-        sIva+=aux.ivaTotalProd;
-        sTot+=aux.subTotalProd;
-        tTot+=aux.TotalProd;
-        }
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<< right;
-        cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<derechafloat(sTot,8)<<"|"<<endl;
-        cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<derechafloat(sIva,8)<<"|"<<endl;
-        cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<derechafloat(tTot,8)<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
-        cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
-}

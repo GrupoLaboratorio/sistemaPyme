@@ -2,7 +2,8 @@
 #include<cstdlib>
 #include<cstdio>
 #include<cstring>
-#include "Producto.h"
+#include<iomanip>
+#include "../Include/Producto.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         estado=cero;
         strcpy(descripcion,nada);
     }*/
-
+    ///SETTERS
     void Producto::cargarProducto(){
         id=setId();
         getId();
@@ -27,7 +28,7 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         setIva();
         setStockMin();
         setEstado();
-        getProducto();
+        mostrarProducto();
 
         if(grabarEnDisco()==true){
             cout<<"Producto cargado con exito!";
@@ -54,8 +55,8 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         cin>>codProv;
     }
     void Producto::setStock(){
-        cout<<"\nIngresar el stock: ";
-        cin>>stock;
+        cout<<"\nIngresar la Cantidad: ";
+        cin>>this->stock;
     }
     void Producto::setDescripcion(){
         cin.ignore();
@@ -97,6 +98,7 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         break;
         }
     }
+    ///DISCO
     bool Producto::grabarEnDisco(){
 
         system("cls");
@@ -134,50 +136,53 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         fseek(p, posicion * sizeof*this, 0);
         leyo = fread(this, sizeof(Producto), 1, p);
         fclose(p);
-        getProducto();
+        //getProducto();
         return leyo;
     }
+    ///GETTERS
+    int Producto::getId(){
+        return this->id;
+    }
+    int Producto::getCodProv(){
+        return this->codProv;
+    }
+    char* Producto::getDescripcion(){
+        return this->descripcion;
+    }
+    int Producto::getPlanCta(){
+        return this->planCta;
+    }
+    int Producto::getStock(){
+        return this->stock;
+    }
+    float Producto::getPrecioCosto(){
+        return this->precioCosto;
+    }
+    float Producto::getIva(){
+        return this->iva;
+    }
+    int Producto::getStockMin(){
+        return this->stockMin;
+    }
+    bool Producto::getEstado(){
+        return this->estado;
+    }
+    /*Producto Producto::getProducto(){/// FALTA!
 
-    void Producto::getId(){
-        cout<<"Id: "<<id<<endl;
-    }
-    void Producto::getCodProv(){
-        cout<<"\nCodigo de Proveedor: "<<codProv;
-    }
-    void Producto::getDescripcion(){
-        cout<<"\nDescripcion: "<<descripcion;
-    }
-    void Producto::getPlanCta(){
-        cout<<"\nPlan de Cuenta: "<<planCta;
-    }
-    void Producto::getStock(){
-        cout<<"\nStock: "<<stock;
-    }
-    void Producto::getPrecioCosto(){
-        cout<<"\nPrecio de Costo: "<<precioCosto;
-    }
-    void Producto::getIva(){
-        cout<<"\nIva: "<<iva;
-    }
-    void Producto::getStockMin(){
-        cout<<"\nStock Minimo: "<<stockMin;
-    }
-    void Producto::getEstado(){
-        if(estado==true){
-            cout<<"\nEstado: Activo";
-        }else{cout<<"\nEstado: Pasivo";}
-    }
 
-    void Producto::getProducto(){
-        getId();
-        getCodProv();
-        getDescripcion();
-        getPlanCta();
-        getStock();
-        getPrecioCosto();
-        getIva();
-        getStockMin();
-        getEstado();
+
+    }*/
+
+    void Producto::mostrarProducto(){
+        cout<<getId()<<endl;
+        cout<<getCodProv()<<endl;
+        cout<<getDescripcion()<<endl;
+        cout<<getPlanCta()<<endl;
+        cout<<getStock()<<endl;
+        cout<<getPrecioCosto()<<endl;
+        cout<<getIva()<<endl;
+        cout<<getStockMin()<<endl;
+        cout<<getEstado()<<endl;
         system("PAUSE");
     }
     int Producto::buscarProdxId(int idAux){
