@@ -4,9 +4,9 @@
 
 class Producto
 {
-    private:
+    public:
         int id,codProv,planCta,stock,stockMin;
-        float precioCosto,iva;
+        float precioCosto, iva;
         bool estado;
         char descripcion[50];
     public:

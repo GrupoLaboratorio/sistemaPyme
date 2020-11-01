@@ -55,8 +55,8 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         cin>>codProv;
     }
     void Producto::setStock(){
-        cout<<"\nIngresar el stock: ";
-        cin>>stock;
+        cout<<"\nIngresar la Cantidad: ";
+        cin>>this->stock;
     }
     void Producto::setDescripcion(){
         cin.ignore();

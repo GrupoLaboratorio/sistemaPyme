@@ -12,11 +12,12 @@
 class Ventas{
 
     public:
-    int idVenta, idCliente,IdProd, modoPago;
+    int  idCliente;
+//    int IdProd, modoPago;
     char tipoFactura;
     int  nroFactura;
     Fecha fechaVenta;
-    Producto prod;
+//    Producto prod;
 //    DetalleVenta venta;
 
    Entidad cliente;
@@ -40,11 +41,12 @@ class Ventas{
    // void  finalVenta();
     bool grabarEnDisco();
      bool leerDeDisco(int);
+    void listado_facturas();
 };
 
 ///-----------------------PROTOTIPOS GLOBALES
 int crearIdVentas();
-int crearIdXFact(char);
+int crearIdXFact();
 void listarVentas();
 
 #endif // VENTAS_H

@@ -4,6 +4,7 @@
 #include <cstring>
 #include <conio.h>
 #include <time.h>
+#include <iomanip>
 using namespace std;
 #include "Ventas.h"
 #include "Fecha.h"
@@ -18,30 +19,34 @@ using namespace std;
 
 
 const char * FILE_VENTAS = "Archivos/Ventas.dat";
-const char * FILE_FACTURAA = "Archivos/FacturaA.dat";
-const char * FILE_FACTURAB = "Archivos/FacturaB.dat";
+//const char * FILE_FACTURAA = "Archivos/FacturaA.dat";
+//const char * FILE_FACTURAB = "Archivos/FacturaB.dat";
 
 ///----------------------------METODOS CLASE VENTAS---------------------------
 Ventas::Ventas(){
-    idVenta=0;
     idCliente=0;
+    tipoFactura='B';
 }
 
 void Ventas::cargarVtas(){
+    Ventas();
     setTipoFact();
     setNroFact();
 
-    if(grabarEnDisco() ){
-    DetalleVenta  det;
-   det.cDetalleVenta();
-    }else{
-    cout<<"Fallo la grabacion, volver a intentar ";
-    system("pause");
-    return;
-           }
+    bool grabo=grabarEnDisco();
+    if(grabo==true )    {
+        DetalleVenta  det;
+        det.cDetalleVenta();
+    }    else{
+        cout<<"Fallo la grabacion, volver a intentar ";
+        system("pause");
+        return;
+    }
 }
 
- void Ventas::setNroFact(){this->nroFactura=crearIdXFact(tipoFactura);}
+void Ventas::setNroFact(){
+    this->nroFactura=crearIdXFact();
+}
 
 void Ventas::mostrarVtas(int posicion){
     cout<<"Fecha : "<<fechaVenta.getDia()<<"-"<<fechaVenta.getMes()<<endl;
@@ -54,12 +59,17 @@ void Ventas::mostrarVtas(int posicion){
 
 void Ventas::setIdCliente(char tipo){
 
-    if(tipo=='A'){
-    cliente.buscarRazonSocial(1);
-    idCliente=cliente.getIdEntidad();
-    }else{
-    if(tipo=='B'){
-    return;
+    if(tipo=='A')
+    {
+        cliente.buscarRazonSocial(1);
+        idCliente=69;
+//        idCliente=cliente.getIdEntidad();
+    }
+    else
+    {
+        if(tipo=='B')
+        {
+            return;
         }
     }
 }
@@ -70,14 +80,14 @@ void Ventas::setTipoFact(){
     cin>>tipo;
     while(!(tipo == 'A'  || tipo == 'B' ))
     {
-    cout<<"Tipo de factura incorrecta";
-    system("pause");
-    system("cls");
-    cout<<"Tipo de factura : ";
-    cin>>tipo;
+        cout<<"Tipo de factura incorrecta";
+        system("pause");
+        system("cls");
+        cout<<"Tipo de factura : ";
+        cin>>tipo;
     }
-   this->tipoFactura=tipo;
-    int crearIdXFact(tipoFactura);
+    this->tipoFactura=tipo;
+    int crearIdXFact();
     setIdCliente(tipoFactura);
 }
 
@@ -124,150 +134,133 @@ void Ventas::setTipoFact(){
 //    return modoPago;
 //}
 
-bool Ventas::grabarEnDisco(){
+bool Ventas::grabarEnDisco()
+{
     system("cls");
     FILE *p;
     bool chequeo;
 
-    switch(getTipoFact()){
-    case 'A'  :
-    p = fopen(FILE_FACTURAA,"ab");
-    if(p==NULL){
-    cout << "Error al abrir el archivo \n";
-    return false;
+        p = fopen(FILE_VENTAS,"ab");
+        if(p==NULL)
+        {
+            cout << "Error al abrir el archivo \n";
+            return false;
         }
-    break;
-    case 'B' :
-        p = fopen(FILE_FACTURAB,"ab");
-        if(p==NULL){
-        cout << "Error al abrir el archivo \n";
-        return false;
+        chequeo = fwrite(this, sizeof(Ventas),1,p);
+        if(chequeo==1)
+        {
+            cout<< "Carga exitosa";
+            fclose(p);
+            system("pause");
+            return true;
         }
-        break;
-    }
-    chequeo = fwrite(this, sizeof(Ventas),1,p);
-    if(chequeo==1){
-    cout<< "Carga exitosa";
-    fclose(p);
-    system("pause");
-    return true;
-    }else{
-    cout << "El registro no pudo guardarse \n\n";
-    fclose(p);
+        else
+        {
+            cout << "El registro no pudo guardarse \n\n";
+            fclose(p);
 
-    system("pause");
-    return false;
-    }
+            system("pause");
+            return false;
+        }
+
+
 }
 
-bool Ventas::leerDeDisco(int posicion){
+bool Ventas::leerDeDisco(int posicion)
+{
+    bool leyo;
     FILE *p;
-    bool chequeo;
-    setTipoFact();
-
-    switch(getTipoFact()){
-    case 'A'  :
-        p = fopen(FILE_FACTURAA,"rb");
-        if(p==NULL){
-        cout << "Error al abrir el archivo \n";
-        return false;
+        p = fopen(FILE_VENTAS, "rb");
+        if (p == NULL)
+        {
+            return false;
         }
-        fseek(p,posicion*sizeof(Ventas),SEEK_SET);
-        chequeo=fread(this, sizeof(Ventas),1,p);
-
-        if( chequeo == 1){
-        mostrarVtas(posicion);
+        fseek(p, posicion * sizeof(Ventas), 0);
+        leyo = fread(this, sizeof(Ventas), 1, p);
         fclose(p);
-
-        system("pause");
-        return true;
-        }else{
-        cout << "El registro no pudo guardarse \n\n";
-        fclose(p);
-
-        system("pause");
-        return false;
-        }
-        break;
-
-    case 'B' :
-        p = fopen(FILE_FACTURAB,"rb");
-        if(p==NULL){
-        cout << "Error al abrir el archivo \n";
-        return false;
-        }
-        fseek(p,posicion*sizeof(Ventas),SEEK_SET);
-        chequeo=fread(this, sizeof(Ventas),1,p);
-
-        if( chequeo == 1){
-        mostrarVtas(posicion);
-        fclose(p);
-
-        system("pause");
-        return true;
-        }else{
-        cout << "El registro no pudo guardarse \n\n";
-        fclose(p);
-
-        system("pause");
-        return false;
-        }
-        break;
-    }
+        return leyo;
 }
 
+void Ventas::listado_facturas()
+{
+
+    Ventas aux;
+    int i = 0;
+
+//        char sing = getch() ;
+//        char sing = ".";
+        //selecciona un caracter para darle forma a tu tabla
+        //string dato="esta tabla";
+        ///Inicio de cabecera
+        cout<<"|"<<setw(104)<<centrar("CABECERA DETALLE", 104)<<"|"<<endl;
+        cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
+        cout<<"|"<<setw(4)<<centrar("ID", 4);
+        cout<<"|"<<setw(7)<<centrar("TIPO", 7);
+        cout<<"|"<<setw(12)<<centrar("FECHA", 12);
+        cout<<"|"<<setw(12)<<centrar("ID CLIENTE", 12)<<endl;
+
+        cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
+        cout<<" "<<setw(105)<<setfill(' ')<<" "<<endl;
+
+        while (aux.leerDeDisco(i++))
+        {
+            cout<<"|"<<setw(4)<<centrarInt(aux.nroFactura, 4);
+            cout<<" "<<setw(7)<<aux.tipoFactura;
+            cout<<" "<<setw(2)<<aux.fechaVenta.getDia()<<setw(1)<<"/";
+            cout<<setw(2)<<aux.fechaVenta.getMes()<<setw(1)<<"/";
+            cout<<setw(4)<<aux.fechaVenta.getAnio()<<setw(2)<<" ";
+            cout<<" "<<setw(12)<<centrarInt(aux.idCliente, 12)<<endl;
+            cout<<setfill(' ')<<endl;
+        }
+
+}
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 
-int crearIdVentas(){
-    int bytes, cant;
-
-    FILE *p = fopen(FILE_VENTAS, "rb");
-    if (p == NULL){
-        return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-    }
-    fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
-    cant=bytes / sizeof(Ventas);
-    return cant+1;
+int crearIdVentas()
+{
+//    int bytes, cant;
+//
+//    FILE *p = fopen(FILE_VENTAS, "rb");
+//    if (p == NULL){
+//        return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
+//    }
+//    fseek(p, 0, SEEK_END);
+//    bytes = ftell(p);
+//    fclose(p);
+//    cant=bytes / sizeof(Ventas);
+//    return cant+1;
 }
 
 
-int crearIdXFact(char tipo='B'){
+int crearIdXFact()
+{
     int bytes, cant;
 
-    if(tipo == 'A' ){
-    FILE *p = fopen(FILE_FACTURAA, "rb");
-    if (p == NULL){
+
+        FILE *p = fopen(FILE_VENTAS, "rb");
+        if (p == NULL)
+        {
             return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
         }
-   fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
-    }else{
-    FILE *p = fopen(FILE_FACTURAB, "rb");
-    if (p == NULL){
-    return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-        }
-    fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
-    }
+        fseek(p, 0, SEEK_END);
+        bytes = ftell(p);
+        fclose(p);
+
     cant = bytes / sizeof(Ventas);
     return cant+1;
 }
 
-void  listarVentas()
-{
-    int i=0;
-    bool chequeo;
-    Ventas reg;
-    while(reg.leerDeDisco(i++))
-    {
-//          cout<<reg.getIdVenta()<<endl;
-//         cout<< reg.getTipoFact()<<endl;
+//void  listarVentas()
+//{
+//    int i=0;
+//    bool chequeo;
+//    Ventas reg;
+//    while(reg.leerDeDisco(i++))
+//    {
 //          cout<<reg.getNroFact()<<endl;
-    }
-    return;
-}
+//         cout<< reg.getTipoFact()<<endl;
+////          cout<<reg.fech()<<endl;
+//    }
+//    return;
+//}

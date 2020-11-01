@@ -15,7 +15,7 @@ using namespace rlutil;
 #include "menus.h"
 #include "Entidad.h"
 #include "Compra.h"
-#include "DetalleFactura.h"
+#include "DetalleVenta.h"
 //#include "DetalleCompra.h"
 
 
@@ -251,7 +251,7 @@ void menuVentas(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
-
+DetalleVenta Dvtas;
 
     setlocale(LC_ALL, "spanish");
     setConsoleTitle("TONGA GESTION");
@@ -322,7 +322,7 @@ void menuVentas(){
                 system("pause");
         break;
         case 2:
-                 mostrarDetalle();
+                 Dvtas.imprimirFactura();
                 system("pause");
         break;
         case 3:
