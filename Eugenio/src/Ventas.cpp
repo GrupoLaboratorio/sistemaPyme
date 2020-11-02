@@ -34,7 +34,7 @@ void Ventas::cargarVtas(){
     setNroFact();
 char c;
 system("cls");
-cout<<"Iniciar un venta?. ";
+cout<<" Abrir una venta?. ";
 cout<<"\nSi: 1";
 cout<<"\nNo : 0 "<<endl;
 int ok;
@@ -59,7 +59,6 @@ void Ventas::setNroFact(){
 
 void Ventas::mostrarVtas(int posicion){
     cout<<"Fecha : "<<fechaVenta.getDia()<<"-"<<fechaVenta.getMes()<<endl;
-//    cout<<"Id de ventas : "<<getIdVenta()<<endl;
     cout<<"Id de cliente : "<<idCliente<<endl;
     cout<<"Tipo de factura" <<tipoFactura<<endl;
     cout<<"Numero de factura" <<nroFactura<<endl;
@@ -67,22 +66,13 @@ void Ventas::mostrarVtas(int posicion){
 
 
 void Ventas::setIdCliente(){
-//    Entidad *objC;
-//    objC= new Entidad;
-
-//        objC->buscarRazonSocial(1);
-        cliente.buscarRazonSocial(1);
-
-        idCliente=cliente.getIdEntidad();
-        cout<<"NOMBRE "<<cliente.getApenom()<<endl;
-        cout<<"id : "<<idCliente<<endl;
-        system("pause");
-//        delete objC;
+    cliente.buscarRazonSocial(1);
+    idCliente=cliente.getIdEntidad();
 }
 
 void Ventas::setTipoFact(){
     char tipo;
-    cout<<"Tipo de factura : ";
+    cout<<"FACTURA A o B? : ";
     cin>>tipo;
     while(!(tipo == 'A'  || tipo == 'B' ))
     {
@@ -159,10 +149,8 @@ bool Ventas::grabarEnDisco()
         chequeo = fwrite(this, sizeof(Ventas),1,p);
         if(chequeo==1)
         {
-            cout<< "Carga exitosa";
-            fclose(p);
-            system("pause");
-            return true;
+             fclose(p);
+              return true;
         }
         else
         {

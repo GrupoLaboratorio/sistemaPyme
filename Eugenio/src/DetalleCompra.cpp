@@ -5,7 +5,7 @@ using namespace std;
 #include "Fecha.h"
 #include "Entidad.h"
 #include "Producto.h"
-#include "Compra.h"
+#include "Compras.h"
 #include "DetalleCompra.h"
 //  DetalleCompra::DetalleCompra(int _idProveedor=0, int _idProducto=0, bool _cierra=false ){
 //       idProveedor=_idProveedor;
@@ -13,9 +13,15 @@ using namespace std;
 //       cierra = _cierra;
 //    }
 
-void DetalleCompra::setProveedor(){this->proveedor.buscarRazonSocial(2);}
-void DetalleCompra::setIdProveedor(){int idPrv= proveedor.getIdEntidad();}
-Entidad DetalleCompra::getProveedor(){return this->proveedor;}
+void DetalleCompra::setProveedor(){
+//    this->proveedor.buscarRazonSocial(2);
+    }
+void DetalleCompra::setIdProveedor(){
+//    int idPrv= proveedor.getIdEntidad();
+    }
+//Entidad DetalleCompra::getProveedor(){
+//    return this->proveedor;
+//    }
 
 
 void DetalleCompra::setProducto(){

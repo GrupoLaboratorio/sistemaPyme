@@ -74,6 +74,7 @@ void Productos::listarProductos(){
     cout<<"|"<<setw(16)<<centrar("PRECIO COSTO",16);
     cout<<"|"<<setw(16)<<centrar("ID PROVEEDOR",16);
     cout<<"|"<<setw(6)<<centrar("ESTADO",6)<<"|"<<endl;
+    cout<<setfill(' ');
 
 
     setBackgroundColor(BLACK);
@@ -85,7 +86,7 @@ void Productos::listarProductos(){
             cout<<" "<<setw(4)<<centrarInt(aux.getId(), 4);
             cout<<" "<<setw(38)<<aux.getDescripcion();
             cout<<right;
-            cout<<" "<<setw(10)<<centrarInt(aux.getStock(),10);
+            cout<<" "<<setw(10)<<aux.getStock();
             cout<<" "<<setw(9)<<centrarInt(aux.getStockMin(),9);
             cout<<" "<<setw(16)<<aux.getPrecioCosto();
             cout<<" "<<setw(16)<<centrarInt(aux.getCodProv(),16);

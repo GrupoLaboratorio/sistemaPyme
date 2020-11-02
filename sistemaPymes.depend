@@ -107,7 +107,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1604331259 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\detalleventa.cpp
+1604331632 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\detalleventa.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -139,7 +139,7 @@
 	"Direccion.h"
 	"Fecha.h"
 
-1604331386 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\entidad.cpp
+1604333386 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\entidad.cpp
 	<iostream>
 	<iomanip>
 	<cstring>
@@ -189,7 +189,7 @@
 	<iomanip>
 	"../Include/Producto.h"
 
-1603929472 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\productos.cpp
+1604333702 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\src\productos.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
@@ -250,7 +250,7 @@
 	<sstream>
 	"centrarTabla.h"
 
-1604331125 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\menus.cpp
+1604333946 source:d:\reuge\documents\utn\2do cuatri\lab2\clases\tpcontable\sistemapyme\utilidades\menus.cpp
 	<iostream>
 	<cstdio>
 	<stdlib.h>

@@ -5,6 +5,7 @@
 #include <time.h>
 #include <iomanip>
 #include <conio.h>
+#include <locale.h>
 using namespace std;
 #include "DetalleVenta.h"
 #include "Ventas.h"
@@ -22,7 +23,7 @@ const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
 
 void DetalleVenta::cDetalleVenta(){
-
+ setlocale(LC_CTYPE, "Spanish");
     dato= new Ventas;
     int i= crearIdXFact()-2;
     dato->leerDeDisco(i);
@@ -35,8 +36,12 @@ void DetalleVenta::cDetalleVenta(){
         setPrecio();
         Estado=true;
         grabarDetalleEnDisco();
-        system("pause");
-        cout<<"Comprar otro producto :    1- si , 0 - no " ;
+
+        system("cls");
+        cout<<"\nCountinua comprando?. ";
+        cout<<"\nSi: 1";
+        cout<<"\nNo : 0 "<<endl;
+
         cin>> continuar;
     }while(continuar==1);
     delete dato;
@@ -47,8 +52,8 @@ void DetalleVenta::setCodProducto(){
     cout<<"Ingrese codigo producto : ";
     cin>>codProd;
     prod.buscarProdxId(codProd);
-    cout<< prod.getPrecioCosto()<<endl;
-    cout<< prod.getIva();
+    cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
+//    cout<< prod.getIva();
     setCantProducto();
     prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
@@ -74,10 +79,7 @@ bool DetalleVenta::grabarDetalleEnDisco(){
     chequeo = fwrite(this, sizeof(DetalleVenta),1,p);
     if(chequeo==1)
     {
-        cout<< "Carga exitosa";
         fclose(p);
-
-        system("pause");
         return true;
     }
     else

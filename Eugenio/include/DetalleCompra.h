@@ -21,15 +21,15 @@ class DetalleCompra
         float preTotal; /// Total a pagar, calculado con el impuesto, el precio y la cantidad
         bool cierra;
 //        Compra compra;
-        Entidad proveedor;
-        Producto producto;
+////        Entidad proveedor;
+//        Producto producto;
 
     public:
 
 //    DetalleCompra::DetalleCompra(int _idProveedor, int _idProducto, bool _cierra=false );
         void setProveedor();
         void setIdProveedor();
-        Entidad getProveedor();
+//        Entidad getProveedor();
 
         void setProducto();
         void setIdProductor();

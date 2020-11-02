@@ -1,11 +1,15 @@
-#ifndef COMPRA_H
-#define COMPRA_H
+#ifndef COMPRAS_H
+#define COMPRAS_H
+#include "Fecha.h"
+#include "DetalleCompra.h"
+#include "Calculadora.h"
+#include "Producto.h"
+#include "Entidad.h"
 
-
-class Compra{
+class Compras{
 
   private:
-        int idDetalleCompra;///Debe ser autoincremental
+        int idCompras;///Debe ser autoincremental
         char descripcion[20]; ///descripcion si no existe el prod modificar longitud
         char tipoFactura; ///Facturas de dos tipos (A: RI, C: monotributistas)
         int puntoVta;       ///Representa el numero de venta de la sucursal del proveedor( mayor a 0)
@@ -19,13 +23,15 @@ class Compra{
          float preTotal; /// Total a pagar, calculado con el impuesto, el precio y la cantidad
         bool cierra;
         Fecha fechaFactura;
-//        Entidad proveedor;
+        Entidad proveedor;
 //        Producto producto;
     public:
-        void cargarDetalleCompras();  /// Carga los datos de las ventas
+        Compras();
+        void cargarCompras();  /// Carga los datos de las ventas
         void mostrarDetalleCompras(); /// Muestra los datos de las ventas
         void setTipoFact(); /// Asigna el tipo de factura
         void setPuntoVta();
+        void setIdCuenta(); /// Asigna el numero de factura autonumerico
         void setNroFactura(); /// Asigna el numero de factura autonumerico
         void setIdProducto(); /// Asigna el Id de producto ingresado
         void setIdProveedor(); /// Asigna el Id del proveedor
@@ -42,14 +48,15 @@ class Compra{
         float getImpuesto(); ///Muestra el Impuesto aplicado
         bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 
-        int setIdCompra();
-        int getIdCompra();
+        int setIdCompras();
+        int getIdCompras();
 
-        int setidEntidad();        int getidEntidad();
-
+        void setIdEntidad();        int getIdEntidad();
+        bool leerDeDisco(int posicion);
+        void listado_compras();
 //        int setIdProducto();
 //        int getIdProducto();
 
 };
-
-#endif // COMPRA_H
+int crearIdXCompras();
+#endif // COMPRAS_H

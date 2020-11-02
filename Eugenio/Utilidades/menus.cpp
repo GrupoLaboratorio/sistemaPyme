@@ -15,7 +15,7 @@ using namespace rlutil;
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
 #include "../Include/Ventas.h"
-#include "../Include/Compra.h"
+#include "../Include/Compras.h"
 #include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
@@ -29,8 +29,10 @@ using namespace rlutil;
 
 void menuLogin(){
 
-	int attempts = 3;
-	bool chequeo;
+//	int attempts = 3;
+//	bool chequeo=false;
+	int attempts = 0;///Se establece en 0  en desarrollo, para evitar loguearse a cada rato
+	bool chequeo=true;///Se establece en TRUE en desarrollo, para evitar loguearse a cada rato
 
 
     while(attempts != 0){
@@ -86,7 +88,7 @@ void menuPrincipal(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. INVENTARIOS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. DOCUMENTACIONS";
+      cout << "4. ENTIDADES";
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. CONTABILIDAD";
       locate(POSMENUX+3,POSMENUY+8);
@@ -170,7 +172,7 @@ void menuCompras(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
-//        Compras compraPiloto;
+        Compras cmpr;
         DetalleCompra detComp;
 
 
@@ -197,7 +199,7 @@ void menuCompras(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. CARGAR PROVEEDOR";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. BUSCAR PROVEEDOR POR RS";
+      cout << "4. BUSCAR PROVEEDOR POR CUIT";
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. LISTAR PROVEEDORES";
       locate(POSMENUX+3,POSMENUY+8);
@@ -239,13 +241,12 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-//			detComp.cargarCompras();
+//            cout<<"\n\n\n\n\n"<<sizeof(Compras);
+			cmpr.cargarCompras();
 //			detComp.grabarEnDisco();
         break;
         case 2:
-                cout <<"LISTAR TODAS LAS COMPRAS:"<<endl<<endl;
-                cout<<"aguarde por favor!... En proceso"<<endl<<endl<<endl;
-                cout <<"Esta cargando.... "<<endl<<endl<<endl<<endl;
+                cmpr.listado_compras();
                 system("pause");
         break;
         case 3:
@@ -306,11 +307,11 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+4);
       cout << "2. IMPRIMIR FACTURA";
       locate(POSMENUX+3,POSMENUY+5);
-      cout << "3. LISTAR TODAS LAS VENTAS";
+      cout << "3. LISTAR DETALLE DE TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. LISTADO DE FACTURAS"; /// ver como validad que no cargue en el arhcivo incorrecto
+      cout << "4. LISTADO DE FACTURAS EMITIDAS"; /// ver como validad que no cargue en el arhcivo incorrecto
       locate(POSMENUX+3,POSMENUY+7);
-      cout << "5. LISTAR CLIENTE POR NOMBRE";
+      cout << "5. BUSCAR CLIENTE POR CUIT";
       locate(POSMENUX+3,POSMENUY+8);
       cout << "6. LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+9);
@@ -353,7 +354,7 @@ void menuVentas(){
       switch(opc){
         case 1:
            vtas.cargarVtas();
-            system("pause");
+
         break;
         case 2:
                 deta.imprimirFactura();
