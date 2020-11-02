@@ -21,9 +21,38 @@ using namespace rlutil;
 #include "../Include/DetalleCompra.h"
 #include "../Include/Producto.h"
 #include "../Include/Productos.h"
+#include "../Include/Usuario.h"
 
 
 ///---------------------------------------------- MENU PRINCIPAL
+//Login oLogout;
+
+void menuLogin(){
+
+	int attempts = 3;
+	bool chequeo;
+
+
+    while(attempts != 0){
+		title("LOGIN", WHITE, BLUE);
+		cout << endl << endl;
+
+        chequeo = login();
+
+        if(chequeo == true){
+            attempts = 0;
+        }else{
+        attempts--;
+		}
+		system("cls");
+    }
+    if(chequeo == true){
+        menuPrincipal();
+    }else{
+        msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
+        return;
+    }
+}
 
 void menuPrincipal(){
 
@@ -383,18 +412,19 @@ Productos objA;
         switch(opcion)
         {
         case 1:
-            //menuUsuarios();
+            obj.cargarProducto();
+            break;
+      case 2:
+          int id;
+          cout<<"\nIngrese el Id del producto por favor: ";
+          cin>>id;
+            obj.buscarProdxId(id);
+           obj.mostrarProducto();
+            system("pause");
             break;
         case 3:
             objA.listarProductos();
             break;
-        case 4:
-            //menuConfig();
-        case 5:
-            //menuPreParcial();
-            break;
-        case 6:
-            //menuParcial();
         case 0:
             return;
         default:
