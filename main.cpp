@@ -7,7 +7,6 @@
 #include <cctype>
 #include <algorithm>
 using namespace std;
-
 #include "Utilidades/menus.h"
 #include "Include/Persona.h"
 #include "Utilidades/validaciones.h"
@@ -17,11 +16,18 @@ using namespace std;
 #include "DetalleFactura.h"
 #include "Include/Usuario.h"
 
-int main(){
 
+int main()
+{
+///test detalleCompra
+//    DetalleCompra obj;
+//    obj.setProveedor();
+//    cout<<endl;
+//    obj.setIdProveedor();
+///Fin test detallecompras
+
+///Menu
     menuLogin();
-//    crearUsuario();
-//    listarUsuarios();
-
+	//menuPrincipal();
     return 0;
 }

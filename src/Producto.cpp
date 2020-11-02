@@ -2,6 +2,7 @@
 #include<cstdlib>
 #include<cstdio>
 #include<cstring>
+#include<iomanip>
 #include "../Include/Producto.h"
 
 using namespace std;
@@ -10,24 +11,32 @@ using namespace std;
 
 const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
-   /*Producto::Producto(int cero,const char* nada){
-        id=codProv=planCta=stock=stockMin=precioCosto=iva=cero;
-        estado=cero;
-        strcpy(descripcion,nada);
-    }*/
+
+    ///SETTERS
+
+        int Producto::setId(int idAux){this->id=idAux;}
+        void Producto::setCodProv(int codProv){this->codProv=codProv;}
+        void Producto::setDescripcion(char *descripcion){strcpy(this->descripcion,descripcion);}
+        void Producto::setPlanCta(int planCta){this->planCta=planCta;}
+//        void Producto::setStock(int stock){this->stock=stock;}
+        void Producto::setPrecioCosto(float precioCosto){this->precioCosto=precioCosto;}
+        void Producto::setIva(float iva){this->iva=iva;}
+        void Producto::setStockMin(int stockMin){this->stockMin=stockMin;}
+        void Producto::setEstado(bool estado){this->estado=estado;}
+
 
     void Producto::cargarProducto(){
         id=setId();
         getId();
         setCodProv();
-        setStock();
+        setStock( 0);
         setDescripcion();
         setPlanCta();
         setPrecioCosto();
         setIva();
         setStockMin();
         setEstado();
-        getProducto();
+        mostrarProducto();
 
         if(grabarEnDisco()==true){
             cout<<"Producto cargado con exito!";
@@ -53,9 +62,13 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         cout<<"\nCodigo de Proveedor: ";
         cin>>codProv;
     }
-    void Producto::setStock(){
-        cout<<"\nIngresar el stock: ";
+    void Producto::setStock(int _stock=0){
+        if(_stock==0){
+        cout<<"\nIngresar la Cantidad: ";
         cin>>stock;
+        }else{
+            this->stock=_stock;
+        }
     }
     void Producto::setDescripcion(){
         cin.ignore();
@@ -97,6 +110,26 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         break;
         }
     }
+
+    bool Producto::setMod(int id, int tipoOperacion,int cant, float precio){
+        int cantidad=0;
+        float prec=0;
+        leerDeDisco(buscarProdxId(id));
+        if(tipoOperacion==2){ // TipoEntidad 2 es proveedores osea q es compras
+            cantidad = getStock()+cant;
+            prec=precio;
+//              cout<<" estas comprando : y la nueva cantidad es "<<cantidad<< " y el precio es :"<<prec;
+//            system("pause");
+        }else if(tipoOperacion==1){//TipoEntidad 1 es Clientes osea que es Venta
+            cantidad = getStock()-cant;
+            prec = getPrecioCosto();
+//            cout<<" estas vendiendo : y la nueva cantidad es "<<cantidad;
+//            system("pause");
+        }
+            Modificar_en_disco(buscarProdxId(id), cantidad, prec);
+            return true;
+    }
+    ///DISCO
     bool Producto::grabarEnDisco(){
 
         system("cls");
@@ -134,50 +167,57 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         fseek(p, posicion * sizeof*this, 0);
         leyo = fread(this, sizeof(Producto), 1, p);
         fclose(p);
-        getProducto();
+        //getProducto();
         return leyo;
     }
-
-    void Producto::getId(){
-        cout<<"Id: "<<id<<endl;
+    ///GETTERS
+    int Producto::getId(){
+        return this->id;
     }
-    void Producto::getCodProv(){
-        cout<<"\nCodigo de Proveedor: "<<codProv;
+    int Producto::getCodProv(){
+        return this->codProv;
     }
-    void Producto::getDescripcion(){
-        cout<<"\nDescripcion: "<<descripcion;
+    char* Producto::getDescripcion(){
+        return this->descripcion;
     }
-    void Producto::getPlanCta(){
-        cout<<"\nPlan de Cuenta: "<<planCta;
+    int Producto::getPlanCta(){
+        return this->planCta;
     }
-    void Producto::getStock(){
-        cout<<"\nStock: "<<stock;
+    int Producto::getStock(){
+        return this->stock;
     }
-    void Producto::getPrecioCosto(){
-        cout<<"\nPrecio de Costo: "<<precioCosto;
+    float Producto::getPrecioCosto(){
+        return this->precioCosto;
     }
-    void Producto::getIva(){
-        cout<<"\nIva: "<<iva;
+    float Producto::getIva(){
+        return this->iva;
     }
-    void Producto::getStockMin(){
-        cout<<"\nStock Minimo: "<<stockMin;
+    int Producto::getStockMin(){
+        return this->stockMin;
     }
-    void Producto::getEstado(){
-        if(estado==true){
-            cout<<"\nEstado: Activo";
-        }else{cout<<"\nEstado: Pasivo";}
+    bool Producto::getEstado(){
+        return this->estado;
     }
 
-    void Producto::getProducto(){
-        getId();
-        getCodProv();
-        getDescripcion();
-        getPlanCta();
-        getStock();
-        getPrecioCosto();
-        getIva();
-        getStockMin();
-        getEstado();
+    int Producto::checkStock(int id, int cant){
+        while(leerDeDisco(buscarProdxId(id))){
+            if(getStock()>=cant){
+                return 1;//Hay stock
+            }else if(getStock()<cant && getStock()>0) {
+                return -1;//No hay suficiente en Stock
+            }else{return -2;}//Stock 0
+        }
+    }
+    void Producto::mostrarProducto(){
+        cout<<getId()<<endl;
+        cout<<getCodProv()<<endl;
+        cout<<getDescripcion()<<endl;
+        cout<<getPlanCta()<<endl;
+        cout<<getStock()<<endl;
+        cout<<getPrecioCosto()<<endl;
+        cout<<getIva()<<endl;
+        cout<<getStockMin()<<endl;
+        cout<<getEstado()<<endl;
         system("PAUSE");
     }
     int Producto::buscarProdxId(int idAux){
@@ -198,5 +238,15 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         }
         fclose(p);
         return -2;///codigo de error de rutina inexistente.
+}
 
+void Producto::Modificar_en_disco(int pos, int  cantidad, float _pre){
+    FILE *p;
+    this->setStock(cantidad);
+    this->setPrecioCosto(_pre);
+    p=fopen(FILE_PRODUCTOS,"rb+");
+    if(p==NULL){cout<<"Error de archivo";exit(1);}
+    fseek(p,(pos-1)*sizeof *this,0);
+    fwrite(this,sizeof *this,1,p);
+    fclose(p);
 }

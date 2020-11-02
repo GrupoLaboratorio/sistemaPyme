@@ -21,6 +21,7 @@ Persona::Persona(){
 void Persona::cargarPersona(){
 
     setApenom();
+    setCuit();
     domicilio.cargarDireccion();
     this->activo = true;
 }
@@ -29,18 +30,29 @@ void Persona::mostrarPersona(){
 
 	cout << left;
     cout << setw(40) << "NOMBRE Y APELLIDO:" << setw(30) << this->apenom << endl;
+    cout << setw(40) << "CUIT:" << setw(14) << this->cuit << endl;
     domicilio.mostrarDireccion();
 
 }
 void Persona::setApenom(){
 
     cout << "NOMBRE Y APELLIDO:\t";
-    cin.getline(this->apenom,50,'\n');
+    cin.getline(this->apenom,20,'\n');
     while(!validarNombresApellidos(this->apenom)){
             msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
             cout << "NOMBRE Y APELLIDO:\t";
-            cin.getline(this->apenom,50,'\n');
+            cin.getline(this->apenom,20,'\n');
     }
+}
+void Persona::setCuit(){
+
+    cout << "CUIT con guines:\t";
+    cin.getline(this->cuit,14,'\n');
+//    while(!validarCuit(this->cuit)){
+//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
+//            cout << "CUIT con guines:\t";
+//            cin.getline(this->cuit,13,'\n');
+//    }
 }
 
 //void Persona::setNDoc(){

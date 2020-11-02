@@ -2,8 +2,9 @@
 #define DETALLEFACTURA_H
 
 
-class DetalleFactura{
-
+class DetalleFactura
+{
+//    private:
     public:
         int id, nroFactura, codProd, cantidad, codEnt, planCta;
         float precioCosto, ivaTotalProd, subTotalProd, TotalProd;
@@ -13,11 +14,6 @@ class DetalleFactura{
         bool guardarEnDisco(int posicion);
         bool leerDeDisco(int posicion);
 };
-
-///------------------------------------- GLOBAL
-
 void listado_facturas();
-void mostrarDetalle();
-
 
 #endif // DETALLEFACTURA_H

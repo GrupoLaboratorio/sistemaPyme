@@ -8,6 +8,7 @@ string centrarInt(int , int );
 string centrarfloat(float dfloat, int largo);
 string Convert (float number);
 string derechafloat(float dfloat, int largo);
+string derechaInt(int dfloat, int largo);
 
 
 

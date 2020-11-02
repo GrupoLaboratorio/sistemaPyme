@@ -12,14 +12,16 @@ using namespace std;
 #include "ui.h"
 #include "rlutil.h"
 using namespace rlutil;
-
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
+#include "../Include/Ventas.h"
 #include "../Include/Compra.h"
+#include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
+#include "../Include/Producto.h"
+#include "../Include/Productos.h"
 #include "../Include/Usuario.h"
-
 
 
 ///---------------------------------------------- MENU PRINCIPAL
@@ -84,7 +86,7 @@ void menuPrincipal(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. INVENTARIOS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. DOCUMENTACIONS";
+      cout << "4. ENTIDADES";
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. CONTABILIDAD";
       locate(POSMENUX+3,POSMENUY+8);
@@ -160,117 +162,6 @@ void menuPrincipal(){
 
 ///---------------------------------------------- MENU COMPRAS
 
-//void menuCompras(){
-//
-//        const int POSMENUX = 0;
-//        const int POSMENUY = 1;
-//        const int COLOR_PANTALLA = BLACK;
-//        const int LETRA = WHITE;
-//        const int FONDO = BLUE;
-//        Entidad EntidadPiloto;
-//        Compras compraPiloto;
-//
-//
-//    setlocale(LC_ALL, "spanish");
-//    setConsoleTitle("TONGA GESTION");
-//    const int ANCHO_MENU = 75;
-//    const int ALTO_MENU = 8;
-//    int key, opc, cursorX, cursorY;
-//    while(true){
-//      cursorX=POSMENUX+1;
-//      cursorY=POSMENUY + 3;
-//      setBackgroundColor(COLOR_PANTALLA);
-//      system("cls");
-//      opc=1;
-//      setColor(LETRA);
-//      //setBackgroundColor(FONDO);
-//      locate(POSMENUX+5,POSMENUY+1);
-//      title("COMPRAS", WHITE, BLUE);
-//      locate(POSMENUX+3,POSMENUY+3);
-//      cout << "1. CARGAR COMPRA";
-//      locate(POSMENUX+3,POSMENUY+4);
-//      cout << "2. LISTAR COMPRA POR ID";
-//      locate(POSMENUX+3,POSMENUY+5);
-//      cout << "3. LISTAR TODAS LAS COMPRAS";
-//      locate(POSMENUX+3,POSMENUY+6);
-//      cout << "4. CARGAR PROVEEDOR";
-//      locate(POSMENUX+3,POSMENUY+7);
-//      cout << "5. LISTAR PROVEEDOR POR ID";
-//      locate(POSMENUX+3,POSMENUY+8);
-//      cout << "6. LISTAR PROVEEDORES";
-//      locate(POSMENUX+3,POSMENUY+9);
-//      cout << "0. MENU PRINCIPAL\n";
-//      hidecursor();
-//      locate(cursorX,cursorY);
-//      cout<<">";
-//      key = getkey();
-//      while(key != KEY_ENTER){
-//        locate(cursorX,cursorY);
-//        cout<<" ";
-//        switch(key){
-//        case KEY_DOWN:
-//            if(opc < 6){
-//                opc++;
-//            }else{
-//                opc=0;
-//            }
-//            break;
-//        case KEY_UP:
-//            if(opc > 0){
-//                opc--;
-//            }else{
-//                opc=6;
-//            }
-//            break;
-//        }
-//        if(opc != 0){
-//            cursorY = opc + POSMENUY + 2;
-//        }else{
-//            cursorY = POSMENUY + 9;
-//        }
-//        locate(cursorX,cursorY);
-//        cout<<">";
-//        key = getkey();
-//      }
-//      setBackgroundColor(COLOR_PANTALLA);
-//      cls();
-//      showcursor();
-//      switch(opc){
-//        case 1:
-//			compraPiloto.cargarCompras();
-//			compraPiloto.grabarEnDisco();
-//        break;
-//        case 2:
-//                //menuVentas();
-//        break;
-//        case 3:
-//                cout << "Opcion 3";
-//                system("pause");
-//        break;
-//        case 4:
-//                EntidadPiloto.cargarProveedor();
-//                EntidadPiloto.mostrarEntidad();
-//                EntidadPiloto.grabarEnDisco(2);
-//        break;
-//        case 5:
-//                cout << "Opcion 5";
-//                system("pause");
-//        break;
-//        case 6:
-//                cout << "Opcion 6";
-//                system("pause");
-//        break;
-//        case 0:
-//        return;
-//        break;
-//        default:cout<<" OPCION INCORRECTA"<<endl;
-//                break;
-//      }
-//    }
-//    return;
-//
-//}
-
 void menuCompras(){
 
         const int POSMENUX = 0;
@@ -279,6 +170,7 @@ void menuCompras(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
+//        Compras compraPiloto;
         DetalleCompra detComp;
 
 
@@ -305,7 +197,7 @@ void menuCompras(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "3. CARGAR PROVEEDOR";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. BUSCAR PROVEEDOR POR RS";
+      cout << "4. BUSCAR PROVEEDOR POR CUIT";
       locate(POSMENUX+3,POSMENUY+7);
       cout << "5. LISTAR PROVEEDORES";
       locate(POSMENUX+3,POSMENUY+8);
@@ -357,8 +249,8 @@ void menuCompras(){
                 system("pause");
         break;
         case 3:
-                EntidadPiloto.cargarProveedor();
-                EntidadPiloto.grabarEnDisco(2);
+                EntidadPiloto.cargarCliente();
+                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
@@ -368,7 +260,7 @@ void menuCompras(){
                 system("pause");
         break;
         case 5:
-				listarEntidadesTabla(2);
+                    EntidadPiloto.listarEntidadesTabla(2);
                 system("pause");
         break;
         case 0:
@@ -392,7 +284,8 @@ void menuVentas(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
-
+        Ventas vtas;
+        DetalleVenta deta;
 
     setlocale(LC_ALL, "spanish");
     setConsoleTitle("TONGA GESTION");
@@ -411,13 +304,13 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "1. CARGAR VENTA";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "2. IMPRIMIR ULTIMA FACTURA";
+      cout << "2. IMPRIMIR FACTURA";
       locate(POSMENUX+3,POSMENUY+5);
-      cout << "3. LISTAR TODAS LAS VENTAS";
+      cout << "3. LISTAR DETALLE DE TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "4. CARGAR CLIENTE"; /// ver como validad que no cargue en el arhcivo incorrecto
+      cout << "4. LISTADO DE FACTURAS EMITIDAS"; /// ver como validad que no cargue en el arhcivo incorrecto
       locate(POSMENUX+3,POSMENUY+7);
-      cout << "5. LISTAR CLIENTE POR ID";
+      cout << "5. BUSCAR CLIENTE POR CUIT";
       locate(POSMENUX+3,POSMENUY+8);
       cout << "6. LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+9);
@@ -459,29 +352,31 @@ void menuVentas(){
       showcursor();
       switch(opc){
         case 1:
-                cout << "Opcion 3";
-                system("pause");
+           vtas.cargarVtas();
+
         break;
         case 2:
-				mostrarDetalle();
-                system("pause");
+                deta.imprimirFactura();
+            system("pause");
         break;
         case 3:
-               listado_facturas();
-                system("pause");
-        break;        case 4:
-                EntidadPiloto.cargarCliente();
-                EntidadPiloto.mostrarEntidad();
-                EntidadPiloto.grabarEnDisco(1);
-                system("pause");
+            deta.listado_detalle();
+
+            system("pause");
+        break;
+        case 4:
+           vtas.listado_facturas();
+//            EntidadPiloto.cargarCliente();
+//            EntidadPiloto.mostrarEntidad();
+//            EntidadPiloto.grabarEnDisco(1);
+            system("pause");
         break;
         case 5:
-//            mostrarDetalle();
-                system("pause");
+            EntidadPiloto.buscarRazonSocial(1);
+            system("pause");
         break;
         case 6:
-//                listarEntidades(1);
-				listarEntidadesTabla(1);
+               EntidadPiloto.listarEntidadesTabla(1);
                 system("pause");
         break;
         case 0:
@@ -496,7 +391,8 @@ void menuVentas(){
 }
 
 void menuInventario(){
-
+Producto obj;
+Productos objA;
     while(true){
         cls();
         title("INVENTARIO",BLACK,BLUE);
@@ -516,18 +412,19 @@ void menuInventario(){
         switch(opcion)
         {
         case 1:
-            //menuUsuarios();
+            obj.cargarProducto();
             break;
-        case 2:
-            //menuRutinas();
+      case 2:
+          int id;
+          cout<<"\nIngrese el Id del producto por favor: ";
+          cin>>id;
+            obj.buscarProdxId(id);
+           obj.mostrarProducto();
+            system("pause");
             break;
-        case 4:
-            //menuConfig();
-        case 5:
-            //menuPreParcial();
+        case 3:
+            objA.listarProductos();
             break;
-        case 6:
-            //menuParcial();
         case 0:
             return;
         default:

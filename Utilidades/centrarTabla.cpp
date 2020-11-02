@@ -44,3 +44,9 @@ string derechafloat(float dfloat, int largo){
     int diferncia = largo -campo;
     return string(diferncia, ' ') +cadena;
 }
+string derechaInt(int dato, int largo){
+    string cadena= Convert(dato);
+    int campo = cadena.length();
+    int diferncia = largo -campo;
+    return string(diferncia, '0') +cadena;
+}

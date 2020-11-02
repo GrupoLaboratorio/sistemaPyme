@@ -12,14 +12,16 @@ class Entidad: public Persona{
         char mail[50];
         int idEntidad;
         int tipoEntidad; /// -> diferencia a clientes de proveedores
-        char cuit[13];
+//        char cuit[13];
 	public:
+
 		Entidad();
 		Entidad(char*, char*, int);
-		//virtual ~Entidad();
+		~Entidad();
 		void cargarCliente();
 		void cargarProveedor();
 		void mostrarEntidad();
+//        void setIdEntidad();
         void setRazonSocial(char *);
         void setMail(char *);
         void setTipoEntidad(int);
@@ -32,6 +34,9 @@ class Entidad: public Persona{
         const char * getCuit(){return this->cuit;}
 //        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
+        Entidad buscarEntidadXId(int, int, Entidad *);
+
+void listarEntidadesTabla(int);
 
 };
 
@@ -43,6 +48,5 @@ int crearIdEntidades(int); /// Crea un id autonumerico para el Entidad
 
 void listarEntidades(int); /// Lista todos los Entidads del archivo
 
-void listarEntidadesTabla(int);
 
 #endif // Entidad_H

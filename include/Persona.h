@@ -7,9 +7,10 @@
 class Persona{
 
     protected:
-        char apenom[50];
         bool activo;
         Direccion domicilio;
+        char cuit[14];
+        char apenom[20];
     public:
         Persona();
         //~Persona();
@@ -17,10 +18,13 @@ class Persona{
         void mostrarPersona();
         void setApenom();
         void setApenom(char * ape_nom){strcpy(apenom, ape_nom);}
+        void setCuit();
+        void setCuit(char * _cuit){strcpy(cuit, _cuit);}
 //        void setNDoc();
 //        void setNDoc(char *_nDoc){strcpy(nDoc, _nDoc);}
         void setDomicilio();
         const char * getApenom(){return this->apenom;}
+        const char * getCuit(){return this->cuit;}
 //        const char * getNDoc(){return this->nDoc;}
         bool getEstado(){return this->activo;}
         Direccion getDomicilio(){return this->domicilio;}
