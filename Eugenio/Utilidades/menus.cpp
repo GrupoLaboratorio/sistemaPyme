@@ -279,7 +279,7 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+6);
       cout << "4. LISTADO DE FACTURAS"; /// ver como validad que no cargue en el arhcivo incorrecto
       locate(POSMENUX+3,POSMENUY+7);
-      cout << "5. LISTAR CLIENTE POR ID";
+      cout << "5. LISTAR CLIENTE POR NOMBRE";
       locate(POSMENUX+3,POSMENUY+8);
       cout << "6. LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+9);

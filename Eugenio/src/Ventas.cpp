@@ -19,8 +19,6 @@ using namespace std;
 
 
 const char * FILE_VENTAS = "Archivos/Ventas.dat";
-//const char * FILE_FACTURAA = "Archivos/FacturaA.dat";
-//const char * FILE_FACTURAB = "Archivos/FacturaB.dat";
 
 ///----------------------------METODOS CLASE VENTAS---------------------------
 Ventas::Ventas(){
@@ -33,6 +31,12 @@ void Ventas::cargarVtas(){
     setTipoFact();
     setNroFact();
 
+//    setIdCliente(this->tipoFactura);
+
+cout<<"Grabar: 1, Cancelar : 0 ";
+int ok;
+cin>>ok;
+if(ok==1){
     bool grabo=grabarEnDisco();
     if(grabo==true )    {
         DetalleVenta  det;
@@ -42,6 +46,8 @@ void Ventas::cargarVtas(){
         system("pause");
         return;
     }
+}
+return;
 }
 
 void Ventas::setNroFact(){
@@ -57,21 +63,18 @@ void Ventas::mostrarVtas(int posicion){
 }
 
 
-void Ventas::setIdCliente(char tipo){
+void Ventas::setIdCliente(){
+//    Entidad *objC;
+//    objC= new Entidad;
 
-    if(tipo=='A')
-    {
+//        objC->buscarRazonSocial(1);
         cliente.buscarRazonSocial(1);
-        idCliente=69;
-//        idCliente=cliente.getIdEntidad();
-    }
-    else
-    {
-        if(tipo=='B')
-        {
-            return;
-        }
-    }
+
+        idCliente=cliente.getIdEntidad();
+        cout<<"NOMBRE "<<cliente.getApenom()<<endl;
+        cout<<"id : "<<idCliente<<endl;
+        system("pause");
+//        delete objC;
 }
 
 void Ventas::setTipoFact(){
@@ -86,9 +89,13 @@ void Ventas::setTipoFact(){
         cout<<"Tipo de factura : ";
         cin>>tipo;
     }
+    if(tipo=='A'){
+        setIdCliente();
+    }
+
     this->tipoFactura=tipo;
     int crearIdXFact();
-    setIdCliente(tipoFactura);
+
 }
 
 //void Ventas::setOpcionPago()
@@ -210,8 +217,8 @@ void Ventas::listado_facturas()
             cout<<setw(2)<<aux.fechaVenta.getMes()<<setw(1)<<"/";
             cout<<setw(4)<<aux.fechaVenta.getAnio()<<setw(2)<<" ";
             cout<<" "<<setw(22)<<centrarInt(aux.idCliente, 22)<<endl;
-            cout<<setfill(' ')<<endl;
         }
+            cout<<setfill(' ')<<endl;
 
 }
 

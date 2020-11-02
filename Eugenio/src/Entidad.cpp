@@ -18,7 +18,7 @@ const char * FILE_PROVEEDORES = "Archivos/Proveedores.dat";
 
 Entidad::Entidad():Persona(){
 
-	strcpy(this->razonSocial, "NN");
+	strcpy(this->razonSocial, "NHHN");
 	strcpy(this->mail, "NN@NN");
     this->tipoEntidad=0;
 
@@ -280,10 +280,13 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
     FILE *archivo;
     Entidad user;
-    char usIngresado[50];
+    char cuit[14];
     int i=0;
+
     cout<<"\ningrese la razon social que busca : ";
-    cin.getline(usIngresado, 50, '\n');
+    fflush(stdin);
+//    cin.ignore();
+    cin.getline(cuit, 14, '\n');
     ///abrimos el archivo
     if(tipoEnt==1){
         archivo = fopen(FILE_CLIENTES,"rb");
@@ -293,17 +296,44 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
 
         ///buscamos y leemos en el;
         while (this->leerDeDisco(i++, tipoEnt)){
-       if( strcmp(this->apenom, usIngresado)==0 ){//busca un valor string en el archivo
+       if( strcmp(this->cuit, cuit)==0 ){//busca un valor string en el archivo
                 cout<<this->getRazonSocial()<<endl;
                 cout<<this->cuit<<endl;
                 idEntidad=this->idEntidad;
                  cout<<idEntidad<<endl;
                 fclose(archivo);
+            return user;
        }
     }
             return user;
 }
 
+Entidad Entidad::buscarEntidadXId(int tipoEnt, int pos,  Entidad *user){
+// FILE *archivo;
+////    Entidad *user;
+////user = new Entidad;
+//    ///abrimos el archivo
+//    if(tipoEnt==1){
+//        archivo = fopen(FILE_CLIENTES,"rb");
+//    }else{
+//        archivo = fopen(FILE_PROVEEDORES,"rb");
+//    }
+//        ///buscamos y leemos en el;
+//        while (this->leerDeDisco(pos, tipoEnt)){
+//       if( this->idEntidad == (pos-1)){//Si el id entidad es igual al del archivo devuelve el objeto Entidad
+//            fclose(archivo);
+//            cout<<this->getRazonSocial();
+//
+//            return *user;
+//
+//       }
+//    }
+//            return *user;
+}
+//void Entidad::setIdEntidad(){}
+	Entidad::~Entidad(){
+
+	}
 ///--------------------- GLOBALES -------------------------
 
 

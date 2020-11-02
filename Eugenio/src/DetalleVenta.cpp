@@ -255,42 +255,51 @@ int crearIdDetalle()
     return cant+1;
 }
 void DetalleVenta::imprimirFactura(){
-////    system("color 0F");
-    system("color 4F");
+    system("color 0F");
     int pos= crearIdXFact()-2;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
-//    char a='d'+42;
+    Ventas  cli;
+
     int i =0,  f;
 
     cls();
     cout<<"\nIngrese el numero de factura que desea imprimir: ";
     cin>>f;
     cls();
+    cli.leerDeDisco(f-1);
+    char a[30];
 
-//            setBackgroundColor(RED);
+    strcpy(a, "FACTURA ");
+
+
+            setBackgroundColor(RED);
             cout<<endl;
-            cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
-            cout<<"|"<<setw(88)<<centrar("FACTURA", 88)<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
+
+            cout<<"|"<<setw(88)<<cli.getTipoFact()<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;            cout<<"|"<<setw(69)<<""<<"Nro Fac: 0001-"<<derechaInt(f, 5)<<"|"<<endl;
             //cout<<cli.getApenom()<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<right;
-            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""<<"R.SOCIAL :"<<setw(27)<<"LARA COLA SRL"<<"|"<<endl;
-            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<""<<"MAIL     :"<<setw(27)<<"info@briancola.com"<<"|"<<endl;
-            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27)<<"Games F"<<"|"<<endl;
-            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<""<<"TEL      :"<<setw(27)<<"458-4584"<<"|"<<endl;
-            cout<<"|"<< "Cuit: 30-12345678-0 "<<setw(31)<<""<<"CUIT     :"<<setw(27)<<"44-44444444-4"<<"|"<<endl;
+            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cli.cliente.getRazonSocial()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27);cli.cliente.domicilio.mostrarDireccion();cout<<"|"<<endl;
+//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :";
+//            cli.cliente.domicilio.mostrarDireccion(); cout<<setw(28)<<"|"<<endl;
+            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
             cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
             cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
             cout<<"|"<<setw(10)<<centrar("PRECIO", 10);
             cout<<"|"<<setw(10)<<centrar("IVA", 10);
-            cout<<"|"<<setw(9)<<"SUB_TOT"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+            cout<<"|"<<setw(16)<<centrar("SUB TOT", 16)<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 
 // }
@@ -317,19 +326,19 @@ void DetalleVenta::imprimirFactura(){
         }
                 tTot+=(sIva+sTot);
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<< right;
             cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<derechafloat(sTot,8)<<"|"<<endl;
             cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<derechafloat(sIva,8)<<"|"<<endl;
             cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<derechafloat(tTot,8)<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 
 }

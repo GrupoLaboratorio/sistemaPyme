@@ -17,10 +17,11 @@ class Entidad: public Persona{
 
 		Entidad();
 		Entidad(char*, char*, int);
-		//virtual ~Entidad();
+		~Entidad();
 		void cargarCliente();
 		void cargarProveedor();
 		void mostrarEntidad();
+//        void setIdEntidad();
         void setRazonSocial(char *);
         void setMail(char *);
         void setTipoEntidad(int);
@@ -33,6 +34,7 @@ class Entidad: public Persona{
         const char * getCuit(){return this->cuit;}
 //        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
+        Entidad buscarEntidadXId(int, int, Entidad *);
 
 void listarEntidadesTabla(int);
 

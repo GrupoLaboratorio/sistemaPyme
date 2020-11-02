@@ -29,7 +29,7 @@ class Ventas{
     void mostrarVtas(int);
 //    void setIdVenta(){this->idVenta=crearIdVentas();}
     void setTipoFact();
-    void setIdCliente(char);
+    void setIdCliente();
     void setNroFact();
    // void setOpcionPago();
   // Fecha getFechaVta(){}

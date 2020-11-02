@@ -17,6 +17,7 @@ class Direccion{
 //		Direccion(char *, int, int, char *);
 		Direccion(char *, int);
 		Direccion();
+//		char getDomicilio();
 		virtual ~Direccion(){};
 		void cargarDireccion();
 		void setCalle(char * _calle){strcpy(calle, _calle);}
