@@ -118,13 +118,9 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         if(tipoOperacion==2){ // TipoEntidad 2 es proveedores osea q es compras
             cantidad = getStock()+cant;
             prec=precio;
-//              cout<<" estas comprando : y la nueva cantidad es "<<cantidad<< " y el precio es :"<<prec;
-//            system("pause");
         }else if(tipoOperacion==1){//TipoEntidad 1 es Clientes osea que es Venta
             cantidad = getStock()-cant;
             prec = getPrecioCosto();
-//            cout<<" estas vendiendo : y la nueva cantidad es "<<cantidad;
-//            system("pause");
         }
             Modificar_en_disco(buscarProdxId(id), cantidad, prec);
             return true;
@@ -246,7 +242,7 @@ void Producto::Modificar_en_disco(int pos, int  cantidad, float _pre){
     this->setPrecioCosto(_pre);
     p=fopen(FILE_PRODUCTOS,"rb+");
     if(p==NULL){cout<<"Error de archivo";exit(1);}
-    fseek(p,(pos-1)*sizeof *this,0);
+    fseek(p,(pos)*sizeof *this,0);
     fwrite(this,sizeof *this,1,p);
     fclose(p);
 }

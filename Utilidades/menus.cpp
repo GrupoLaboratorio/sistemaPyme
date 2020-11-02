@@ -15,7 +15,7 @@ using namespace rlutil;
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
 #include "../Include/Ventas.h"
-#include "../Include/Compra.h"
+#include "../Include/Compras.h"
 #include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
@@ -29,10 +29,10 @@ using namespace rlutil;
 
 void menuLogin(){
 
-//	int attempts = 3;
-//	bool chequeo=false;
-	int attempts = 0;///Se establece en 0  en desarrollo, para evitar loguearse a cada rato
-	bool chequeo=true;///Se establece en TRUE en desarrollo, para evitar loguearse a cada rato
+	int attempts = 3;
+	bool chequeo=false;
+//	int attempts = 0;///Se establece en 0  en desarrollo, para evitar loguearse a cada rato
+//	bool chequeo=true;///Se establece en TRUE en desarrollo, para evitar loguearse a cada rato
 
 
     while(attempts != 0){
@@ -172,7 +172,7 @@ void menuCompras(){
         const int LETRA = WHITE;
         const int FONDO = BLUE;
         Entidad EntidadPiloto;
-//        Compras compraPiloto;
+        Compras cmpr;
         DetalleCompra detComp;
 
 
@@ -241,13 +241,12 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-//			detComp.cargarCompras();
+//            cout<<"\n\n\n\n\n"<<sizeof(Compras);
+			cmpr.cargarCompras();
 //			detComp.grabarEnDisco();
         break;
         case 2:
-                cout <<"LISTAR TODAS LAS COMPRAS:"<<endl<<endl;
-                cout<<"aguarde por favor!... En proceso"<<endl<<endl<<endl;
-                cout <<"Esta cargando.... "<<endl<<endl<<endl<<endl;
+                cmpr.listado_compras();
                 system("pause");
         break;
         case 3:

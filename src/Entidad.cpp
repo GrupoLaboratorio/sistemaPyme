@@ -39,6 +39,7 @@ void Entidad::cargarCliente(){
     cin.getline(this->mail,50,'\n');
     setTipoEntidad(1);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
+    grabarEnDisco(1);
 
 }
 
@@ -54,6 +55,7 @@ void Entidad::cargarProveedor(){
     cin.getline(this->mail,50,'\n');
     setTipoEntidad(2);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
+    grabarEnDisco(2);
 //grabarEnDisco(idEntidad);
 }
 
@@ -294,8 +296,7 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
         archivo = fopen(FILE_PROVEEDORES,"rb");
     }
 
-        ///buscamos y leemos en el;
-        while (this->leerDeDisco(i++, tipoEnt)){
+    while (this->leerDeDisco(i++, tipoEnt)){
        if( strcmp(this->cuit, cuit)==0 ){//busca un valor string en el archivo
                 cls();
                 cout<<"\nRAZON SOCIAL: "<<this->getRazonSocial()<<endl;
@@ -305,7 +306,22 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
             return user;
        }
     }
-            return user;
+
+       if(tipoEnt==1){
+        cls();
+       cout<<"\nEl Cliente no existe, Por favor ingrese el nuevo cliente:"<<endl;
+        this->cargarCliente();
+
+       system("pause");
+       }else{
+         cls();
+       cout<<"\nEl Proveedor no existe, Por favor ingrese el nuevo Proveedor:"<<endl;
+       this->cargarProveedor();
+
+       system("pause");
+       }
+       return user;
+
 }
 
 Entidad Entidad::buscarEntidadXId(int tipoEnt, int pos,  Entidad *user){
