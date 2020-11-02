@@ -53,7 +53,7 @@ class Producto
         bool leerDeDisco(int posicion);///Lee de disco un producto cuya posicion se pasa como parámetro **HECHA
         void mostrarProducto();///muestra un producto
         int buscarProdxId(int idAux);///DEVUELVE LA POSICION DE UN PRODUCTO POR ID QUE ES PASADO COMO PARAMETRO **HECHA
-        void Modificar_en_disco(int pos);
+        void Modificar_en_disco(int , int, float);
 };
 
 #endif // PRODUCTO_H

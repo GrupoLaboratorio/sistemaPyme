@@ -41,9 +41,9 @@ ent.listarEntidadesTabla(2);
 */
 Producto obj;
 Productos objA;
-objA.listarProductos();
-obj.setMod(1,0,300,0);
-system("pause");
+//objA.listarProductos();
+//obj.setMod(1, 1, 15,200);/// idProducto, tipoEntidad (1 y 2) , cantidad, precio
+//system("pause");
 objA.listarProductos();
 
 
