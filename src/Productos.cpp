@@ -81,11 +81,12 @@ void Productos::listarProductos(){
     while (aux.leerDeDisco(i++)){
         estadoAux = aux.getEstado();
         if(estadoAux == true){
+                cout<<setfill(' ');
             cout<<left;
             cout<<" "<<setw(4)<<centrarInt(aux.getId(), 4);
             cout<<" "<<setw(38)<<aux.getDescripcion();
             cout<<right;
-            cout<<" "<<setw(10)<<centrarInt(aux.getStock(),10);
+            cout<<" "<<setw(10)<<aux.getStock();
             cout<<" "<<setw(9)<<centrarInt(aux.getStockMin(),9);
             cout<<" "<<setw(16)<<aux.getPrecioCosto();
             cout<<" "<<setw(16)<<centrarInt(aux.getCodProv(),16);

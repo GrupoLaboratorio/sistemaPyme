@@ -30,7 +30,9 @@ using namespace rlutil;
 void menuLogin(){
 
 	int attempts = 3;
-	bool chequeo;
+	bool chequeo=false;
+//	int attempts = 0;///Se establece en 0  en desarrollo, para evitar loguearse a cada rato
+//	bool chequeo=true;///Se establece en TRUE en desarrollo, para evitar loguearse a cada rato
 
 
     while(attempts != 0){
