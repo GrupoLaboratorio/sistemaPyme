@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <time.h>
 #include <iomanip>
+#include <locale.h>
 using namespace std;
 #include "Ventas.h"
 #include "Fecha.h"
@@ -27,13 +28,15 @@ Ventas::Ventas(){
 }
 
 void Ventas::cargarVtas(){
+    setlocale(LC_CTYPE, "Spanish");
     Ventas();
     setTipoFact();
     setNroFact();
-
-//    setIdCliente(this->tipoFactura);
-
-cout<<"Grabar: 1, Cancelar : 0 ";
+char c;
+system("cls");
+cout<<"Iniciar un venta?. ";
+cout<<"\nSi: 1";
+cout<<"\nNo : 0 "<<endl;
 int ok;
 cin>>ok;
 if(ok==1){

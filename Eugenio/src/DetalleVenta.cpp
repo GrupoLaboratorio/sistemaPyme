@@ -50,10 +50,11 @@ void DetalleVenta::setCodProducto(){
     cout<< prod.getPrecioCosto()<<endl;
     cout<< prod.getIva();
     setCantProducto();
+    prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
 
 void DetalleVenta::setCantProducto(){
-    prod.setStock();
+    prod.setStock(0);
     this->cantidad=prod.getStock();
 }
 

@@ -19,6 +19,8 @@ using namespace rlutil;
 #include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
+#include "../Include/Producto.h"
+#include "../Include/Productos.h"
 
 
 ///---------------------------------------------- MENU PRINCIPAL
@@ -360,7 +362,8 @@ void menuVentas(){
 }
 
 void menuInventario(){
-
+Producto obj;
+Productos objA;
     while(true){
         cls();
         title("INVENTARIO",BLACK,BLUE);
@@ -382,8 +385,8 @@ void menuInventario(){
         case 1:
             //menuUsuarios();
             break;
-        case 2:
-            //menuRutinas();
+        case 3:
+            objA.listarProductos();
             break;
         case 4:
             //menuConfig();
