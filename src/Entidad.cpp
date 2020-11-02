@@ -301,7 +301,6 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
                 cout<<"\nRAZON SOCIAL: "<<this->getRazonSocial()<<endl;
                 cout<<"CUIT: "<<this->cuit<<endl;
                 idEntidad=this->idEntidad;
-//                 cout<<idEntidad<<endl;
                 fclose(archivo);
             return user;
        }
