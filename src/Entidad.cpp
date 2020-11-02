@@ -297,8 +297,9 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
         ///buscamos y leemos en el;
         while (this->leerDeDisco(i++, tipoEnt)){
        if( strcmp(this->cuit, cuit)==0 ){//busca un valor string en el archivo
-//                cout<<this->getRazonSocial()<<endl;
-//                cout<<this->cuit<<endl;
+                cls();
+                cout<<"\nRAZON SOCIAL: "<<this->getRazonSocial()<<endl;
+                cout<<"CUIT: "<<this->cuit<<endl;
                 idEntidad=this->idEntidad;
 //                 cout<<idEntidad<<endl;
                 fclose(archivo);
