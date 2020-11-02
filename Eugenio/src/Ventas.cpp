@@ -22,11 +22,11 @@ using namespace std;
 const char * FILE_VENTAS = "Archivos/Ventas.dat";
 
 ///----------------------------METODOS CLASE VENTAS---------------------------
+
 Ventas::Ventas(){
     idCliente=0;
     tipoFactura='B';
 }
-
 void Ventas::cargarVtas(){
     setlocale(LC_CTYPE, "Spanish");
     Ventas();
@@ -52,24 +52,13 @@ if(ok==1){
 }
 return;
 }
-
 void Ventas::setNroFact(){
     this->nroFactura=crearIdXFact();
 }
-
-void Ventas::mostrarVtas(int posicion){
-    cout<<"Fecha : "<<fechaVenta.getDia()<<"-"<<fechaVenta.getMes()<<endl;
-    cout<<"Id de cliente : "<<idCliente<<endl;
-    cout<<"Tipo de factura" <<tipoFactura<<endl;
-    cout<<"Numero de factura" <<nroFactura<<endl;
-}
-
-
 void Ventas::setIdCliente(){
     cliente.buscarRazonSocial(1);
     idCliente=cliente.getIdEntidad();
 }
-
 void Ventas::setTipoFact(){
     char tipo;
     cout<<"FACTURA A o B? : ";
@@ -90,52 +79,7 @@ void Ventas::setTipoFact(){
     int crearIdXFact();
 
 }
-
-//void Ventas::setOpcionPago()
-//{
-//    int modo;
-//    float desc=0.1;
-//    system("cls");
-//    cout<<"Opciones de pago :"<<endl;
-//    cout<<"1- Efectivo "<<endl;
-//    cout<<" 2- Transferencia "<<endl ;
-//    cout<<" 3 - Tarjeta de credito "<<endl;
-//    cin>>modo;
-//    switch(modo)
-//    {
-//    case 1:
-//        this->modoPago=modo;
-//        cout<< "Descuento del 5%"<<endl;
-//        calculo.setDescuento(desc);
-//        calculo.getDescuentoAplicado();
-//        cout<< "Total a pagar : "<<598.95<<endl;
-//        break;
-//
-//    case 2:
-//        this->modoPago=modo;
-//        cout<<"No posee descuentos ni recargos"<<endl;
-//        calculo.setTotlaImponible(5, 50);
-//        break;
-//
-//    case 3:
-//        this->modoPago=modo;
-//        cout<<"Recargo del 0.05 "<<endl;
-//        /calculo. Recargo o setDescuento?
-//        break;
-//
-//    default:
-//        cout<<"Opcion de pago incorrecto ";
-//        break;
-//    }
-//}
-
-//int Ventas::getOpcionPago()
-//{
-//    return modoPago;
-//}
-
-bool Ventas::grabarEnDisco()
-{
+bool Ventas::grabarEnDisco(){
     system("cls");
     FILE *p;
     bool chequeo;
@@ -163,9 +107,7 @@ bool Ventas::grabarEnDisco()
 
 
 }
-
-bool Ventas::leerDeDisco(int posicion)
-{
+bool Ventas::leerDeDisco(int posicion){
     bool leyo;
     FILE *p;
         p = fopen(FILE_VENTAS, "rb");
@@ -178,17 +120,11 @@ bool Ventas::leerDeDisco(int posicion)
         fclose(p);
         return leyo;
 }
-
-void Ventas::listado_facturas()
-{
+void Ventas::listado_facturas(){
 
     Ventas aux;
     int i = 0;
 
-//        char sing = getch() ;
-//        char sing = ".";
-        //selecciona un caracter para darle forma a tu tabla
-        //string dato="esta tabla";
         ///Inicio de cabecera
         cout<<"|"<<setw(104)<<centrar("CABECERA DETALLE", 104)<<"|"<<endl;
         cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
@@ -215,24 +151,7 @@ void Ventas::listado_facturas()
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 
-int crearIdVentas()
-{
-//    int bytes, cant;
-//
-//    FILE *p = fopen(FILE_VENTAS, "rb");
-//    if (p == NULL){
-//        return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-//    }
-//    fseek(p, 0, SEEK_END);
-//    bytes = ftell(p);
-//    fclose(p);
-//    cant=bytes / sizeof(Ventas);
-//    return cant+1;
-}
-
-
-int crearIdXFact()
-{
+int crearIdXFact(){
     int bytes, cant;
 
 
@@ -249,16 +168,3 @@ int crearIdXFact()
     return cant+1;
 }
 
-//void  listarVentas()
-//{
-//    int i=0;
-//    bool chequeo;
-//    Ventas reg;
-//    while(reg.leerDeDisco(i++))
-//    {
-//          cout<<reg.getNroFact()<<endl;
-//         cout<< reg.getTipoFact()<<endl;
-////          cout<<reg.fech()<<endl;
-//    }
-//    return;
-//}

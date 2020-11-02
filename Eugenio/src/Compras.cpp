@@ -130,7 +130,9 @@ void Compras::listado_compras(){
             cout<<setfill(' ')<<endl;
 
 }
-
+int Compras::getPuntoVta(){return puntoVta;}
+int Compras::getNroFactura(){return nroFactura;}
+char Compras::getTipoFact(){return tipoFactura;}
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 int crearIdXCompras(){
     int bytes, cant;

@@ -21,7 +21,6 @@ using namespace rlutil;
 
 const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
-
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
     dato= new Ventas;
@@ -47,7 +46,6 @@ void DetalleVenta::cDetalleVenta(){
     delete dato;
     return;
 }
-
 void DetalleVenta::setCodProducto(){
     cout<<"Ingrese codigo producto : ";
     cin>>codProd;
@@ -57,12 +55,10 @@ void DetalleVenta::setCodProducto(){
     setCantProducto();
     prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
-
 void DetalleVenta::setCantProducto(){
     prod.setStock(0);
     this->cantidad=prod.getStock();
 }
-
 bool DetalleVenta::grabarDetalleEnDisco(){
 
     system("cls");
@@ -91,7 +87,6 @@ bool DetalleVenta::grabarDetalleEnDisco(){
         return false;
     }
 }
-
 bool DetalleVenta::leerDeDiscoD(int posicion){
     bool leyo;
     FILE *p;
@@ -106,7 +101,6 @@ bool DetalleVenta::leerDeDiscoD(int posicion){
     fclose(p);
     return leyo;
 }
-
 void DetalleVenta::listado_detalle(){
     DetalleVenta aux;
     int i = 0;
@@ -129,41 +123,12 @@ void DetalleVenta::listado_detalle(){
     }
     cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
 }
-//bool DetalleVenta::leerDeDisco(int posicion){
-        //    FILE *p;
-        //    bool chequeo;
-        //
-        //    p = fopen(FILE_DETALLE,"rb");
-        //    if(p==NULL){
-        //    cout << "Error al abrir el archivo \n";
-        //    return false;
-        //    }
-        //    fseek(p,posicion*sizeof(DetalleVenta),SEEK_SET);
-        //    chequeo=fread(this, sizeof(DetalleVenta),1,p);
-        //    if( chequeo == 1){
-        //    mostrarDetalleVenta(posicion);
-        //    fclose(p);
-        //
-        //    system("pause");
-        //    return true;
-        //    }else{
-        //    cout << "El registro no pudo guardarse \n\n";
-        //    fclose(p);
-        //
-        //    system("pause");
-        //    return false;
-        //        }
-//    }
-
-void DetalleVenta::mostrarDetalleVenta(int posicion)
-{
+void DetalleVenta::mostrarDetalleVenta(int posicion){
 //    cout<<"Fecha : "<<codProd<<endl;
 //    cout<<"Tipo de factura hola : " <<dato->getTipoFact()<<endl;
 //    cout<<"Numero de factura" <<dato->getNroFact()<<endl;
 }
-
-bool DetalleVenta::ModificarVta()
-{
+bool DetalleVenta::ModificarVta(){
     FILE *p;
     int posicion, cod;
     bool chequeo;
@@ -205,22 +170,27 @@ bool DetalleVenta::ModificarVta()
         }
     }
 }
-
 void DetalleVenta::setTipoFactura(){
 
 //    this->tipoFactura= dato->getTipoFact;
 //    strcpy(this->tipoFactura, dato->getTipoFact);
 }
-char DetalleVenta::getTipoFactura(){return tipoFactura;}
-void DetalleVenta::setIdCliente(){this->idCliente=dato->getIdCliente();}
-char DetalleVenta::getIdCliente(){return idCliente;}
-void DetalleVenta::setNroFactura(){this->nroFactura=dato->getNroFact();}
-void DetalleVenta::setIdDetalle(){this->idDetalle=crearIdDetalle();}
-int DetalleVenta::getNroFactura(){return nroFactura;}
+char DetalleVenta::getTipoFactura(){
+    return tipoFactura;}
+void DetalleVenta::setIdCliente(){
+    this->idCliente=dato->getIdCliente();}
+char DetalleVenta::getIdCliente(){
+    return idCliente;}
+void DetalleVenta::setNroFactura(){
+    this->nroFactura=dato->getNroFact();}
+void DetalleVenta::setIdDetalle(){
+    this->idDetalle=crearIdDetalle();}
+int DetalleVenta::getNroFactura(){
+
+    return nroFactura;}
 ///----------------------FUNCIONES GLOBALES-----------------
 
-int buscarXCodProd(int codigo)
-{
+int buscarXCodProd(int codigo){
     FILE *p;
     DetalleVenta reg;
     int posicion=0;
@@ -243,8 +213,7 @@ int buscarXCodProd(int codigo)
     fclose(p);
     return -2;
 }
-int crearIdDetalle()
-{
+int crearIdDetalle(){
     int bytes, cant;
 
     FILE *p = fopen(FILE_DETALLE, "rb");
