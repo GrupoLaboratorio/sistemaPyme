@@ -126,7 +126,7 @@ void Ventas::listado_facturas(){
     int i = 0;
 
         ///Inicio de cabecera
-        cout<<"|"<<setw(104)<<centrar("CABECERA DETALLE", 104)<<"|"<<endl;
+        cout<<"|"<<setw(104)<<centrar("CABECERA DETALLE DE VENTAS", 104)<<"|"<<endl;
         cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
         cout<<"|"<<setw(4)<<centrar("ID", 4);
         cout<<"|"<<setw(7)<<centrar("TIPO", 7);
@@ -146,7 +146,7 @@ void Ventas::listado_facturas(){
             cout<<" "<<setw(22)<<centrarInt(aux.idCliente, 22)<<endl;
         }
             cout<<setfill(' ')<<endl;
-
+            system("pause");
 }
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------

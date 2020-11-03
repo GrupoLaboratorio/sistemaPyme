@@ -122,6 +122,7 @@ void DetalleVenta::listado_detalle(){
     //        cout<<"|"<<setw(89)<<setfill(sing)<<"|"<<endl;
     }
     cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+    system("pause");
 }
 void DetalleVenta::mostrarDetalleVenta(int posicion){
 //    cout<<"Fecha : "<<codProd<<endl;
@@ -286,9 +287,9 @@ void DetalleVenta::imprimirFactura(){
                 cout<<"|"<< setw(28)<<aux.prod.getDescripcion();
                 cout<<right;
                 cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
-                cout<<"|"<< setw(10)<<aux.getPrecio();
-                 cout<<"|"<< setw(10)<<(aux.getPrecio()*prod1->getIva()/100);
-                 cout<<"|"<<setw(16)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
+                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
+                 cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1->getIva()/100);
+                 cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
 
                 tPrUn+=aux.getPrecio();
                 sTot+=(aux.getPrecio()*aux.getCantProducto());
@@ -301,9 +302,9 @@ void DetalleVenta::imprimirFactura(){
 //            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<< right;
-            cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<derechafloat(sTot,8)<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<derechafloat(sIva,8)<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<derechafloat(tTot,8)<<"|"<<endl;
+           cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
+            cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<fixed<<setprecision(2)<<sIva<<"|"<<endl;
+            cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<fixed<<setprecision(2)<<tTot<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
 //            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
@@ -312,5 +313,5 @@ void DetalleVenta::imprimirFactura(){
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
 //            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
+system("pause");
 }
