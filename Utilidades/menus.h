@@ -3,12 +3,18 @@
 
 void menuLogin();
 
+void menuMaestro();
+
 void menuPrincipal();
 
 void menuCompras();
 
 void menuVentas();
 
+void menuEntidades();
+
 void menuInventario();
+
+void menuConfiguracion();
 
 #endif // MENUS_H_INCLUDED

@@ -23,7 +23,7 @@ const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
-    dato= new Ventas;
+    dato = new Ventas;
     int i= crearIdXFact()-2;
     dato->leerDeDisco(i);
     int continuar;

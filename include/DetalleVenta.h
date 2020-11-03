@@ -40,6 +40,6 @@ void imprimirFactura();
 };
 
 ///-----------------------------FUNCIONES GLOBALES------
- int buscarXCodProd(int );
+int buscarXCodProd(int );
 int crearIdDetalle();
 #endif // DETALLEVENTA_H
