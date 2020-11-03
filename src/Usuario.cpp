@@ -114,50 +114,46 @@ void listarUsuarios(){
         return;
 }
 
-bool login(){
+int login(){
 
     Usuario userLog, usuAux;
-    int passAux;
+    int passAux, i=0;
     char *nombreAux;
     bool estadoAux;
-    FILE *c;
+    const int POSMENUX = 35;
+    const int POSMENUY = 2;
 
+    locate(POSMENUX+5,POSMENUY+1);
     userLog.setNombreUser();
+    locate(POSMENUX+5,POSMENUY+2);
     userLog.setPassword();
 
-	c = fopen(FILE_USUARIOS, "rb");
-        if(c==NULL){
-                cout << "Error de archivo usuarios\n";
-                system("pause");
-                return false;
-        }
-        while(fread(&usuAux,sizeof(Usuario),1,c)==1){
 
-                estadoAux = usuAux.getEstado();
-                nombreAux = usuAux.getNombreUser();
-                passAux = usuAux.getPassword();
+    if(strcmp(userLog.getNombreUser(), "ADMIN")== 0){
+        if(userLog.getPassword() == 1234){
+            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
+            return 2;
+        }
+    }
+            while(usuAux.leerDeDisco(i++)){
 
-                if(estadoAux == true || estadoAux == 1){
+                if(usuAux.getEstado() == true || usuAux.getEstado() == 1){
 
-                    if(strcmp(userLog.getNombreUser(), nombreAux)== 0){
-                        if(userLog.getPassword() == passAux){
+                    if(strcmp(userLog.getNombreUser(), usuAux.getNombreUser())== 0){
+                        if(userLog.getPassword() == usuAux.getPassword()){
                             msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
-                            fclose(c);
-                            return true;
+                            return 1;
                         }else{
 							msj("CONTRASEÑA INCORRECTA",WHITE,RED,130,TEXT_LEFT);
+							return 0;
 							cout << endl;
-							break;
                         }
-                    }else{
-                    	msj("USUARIO INEXISTENTE",WHITE,RED,130,TEXT_LEFT);
-                    	cout << endl;
-                    	break;
-                    }
                 }
             }
-		return false;
-        fclose(c);
+        }
+        msj("USUARIO INEXISTENTE",WHITE,RED,130,TEXT_LEFT);
+        cout << endl;
+		return 0;
 }
 
 void bagaLogicaUsuario(){
@@ -197,7 +193,7 @@ int crearIdUsuario(){
      if (p == NULL){
         return 1;
     }
-//	fseek(p, 0, SEEK_END);
+	fseek(p, 0, SEEK_END);
     bytes = ftell(p);
     fclose(p);
 	cant = bytes / sizeof(Usuario);

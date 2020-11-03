@@ -30,7 +30,7 @@ class Usuario{
 
 void crearUsuario();
 
-bool login();
+int login();
 
 void listarUsuarios();
 
