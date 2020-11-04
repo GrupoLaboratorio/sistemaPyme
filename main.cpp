@@ -18,6 +18,25 @@ using namespace std;
 
 
 int main(){
+//calculadora calc;
+//calc.setExtraeIva(21);///valores a ingrear :10.5, 21
+//calc.setImporteBruto(1210);///Importe con iva incluido-
+//calc.setImponible(3);/// vende 3 articulos y va el precio bruto
+//calc.setDescuento(10);/// descuento d euna venta por pago en efectivo
+//calc.setDescuentoAplicado();///Aplica el descuento
+////calc.setRecargo(3);///recargo
+////calc.setRecargoAplicado();///aplica el impuesto
+//calc.setImpuesto(21);///iva a calcular
+//calc.setImpuestoAplicado();///aplica el impuesto
+
+//
+//cout<<calc.getExtraeIva()<<endl;
+//cout<<calc.getImporteBruto()<<endl;
+//cout<<calc.getImponible()<<endl;
+//cout<<calc.getDescuento()<<endl;
+//cout<<calc.getDescuentoAplicado()<<endl;
+//cout<<calc.getImpuesto()<<endl;
+//cout<<calc.getImpuestoAplicado()<<endl;
 
     menuLogin();
 
