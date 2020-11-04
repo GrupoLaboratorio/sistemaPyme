@@ -150,7 +150,7 @@ void menuMaestro(){
                 menuConfiguracion();
         break;
         case 0:
-                return;
+                menuLogin();
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
                 break;
@@ -251,7 +251,7 @@ void menuPrincipal(){
                 system("pause");
         break;
         case 6:
-                return;
+               menuLogin();
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
                 break;
@@ -601,9 +601,9 @@ void menuEntidades(){
       locate(POSMENUX+5,POSMENUY+1);
       title("INVENTARIOS", WHITE, BLUE);
       locate(POSMENUX+3,POSMENUY+3);
-      cout << "CARGAR CLIENTE";
+      cout << "LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "CARGAR PROVEEDOR";
+      cout << "LISTAR PROVEEDORES";
       locate(POSMENUX+3,POSMENUY+5);
       cout << "ATRAS\n";
       hidecursor();
@@ -643,15 +643,19 @@ void menuEntidades(){
       showcursor();
       switch(opc){
         case 1:
-                EntidadPiloto.cargarCliente();
-                EntidadPiloto.grabarEnDisco(1);
-                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.listarEntidadesTabla(1);
+                cls();
+//                EntidadPiloto.cargarCliente();
+//                EntidadPiloto.grabarEnDisco(1);
+//                EntidadPiloto.mostrarEntidad();
         break;
         case 2:
         int id;
-                EntidadPiloto.cargarCliente();
-                EntidadPiloto.grabarEnDisco(2);
-                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.listarEntidadesTabla(2);
+                cls();
+//                EntidadPiloto.cargarCliente();
+//                EntidadPiloto.grabarEnDisco(2);
+//                EntidadPiloto.mostrarEntidad();
         break;
         case 3:
                 return;
