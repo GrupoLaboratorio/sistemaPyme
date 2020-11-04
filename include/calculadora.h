@@ -29,6 +29,8 @@ class calculadora{
         float getImponible();///devuelte el importe imponible para una venta
         float getDescuento();///Devuelve el importe de descuento por pago en efectivo
         float getDescuentoAplicado();///devuelve el importe con descuento aplicado.
+//        float getRecargo();///Devuelve el Recargo por pago con tarjetas
+//        float getRecargoAplicado();///devuelve el importe con Recargo aplicado.
         float getImpuesto(); ///devuelve el impuesto para a aplicar
         float getImpuestoAplicado();///Devuelve el importe final con descuentos e impuestos aplicados
 };

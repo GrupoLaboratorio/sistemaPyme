@@ -18,6 +18,8 @@ using namespace std;
     void calculadora::setDescuentoAplicado(){
         this->descuentoAplicado =getImponible()-getDescuento();
     }
+    //        void calculadora::setRecargo(float _rec=0);///recargo
+    //       void calculadora::setRecargoAplicado();///aplica el recargo
     void calculadora::setImpuesto(float _impuesto){
         this->impuesto =getDescuentoAplicado()*_impuesto/100;
     }
@@ -30,5 +32,7 @@ using namespace std;
     float calculadora::getImponible(){return imponible;}
     float calculadora::getDescuento(){return descuento;}
     float calculadora::getDescuentoAplicado(){return descuentoAplicado;}
+    //        float calculadora::getRecargo();///Devuelve el Recargo por pago con tarjetas
+    //         float calculadora::getRecargoAplicado();///devuelve el importe con Recargo aplicado.
     float calculadora::getImpuesto(){return impuesto;}
     float calculadora::getImpuestoAplicado(){return impuestoAplicado; }

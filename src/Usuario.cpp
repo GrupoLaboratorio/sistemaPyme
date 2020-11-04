@@ -4,6 +4,7 @@
 #include <cstring>
 #include <string.h>
 #include <cstdio>
+#include <locale.h>
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
 #include "Usuario.h"
@@ -20,6 +21,7 @@ void Usuario::setNombreUser(){
 }
 
 void Usuario::setPassword(){
+     setlocale(LC_CTYPE, "Spanish");
     cout << "CONTRASEÑA: ";
 	cin>>this->password;
 }
