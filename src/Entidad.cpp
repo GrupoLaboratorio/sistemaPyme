@@ -56,7 +56,6 @@ void Entidad::cargarProveedor(){
     setTipoEntidad(2);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
     grabarEnDisco(2);
-//grabarEnDisco(idEntidad);
 }
 
 void Entidad::mostrarEntidad(){

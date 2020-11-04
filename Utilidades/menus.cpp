@@ -7,7 +7,6 @@
 #include <cctype>
 #include <algorithm>
 #include <iomanip>
-
 using namespace std;
 #include "ui.h"
 #include "rlutil.h"
@@ -51,6 +50,7 @@ void menuLogin(){
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
     }
+    return;
 }
 
 ///---------------------------------------------- MENU MAESTRO
@@ -356,9 +356,7 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-//            cout<<"\n\n\n\n\n"<<sizeof(Compras);
-			cmpr.cargarCompras();
-//			detComp.grabarEnDisco();
+                cmpr.cargarCompras();
         break;
         case 2:
                 cmpr.listado_compras();
@@ -366,7 +364,7 @@ void menuCompras(){
         break;
         case 3:
                 EntidadPiloto.cargarCliente();
-                EntidadPiloto.grabarEnDisco(1);
+//                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
@@ -377,7 +375,6 @@ void menuCompras(){
         break;
         case 5:
                     EntidadPiloto.listarEntidadesTabla(2);
-                system("pause");
         break;
         case 0:
         return;
@@ -617,12 +614,16 @@ void menuEntidades(){
       opc=1;
       setColor(LETRA);
       locate(POSMENUX+5,POSMENUY+1);
-      title("INVENTARIOS", WHITE, BLUE);
+      title("ENTIDADES", WHITE, BLUE);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "LISTAR PROVEEDORES";
+      cout << "CARGAR CLIENTE";
       locate(POSMENUX+3,POSMENUY+5);
+      cout << "LISTAR PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "CARGAR PROVEEDOR";
+      locate(POSMENUX+3,POSMENUY+7);
       cout << "ATRAS\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -633,7 +634,7 @@ void menuEntidades(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 3){
+            if(opc < 5){
                 opc++;
             }else{
                 opc=0;
@@ -643,7 +644,7 @@ void menuEntidades(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=3;
+                opc=5;
             }
             break;
         }
@@ -663,23 +664,19 @@ void menuEntidades(){
         case 1:
                 EntidadPiloto.listarEntidadesTabla(1);
                 cls();
-//                EntidadPiloto.cargarCliente();
-//                EntidadPiloto.grabarEnDisco(1);
-//                EntidadPiloto.mostrarEntidad();
         break;
         case 2:
-        int id;
-                EntidadPiloto.listarEntidadesTabla(2);
-                cls();
-//                EntidadPiloto.cargarCliente();
-//                EntidadPiloto.grabarEnDisco(2);
-//                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.cargarCliente();
         break;
         case 3:
-                return;
+                EntidadPiloto.listarEntidadesTabla(2);
+                cls();
         break;
-        default:
-            cout<<" OPCION INCORRECTA"<<endl;
+        case 4:
+                EntidadPiloto.cargarProveedor();
+        break;
+        case 5:
+                return;
         break;
       }
     }
@@ -768,13 +765,13 @@ void menuConfiguracion(){
             crearUsuario();
         break;
         case 3:
-            cout << "Opcion 3";
+            bajaLogicaUsuario();
         break;
         case 4:
             listarUsuarios();
         break;
         case 5:
-            cout << "Opcion 5";
+            cambiarPassword();
         break;
         case 6:
             return;
