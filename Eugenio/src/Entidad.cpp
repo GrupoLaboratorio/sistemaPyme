@@ -237,6 +237,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
         }
             cout<<right;
             cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+            system("pause");
             fclose(c);
         //        return;
         break;
@@ -274,6 +275,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
         }
         cout<<right;
         cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+        system("pause");
         fclose(p);
         //return;
         break;

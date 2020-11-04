@@ -17,17 +17,10 @@ using namespace std;
 #include "Include/Usuario.h"
 
 
-int main()
-{
-///test detalleCompra
-//    DetalleCompra obj;
-//    obj.setProveedor();
-//    cout<<endl;
-//    obj.setIdProveedor();
-///Fin test detallecompras
+int main(){
 
-///Menu
+
     menuLogin();
-	//menuPrincipal();
+
     return 0;
 }
