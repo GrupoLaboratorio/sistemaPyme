@@ -76,15 +76,6 @@ void Entidad::setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razo
 
 void Entidad::setMail(char * _mail){strcpy(this->mail,_mail);}
 
-//void Entidad::setTipoEntidad(){
-//    cout << "CATEGORIA:";
-//    cin >> this->tipoEntidad;
-//        while(this->tipoEntidad != 1 || this->tipoEntidad != 2){
-//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-//            cin >> this->tipoEntidad;
-//        }
-//}
-
 void Entidad::setTipoEntidad(int _tipo){this->tipoEntidad = _tipo;}
 
 bool Entidad::grabarEnDisco(int _tipoEntidad){

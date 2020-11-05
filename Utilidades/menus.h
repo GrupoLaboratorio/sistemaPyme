@@ -17,4 +17,6 @@ void menuInventario();
 
 void menuConfiguracion();
 
+void menuBackup();
+
 #endif // MENUS_H_INCLUDED

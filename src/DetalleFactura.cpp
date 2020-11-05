@@ -16,6 +16,7 @@ using namespace std;
 using namespace rlutil;
 
 const char * FILE_DETFAC = "Archivos/DetalleVentas.dat";
+
 void DetalleFactura::CDetalleFactura(
    int _nroFactura,
    int _codProd,
