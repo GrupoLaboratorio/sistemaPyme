@@ -23,14 +23,15 @@ const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
-    dato = new Ventas;
+ Ventas *oVtas;
+    oVtas = new Ventas;
     int i= crearIdXFact()-2;
-    dato->leerDeDisco(i);
+    oVtas->leerDeDisco(i);
     int continuar;
     do{
         this->idDetalle= crearIdDetalle();
-        tipoFactura= dato->getTipoFact();
-        nroFactura= dato->getNroFact();
+        tipoFactura= oVtas->getTipoFact();
+        nroFactura= oVtas->getNroFact();
         setCodProducto();
         setPrecio();
         Estado=true;
@@ -43,7 +44,7 @@ void DetalleVenta::cDetalleVenta(){
 
         cin>> continuar;
     }while(continuar==1);
-    delete dato;
+    delete oVtas;
     return;
 }
 void DetalleVenta::setCodProducto(){
@@ -279,9 +280,9 @@ void DetalleVenta::imprimirFactura(){
     // }
             while (aux.leerDeDiscoD(i++)){
             if(aux.getNroFactura()==f){
-                Producto *prod1;
-                prod1 = new Producto;
-                 prod1->leerDeDisco(prod1->buscarProdxId(aux.getCodProducto()));
+                Producto prod1;
+                //prod1 = new Producto;
+                 prod1.leerDeDisco(prod1.buscarProdxId(aux.getCodProducto()));
                     cout<<setfill(' ');
                     cout<<"|"<< setw(9)<<centrarInt(aux.getCodProducto(), 9);
                     cout<<left;
@@ -289,13 +290,13 @@ void DetalleVenta::imprimirFactura(){
                     cout<<right;
                     cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
                     cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
-                     cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1->getIva()/100);
-                     cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
+                     cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1.getIva()/100);
+                     cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1.getIva()/100))*aux.getCantProducto())<<"|"<<endl;
 
                     tPrUn+=aux.getPrecio();
                     sTot+=(aux.getPrecio()*aux.getCantProducto());
-                    sIva+=((aux.getPrecio()*prod1->getIva()/100)*aux.getCantProducto());
-                delete prod1;
+                    sIva+=((aux.getPrecio()*prod1.getIva()/100)*aux.getCantProducto());
+            //delete prod1;
             }
             }
                     tTot+=(sIva+sTot);

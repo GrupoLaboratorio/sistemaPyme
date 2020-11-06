@@ -145,9 +145,9 @@ void menuMaestro(){
         case 5:
                 calculadora calc;
                 calc.setExtraeIva(21);///valores a ingrear :10.5, 21
-                calc.setImporteBruto(1210);///Importe con iva incluido-
-                calc.setImponible(3);/// vende 3 articulos y va el precio bruto
-                calc.setDescuento(10);/// descuento d euna venta por pago en efectivo
+                calc.setImporteBruto(85.71);///Importe con iva incluido-
+                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
+                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
                 calc.setDescuentoAplicado();///Aplica el descuento
                 //calc.setRecargo(3);///recargo
                 //calc.setRecargoAplicado();///aplica el impuesto

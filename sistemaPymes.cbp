@@ -45,6 +45,7 @@
 		<Unit filename="Utilidades/validaciones.h" />
 		<Unit filename="include/Calculadora.h" />
 		<Unit filename="include/Compras.h" />
+		<Unit filename="include/Contable.h" />
 		<Unit filename="include/DetalleCompra.h" />
 		<Unit filename="include/DetalleFactura.h" />
 		<Unit filename="include/DetalleVenta.h" />
@@ -60,6 +61,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Calculadora.cpp" />
 		<Unit filename="src/Compras.cpp" />
+		<Unit filename="src/Contable.cpp" />
 		<Unit filename="src/DetalleCompra.cpp" />
 		<Unit filename="src/DetalleFactura.cpp" />
 		<Unit filename="src/DetalleVenta.cpp" />

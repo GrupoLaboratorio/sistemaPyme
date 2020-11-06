@@ -12,13 +12,13 @@
 class Ventas
 {
 
-private:
+protected:
     int  idCliente;
     char tipoFactura;
     int  nroFactura;
     Fecha fechaVenta;
 public:
-    Entidad cliente;
+    Entidad cliente;///preguntar a Angel
     Ventas();
     void cargarVtas();
     void setTipoFact();
