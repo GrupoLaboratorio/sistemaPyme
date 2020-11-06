@@ -1,5 +1,6 @@
 #ifndef Entidad_H
 #define Entidad_H
+#define FILE_PRUEBA "Prueba.dat"
 
 #include "../Include/Persona.h"
 

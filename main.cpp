@@ -8,18 +8,20 @@
 #include <algorithm>
 using namespace std;
 #include "Utilidades/menus.h"
-#include "Include/Persona.h"
-#include "Utilidades/validaciones.h"
-#include "Direccion.h"
+//#include "Include/Persona.h"
+//#include "Utilidades/validaciones.h"
+//#include "Direccion.h"
 #include "Include/Entidad.h"
-#include "Include/Ventas.h"
-#include "DetalleFactura.h"
-#include "Include/Usuario.h"
+//#include "Include/Ventas.h"
+//#include "DetalleFactura.h"
+//#include "Include/Usuario.h"
 
 
 int main(){
 
     menuLogin();
+
+//  Agregar define en archivos backup
 
     return 0;
 }

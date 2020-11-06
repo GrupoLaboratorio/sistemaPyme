@@ -16,7 +16,6 @@ using namespace rlutil;
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
 void Usuario::setNombreUser(){
-    setlocale(LC_CTYPE, "Spanish");
     cout << "NOMBRE DE USUARIO: ";
 	cin>>this->nombreUser;
 }
@@ -139,7 +138,7 @@ int login(){
     }
             while(usuAux.leerDeDisco(i++)){
 
-                if(usuAux.getEstado() == true || usuAux.getEstado() == 1){
+                if(usuAux.getEstado() == true){
 
                     if(strcmp(userLog.getNombreUser(), usuAux.getNombreUser())== 0){
                         if(userLog.getPassword() == usuAux.getPassword()){
@@ -176,7 +175,6 @@ void bajaLogicaUsuario(){
         }
 
             while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
-//            while(usuAux.leerDeDisco(i++)){
                 if(usuAux.getIdUser() == idAux){
                     cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
                     cout << endl;

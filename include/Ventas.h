@@ -9,8 +9,7 @@
 
 ///-----------------------CLASE VENTAS
 
-class Ventas
-{
+class Ventas{
 
 protected:
     int  idCliente;
@@ -19,6 +18,7 @@ protected:
     Fecha fechaVenta;
 public:
     Entidad cliente;///preguntar a Angel
+//    Entidad getCliente(){return cliente};
     Ventas();
     void cargarVtas();
     void setTipoFact();

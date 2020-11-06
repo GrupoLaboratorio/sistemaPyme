@@ -21,7 +21,6 @@ class Usuario{
         bool grabarEnDisco();
         bool leerDeDisco(int);
         char* getNombreUser(){return this->nombreUser;}
-        const char* getNombreUser(char* nombAux){strcpy(nombAux, this->nombreUser);}
         int getPassword(){return password;}
         bool getEstado(){return estado;}
         int getIdUser(){return this->idUser;}

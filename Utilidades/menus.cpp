@@ -11,6 +11,7 @@ using namespace std;
 #include "ui.h"
 #include "rlutil.h"
 using namespace rlutil;
+#include "../Utilidades/Backup.h"
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
 #include "../Include/Ventas.h"
@@ -32,7 +33,6 @@ void menuLogin(){
     while(attempts != 0){
 		title("LOGIN", WHITE, RED);
 		cout << endl << endl;
-
         chequeo = login();
 
         if(chequeo == 1 || chequeo == 2){
@@ -41,11 +41,13 @@ void menuLogin(){
         attempts--;
 		}
 		system("cls");
+
     }
+
     if(chequeo == 1){
-    menuPrincipal();
+        menuPrincipal();
     }else if(chequeo == 2){
-    menuMaestro();
+        menuMaestro();
     }else{
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
@@ -759,7 +761,7 @@ void menuConfiguracion(){
       showcursor();
       switch(opc){
         case 1:
-            menuBackup();
+//            menuBackup();
         break;
         case 2:
             crearUsuario();
@@ -786,99 +788,103 @@ void menuConfiguracion(){
 
 ///---------------------------------------------- MENU BACKUP
 
-void menuBackup(){
-
-        const int POSMENUX = 0;
-        const int POSMENUY = 1;
-        const int COLOR_PANTALLA = BLACK;
-        const int LETRA = WHITE;
-        const int FONDO = BLUE;
-        Entidad EntidadPiloto;
-        Ventas vtas;
-        DetalleVenta deta;
-
-    setlocale(LC_ALL, "spanish");
-    setConsoleTitle("TONGA GESTION");
-    const int ANCHO_MENU = 75;
-    const int ALTO_MENU = 8;
-    int key, opc, cursorX, cursorY;
-    while(true){
-      cursorX=POSMENUX+1;
-      cursorY=POSMENUY + 3;
-      setBackgroundColor(COLOR_PANTALLA);
-      system("cls");
-      opc=1;
-      setColor(LETRA);
-      locate(POSMENUX+5,POSMENUY+1);
-      title("BACKUP", WHITE, CYAN);
-      locate(POSMENUX+3,POSMENUY+3);
-      cout << "PROVEEDORES";
-      locate(POSMENUX+3,POSMENUY+4);
-      cout << "CLIENTES";
-      locate(POSMENUX+3,POSMENUY+5);
-      cout << "FACTURAS";
-      locate(POSMENUX+3,POSMENUY+6);
-      cout << "ORDENES DE COMPRA";
-      locate(POSMENUX+3,POSMENUY+7);
-      cout << "PRODUCTOS";
-      locate(POSMENUX+3,POSMENUY+8);
-      cout << "ATRAS\n";
-      hidecursor();
-      locate(cursorX,cursorY);
-      cout<<">";
-      key = getkey();
-      while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 5){
-                opc++;
-            }else{
-                opc=0;
-            }
-            break;
-        case KEY_UP:
-            if(opc > 0){
-                opc--;
-            }else{
-                opc=5;
-            }
-            break;
-        }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 2;
-        }else{
-            cursorY = POSMENUY + 9;
-        }
-        locate(cursorX,cursorY);
-        cout<<">";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-      switch(opc){
-        case 1:
-//           vtas.cargarVtas();
-        break;
-        case 2:
-//            deta.imprimirFactura();
-        break;
-        case 3:
-//            deta.listado_detalle();
-        break;
-        case 4:
-//           vtas.listado_facturas();
-        break;
-        case 5:
-//            EntidadPiloto.buscarRazonSocial(1);
-        break;
-        case 6:
-            return;
-        break;
-      }
-    }
-    return;
-
-}
+//void menuBackup(){
+//
+//        const int POSMENUX = 0;
+//        const int POSMENUY = 1;
+//        const int COLOR_PANTALLA = BLACK;
+//        const int LETRA = WHITE;
+//        const int FONDO = BLUE;
+//        Entidad EntidadPiloto;
+//        Ventas vtas;
+//        DetalleVenta deta;
+//
+//    setlocale(LC_ALL, "spanish");
+//    setConsoleTitle("TONGA GESTION");
+//    const int ANCHO_MENU = 75;
+//    const int ALTO_MENU = 8;
+//    int key, opc, cursorX, cursorY;
+//    while(true){
+//      cursorX=POSMENUX+1;
+//      cursorY=POSMENUY + 3;
+//      setBackgroundColor(COLOR_PANTALLA);
+//      system("cls");
+//      opc=1;
+//      setColor(LETRA);
+//      locate(POSMENUX+5,POSMENUY+1);
+//      title("BACKUP", WHITE, CYAN);
+//      locate(POSMENUX+3,POSMENUY+3);
+//      cout << "PROVEEDORES";
+//      locate(POSMENUX+3,POSMENUY+4);
+//      cout << "CLIENTES";
+//      locate(POSMENUX+3,POSMENUY+5);
+//      cout << "FACTURAS";
+//      locate(POSMENUX+3,POSMENUY+6);
+//      cout << "ORDENES DE COMPRA";
+//      locate(POSMENUX+3,POSMENUY+7);
+//      cout << "PRODUCTOS";
+//      locate(POSMENUX+3,POSMENUY+8);
+//      cout << "PLAN DE CUENTAS";
+//      locate(POSMENUX+3,POSMENUY+9);
+//      cout << "ATRAS\n";
+//      hidecursor();
+//      locate(cursorX,cursorY);
+//      cout<<">";
+//      key = getkey();
+//      while(key != KEY_ENTER){
+//        locate(cursorX,cursorY);
+//        cout<<" ";
+//        switch(key){
+//        case KEY_DOWN:
+//            if(opc < 7){
+//                opc++;
+//            }else{
+//                opc=1;
+//            }
+//            break;
+//        case KEY_UP:
+//            if(opc > 1){
+//                opc--;
+//            }else{
+//                opc=7;
+//            }
+//            break;
+//        }
+//        if(opc != 0){
+//            cursorY = opc + POSMENUY + 2;
+//        }else{
+//            cursorY = POSMENUY + 9;
+//        }
+//        locate(cursorX,cursorY);
+//        cout<<">";
+//        key = getkey();
+//      }
+//      setBackgroundColor(COLOR_PANTALLA);
+//      cls();
+//      showcursor();
+//      switch(opc){
+//        case 1:
+//            backupArchivos(1);
+//        break;
+//        case 2:
+//            backupArchivos(2);
+//        break;
+//        case 3:
+//            backupArchivos(3);
+//        break;
+//        case 4:
+//            backupArchivos(4);
+//        break;
+//        case 5:
+//            backupArchivos(5);
+//        break;
+//        case 6:
+//            backupArchivos(6);
+//        break;
+//        case 7:
+//            return;
+//        break;
+//      }
+//    }
+//    return;
+//}

@@ -22,7 +22,7 @@ using namespace std;
 #include "Compras.h"
 using namespace rlutil;
 
-const char *FILE_DET_COMPRAS="Archivos/DetalleCompras.dat" ;
+const char *FILE_DET_COMPRAS="Archivos/DetalleCompras.dat";
 
 void DetalleCompra::cDetalleCompra(){
 setlocale(LC_CTYPE, "Spanish");
