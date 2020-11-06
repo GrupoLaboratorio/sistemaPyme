@@ -14,7 +14,7 @@ using namespace std;
         Fecha getFechaHasta(){}
 
         ///funciones
-        void imputarCta(Fecha, 2, bool, bool, float ){}///recibe parametros
+        void imputarCta(Fecha, int, bool, bool, float ){}///recibe parametros
         void grabarEnDisco(){}///graba la imputacion linea por linea con "rb+"
         void listarLibroDiario(Fecha){}///lista todas las cuentas  de una fecha determinada
         void listarLibroMayor(Fecha, Fecha, int){}
