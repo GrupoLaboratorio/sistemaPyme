@@ -5,6 +5,7 @@
 #include <time.h>
 #include <iomanip>
 #include <conio.h>
+#include <locale.h>
 using namespace std;
 #include "DetalleVenta.h"
 #include "Ventas.h"
@@ -20,10 +21,9 @@ using namespace rlutil;
 
 const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
-
 void DetalleVenta::cDetalleVenta(){
-
-    dato= new Ventas;
+ setlocale(LC_CTYPE, "Spanish");
+    dato = new Ventas;
     int i= crearIdXFact()-2;
     dato->leerDeDisco(i);
     int continuar;
@@ -35,28 +35,30 @@ void DetalleVenta::cDetalleVenta(){
         setPrecio();
         Estado=true;
         grabarDetalleEnDisco();
-        system("pause");
-        cout<<"Comprar otro producto :    1- si , 0 - no " ;
+
+        system("cls");
+        cout<<"\nCountinua comprando?. ";
+        cout<<"\nSi: 1";
+        cout<<"\nNo : 0 "<<endl;
+
         cin>> continuar;
     }while(continuar==1);
     delete dato;
     return;
 }
-
 void DetalleVenta::setCodProducto(){
     cout<<"Ingrese codigo producto : ";
     cin>>codProd;
     prod.buscarProdxId(codProd);
-    cout<< prod.getPrecioCosto()<<endl;
-    cout<< prod.getIva();
+    cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
+//    cout<< prod.getIva();
     setCantProducto();
+    prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
-
 void DetalleVenta::setCantProducto(){
-    prod.setStock();
+    prod.setStock(0);
     this->cantidad=prod.getStock();
 }
-
 bool DetalleVenta::grabarDetalleEnDisco(){
 
     system("cls");
@@ -73,10 +75,7 @@ bool DetalleVenta::grabarDetalleEnDisco(){
     chequeo = fwrite(this, sizeof(DetalleVenta),1,p);
     if(chequeo==1)
     {
-        cout<< "Carga exitosa";
         fclose(p);
-
-        system("pause");
         return true;
     }
     else
@@ -88,7 +87,6 @@ bool DetalleVenta::grabarDetalleEnDisco(){
         return false;
     }
 }
-
 bool DetalleVenta::leerDeDiscoD(int posicion){
     bool leyo;
     FILE *p;
@@ -103,7 +101,6 @@ bool DetalleVenta::leerDeDiscoD(int posicion){
     fclose(p);
     return leyo;
 }
-
 void DetalleVenta::listado_detalle(){
     DetalleVenta aux;
     int i = 0;
@@ -125,42 +122,14 @@ void DetalleVenta::listado_detalle(){
     //        cout<<"|"<<setw(89)<<setfill(sing)<<"|"<<endl;
     }
     cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+    system("pause");
 }
-//bool DetalleVenta::leerDeDisco(int posicion){
-        //    FILE *p;
-        //    bool chequeo;
-        //
-        //    p = fopen(FILE_DETALLE,"rb");
-        //    if(p==NULL){
-        //    cout << "Error al abrir el archivo \n";
-        //    return false;
-        //    }
-        //    fseek(p,posicion*sizeof(DetalleVenta),SEEK_SET);
-        //    chequeo=fread(this, sizeof(DetalleVenta),1,p);
-        //    if( chequeo == 1){
-        //    mostrarDetalleVenta(posicion);
-        //    fclose(p);
-        //
-        //    system("pause");
-        //    return true;
-        //    }else{
-        //    cout << "El registro no pudo guardarse \n\n";
-        //    fclose(p);
-        //
-        //    system("pause");
-        //    return false;
-        //        }
-//    }
-
-void DetalleVenta::mostrarDetalleVenta(int posicion)
-{
+void DetalleVenta::mostrarDetalleVenta(int posicion){
 //    cout<<"Fecha : "<<codProd<<endl;
 //    cout<<"Tipo de factura hola : " <<dato->getTipoFact()<<endl;
 //    cout<<"Numero de factura" <<dato->getNroFact()<<endl;
 }
-
-bool DetalleVenta::ModificarVta()
-{
+bool DetalleVenta::ModificarVta(){
     FILE *p;
     int posicion, cod;
     bool chequeo;
@@ -202,22 +171,27 @@ bool DetalleVenta::ModificarVta()
         }
     }
 }
-
 void DetalleVenta::setTipoFactura(){
 
 //    this->tipoFactura= dato->getTipoFact;
 //    strcpy(this->tipoFactura, dato->getTipoFact);
 }
-char DetalleVenta::getTipoFactura(){return tipoFactura;}
-void DetalleVenta::setIdCliente(){this->idCliente=dato->getIdCliente();}
-char DetalleVenta::getIdCliente(){return idCliente;}
-void DetalleVenta::setNroFactura(){this->nroFactura=dato->getNroFact();}
-void DetalleVenta::setIdDetalle(){this->idDetalle=crearIdDetalle();}
-int DetalleVenta::getNroFactura(){return nroFactura;}
+char DetalleVenta::getTipoFactura(){
+    return tipoFactura;}
+void DetalleVenta::setIdCliente(){
+    this->idCliente=dato->getIdCliente();}
+char DetalleVenta::getIdCliente(){
+    return idCliente;}
+void DetalleVenta::setNroFactura(){
+    this->nroFactura=dato->getNroFact();}
+void DetalleVenta::setIdDetalle(){
+    this->idDetalle=crearIdDetalle();}
+int DetalleVenta::getNroFactura(){
+
+    return nroFactura;}
 ///----------------------FUNCIONES GLOBALES-----------------
 
-int buscarXCodProd(int codigo)
-{
+int buscarXCodProd(int codigo){
     FILE *p;
     DetalleVenta reg;
     int posicion=0;
@@ -240,8 +214,7 @@ int buscarXCodProd(int codigo)
     fclose(p);
     return -2;
 }
-int crearIdDetalle()
-{
+int crearIdDetalle(){
     int bytes, cant;
 
     FILE *p = fopen(FILE_DETALLE, "rb");
@@ -255,42 +228,51 @@ int crearIdDetalle()
     return cant+1;
 }
 void DetalleVenta::imprimirFactura(){
-////    system("color 0F");
-    system("color 4F");
+    system("color 0F");
     int pos= crearIdXFact()-2;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
-//    char a='d'+42;
+    Ventas  cli;
+
     int i =0,  f;
 
     cls();
     cout<<"\nIngrese el numero de factura que desea imprimir: ";
     cin>>f;
     cls();
+    cli.leerDeDisco(f-1);
+    char a[30];
 
-//            setBackgroundColor(RED);
+    strcpy(a, "FACTURA ");
+
+
+            setBackgroundColor(RED);
             cout<<endl;
-            cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
-            cout<<"|"<<setw(88)<<centrar("FACTURA", 88)<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
+
+            cout<<"|"<<setw(88)<<cli.getTipoFact()<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;            cout<<"|"<<setw(69)<<""<<"Nro Fac: 0001-"<<derechaInt(f, 5)<<"|"<<endl;
             //cout<<cli.getApenom()<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<right;
-            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""<<"R.SOCIAL :"<<setw(27)<<"LARA COLA SRL"<<"|"<<endl;
-            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<""<<"MAIL     :"<<setw(27)<<"info@briancola.com"<<"|"<<endl;
-            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27)<<"Games F"<<"|"<<endl;
-            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<""<<"TEL      :"<<setw(27)<<"458-4584"<<"|"<<endl;
-            cout<<"|"<< "Cuit: 30-12345678-0 "<<setw(31)<<""<<"CUIT     :"<<setw(27)<<"44-44444444-4"<<"|"<<endl;
+            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cli.cliente.getRazonSocial()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27);cli.cliente.domicilio.mostrarDireccion();cout<<"|"<<endl;
+//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :";
+//            cli.cliente.domicilio.mostrarDireccion(); cout<<setw(28)<<"|"<<endl;
+            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
             cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
             cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
             cout<<"|"<<setw(10)<<centrar("PRECIO", 10);
             cout<<"|"<<setw(10)<<centrar("IVA", 10);
-            cout<<"|"<<setw(9)<<"SUB_TOT"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+            cout<<"|"<<setw(16)<<centrar("SUB TOT", 16)<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 
 // }
@@ -305,9 +287,9 @@ void DetalleVenta::imprimirFactura(){
                 cout<<"|"<< setw(28)<<aux.prod.getDescripcion();
                 cout<<right;
                 cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
-                cout<<"|"<< setw(10)<<aux.getPrecio();
-                 cout<<"|"<< setw(10)<<(aux.getPrecio()*prod1->getIva()/100);
-                 cout<<"|"<<setw(16)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
+                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
+                 cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1->getIva()/100);
+                 cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
 
                 tPrUn+=aux.getPrecio();
                 sTot+=(aux.getPrecio()*aux.getCantProducto());
@@ -317,19 +299,19 @@ void DetalleVenta::imprimirFactura(){
         }
                 tTot+=(sIva+sTot);
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<< right;
-            cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<derechafloat(sTot,8)<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<derechafloat(sIva,8)<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<derechafloat(tTot,8)<<"|"<<endl;
+           cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
+            cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<fixed<<setprecision(2)<<sIva<<"|"<<endl;
+            cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<fixed<<setprecision(2)<<tTot<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('¯')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+//            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+system("pause");
 }

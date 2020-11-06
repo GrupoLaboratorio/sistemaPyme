@@ -16,6 +16,9 @@ class Fecha{
     int getDia(){return dia;}
     int getMes(){return mes;}
     int getAnio(){return anio;}
+
+     void cargarFContable();
+
     void setDia(int d){dia=d;}
     void setMes(int m){mes=m;};
     void setAnio(int a){anio=a;}

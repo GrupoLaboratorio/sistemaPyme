@@ -11,17 +11,25 @@ using namespace std;
 
 const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
-   /*Producto::Producto(int cero,const char* nada){
-        id=codProv=planCta=stock=stockMin=precioCosto=iva=cero;
-        estado=cero;
-        strcpy(descripcion,nada);
-    }*/
+
     ///SETTERS
+
+        int Producto::setId(int idAux){this->id=idAux;}
+        void Producto::setCodProv(int codProv){this->codProv=codProv;}
+        void Producto::setDescripcion(char *descripcion){strcpy(this->descripcion,descripcion);}
+        void Producto::setPlanCta(int planCta){this->planCta=planCta;}
+//        void Producto::setStock(int stock){this->stock=stock;}
+        void Producto::setPrecioCosto(float precioCosto){this->precioCosto=precioCosto;}
+        void Producto::setIva(float iva){this->iva=iva;}
+        void Producto::setStockMin(int stockMin){this->stockMin=stockMin;}
+        void Producto::setEstado(bool estado){this->estado=estado;}
+
+
     void Producto::cargarProducto(){
         id=setId();
         getId();
         setCodProv();
-        setStock();
+        setStock( 0);
         setDescripcion();
         setPlanCta();
         setPrecioCosto();
@@ -54,9 +62,13 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         cout<<"\nCodigo de Proveedor: ";
         cin>>codProv;
     }
-    void Producto::setStock(){
+    void Producto::setStock(int _stock=0){
+        if(_stock==0){
         cout<<"\nIngresar la Cantidad: ";
-        cin>>this->stock;
+        cin>>stock;
+        }else{
+            this->stock=_stock;
+        }
     }
     void Producto::setDescripcion(){
         cin.ignore();
@@ -97,6 +109,21 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         cout<<"Opcion invalida";
         break;
         }
+    }
+
+    bool Producto::setMod(int id, int tipoOperacion,int cant, float precio){
+        int cantidad=0;
+        float prec=0;
+        leerDeDisco(buscarProdxId(id));
+        if(tipoOperacion==2){ // TipoEntidad 2 es proveedores osea q es compras
+            cantidad = getStock()+cant;
+            prec=precio;
+        }else if(tipoOperacion==1){//TipoEntidad 1 es Clientes osea que es Venta
+            cantidad = getStock()-cant;
+            prec = getPrecioCosto();
+        }
+            Modificar_en_disco(buscarProdxId(id), cantidad, prec);
+            return true;
     }
     ///DISCO
     bool Producto::grabarEnDisco(){
@@ -167,12 +194,16 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
     bool Producto::getEstado(){
         return this->estado;
     }
-    /*Producto Producto::getProducto(){/// FALTA!
 
-
-
-    }*/
-
+    int Producto::checkStock(int id, int cant){
+        while(leerDeDisco(buscarProdxId(id))){
+            if(getStock()>=cant){
+                return 1;//Hay stock
+            }else if(getStock()<cant && getStock()>0) {
+                return -1;//No hay suficiente en Stock
+            }else{return -2;}//Stock 0
+        }
+    }
     void Producto::mostrarProducto(){
         cout<<getId()<<endl;
         cout<<getCodProv()<<endl;
@@ -203,5 +234,15 @@ const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
         }
         fclose(p);
         return -2;///codigo de error de rutina inexistente.
+}
 
+void Producto::Modificar_en_disco(int pos, int  cantidad, float _pre){
+    FILE *p;
+    this->setStock(cantidad);
+    this->setPrecioCosto(_pre);
+    p=fopen(FILE_PRODUCTOS,"rb+");
+    if(p==NULL){cout<<"Error de archivo";exit(1);}
+    fseek(p,(pos)*sizeof *this,0);
+    fwrite(this,sizeof *this,1,p);
+    fclose(p);
 }

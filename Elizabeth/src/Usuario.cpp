@@ -4,16 +4,19 @@
 #include <cstring>
 #include <string.h>
 #include <cstdio>
+#include <locale.h>
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
+#include "Usuario.h"
+
 using namespace std;
 using namespace rlutil;
 
-#include "Usuario.h"
 
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
 void Usuario::setNombreUser(){
+    setlocale(LC_CTYPE, "Spanish");
     cout << "NOMBRE DE USUARIO: ";
 	cin>>this->nombreUser;
 }
@@ -45,10 +48,8 @@ bool Usuario::grabarEnDisco(){
         if(chequeo==1){
 
             msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-            cout << "Registro exitoso";
             fclose(c);
-            system("pause");
-            // cls();
+            system("cls");
             return true;
         }
         else{
@@ -84,6 +85,7 @@ void crearUsuario(){
 	Usuario regAux;
 
 	regAux.ingresarUsuario();
+    regAux.setIdUser(crearIdUsuario());
 	regAux.setActivo();
 	regAux.grabarEnDisco();
 
@@ -94,7 +96,6 @@ void listarUsuarios(){
     Usuario usuAux;
     bool estadoAux;
     FILE *c;
-    int idAux;
 
         c = fopen(FILE_USUARIOS, "rb");
         if(c==NULL){
@@ -105,60 +106,145 @@ void listarUsuarios(){
 
             while(fread(&usuAux,sizeof(Usuario),1,c)==1){
                 estadoAux = usuAux.getEstado();
-                if(estadoAux == true){
-                    cout << setw(30) << "USER:" << usuAux.getNombreUser() <<
-                    cout << setw(30) << "PASSWORD:" << usuAux.getPassword();
+                if(estadoAux == true || estadoAux == 1){
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword() << "\tID\t" << usuAux.getIdUser() << "\tESTADO:\t" << usuAux.getEstado() << endl;
                 }
+//                cout << endl;
             }
         system("pause");
         fclose(c);
         return;
 }
 
-bool login(){
+int login(){
 
     Usuario userLog, usuAux;
-    int atempts = 3, passAux;
-    char * nombreAux;
+    int passAux, i=0;
+    char *nombreAux;
     bool estadoAux;
-    FILE *c;
+    const int POSMENUX = 35;
+    const int POSMENUY = 2;
 
+    locate(POSMENUX+5,POSMENUY+1);
     userLog.setNombreUser();
+    locate(POSMENUX+5,POSMENUY+2);
     userLog.setPassword();
 
-	c = fopen(FILE_USUARIOS, "rb");
+
+    if(strcmp(userLog.getNombreUser(), "ADMIN")== 0){
+        if(userLog.getPassword() == 1234){
+            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
+            return 2;
+        }
+    }
+            while(usuAux.leerDeDisco(i++)){
+
+                if(usuAux.getEstado() == true || usuAux.getEstado() == 1){
+
+                    if(strcmp(userLog.getNombreUser(), usuAux.getNombreUser())== 0){
+                        if(userLog.getPassword() == usuAux.getPassword()){
+                            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
+                            return 1;
+                        }else{
+							msj("CONTRASEÑA INCORRECTA",WHITE,RED,130,TEXT_LEFT);
+							return 0;
+							cout << endl;
+                        }
+                }
+            }
+        }
+        msj("USUARIO INEXISTENTE",WHITE,RED,130,TEXT_LEFT);
+        cout << endl;
+		return 0;
+}
+
+void bajaLogicaUsuario(){
+
+    Usuario usuAux;
+    bool estadoAux;
+    FILE *c;
+    int idAux, i=0;
+
+    cout << "INGESE ID:\t";
+    cin >> idAux;
+
+        c = fopen(FILE_USUARIOS, "rb+");
         if(c==NULL){
                 cout << "Error de archivo usuarios\n";
                 system("pause");
-                return false;
+                return;
         }
-	while(atempts > 0){
 
-            while(fread(&usuAux,sizeof(Usuario),1,c)==1){
-				/// chequear si no pasa al siguiente usuario cuando se reingresa por error de tipeo
-                estadoAux = usuAux.getEstado();
-                strcpy(nombreAux, usuAux.getNombreUser());
-                passAux = usuAux.getPassword();
-                if(estadoAux == true){
-                    if(strcmp(userLog.getNombreUser(), nombreAux)== 0){
-                        if(userLog.getPassword() == passAux){
-                            cout << "BIENVENIDO";
-                            fclose(c);
-                            return true;
-                        }else{
-							atempts--;
-							cout << "CONTRASENIA";
-							userLog.setPassword();
-                        }
-                    }else{
-                        atempts--;
-                    	cout << "USUARIO INCORRECTO";
-                    	userLog.setNombreUser();
-                    }
+            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+//            while(usuAux.leerDeDisco(i++)){
+                if(usuAux.getIdUser() == idAux){
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
+                    cout << endl;
+                    usuAux.setInactivo(false);
+                    fseek(c, sizeof(Usuario)*i, SEEK_SET);
+                    fwrite(&usuAux,sizeof(Usuario),1,c);
+                    fclose(c);
+                    msj("BAJA EXITOSA",WHITE,GREEN,130,TEXT_LEFT);
+                    return;
                 }
+                i++;
             }
-	}
-		return false;
+        msj("USUARIO NO ENCONTRADO",WHITE,RED,130,TEXT_LEFT);
         system("pause");
         fclose(c);
+        return;
+}
+
+int crearIdUsuario(){
+
+
+    int bytes, cant;
+    FILE *p = fopen(FILE_USUARIOS, "rb");
+     if (p == NULL){
+        return 1;
+    }
+	fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+	cant = bytes / sizeof(Usuario);
+    return cant+1;
+
+}
+
+void cambiarPassword(){
+
+    Usuario usuAux;
+    bool estadoAux;
+    FILE *c;
+    int newPass;
+    int idAux, i=0;
+
+    cout << "INGRESE ID:\t";
+    cin >> idAux;
+
+        c = fopen(FILE_USUARIOS, "rb+");
+        if(c==NULL){
+                cout << "Error de archivo usuarios\n";
+                system("pause");
+                return;
+        }
+
+            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+                if(usuAux.getIdUser() == idAux){
+                    cout << "NUEVA CONTRASEÑA:\t";
+                    cin >> newPass;
+                    usuAux.setPassword(newPass);
+                    usuAux.getPassword();
+                    fseek(c, sizeof(Usuario)*i, SEEK_SET);
+                    fwrite(&usuAux,sizeof(Usuario),1,c);
+                    fclose(c);
+                    msj("CONTRASEÑA GUARDADA",WHITE,GREEN,130,TEXT_LEFT);
+                    return;
+                }
+                i++;
+            }
+        msj("USUARIO NO ENCONTRADO",WHITE,RED,130,TEXT_LEFT);
+        system("pause");
+        fclose(c);
+        return;
 }

@@ -10,16 +10,18 @@ class Entidad: public Persona{
 	private:
         char razonSocial[50];
         char mail[50];
-        int tipoEntidad; /// -> diferencia a clientes de proveedores
-        char cuit[13];
-	public:
         int idEntidad;
+        int tipoEntidad; /// -> diferencia a clientes de proveedores
+//        char cuit[13];
+	public:
+
 		Entidad();
 		Entidad(char*, char*, int);
-		//virtual ~Entidad();
+		~Entidad();
 		void cargarCliente();
 		void cargarProveedor();
 		void mostrarEntidad();
+//        void setIdEntidad();
         void setRazonSocial(char *);
         void setMail(char *);
         void setTipoEntidad(int);
@@ -29,8 +31,12 @@ class Entidad: public Persona{
         const char* getMail(){return this->mail;}
         int getTipoEntidad(){return this->tipoEntidad;}
         int getIdEntidad(){return this->idEntidad;}
-        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
+        const char * getCuit(){return this->cuit;}
+//        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
+        Entidad buscarEntidadXId(int, int, Entidad *);
+
+void listarEntidadesTabla(int);
 
 };
 
@@ -41,5 +47,6 @@ bool existenciaEntidad(int, int); /// Corrobora si una entidad existe en el arch
 int crearIdEntidades(int); /// Crea un id autonumerico para el Entidad
 
 void listarEntidades(int); /// Lista todos los Entidads del archivo
+
 
 #endif // Entidad_H

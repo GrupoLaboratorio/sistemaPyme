@@ -9,6 +9,7 @@ class Productos
     public:
 
         void listarProductos();
+        void listarProdXIdProd();
         void listarProdXIdProv(int idPr);
 };
 

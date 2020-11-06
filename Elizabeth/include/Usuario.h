@@ -4,32 +4,43 @@
 
 class Usuario{
 	private:
-		char nombreUser[15];
+		char nombreUser[25];
 		int password;
 		bool estado;
+		int idUser;
 	public:
 //		Usuario();
 //		virtual ~Usuario();
         void setNombreUser();
         void setPassword();
+        void setPassword(int newPass){this->password = newPass;}
         void setActivo(){this->estado = true;}
-        void setInactivo(){this->estado = false;}
+        void setInactivo(bool nuevoEstado){this->estado = nuevoEstado;}
         void ingresarUsuario();
+        void setIdUser(int id){this->idUser = id;}
         bool grabarEnDisco();
         bool leerDeDisco(int);
-        const char* getNombreUser(){return this->nombreUser;}
-        int getPassword(){return this->password;}
-        bool getEstado(){return this->estado;}
+        char* getNombreUser(){return this->nombreUser;}
+        const char* getNombreUser(char* nombAux){strcpy(nombAux, this->nombreUser);}
+        int getPassword(){return password;}
+        bool getEstado(){return estado;}
+        int getIdUser(){return this->idUser;}
 };
 
 ///--------------------------------- GLOBAL
 
 void crearUsuario();
 
-bool login();
+int login();
 
+void listarUsuarios();
 
+int crearIdUsuario();
 
+void bajaLogicaUsuario();
 
+int crearIdUsuario();
+
+void cambiarPassword();
 
 #endif // USUARIO_H
