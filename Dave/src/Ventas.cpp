@@ -4,199 +4,175 @@
 #include <cstring>
 #include <conio.h>
 #include <time.h>
-#include "Ventas.h"
-#include "../include/Producto.h"
-
-
+#include <iomanip>
+#include <locale.h>
 using namespace std;
+#include "Ventas.h"
+#include "Fecha.h"
+#include "DetalleVenta.h"
+#include "DetalleVenta.h"
+#include "DetalleFactura.h"
+#include "Calculadora.h"
+#include "Producto.h"
+#include "../Utilidades/centrarTabla.h"
+#include "../Utilidades/ui.h"
+#include "../Utilidades/menus.h"
+#include "../Utilidades/rlutil.h"
+using namespace rlutil;
 
-const char * FILE_VENTAS = "Achivos/Ventas.dat";
-const char * FILE_FACTURAA = "Archivos/FacturaA.dat";
-const char * FILE_FACTURAB = "Archivos/FacturaB.dat";
-//const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
 
-//Ventas::Ventas(){
-//    Bonificacion=0;
-//    preciofinal=0;
-//}
+const char * FILE_VENTAS = "Archivos/Ventas.dat";
 
-void Ventas::CargarVtas(){
+///----------------------------METODOS CLASE VENTAS---------------------------
+
+Ventas::Ventas(){
+    idCliente=0;
+    tipoFactura='B';
+}
+void Ventas::cargarVtas(){
+    setlocale(LC_CTYPE, "Spanish");
+    Ventas();
     setTipoFact();
-    setNrofactura();
-     setProducto();
-    setCantProd();
-    setPrecio();
-    setImpuesto();
-    setModoPago();
+    setNroFact();
+char c;
+system("cls");
+cout<<" Abrir una venta?. ";
+cout<<"\nSi: 1";
+cout<<"\nNo : 0 "<<endl;
+int ok;
+cin>>ok;
+if(ok==1){
+    bool grabo=grabarEnDisco();
+    if(grabo==true )    {
+        DetalleVenta  det;
+        det.cDetalleVenta();
+    }    else{
+        cout<<"Fallo la grabacion, volver a intentar ";
+        system("pause");
+        return;
+    }
 }
-
- void Ventas::MostrarVtas(){
-     cout<<"Tipo de Factura : "<<tipofactura<<endl;
-     cout<<"Numero: 0001-00"<<getNroFactura()<<endl;
-    cout<<"Condiciones de pago : "<<modoPago<<endl;
-     cout<<"Bonificacion : "<<getBonificacion()<<endl;
-     cout<<"Precio Final a pagar : "<<getPrecioFinal()<<endl;
-
- }
-
-
- int  Ventas::getNroFactura(){
-     return Nrofactura;
- }
-
- void Ventas::setTipoFact(){
-      cout<<"Tipo de factura : ";
-      cin>>tipofactura;
- }
-
-
-
- void Ventas::setNrofactura(){
-    Nrofactura= crearId(tipofactura);
- }
-
-
- char Ventas::getTipoFact(){
-      return tipofactura;
- }
-
- void Ventas::setModoPago(){
-    cout<<"Condiciones de pago : ";
-    cin>>modoPago;
- }
-
- void Ventas::setBonificacion(){      ///PROBAR CON SWITCH
-    int opc=getModoPago();
-    switch(opc) {
-    case  1:
-    Bonificacion=0.9;
-        break;
-    case 2:
-     Bonificacion=1.15;
-     break;
-    case 3:
-    Bonificacion=1;
-    break;
-    } }
-
-    int Ventas::getModoPago(){
-     return modoPago;
+return;
 }
-
- float Ventas::getBonificacion(){
-       return Bonificacion;
- }
-
- void Ventas::setprecioFinal(){
-     precio=getPrecio();
-     Bonificacion=getBonificacion();
-        preciofinal= precio*Bonificacion;
- }
-
-float Ventas::getPrecioFinal(){
-    return preciofinal;
+void Ventas::setNroFact(){
+    this->nroFactura=crearIdXFact();
 }
-
-void Ventas::setProducto(){
-     cout<<"Producto : ";
-    cin>>IDproducto;
+void Ventas::setIdCliente(){
+    cliente.buscarRazonSocial(1);
+    idCliente=cliente.getIdEntidad();
 }
+void Ventas::setTipoFact(){
+    char tipo;
+    cout<<"FACTURA A o B? : ";
+    cin>>tipo;
+    while(!(tipo == 'A'  || tipo == 'B' ))
+    {
+        cout<<"Tipo de factura incorrecta";
+        system("pause");
+        system("cls");
+        cout<<"Tipo de factura : ";
+        cin>>tipo;
+    }
+    if(tipo=='A'){
+        setIdCliente();
+    }
 
-//void Ventas::setProducto(){
-//    int posicion;
-//    Producto  reg;
-//    cout<<" ID Producto : ";
-//    cin>>IDproducto;
-//    posicion=merca.buscarProd(IDproducto);
-//    reg=obtenerProducto(posicion);
-//    setPrecio(reg.getprecio());
-//    setImpuesto(reg.getIva());
-//}
+    this->tipoFactura=tipo;
+    int crearIdXFact();
 
-void Ventas::setPrecio(){
-       cout<<"Precio : ";
-    cin>>precio;
 }
+bool Ventas::grabarEnDisco(){
+    system("cls");
+    FILE *p;
+    bool chequeo;
+
+        p = fopen(FILE_VENTAS,"ab");
+        if(p==NULL)
+        {
+            cout << "Error al abrir el archivo \n";
+            return false;
+        }
+        chequeo = fwrite(this, sizeof(Ventas),1,p);
+        if(chequeo==1)
+        {
+             fclose(p);
+              return true;
+        }
+        else
+        {
+            cout << "El registro no pudo guardarse \n\n";
+            fclose(p);
+
+            system("pause");
+            return false;
+        }
 
 
-void Ventas::setCantProd(){
-       cout<<"Cantidad : ";
-    cin>>cantidad;
 }
-
-void Ventas::setImpuesto(){
-    cout<<"Impuesto : ";
-    cin>>impuesto;
+bool Ventas::leerDeDisco(int posicion){
+    bool leyo;
+    FILE *p;
+        p = fopen(FILE_VENTAS, "rb");
+        if (p == NULL)
+        {
+            return false;
+        }
+        fseek(p, posicion * sizeof(Ventas), 0);
+        leyo = fread(this, sizeof(Ventas), 1, p);
+        fclose(p);
+        return leyo;
 }
+void Ventas::listado_facturas(){
 
-//  float Ventas::getMonto(){
-//  return total;
-//  }
+    Ventas aux;
+    int i = 0;
 
-int Ventas::getProducto(){
-    return IDproducto;
-}
+        ///Inicio de cabecera
+        title("CABECERA DETALLE DE VENTAS", WHITE, RED);
+        cout<<endl;
+        setBackgroundColor(DARKGREY);
+        //cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
+        cout<<"|"<<setw(30)<<" ";
+        cout<<"|"<<setw(4)<<centrar("ID", 4);
+        cout<<"|"<<setw(7)<<centrar("TIPO", 7);
+        cout<<"|"<<setw(12)<<centrar("FECHA", 12);
+        cout<<"|"<<setw(22)<<centrar("ID CLIENTE", 22);
+        cout<<"|"<<setw(26)<<" "<<endl;
 
+        setBackgroundColor(BLACK);
+        //cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
+        //cout<<" "<<setw(105)<<setfill(' ')<<" "<<endl;
 
-float Ventas::getPrecio(){
-  return precio;
-}
+        while (aux.leerDeDisco(i++))
+        {
+            cout<<" "<<setw(30)<<" ";
+            cout<<" "<<setw(4)<<centrarInt(aux.nroFactura, 4);
+            cout<<" "<<setw(4)<<aux.tipoFactura<<setw(3);
+            cout<<" "<<setw(3)<<aux.fechaVenta.getDia()<<setw(1)<<"/";
+            cout<<setw(2)<<aux.fechaVenta.getMes()<<setw(1)<<"/";
+            cout<<setw(4)<<aux.fechaVenta.getAnio()<<setw(2)<<" ";
+            cout<<" "<<setw(22)<<centrarInt(aux.idCliente, 22)<<endl;
+        }
+            cout<<setfill(' ')<<endl;
+            system("pause");
+    }
 
+///--------------------------------------FUNCIONES GLOBALES------------------------------------
 
-
-int Ventas::getcantProd(){
-   return cantidad;
-}
-
-
-//bool Producto::grabarEnDisco(){
-//
-//        system("cls");
-//        FILE *p;
-//        bool chequeo;
-//
-//        p = fopen(FILE_PRODUCTOS,"ab");
-//        if(p==NULL){
-//            cout << "Error al abrir el archivo \n";
-//            return false;
-//        }
-//        chequeo = fwrite(this, sizeof(Producto),1,p);
-//        if(chequeo==1){
-//
-//            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-//            //cout << "Registro exitoso";
-//            fclose(p);
-//            //system("pause");
-//            return true;
-//        }
-//        else{
-//            //cout << "El registro no pudo guardarse \n\n";
-//            fclose(p);
-//            //system("pause");
-//            return false;
-//        }
-//    }
-
-    int crearId(char tipo='B'){
+int crearIdXFact(){
     int bytes, cant;
 
-    if(tipo == 'A' || tipo == 'a')  {
-    FILE *p = fopen(FILE_FACTURAA, "rb");
-     if (p == NULL){
-        return 13;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-    }
-      fseek(p, 0, SEEK_END);
-            bytes = ftell(p);
-            fclose(p);
-    }else{
-        FILE *p = fopen(FILE_FACTURAB, "rb");
-         if (p == NULL){
-            return 18;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-    }
-      fseek(p, 0, SEEK_END);
-            bytes = ftell(p);
-            fclose(p);
-     }
+
+        FILE *p = fopen(FILE_VENTAS, "rb");
+        if (p == NULL)
+        {
+            return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
+        }
+        fseek(p, 0, SEEK_END);
+        bytes = ftell(p);
+        fclose(p);
+
     cant = bytes / sizeof(Ventas);
     return cant+1;
 }
+

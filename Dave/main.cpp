@@ -4,6 +4,8 @@
 #include <cstring>
 #include <string.h>
 #include <cstdio>
+#include <cctype>
+#include <algorithm>
 using namespace std;
 #include "Utilidades/menus.h"
 #include "Include/Persona.h"
@@ -12,43 +14,12 @@ using namespace std;
 #include "Include/Entidad.h"
 #include "Include/Ventas.h"
 #include "DetalleFactura.h"
-#include "Ususario.h"
-#include "Login.h"
-#include "DetalleCompra.h"
-#include "Include/Producto.h"
-#include "Include/Productos.h"
-
-int main()
-{
-
-    ///TEST DE PRODUCTOS
-
-/*
-///test de entidades
-Entidad ent;
-//ent.cargarProveedor();
-//ent.grabarEnDisco(2);
-ent.listarEntidadesTabla(2);
-///fin test entidades
-/*
-///test detalleCompra
-    DetalleCompra obj;
-    obj.setProveedor();
-    cout<<endl;
-    obj.setIdProveedor();
-///Fin test detallecompras
-
-*/
-Producto obj;
-Productos objA;
-//objA.listarProductos();
-//obj.setMod(1, 1, 15,200);/// idProducto, tipoEntidad (1 y 2) , cantidad, precio
-//system("pause");
-objA.listarProductos();
+#include "Include/Usuario.h"
 
 
-///Menu"
-   // menuPrincipal();
+int main(){
 
+    //menuLogin();
+    menuPrincipal();
     return 0;
 }

@@ -18,7 +18,7 @@ const char * FILE_PROVEEDORES = "Archivos/Proveedores.dat";
 
 Entidad::Entidad():Persona(){
 
-	strcpy(this->razonSocial, "NN");
+	strcpy(this->razonSocial, "NHHN");
 	strcpy(this->mail, "NN@NN");
     this->tipoEntidad=0;
 
@@ -39,6 +39,7 @@ void Entidad::cargarCliente(){
     cin.getline(this->mail,50,'\n');
     setTipoEntidad(1);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
+    grabarEnDisco(1);
 
 }
 
@@ -54,7 +55,7 @@ void Entidad::cargarProveedor(){
     cin.getline(this->mail,50,'\n');
     setTipoEntidad(2);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
-//grabarEnDisco(idEntidad);
+    grabarEnDisco(2);
 }
 
 void Entidad::mostrarEntidad(){
@@ -74,15 +75,6 @@ void Entidad::mostrarEntidad(){
 void Entidad::setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razonSocial);}
 
 void Entidad::setMail(char * _mail){strcpy(this->mail,_mail);}
-
-//void Entidad::setTipoEntidad(){
-//    cout << "CATEGORIA:";
-//    cin >> this->tipoEntidad;
-//        while(this->tipoEntidad != 1 || this->tipoEntidad != 2){
-//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-//            cin >> this->tipoEntidad;
-//        }
-//}
 
 void Entidad::setTipoEntidad(int _tipo){this->tipoEntidad = _tipo;}
 
@@ -191,115 +183,171 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     const int ANCHO_MENU = 124;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
-//
+    //
       cursorX=POSMENUX+0;
       cursorY=POSMENUY +1;
       setBackgroundColor(COLOR_PANTALLA);
       system("cls");
       opc=1;
       setColor(LETRA);
+     int i = 0;
       cout<<endl;
-//      locate(POSMENUX+1,POSMENUY+1);
-    title("LISTADO DE  PROVEEDORES", WHITE, RED);
-//        system("color 0F");
-    locate(cursorX,cursorY);
-
-
-
     switch(_tipoEntidad){
-    case 1:
-        c = fopen(FILE_CLIENTES, "rb");
-        if(c==NULL){
-                cout << "Error de archivo\n";
-                system("pause");
-                return;
-        }
-
-            while(fread(&aux,sizeof(Entidad),1,c)==1){
-                estadoAux = aux.getEstado();
-                if(estadoAux == true){
-                    aux.mostrarEntidad();
-                }
+        case 1:
+            c = fopen(FILE_CLIENTES, "rb");
+            if(c==NULL){
+                    cout << "Error de archivo\n";
+                    system("pause");
+                    return;
             }
-        system("pause");
-        fclose(c);
-        return;
-    break;
-    case 2:
-        p = fopen(FILE_PROVEEDORES, "rb");
-        if(p==NULL){
-                cout << "Error de archivo\n";
-                system("pause");
-                return;
+
+        title("LISTADO DE  CLIENTES", WHITE, RED);//system("color 0F");
+        locate(cursorX,cursorY);
+        setBackgroundColor(DARKGREY);
+            ///Inicio de cabecera
+            cout<<setfill(' ');
+            cout<<"|"<<setw(4)<<centrar("ID", 4);
+            cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+            cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+            cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+            cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+            cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+        setBackgroundColor(BLACK);
+
+        while (aux.leerDeDisco(i++, 1)){
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+                cout<<left;
+                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+                cout<<" "<<setw(20)<<aux.razonSocial;
+                cout<<" "<<setw(16)<<aux.cuit;
+                cout<<" "<<setw(20)<<aux.apenom;
+                aux.domicilio.mostrarDireccion();                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
+            }
         }
-    int i = 0;
-    setBackgroundColor(DARKGREY);
-    ///Inicio de cabecera
-    cout<<"|"<<setw(4)<<centrar("ID", 4);
-    cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
-    cout<<"|"<<setw(16)<<centrar("CUIT", 16);
-    cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
-    cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
-    cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+            cout<<right;
+            cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
+            system("pause");
+            fclose(c);
+        //        return;
+        break;
+        case 2:
+            p = fopen(FILE_PROVEEDORES, "rb");
+            if(p==NULL){
+                    cout << "Error de archivo\n";
+                    system("pause");
+                    return;
+            }
+        title("LISTADO DE  PROVEEDORES", WHITE, RED);// system("color 0F");
+        locate(cursorX,cursorY);
+        //    int i = 0;
+        setBackgroundColor(DARKGREY);
+        ///Inicio de cabecera
+          cout<<setfill(' ');
+        cout<<"|"<<setw(4)<<centrar("ID", 4);
+        cout<<"|"<<setw(20)<<centrar("RAZON SOCIAL", 20);
+        cout<<"|"<<setw(16)<<centrar("CUIT", 16);
+        cout<<"|"<<setw(20)<<centrar("APELLIDO Y NOMBRE", 20);
+        cout<<"|"<<setw(20)<<centrar("DIRECCION ",20);
+        cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
+        setBackgroundColor(BLACK);
+        while (aux.leerDeDisco(i++, 2)){
+            estadoAux = aux.getEstado();
+            if(estadoAux == true){
+                cout<<left;
+                cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
+                cout<<" "<<setw(20)<<aux.razonSocial;
+                cout<<" "<<setw(16)<<aux.cuit;
+                cout<<" "<<setw(20)<<aux.apenom;
+                aux.domicilio.mostrarDireccion();                cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
 
-
-    setBackgroundColor(BLACK);
-
-    while (aux.leerDeDisco(i++, 2)){
-        estadoAux = aux.getEstado();
-        if(estadoAux == true){
-            cout<<left;
-            cout<<" "<<setw(4)<<centrarInt(aux.idEntidad, 4);
-            cout<<" "<<setw(20)<<aux.razonSocial;
-            cout<<" "<<setw(16)<<aux.cuit;
-            cout<<" "<<setw(20)<<aux.apenom;
-            aux.domicilio.mostrarDireccion();            cout<<" "<<setw(20)<<aux.mail<<" "<<endl;
-//            cout<<"|"<<setw(106)<<setfill('_')<<"|"<<endl;
+            }
         }
-    }
-//    cout<<"|"<<setw(106)<<setfill(' ')<<"|"<<endl;
-cout<<right;
-    cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
-
+        cout<<right;
+        cout<<" "<<setw(106)<<setfill('_')<<" "<<endl;
         system("pause");
         fclose(p);
-        return;
-    break;
-
+        //return;
+        break;
     }
 }
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
-   Entidad user;
-char usIngresado[50];
-cout<<"\ningrese la razon social que busca : ";
-cin.getline(usIngresado, 50);
-     FILE *archivo;
+    FILE *archivo;
+    Entidad user;
+    char cuit[14];
+    int i=0;
+
+    cout<<"\nIngrese el CUIT: ";
+    fflush(stdin);
+//    cin.ignore();
+    cin.getline(cuit, 14, '\n');
     ///abrimos el archivo
-    archivo = fopen(FILE_PROVEEDORES,"rb");
-    ///buscamos y leemos en el;
-    while(fread(&user, sizeof(Entidad), 1, archivo)){
-       if( strcmp(usIngresado, user.razonSocial)==NULL ){//busca un valor string en el archivo
-                cout<<user.razonSocial<<endl;
-                cout<<user.cuit<<endl;
-                idEntidad=user.idEntidad;
-                 cout<<idEntidad<<endl;
-            system("pause");
+    if(tipoEnt==1){
+        archivo = fopen(FILE_CLIENTES,"rb");
+    }else{
+        archivo = fopen(FILE_PROVEEDORES,"rb");
+    }
+
+    while (this->leerDeDisco(i++, tipoEnt)){
+       if( strcmp(this->cuit, cuit)==0 ){//busca un valor string en el archivo
+                cls();
+                cout<<"\nRAZON SOCIAL: "<<this->getRazonSocial()<<endl;
+                cout<<"CUIT: "<<this->cuit<<endl;
+                idEntidad=this->idEntidad;
                 fclose(archivo);
-       }else{
-            cout<<"dato no encontrado!!!!"<<endl;
-            system("pause");
-            fclose(archivo);//            return -1;
+            return user;
        }
     }
-            return user;
+
+       if(tipoEnt==1){
+        cls();
+       cout<<"\nEl Cliente no existe, Por favor ingrese el nuevo cliente:"<<endl;
+        this->cargarCliente();
+
+       system("pause");
+       }else{
+         cls();
+       cout<<"\nEl Proveedor no existe, Por favor ingrese el nuevo Proveedor:"<<endl;
+       this->cargarProveedor();
+
+       system("pause");
+       }
+       return user;
+
 }
 
+Entidad Entidad::buscarEntidadXId(int tipoEnt, int pos,  Entidad *user){
+// FILE *archivo;
+////    Entidad *user;
+////user = new Entidad;
+//    ///abrimos el archivo
+//    if(tipoEnt==1){
+//        archivo = fopen(FILE_CLIENTES,"rb");
+//    }else{
+//        archivo = fopen(FILE_PROVEEDORES,"rb");
+//    }
+//        ///buscamos y leemos en el;
+//        while (this->leerDeDisco(pos, tipoEnt)){
+//       if( this->idEntidad == (pos-1)){//Si el id entidad es igual al del archivo devuelve el objeto Entidad
+//            fclose(archivo);
+//            cout<<this->getRazonSocial();
+//
+//            return *user;
+//
+//       }
+//    }
+//            return *user;
+}
+//void Entidad::setIdEntidad(){}
+	Entidad::~Entidad(){
+
+	}
 ///--------------------- GLOBALES -------------------------
 
 
 void listarEntidadPorID(int _tipoEntidad){
 
-    Entidad *entiAux;
+    Entidad entiAux;
     FILE *p, *c;
     int idAux;
 
@@ -314,9 +362,9 @@ void listarEntidadPorID(int _tipoEntidad){
         return;
         }
 
-            while(fread(entiAux,sizeof(Entidad),1,c)){
-                if(entiAux->getIdEntidad() == idAux){
-                    entiAux->mostrarEntidad();
+            while(fread(&entiAux,sizeof(Entidad),1,c)){
+                if(entiAux.getIdEntidad() == idAux){
+                    entiAux.mostrarEntidad();
                 }
             }
 
@@ -329,47 +377,81 @@ void listarEntidadPorID(int _tipoEntidad){
         return;
         }
 
-            while(fread(entiAux,sizeof(Entidad),1,p)){
-                if(entiAux->getIdEntidad() == idAux){
-                    entiAux->mostrarEntidad();
+            while(fread(&entiAux,sizeof(Entidad),1,p)){
+                if(entiAux.getIdEntidad() == idAux){
+                    entiAux.mostrarEntidad();
                 }
             }
 
         fclose(p);
         return;
     break;
-
-
-
     }
 }
+
+bool existenciaEntidad(int idAux, int _tipoEntidad){
+
+    Entidad *entiAux;
+    FILE *p, *c;
+
+    switch(_tipoEntidad){
+
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
+        if(c==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,c)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(c);
+                return true;
+                }
+            }
+
+    break;
+
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
+        if(p==NULL){return false;}
+
+            while(fread(entiAux,sizeof(Entidad),1,p)){
+                if(entiAux->getIdEntidad() == idAux){
+                fclose(p);
+                return true;
+                }
+            }
+    break;
+    }
+
+    return false;
+}
+
 
 int crearIdEntidades(int _tipoEntidad){
 
     int bytes, cant;
     FILE *c, *p;
-    cout << "Llego a la funcion";
     system("pause");
     switch(_tipoEntidad){
-    case 2:
-        c = fopen(FILE_PROVEEDORES, "rb");
+    case 1:
+        c = fopen(FILE_CLIENTES, "rb");
         if (c == NULL){
             return 1;
         }
-        fseek(c, 0, SEEK_SET);
+        fseek(c, 0, SEEK_END);
         bytes = ftell(c);
         fclose(c);
         cant = bytes / sizeof(Entidad);
         return cant+1;
     break;
-    case 1:
-        p = fopen(FILE_CLIENTES, "rb");
+    case 2:
+        p = fopen(FILE_PROVEEDORES, "rb");
         if (p == NULL){
-            return 2000;
+            return 1;
         }
-        fseek(p, 0, SEEK_SET);
-        bytes = ftell(p);
-        fclose(p);
+         fseek(p, 0, SEEK_END);
+            bytes = ftell(p);
+            fclose(p);
+
         cant = bytes / sizeof(Entidad);
         return cant+1;
     break;
@@ -423,3 +505,4 @@ void listarEntidades(int _tipoEntidad){
 
     }
 }
+
