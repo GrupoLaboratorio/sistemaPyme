@@ -245,73 +245,79 @@ void DetalleVenta::imprimirFactura(){
 
     strcpy(a, "FACTURA ");
 
+    if(cli.getNroFact()==f){
 
-            setBackgroundColor(RED);
-            cout<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
+               setBackgroundColor(RED);
+                cout<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+                cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
 
-            cout<<"|"<<setw(88)<<cli.getTipoFact()<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;            cout<<"|"<<setw(69)<<""<<"Nro Fac: 0001-"<<derechaInt(f, 5)<<"|"<<endl;
-            //cout<<cli.getApenom()<<endl;
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<right;
-            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cli.cliente.getRazonSocial()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27);cli.cliente.domicilio.mostrarDireccion();cout<<"|"<<endl;
-//            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :";
-//            cli.cliente.domicilio.mostrarDireccion(); cout<<setw(28)<<"|"<<endl;
-            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
-            cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
-            cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
-            cout<<"|"<<setw(10)<<centrar("PRECIO", 10);
-            cout<<"|"<<setw(10)<<centrar("IVA", 10);
-            cout<<"|"<<setw(16)<<centrar("SUB TOT", 16)<<"|"<<endl;
-//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
-// }
-        while (aux.leerDeDiscoD(i++)){
-        if(aux.getNroFactura()==f){
-            Producto *prod1;
-            prod1 = new Producto;
-             prod1->leerDeDisco(prod1->buscarProdxId(aux.getCodProducto()));
-                cout<<setfill(' ');
-                cout<<"|"<< setw(9)<<centrarInt(aux.getCodProducto(), 9);
-                cout<<left;
-                cout<<"|"<< setw(28)<<aux.prod.getDescripcion();
+                cout<<"|"<<setw(88)<<cli.getTipoFact()<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;                cout<<"|"<<setw(69)<<""<<"Nro Fac: 0001-"<<derechaInt(f, 5)<<"|"<<endl;
+                //cout<<cli.getApenom()<<endl;
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
                 cout<<right;
-                cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
-                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
-                 cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1->getIva()/100);
-                 cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
+                cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cli.cliente.getRazonSocial()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+                cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+    //            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27);cli.cliente.domicilio.mostrarDireccion();cout<<"|"<<endl;
+    //            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :";
+    //            cli.cliente.domicilio.mostrarDireccion(); cout<<setw(28)<<"|"<<endl;
+                cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+                cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
+                cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
+                cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
+                cout<<"|"<<setw(10)<<centrar("PRECIO", 10);
+                cout<<"|"<<setw(10)<<centrar("IVA", 10);
+                cout<<"|"<<setw(16)<<centrar("SUB TOT", 16)<<"|"<<endl;
+    //            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 
-                tPrUn+=aux.getPrecio();
-                sTot+=(aux.getPrecio()*aux.getCantProducto());
-                sIva+=((aux.getPrecio()*prod1->getIva()/100)*aux.getCantProducto());
-            delete prod1;
-        }
-        }
-                tTot+=(sIva+sTot);
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<< right;
-           cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<fixed<<setprecision(2)<<sIva<<"|"<<endl;
-            cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<fixed<<setprecision(2)<<tTot<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-//            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-//            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-system("pause");
+    // }
+            while (aux.leerDeDiscoD(i++)){
+            if(aux.getNroFactura()==f){
+                Producto *prod1;
+                prod1 = new Producto;
+                 prod1->leerDeDisco(prod1->buscarProdxId(aux.getCodProducto()));
+                    cout<<setfill(' ');
+                    cout<<"|"<< setw(9)<<centrarInt(aux.getCodProducto(), 9);
+                    cout<<left;
+                    cout<<"|"<< setw(28)<<aux.prod.getDescripcion();
+                    cout<<right;
+                    cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
+                    cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
+                     cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod1->getIva()/100);
+                     cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod1->getIva()/100))*aux.getCantProducto())<<"|"<<endl;
+
+                    tPrUn+=aux.getPrecio();
+                    sTot+=(aux.getPrecio()*aux.getCantProducto());
+                    sIva+=((aux.getPrecio()*prod1->getIva()/100)*aux.getCantProducto());
+                delete prod1;
+            }
+            }
+                    tTot+=(sIva+sTot);
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+    //            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+                cout<< right;
+               cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
+                cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<fixed<<setprecision(2)<<sIva<<"|"<<endl;
+                cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<fixed<<setprecision(2)<<tTot<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+    //            cout<<"|"<<setw(89)<<setfill('+')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+    //            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
+                cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+    system("pause");
+    }else{
+        cout<<"\nNumero de Factura incorrecto!!!! poné bien los deditos!!! ";
+        anykey();
+
+    }
 }

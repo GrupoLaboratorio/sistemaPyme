@@ -10,7 +10,6 @@ class DetalleVenta{
     Ventas *dato;
     calculadora calculo;
     bool Estado;
-
     public:
     Producto prod;
 
