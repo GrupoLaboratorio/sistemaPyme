@@ -7,13 +7,9 @@ class DetalleVenta{
     int nroFactura, codProd, cantidad, idDetalle, idCliente;
     float precio;
     char tipoFactura;
-    Ventas *dato;
-    calculadora calculo;
     bool Estado;
 
     public:
-    Producto prod;
-
     void cDetalleVenta();
     void setTipoFactura();
     char getTipoFactura();
@@ -32,7 +28,6 @@ class DetalleVenta{
     int getCantProducto(){return cantidad;}
     float getPrecio(){return precio;}
     void mostrarDetalleVenta(int);
-   bool  ModificarVta();
    bool grabarDetalleEnDisco();
    bool leerDeDiscoD(int );
    void listado_detalle();

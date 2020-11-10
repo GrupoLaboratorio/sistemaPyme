@@ -17,7 +17,6 @@ public:
     char tipoFactura;
     int  nroFactura;
     Fecha fechaVenta;
-    Entidad cliente;
 public:
     Ventas();
     void cargarVtas();

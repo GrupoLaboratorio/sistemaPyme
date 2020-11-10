@@ -129,48 +129,6 @@ void DetalleVenta::mostrarDetalleVenta(int posicion){
 //    cout<<"Tipo de factura hola : " <<dato->getTipoFact()<<endl;
 //    cout<<"Numero de factura" <<dato->getNroFact()<<endl;
 }
-bool DetalleVenta::ModificarVta(){
-    FILE *p;
-    int posicion, cod;
-    bool chequeo;
-
-    cout<<"Ingrese el id de producto : " ;
-    cin>>cod;
-    posicion= buscarXCodProd(cod);
-
-    if(posicion >= 0)
-    {
-        p=fopen(FILE_DETALLE,"wb" );
-        if(p == NULL)
-        {
-            return false;
-        }
-        fseek(p, posicion*sizeof(DetalleVenta), SEEK_SET);
-        fread(this, sizeof(DetalleVenta),1,p);
-        Estado == false;
-
-        fseek(p, posicion*sizeof(DetalleVenta), SEEK_SET);
-        chequeo= fwrite(this, sizeof(DetalleVenta),1,p);
-        if(chequeo==true)
-        {
-            cout<<"Se modifico exitosamente "<<endl;
-            fclose(p);
-            return true;
-        }
-        fclose(p);
-
-        cout<<"No se puso modificar el archivo "<<endl;
-        return false;
-    }
-    else
-    {
-        if(posicion == -2)
-        {
-            cout<<"No se encontro el producto "<<endl;
-            return false;
-        }
-    }
-}
 void DetalleVenta::setTipoFactura(){
 
 //    this->tipoFactura= dato->getTipoFact;
@@ -189,51 +147,13 @@ void DetalleVenta::setIdDetalle(){
 int DetalleVenta::getNroFactura(){
 
     return nroFactura;}
-///----------------------FUNCIONES GLOBALES-----------------
-
-int buscarXCodProd(int codigo){
-    FILE *p;
-    DetalleVenta reg;
-    int posicion=0;
-
-    p=fopen(FILE_DETALLE, "rb");
-    if(p == NULL)
-    {
-        return -1;
-    }
-    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1)
-    {
-        if(reg.getCodProducto() == codigo)
-        {
-            fclose(p);
-            return posicion;
-        }
-        posicion++;
-    }
-
-    fclose(p);
-    return -2;
-}
-int crearIdDetalle(){
-    int bytes, cant;
-
-    FILE *p = fopen(FILE_DETALLE, "rb");
-    if (p == NULL){
-        return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
-    }
-    fseek(p, 0, SEEK_END);
-    bytes = ftell(p);
-    fclose(p);
-    cant=bytes / sizeof(DetalleVenta);
-    return cant+1;
-}
 void DetalleVenta::imprimirFactura(){
     system("color 0F");
     int pos= crearIdXFact()-2;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
     Ventas  cli;
-
+    Entidad cliente;
     int i =0,  f;
 
     cls();
@@ -258,12 +178,12 @@ void DetalleVenta::imprimirFactura(){
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<right;
-            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cli.cliente.getRazonSocial()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+//            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(cli.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cliente. <<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+//            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cli.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
 //            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :"<<setw(27);cli.cliente.domicilio.mostrarDireccion();cout<<"|"<<endl;
 //            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<""<<"DIR      :";
 //            cli.cliente.domicilio.mostrarDireccion(); cout<<setw(28)<<"|"<<endl;
-            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
+//            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(cli.getTipoFact()=='A'){cout<<"CUIT      :"<<setw(26)<<cli.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
@@ -314,4 +234,85 @@ void DetalleVenta::imprimirFactura(){
 //            cout<<"|"<<setw(89)<<setfill('$')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
 system("pause");
+}
+///----------------------FUNCIONES GLOBALES-----------------
+//(){
+//    FILE *p;
+//    int posicion, cod;
+//    bool chequeo;
+//
+//    cout<<"Ingrese el id de producto : " ;
+//    cin>>cod;
+//    posicion= buscarXCodProd(cod);
+//
+//    if(posicion >= 0)
+//    {
+//        p=fopen(FILE_DETALLE,"wb" );
+//        if(p == NULL)
+//        {
+//            return false;
+//        }
+//        fseek(p, posicion*sizeof(DetalleVenta), SEEK_SET);
+//        fread(this, sizeof(DetalleVenta),1,p);
+//        Estado == false;
+//
+//        fseek(p, posicion*sizeof(DetalleVenta), SEEK_SET);
+//        chequeo= fwrite(this, sizeof(DetalleVenta),1,p);
+//        if(chequeo==true)
+//        {
+//            cout<<"Se modifico exitosamente "<<endl;
+//            fclose(p);
+//            return true;
+//        }
+//        fclose(p);
+//
+//        cout<<"No se puso modificar el archivo "<<endl;
+//        return false;
+//    }
+//    else
+//    {
+//        if(posicion == -2)
+//        {
+//            cout<<"No se encontro el producto "<<endl;
+//            return false;
+//        }
+//    }
+//}
+
+int buscarXCodProd(int codigo){
+    FILE *p;
+    DetalleVenta reg;
+    int posicion=0;
+
+    p=fopen(FILE_DETALLE, "rb");
+    if(p == NULL)
+    {
+        return -1;
+    }
+    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1)
+    {
+        if(reg.getCodProducto() == codigo)
+        {
+            fclose(p);
+            return posicion;
+        }
+        posicion++;
+    }
+
+    fclose(p);
+    return -2;
+}
+
+int crearIdDetalle(){
+    int bytes, cant;
+
+    FILE *p = fopen(FILE_DETALLE, "rb");
+    if (p == NULL){
+        return 1;   ///dado que es el primer registro y no existe el archivo forzamos en nro 1
+    }
+    fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+    cant=bytes / sizeof(DetalleVenta);
+    return cant+1;
 }
