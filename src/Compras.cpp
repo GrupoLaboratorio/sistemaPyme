@@ -19,7 +19,6 @@ using namespace std;
 #include "../Utilidades/menus.h"
 #include "Entidad.h"
 
-const char *FILE_COMPRAS="Archivos/Compras.dat";
 Compras::Compras(){
     this->idCompras=crearIdXCompras();
 //    cout<<"este es el ID COMPRAS \n"<<idCompras;

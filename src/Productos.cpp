@@ -11,7 +11,7 @@ using namespace std;
 #include "../Utilidades/ui.h"
 using namespace rlutil;
 
-//const char *FILE_PRODUCTOS="Archivos/Productos.dat";
+
 
 
 /*void Productos::mostrarEntidad(){

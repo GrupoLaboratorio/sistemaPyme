@@ -76,14 +76,51 @@ bool Usuario::leerDeDisco(int posicion){
 
 }
 
+bool Usuario::cambiarPasswordUser(){
+
+    int newPass, passAux, i=0;
+    bool check = false;
+    FILE *p;
+
+    cout << "INGRESE SU CONTRASEÑA ACTUAL:\t";
+    cin >> passAux;
+
+    p = fopen(FILE_USUARIOS, "rb+");
+        if(p==NULL){
+            return false;
+        }
+
+    while(this->leerDeDisco(i)){
+        if(this->password == passAux){
+            cout << "NUEVA CONTRASEÑA:\t";
+            cin >> newPass;
+            this->setPassword(newPass);
+            cout << "NUEVA CONTRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << this->getPassword() << endl;
+            fseek(p, sizeof(Usuario)*i,SEEK_SET);
+            check = fwrite(this,sizeof(Usuario),1,p);
+            cout << "check es igual a::::::::::::" << check << endl;
+            system("pause");
+            fclose(p);
+            return check;
+        }
+        i++;
+    }
+    fclose(p);
+    system("pause");
+    return check;
+}
 
 ///--------------------------------- GLOBAL
 
 void crearUsuario(){
 
 	Usuario regAux;
-
-	regAux.ingresarUsuario();
+    regAux.setNombreUser();
+    char * nombreAux = regAux.getNombreUser();
+    while(usuarioRepetido(nombreAux)==false){
+        regAux.setNombreUser();
+    }
+    regAux.setPassword();
     regAux.setIdUser(crearIdUsuario());
 	regAux.setActivo();
 	regAux.grabarEnDisco();
@@ -193,6 +230,39 @@ void bajaLogicaUsuario(){
         return;
 }
 
+void bajaLogicaUsuario(int idAux){
+
+    Usuario usuAux;
+    bool estadoAux;
+    FILE *c;
+    int i=0;
+
+        c = fopen(FILE_USUARIOS, "rb+");
+        if(c==NULL){
+                cout << "Error de archivo usuarios\n";
+                system("pause");
+                return;
+        }
+
+            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+                if(usuAux.getIdUser() == idAux){
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword();
+                    cout << endl;
+                    usuAux.setInactivo(false);
+                    fseek(c, sizeof(Usuario)*i, SEEK_SET);
+                    fwrite(&usuAux,sizeof(Usuario),1,c);
+                    fclose(c);
+                    msj("BAJA EXITOSA",WHITE,GREEN,130,TEXT_LEFT);
+                    return;
+                }
+                i++;
+            }
+        msj("USUARIO NO ENCONTRADO",WHITE,RED,130,TEXT_LEFT);
+        system("pause");
+        fclose(c);
+        return;
+}
+
 int crearIdUsuario(){
 
 
@@ -209,7 +279,7 @@ int crearIdUsuario(){
 
 }
 
-void cambiarPassword(){
+void cambiarPasswordAdmin(){
 
     Usuario usuAux;
     bool estadoAux;
@@ -244,4 +314,21 @@ void cambiarPassword(){
         system("pause");
         fclose(c);
         return;
+}
+
+bool usuarioRepetido(char* nombreUsuario){
+
+    Usuario usuAux;
+    bool estadoAux;
+    FILE *c;
+
+            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+                if(strcmp(usuAux.getNombreUser(),nombreUsuario)==0){
+                    msj("NOMBRE NO DISPONIBLE",WHITE,RED,130,TEXT_LEFT);
+                    return false;
+                }
+            }
+            msj("NOMBRE DISPONIBLE",WHITE,GREEN,130,TEXT_LEFT);
+            return true;
+
 }

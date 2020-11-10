@@ -1,5 +1,6 @@
 #ifndef COMPRAS_H
 #define COMPRAS_H
+#define FILE_COMPRAS "Compras.dat"
 #include "Fecha.h"
 #include "DetalleCompra.h"
 #include "Calculadora.h"

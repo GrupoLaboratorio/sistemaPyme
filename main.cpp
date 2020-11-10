@@ -14,14 +14,13 @@ using namespace std;
 #include "Include/Entidad.h"
 //#include "Include/Ventas.h"
 //#include "DetalleFactura.h"
-//#include "Include/Usuario.h"
+#include "Include/Usuario.h"
 
 
 int main(){
 
     menuLogin();
-
-//  Agregar define en archivos backup
+//	prueba1.cambiarPasswordUser();
 
     return 0;
 }

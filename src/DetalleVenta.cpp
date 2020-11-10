@@ -19,8 +19,6 @@ using namespace std;
 #include "../Utilidades/menus.h"
 using namespace rlutil;
 
-const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
-
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
  Ventas *oVtas;

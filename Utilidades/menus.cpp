@@ -46,8 +46,10 @@ void menuLogin(){
 
     if(chequeo == 1){
         menuPrincipal();
+        return;
     }else if(chequeo == 2){
         menuMaestro();
+        return;
     }else{
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
@@ -77,10 +79,7 @@ void menuMaestro(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION - ADMINISTRADOR", WHITE, CYAN);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "COMPRAS";
@@ -188,9 +187,10 @@ void menuPrincipal(){
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
         const int FONDO = RED;
+        Usuario usuarioPiloto;
+        bool check;
 
     setlocale(LC_ALL, "spanish");
-//    setConsoleTitle("TONGA GESTION");
     const int ANCHO_MENU = 75;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
@@ -201,10 +201,7 @@ void menuPrincipal(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION", WHITE, RED);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "COMPRAS";
@@ -217,6 +214,8 @@ void menuPrincipal(){
       locate(POSMENUX+3,POSMENUY+7);
       cout << "CONTABILIDAD";
       locate(POSMENUX+3,POSMENUY+8);
+      cout << "CAMBIAR CONTRASEÑA";
+      locate(POSMENUX+3,POSMENUY+9);
       cout << "SALIR\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -227,7 +226,7 @@ void menuPrincipal(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 6){
+            if(opc < 7){
                 opc++;
             }else{
                 opc=1;
@@ -237,7 +236,7 @@ void menuPrincipal(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=6;
+                opc=7;
             }
             break;
         }
@@ -271,7 +270,14 @@ void menuPrincipal(){
                 system("pause");
         break;
         case 6:
-               menuLogin();
+            check = usuarioPiloto.cambiarPasswordUser();
+            if(check==true){
+            msj("CONTRASEÑA GUARDADA",WHITE,GREEN,130,TEXT_LEFT);
+            }
+            else msj("ERROR",WHITE,RED,130,TEXT_LEFT);
+        break;
+        case 7:
+            return;
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
                 break;
@@ -519,10 +525,7 @@ void menuInventario(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("INVENTARIOS", WHITE, BLUE);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "CARGAR PRODUCTO";
@@ -761,7 +764,7 @@ void menuConfiguracion(){
       showcursor();
       switch(opc){
         case 1:
-//            menuBackup();
+            menuBackup();
         break;
         case 2:
             crearUsuario();
@@ -773,7 +776,7 @@ void menuConfiguracion(){
             listarUsuarios();
         break;
         case 5:
-            cambiarPassword();
+            cambiarPasswordAdmin();
         break;
         case 6:
             return;
@@ -788,103 +791,108 @@ void menuConfiguracion(){
 
 ///---------------------------------------------- MENU BACKUP
 
-//void menuBackup(){
-//
-//        const int POSMENUX = 0;
-//        const int POSMENUY = 1;
-//        const int COLOR_PANTALLA = BLACK;
-//        const int LETRA = WHITE;
-//        const int FONDO = BLUE;
-//        Entidad EntidadPiloto;
-//        Ventas vtas;
-//        DetalleVenta deta;
-//
-//    setlocale(LC_ALL, "spanish");
-//    setConsoleTitle("TONGA GESTION");
-//    const int ANCHO_MENU = 75;
-//    const int ALTO_MENU = 8;
-//    int key, opc, cursorX, cursorY;
-//    while(true){
-//      cursorX=POSMENUX+1;
-//      cursorY=POSMENUY + 3;
-//      setBackgroundColor(COLOR_PANTALLA);
-//      system("cls");
-//      opc=1;
-//      setColor(LETRA);
-//      locate(POSMENUX+5,POSMENUY+1);
-//      title("BACKUP", WHITE, CYAN);
-//      locate(POSMENUX+3,POSMENUY+3);
-//      cout << "PROVEEDORES";
-//      locate(POSMENUX+3,POSMENUY+4);
-//      cout << "CLIENTES";
-//      locate(POSMENUX+3,POSMENUY+5);
-//      cout << "FACTURAS";
-//      locate(POSMENUX+3,POSMENUY+6);
-//      cout << "ORDENES DE COMPRA";
-//      locate(POSMENUX+3,POSMENUY+7);
-//      cout << "PRODUCTOS";
-//      locate(POSMENUX+3,POSMENUY+8);
-//      cout << "PLAN DE CUENTAS";
-//      locate(POSMENUX+3,POSMENUY+9);
-//      cout << "ATRAS\n";
-//      hidecursor();
-//      locate(cursorX,cursorY);
-//      cout<<">";
-//      key = getkey();
-//      while(key != KEY_ENTER){
-//        locate(cursorX,cursorY);
-//        cout<<" ";
-//        switch(key){
-//        case KEY_DOWN:
-//            if(opc < 7){
-//                opc++;
-//            }else{
-//                opc=1;
-//            }
-//            break;
-//        case KEY_UP:
-//            if(opc > 1){
-//                opc--;
-//            }else{
-//                opc=7;
-//            }
-//            break;
-//        }
-//        if(opc != 0){
-//            cursorY = opc + POSMENUY + 2;
-//        }else{
-//            cursorY = POSMENUY + 9;
-//        }
-//        locate(cursorX,cursorY);
-//        cout<<">";
-//        key = getkey();
-//      }
-//      setBackgroundColor(COLOR_PANTALLA);
-//      cls();
-//      showcursor();
-//      switch(opc){
-//        case 1:
-//            backupArchivos(1);
-//        break;
-//        case 2:
-//            backupArchivos(2);
-//        break;
-//        case 3:
-//            backupArchivos(3);
-//        break;
-//        case 4:
-//            backupArchivos(4);
-//        break;
-//        case 5:
-//            backupArchivos(5);
-//        break;
-//        case 6:
-//            backupArchivos(6);
-//        break;
-//        case 7:
-//            return;
-//        break;
-//      }
-//    }
-//    return;
-//}
+void menuBackup(){
+
+        const int POSMENUX = 0;
+        const int POSMENUY = 1;
+        const int COLOR_PANTALLA = BLACK;
+        const int LETRA = WHITE;
+        const int FONDO = BLUE;
+        Entidad EntidadPiloto;
+        Ventas vtas;
+        DetalleVenta deta;
+
+    setlocale(LC_ALL, "spanish");
+    setConsoleTitle("TONGA GESTION");
+    const int ANCHO_MENU = 75;
+    const int ALTO_MENU = 8;
+    int key, opc, cursorX, cursorY;
+    while(true){
+      cursorX=POSMENUX+1;
+      cursorY=POSMENUY + 3;
+      setBackgroundColor(COLOR_PANTALLA);
+      system("cls");
+      opc=1;
+      setColor(LETRA);
+      locate(POSMENUX+5,POSMENUY+1);
+      title("BACKUP", WHITE, CYAN);
+      locate(POSMENUX+3,POSMENUY+3);
+      cout << "PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+4);
+      cout << "CLIENTES";
+      locate(POSMENUX+3,POSMENUY+5);
+      cout << "FACTURAS";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "ORDENES DE COMPRA";
+      locate(POSMENUX+3,POSMENUY+7);
+      cout << "PRODUCTOS";
+      locate(POSMENUX+3,POSMENUY+8);
+      cout << "PLAN DE CUENTAS";
+      locate(POSMENUX+3,POSMENUY+9);
+      cout << "TODOS LOS ARCHIVOS";
+      locate(POSMENUX+3,POSMENUY+10);
+      cout << "ATRAS\n";
+      hidecursor();
+      locate(cursorX,cursorY);
+      cout<<">";
+      key = getkey();
+      while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 8){
+                opc++;
+            }else{
+                opc=1;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 1){
+                opc--;
+            }else{
+                opc=8;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 2;
+        }else{
+            cursorY = POSMENUY + 9;
+        }
+        locate(cursorX,cursorY);
+        cout<<">";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+      switch(opc){
+        case 1:
+            backupArchivos(1);
+        break;
+        case 2:
+            backupArchivos(2);
+        break;
+        case 3:
+            backupArchivos(3);
+        break;
+        case 4:
+            backupArchivos(4);
+        break;
+        case 5:
+            backupArchivos(5);
+        break;
+        case 6:
+            backupArchivos(6);
+        break;
+        case 7:
+            backupArchivos(7);
+        break;
+        case 8:
+            return;
+        break;
+      }
+    }
+    return;
+}

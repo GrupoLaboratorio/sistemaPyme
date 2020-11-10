@@ -18,6 +18,7 @@ class Usuario{
         void setInactivo(bool nuevoEstado){this->estado = nuevoEstado;}
         void ingresarUsuario();
         void setIdUser(int id){this->idUser = id;}
+        bool cambiarPasswordUser();
         bool grabarEnDisco();
         bool leerDeDisco(int);
         char* getNombreUser(){return this->nombreUser;}
@@ -40,6 +41,10 @@ void bajaLogicaUsuario();
 
 int crearIdUsuario();
 
-void cambiarPassword();
+void cambiarPasswordAdmin();
+
+void cambiarPasswordUser();
+
+bool usuarioRepetido(char* nombreUsuario); /// falta arreglar
 
 #endif // USUARIO_H
