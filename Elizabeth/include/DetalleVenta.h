@@ -4,10 +4,9 @@
 
 class DetalleVenta{
     private:
-    int nroFactura, codProd, cantidad, idDetalle, idCliente;
+    int nroFactura, codProd, cantidad, idDetalle, idCliente, nroCta;
     float precio;
     char tipoFactura;
-    bool Estado;
 
     public:
     void cDetalleVenta();
@@ -22,7 +21,7 @@ class DetalleVenta{
     void setCodProducto();
     void setCantProducto();
     void setIdDetalle();
-    void setPrecio(){this->precio=prod.getPrecioCosto();}
+    void setPrecio(){Producto prod; this->precio=prod.getPrecioCosto();}
     int getIdDetalle(){return  idDetalle;}
     int getCodProducto(){return codProd;}
     int getCantProducto(){return cantidad;}
@@ -31,7 +30,7 @@ class DetalleVenta{
    bool grabarDetalleEnDisco();
    bool leerDeDiscoD(int );
    void listado_detalle();
-void imprimirFactura();
+void imprimirFactura(int _n=0);
 };
 
 ///-----------------------------FUNCIONES GLOBALES------
