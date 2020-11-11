@@ -285,7 +285,7 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
     FILE *archivo;
     Entidad user;
     char cuit[14];
-    int i=0;
+    int i=-1;
 
     cout<<"\nIngrese el CUIT: ";
     fflush(stdin);

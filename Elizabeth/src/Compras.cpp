@@ -19,10 +19,8 @@ using namespace std;
 #include "../Utilidades/menus.h"
 #include "Entidad.h"
 
-const char *FILE_COMPRAS="Archivos/Compras.dat";
 Compras::Compras(){
     this->idCompras=crearIdXCompras();
-//    cout<<"este es el ID COMPRAS \n"<<idCompras;
 }
 void Compras::cargarCompras(){
     Compras();
@@ -66,6 +64,7 @@ void Compras::setTipoFact(){
 
 }
 void Compras::setIdEntidad(){
+    Entidad proveedor;
     proveedor.buscarRazonSocial(2);
     idEntidad=proveedor.getIdEntidad();
 }

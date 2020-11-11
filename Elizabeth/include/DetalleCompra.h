@@ -1,5 +1,6 @@
 #ifndef DETALLECOMPRA_H
 #define DETALLECOMPRA_H
+#define FILE_DET_COMPRAS "Archivos/DetalleCompras.dat"
 #include "Producto.h"
 #include "Entidad.h"
 #include "Compras.h"
@@ -14,22 +15,19 @@ private:
     int idProducto;
     int idCuenta;
     int cantidad;
+    int idPrv;
     int impuesto;
     float preBruto;
     float preTotal;
 
-Entidad proveedor;
-Producto prod;
 public:
-//  DetalleCompra();
-
 ///setters
     void setIdCuenta();
     void setPrecio();
     void setCantidad();
     void setImpuesto();
     void setIdProducto();
-    void setProveedor();
+//    void setProveedor();
     void setIdProveedor();
 
 ///gettes
@@ -37,7 +35,7 @@ public:
     float getImpuesto();
     int getcantProd();
     int getIdProducto();
-    Entidad getProveedor();
+//    Entidad getProveedor();
 
 ///Disco
     int crearIdDetalle();
@@ -45,7 +43,6 @@ public:
     bool grabarDetalleEnDisco();
 
 ///memoria
-
 
 };
 #endif // DETALLECOMPRA_H

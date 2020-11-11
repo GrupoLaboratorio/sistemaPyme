@@ -22,23 +22,19 @@ using namespace std;
 #include "Compras.h"
 using namespace rlutil;
 
-const char *FILE_DET_COMPRAS="Archivos/DetalleCompras.dat" ;
-
 void DetalleCompra::cDetalleCompra(){
 setlocale(LC_CTYPE, "Spanish");
-Compras *datoCp;
-    datoCp= new Compras;
+Compras  datoCp;
     int i= crearIdXCompras()-2;
-    datoCp->leerDeDisco(i);//leer de Compras
+    datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
     do{
         this->idDetalle= crearIdDetalle();
-        this->tipoFactura= datoCp->getTipoFact();
-        ptoVta= datoCp->getPuntoVta();
-        nroFactura= datoCp->getNroFactura();
+        this->tipoFactura= datoCp.getTipoFact();
+        ptoVta= datoCp.getPuntoVta();
+        nroFactura= datoCp.getNroFactura();
         setIdProducto();
         setPrecio();
-//        Estado=true;
         grabarDetalleEnDisco();
 
         system("cls");
@@ -48,10 +44,10 @@ Compras *datoCp;
 
         cin>> continuar;
     }while(continuar==1);
-//    delete dato;
     return;
 }
 void DetalleCompra::setIdProducto(){
+    Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
     prod.buscarProdxId(idProducto);
@@ -61,10 +57,11 @@ prod.setPrecioCosto();
     setCantidad();
     prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
 }
-void DetalleCompra::setProveedor(){
-    this->proveedor.buscarRazonSocial(2);}
+//void DetalleCompra::setProveedor(){}
 void DetalleCompra::setIdProveedor(){
-    int idPrv= proveedor.getIdEntidad();}
+    Entidad proveedor;
+   proveedor.buscarRazonSocial(2);
+    int idPrv=proveedor.getIdEntidad();}
 void DetalleCompra::setIdCuenta(){
     int a;
     cout<<"Cuenta Contable:"<<endl;
@@ -115,5 +112,4 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         return false;
     }
 }
-Entidad DetalleCompra::getProveedor(){
-    return this->proveedor;}
+//Entidad DetalleCompra::getProveedor(){}

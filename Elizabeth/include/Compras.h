@@ -1,5 +1,6 @@
 #ifndef COMPRAS_H
 #define COMPRAS_H
+#define FILE_COMPRAS "Compras.dat"
 #include "Fecha.h"
 #include "DetalleCompra.h"
 #include "Calculadora.h"
@@ -17,12 +18,10 @@ private:
     int idEntidad;
     bool cierra;
     Fecha fechaFactura;
-    Entidad proveedor;
-//        Producto producto;
+
 public:
     Compras();
     void cargarCompras();  /// Carga los datos de las ventas
-//        void mostrarDetalleCompras(); /// Muestra los datos de las ventas
     void setTipoFact(); /// Asigna el tipo de factura
     void setPuntoVta();
     void setIdCuenta(); /// Asigna el numero de factura autonumerico
