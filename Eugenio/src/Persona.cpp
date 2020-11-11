@@ -46,25 +46,8 @@ void Persona::setApenom(){
 }
 void Persona::setCuit(){
 
-    cout << "CUIT con guines:\t";
+    cout << "CUIT:\t";
     cin.getline(this->cuit,14,'\n');
-//    while(!validarCuit(this->cuit)){
-//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-//            cout << "CUIT con guines:\t";
-//            cin.getline(this->cuit,13,'\n');
-//    }
 }
-
-//void Persona::setNDoc(){
-//
-//    cout << "DNI:\t";
-//    cin.getline(this->nDoc,9,'\n');
-//    while(!validarDocumento(nDoc)){
-//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-//            cout << "DNI:\t";
-//            cin.getline(this->nDoc,9,'\n');
-//    }
-//
-//}
 
 void Persona::setDomicilio(){this->domicilio.cargarDireccion();}

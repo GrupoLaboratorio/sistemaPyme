@@ -1,24 +1,23 @@
 #ifndef VENTAS_H
 #define VENTAS_H
-#define FILE_VENTAS "Archivos/Ventas.dat"
 #include "Fecha.h"
 #include "DetalleFactura.h"
+//#include "DetalleVenta.h"
 #include "Calculadora.h"
 #include "Producto.h"
 #include "Entidad.h"
 
 ///-----------------------CLASE VENTAS
 
-class Ventas{
+class Ventas
+{
 
-protected:
+public:
     int  idCliente;
     char tipoFactura;
     int  nroFactura;
     Fecha fechaVenta;
 public:
-    Entidad cliente;///preguntar a Angel
-//    Entidad getCliente(){return cliente};
     Ventas();
     void cargarVtas();
     void setTipoFact();

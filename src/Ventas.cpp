@@ -19,6 +19,8 @@ using namespace std;
 #include "../Utilidades/menus.h"
 
 
+const char * FILE_VENTAS = "Archivos/Ventas.dat";
+
 ///----------------------------METODOS CLASE VENTAS---------------------------
 
 Ventas::Ventas(){
@@ -54,6 +56,7 @@ void Ventas::setNroFact(){
     this->nroFactura=crearIdXFact();
 }
 void Ventas::setIdCliente(){
+    Entidad cliente;
     cliente.buscarRazonSocial(1);
     idCliente=cliente.getIdEntidad();
 }

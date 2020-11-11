@@ -7,7 +7,6 @@
 #include <cctype>
 #include <algorithm>
 #include <iomanip>
-
 using namespace std;
 #include "ui.h"
 #include "rlutil.h"
@@ -51,6 +50,7 @@ void menuLogin(){
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
     }
+    return;
 }
 
 ///---------------------------------------------- MENU MAESTRO
@@ -145,9 +145,9 @@ void menuMaestro(){
         case 5:
                 calculadora calc;
                 calc.setExtraeIva(21);///valores a ingrear :10.5, 21
-                calc.setImporteBruto(1210);///Importe con iva incluido-
-                calc.setImponible(3);/// vende 3 articulos y va el precio bruto
-                calc.setDescuento(10);/// descuento d euna venta por pago en efectivo
+                calc.setImporteBruto(85.71);///Importe con iva incluido-
+                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
+                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
                 calc.setDescuentoAplicado();///Aplica el descuento
                 //calc.setRecargo(3);///recargo
                 //calc.setRecargoAplicado();///aplica el impuesto
@@ -356,9 +356,7 @@ void menuCompras(){
       showcursor();
       switch(opc){
         case 1:
-//            cout<<"\n\n\n\n\n"<<sizeof(Compras);
-			cmpr.cargarCompras();
-//			detComp.grabarEnDisco();
+                cmpr.cargarCompras();
         break;
         case 2:
                 cmpr.listado_compras();
@@ -366,7 +364,7 @@ void menuCompras(){
         break;
         case 3:
                 EntidadPiloto.cargarCliente();
-                EntidadPiloto.grabarEnDisco(1);
+//                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
@@ -377,7 +375,6 @@ void menuCompras(){
         break;
         case 5:
                     EntidadPiloto.listarEntidadesTabla(2);
-                system("pause");
         break;
         case 0:
         return;
@@ -617,12 +614,16 @@ void menuEntidades(){
       opc=1;
       setColor(LETRA);
       locate(POSMENUX+5,POSMENUY+1);
-      title("INVENTARIOS", WHITE, BLUE);
+      title("ENTIDADES", WHITE, BLUE);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "LISTAR CLIENTES";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "LISTAR PROVEEDORES";
+      cout << "CARGAR CLIENTE";
       locate(POSMENUX+3,POSMENUY+5);
+      cout << "LISTAR PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "CARGAR PROVEEDOR";
+      locate(POSMENUX+3,POSMENUY+7);
       cout << "ATRAS\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -633,7 +634,7 @@ void menuEntidades(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 3){
+            if(opc < 5){
                 opc++;
             }else{
                 opc=0;
@@ -643,7 +644,7 @@ void menuEntidades(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=3;
+                opc=5;
             }
             break;
         }
@@ -663,23 +664,19 @@ void menuEntidades(){
         case 1:
                 EntidadPiloto.listarEntidadesTabla(1);
                 cls();
-//                EntidadPiloto.cargarCliente();
-//                EntidadPiloto.grabarEnDisco(1);
-//                EntidadPiloto.mostrarEntidad();
         break;
         case 2:
-        int id;
-                EntidadPiloto.listarEntidadesTabla(2);
-                cls();
-//                EntidadPiloto.cargarCliente();
-//                EntidadPiloto.grabarEnDisco(2);
-//                EntidadPiloto.mostrarEntidad();
+                EntidadPiloto.cargarCliente();
         break;
         case 3:
-                return;
+                EntidadPiloto.listarEntidadesTabla(2);
+                cls();
         break;
-        default:
-            cout<<" OPCION INCORRECTA"<<endl;
+        case 4:
+                EntidadPiloto.cargarProveedor();
+        break;
+        case 5:
+                return;
         break;
       }
     }
@@ -762,19 +759,19 @@ void menuConfiguracion(){
       showcursor();
       switch(opc){
         case 1:
-
+            menuBackup();
         break;
         case 2:
             crearUsuario();
         break;
         case 3:
-            cout << "Opcion 3";
+            bajaLogicaUsuario();
         break;
         case 4:
             listarUsuarios();
         break;
         case 5:
-            cout << "Opcion 5";
+            cambiarPassword();
         break;
         case 6:
             return;
@@ -785,4 +782,103 @@ void menuConfiguracion(){
       }
     }
     return;
+}
+
+///---------------------------------------------- MENU BACKUP
+
+void menuBackup(){
+
+        const int POSMENUX = 0;
+        const int POSMENUY = 1;
+        const int COLOR_PANTALLA = BLACK;
+        const int LETRA = WHITE;
+        const int FONDO = BLUE;
+        Entidad EntidadPiloto;
+        Ventas vtas;
+        DetalleVenta deta;
+
+    setlocale(LC_ALL, "spanish");
+    setConsoleTitle("TONGA GESTION");
+    const int ANCHO_MENU = 75;
+    const int ALTO_MENU = 8;
+    int key, opc, cursorX, cursorY;
+    while(true){
+      cursorX=POSMENUX+1;
+      cursorY=POSMENUY + 3;
+      setBackgroundColor(COLOR_PANTALLA);
+      system("cls");
+      opc=1;
+      setColor(LETRA);
+      locate(POSMENUX+5,POSMENUY+1);
+      title("BACKUP", WHITE, CYAN);
+      locate(POSMENUX+3,POSMENUY+3);
+      cout << "PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+4);
+      cout << "CLIENTES";
+      locate(POSMENUX+3,POSMENUY+5);
+      cout << "FACTURAS";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "ORDENES DE COMPRA";
+      locate(POSMENUX+3,POSMENUY+7);
+      cout << "PRODUCTOS";
+      locate(POSMENUX+3,POSMENUY+8);
+      cout << "ATRAS\n";
+      hidecursor();
+      locate(cursorX,cursorY);
+      cout<<">";
+      key = getkey();
+      while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 5){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 0){
+                opc--;
+            }else{
+                opc=5;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 2;
+        }else{
+            cursorY = POSMENUY + 9;
+        }
+        locate(cursorX,cursorY);
+        cout<<">";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+      switch(opc){
+        case 1:
+//           vtas.cargarVtas();
+        break;
+        case 2:
+//            deta.imprimirFactura();
+        break;
+        case 3:
+//            deta.listado_detalle();
+        break;
+        case 4:
+//           vtas.listado_facturas();
+        break;
+        case 5:
+//            EntidadPiloto.buscarRazonSocial(1);
+        break;
+        case 6:
+            return;
+        break;
+      }
+    }
+    return;
+
 }

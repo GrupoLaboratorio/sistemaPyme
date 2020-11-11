@@ -56,7 +56,6 @@ void Entidad::cargarProveedor(){
     setTipoEntidad(2);
     this->idEntidad = crearIdEntidades(this->getTipoEntidad());
     grabarEnDisco(2);
-//grabarEnDisco(idEntidad);
 }
 
 void Entidad::mostrarEntidad(){
@@ -76,15 +75,6 @@ void Entidad::mostrarEntidad(){
 void Entidad::setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razonSocial);}
 
 void Entidad::setMail(char * _mail){strcpy(this->mail,_mail);}
-
-//void Entidad::setTipoEntidad(){
-//    cout << "CATEGORIA:";
-//    cin >> this->tipoEntidad;
-//        while(this->tipoEntidad != 1 || this->tipoEntidad != 2){
-//            msj("INCORRECTO",WHITE,RED,130,TEXT_LEFT);
-//            cin >> this->tipoEntidad;
-//        }
-//}
 
 void Entidad::setTipoEntidad(int _tipo){this->tipoEntidad = _tipo;}
 

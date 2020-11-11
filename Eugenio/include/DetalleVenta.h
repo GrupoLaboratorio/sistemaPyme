@@ -7,12 +7,11 @@ class DetalleVenta{
     int nroFactura, codProd, cantidad, idDetalle, idCliente;
     float precio;
     char tipoFactura;
-    Ventas *dato;
+    Ventas *dato; ///preguntar a Angel
     calculadora calculo;
     bool Estado;
-
     public:
-    Producto prod;
+    Producto prod; ///preguntar a Angel y lo mismo para Entidad
 
     void cDetalleVenta();
     void setTipoFactura();
