@@ -476,7 +476,7 @@ void menuVentas(){
            vtas.cargarVtas();
         break;
         case 2:
-            deta.imprimirFactura();
+            deta.imprimirFactura(0);
         break;
         case 3:
             deta.listado_detalle();

@@ -106,19 +106,22 @@ void DetalleVenta::listado_detalle(){
     int i = 0;
 
     ///Inicio de cabecera
-    cout<<"|"<<setw(88)<<centrar("DETALLE DE FACTURAS", 88)<<"|"<<endl;
-    cout<<" "<<setw(89)<<setfill('_')<<"|"<<endl;
-    cout<<" "<<setw(4)<<centrar("#id", 4);
-    cout<<" "<<setw(8)<<centrar("# Fact", 8);
-    cout<<" "<<setw(10)<<centrar("tipo fac", 10)<<endl;
+    title("DETALLE DE FACTURAS",WHITE, RED);
+    cout<<endl;
+    setBackgroundColor(DARKGREY);
+   // cout<<" "<<setw(89)<<setfill('_')<<"|"<<endl;
+    cout<<" "<<setw(15)<<centrar("Id", 15)<<"|";
+    cout<<" "<<setw(15)<<centrar("# Fact", 15)<<"|";
+    cout<<" "<<setw(38)<<centrar("Tipo de Factura", 38)<<"|"<<endl;
+    setBackgroundColor(BLACK);
 
-    cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-    cout<<" "<<setw(89)<<setfill(' ')<<" "<<endl;
+    //cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+    //cout<<" "<<setw(89)<<setfill(' ')<<" "<<endl;
 
     while (aux.leerDeDiscoD(i++)){
-    cout<<"|"<<setw(15)<<centrarInt(aux.idDetalle, 15);
-    cout<<"|"<<setw(15)<<centrarInt(aux.getNroFactura(), 15);
-    cout<<" "<<setw(19)<<aux.getTipoFactura()<<endl;
+    cout<<" "<<setw(15)<<centrarInt(aux.idDetalle, 15);
+    cout<<" "<<setw(15)<<centrarInt(aux.getNroFactura(), 15);
+    cout<<" "<<setw(21)<<aux.getTipoFactura()<<endl;
     //        cout<<"|"<<setw(89)<<setfill(sing)<<"|"<<endl;
     }
     cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
