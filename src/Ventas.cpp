@@ -19,7 +19,7 @@ using namespace std;
 #include "../Utilidades/menus.h"
 
 
-const char * FILE_VENTAS = "Archivos/Ventas.dat";
+//const char * FILE_VENTAS = "Archivos/Ventas.dat";
 
 ///----------------------------METODOS CLASE VENTAS---------------------------
 

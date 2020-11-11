@@ -1,5 +1,6 @@
 #ifndef VENTAS_H
 #define VENTAS_H
+#define FILE_VENTAS "Archivos/Ventas.dat"
 #include "Fecha.h"
 #include "DetalleFactura.h"
 //#include "DetalleVenta.h"

@@ -1,5 +1,6 @@
 #ifndef DETALLEVENTA_H
 #define DETALLEVENTA_H
+#define FILE_DETALLE "Archivos/DetalleVentas.dat"
 #include "Ventas.h"
 
 class DetalleVenta{

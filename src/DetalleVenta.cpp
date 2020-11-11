@@ -19,7 +19,7 @@ using namespace std;
 #include "../Utilidades/menus.h"
 using namespace rlutil;
 
-const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
+//const char *FILE_DETALLE="Archivos/DetalleVentas.dat" ;
 
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
@@ -150,7 +150,7 @@ int DetalleVenta::getNroFactura(){
     return nroFactura;}
 
 void DetalleVenta::imprimirFactura(int _n){
-    system("color 0F");
+//    system("color 0F");
     int pos= crearIdXFact()-2;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
@@ -170,11 +170,19 @@ void DetalleVenta::imprimirFactura(int _n){
     dato.leerDeDisco(f-1);
     cliente.leerDeDisco(dato.getIdCliente()-1,1);
     char a[30];
+        if(dato.getTipoFact()=='A'){
+             system("color 0E");
+           setBackgroundColor(BLUE);
+        }else{
+             system("color 0F");
+            setBackgroundColor(RED);
+        }
+
 
     strcpy(a, "FACTURA ");
 
 
-            setBackgroundColor(RED);
+//            setBackgroundColor(RED);
             cout<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
