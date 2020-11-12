@@ -31,14 +31,11 @@ using namespace std;
         void Contable::listarLibroDiario(){
             calculadora cal;
             DetalleVenta  detVta;
-
-//            setDebe( cal.setImporteBruto(1210));
             int i=0;
             while(detVta.leerDeDiscoD(i++)){
                      setDebe(detVta.getPrecio());
                      setHaber(0);
                      setSaldo( getHaber() - getDebe());
-//                     grabarEnDisco(setSaldo(), getDebe(), getHaber());
                     cout<<"DEBE: "<<getDebe()<<endl;
                     cout<<"HABER: "<<getHaber()<<endl;
                     cout<<"SALDO: "<<getSaldo()<<endl;
