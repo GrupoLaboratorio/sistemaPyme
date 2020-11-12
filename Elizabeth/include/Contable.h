@@ -23,7 +23,7 @@ class Contable
 
         ///funciones
         void imputarCta(Fecha, int, bool, bool, float );///recibe parametros
-//        void grabarEnDisco();///graba la imputacion linea por linea con "rb+"
+        void grabarEnDisco();///graba la imputacion linea por linea con "rb+"
         void listarLibroDiario(Fecha);///lista todas las cuentas  de una fecha determinada
         void listarLibroMayor(Fecha, Fecha, int);  ///de  un determinado mes y una determinada cuenta contable.
 

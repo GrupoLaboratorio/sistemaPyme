@@ -44,30 +44,35 @@ Compras  datoCp;
 
         cin>> continuar;
     }while(continuar==1);
+    //DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
     return;
 }
 void DetalleCompra::setIdProducto(){
     Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
-    prod.buscarProdxId(idProducto);
+    if (prod.buscarProdxId(idProducto-1) == -2){
+            prod.cargarProducto();
+            prod.mostrarProducto();
+            idProducto=prod.getId();
+    }
     cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
-//    cout<< prod.getIva();
-prod.setPrecioCosto();
+
+    prod.setPrecioCosto();
     setCantidad();
     prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
 }
-//void DetalleCompra::setProveedor(){}
-void DetalleCompra::setIdProveedor(){
-    Entidad proveedor;
-   proveedor.buscarRazonSocial(2);
-    int idPrv=proveedor.getIdEntidad();}
-void DetalleCompra::setIdCuenta(){
-    int a;
-    cout<<"Cuenta Contable:"<<endl;
-    cin>>a;
-    this->idCuenta=a;
-}
+////void DetalleCompra::setProveedor(){}
+////void DetalleCompra::setIdProveedor(){
+////    Entidad proveedor;
+////   proveedor.buscarRazonSocial(2);
+////    int idPrv=proveedor.getIdEntidad();}
+//void DetalleCompra::setIdCuenta(){
+//    int a;
+//    cout<<"Cuenta Contable:"<<endl;
+//    cin>>a;
+//    this->idCuenta=a;
+//}
 void DetalleCompra::setPrecio(){
     cout<<"Precio :"<<endl;
     cin>>this->preBruto;

@@ -9,32 +9,28 @@ class DetalleCompra{
 
 private:
     char tipoFactura;
-    char descripcion[20];
        int nroFactura, ptoVta;
        int idDetalle;
     int idProducto;
-    int idCuenta;
     int cantidad;
-    int idPrv;
     int impuesto;
     float preBruto;
     float preTotal;
 
 public:
 ///setters
-    void setIdCuenta();
     void setPrecio();
     void setCantidad();
     void setImpuesto();
     void setIdProducto();
 //    void setProveedor();
-    void setIdProveedor();
+//    void setIdProveedor();
 
 ///gettes
     float getPrecio();
     float getImpuesto();
     int getcantProd();
-    int getIdProducto();
+//    int getIdProducto();
 //    Entidad getProveedor();
 
 ///Disco

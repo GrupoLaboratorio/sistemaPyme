@@ -16,7 +16,6 @@ private:
     int puntoVta;       ///Representa el numero de venta de la sucursal del proveedor( mayor a 0)
     int nroFactura;  ///Numero de factura autonumerico (-00000000)
     int idEntidad;
-    bool cierra;
     Fecha fechaFactura;
 
 public:

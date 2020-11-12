@@ -364,13 +364,13 @@ void menuCompras(){
         break;
         case 3:
                 EntidadPiloto.cargarCliente();
-//                EntidadPiloto.grabarEnDisco(1);
+                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
         case 4:
-                detComp.setProveedor();
-                detComp.setIdProveedor();
+//                detComp.setProveedor();
+//                detComp.setIdProveedor();
                 system("pause");
         break;
         case 5:
