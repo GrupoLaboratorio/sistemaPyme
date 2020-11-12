@@ -27,7 +27,7 @@ using namespace rlutil;
 ///---------------------------------------------- MENU LOGIN
 
 void menuLogin(){
-
+    setlocale(LC_ALL, "spanish");
 	int attempts = 3, chequeo=0;
 
     while(attempts != 0){
@@ -169,10 +169,8 @@ void menuMaestro(){
                 menuConfiguracion();
         break;
         case 0:
-                menuLogin();
+                return;
         break;
-        default:cout<<" OPCION INCORRECTA"<<endl;
-                break;
       }
     }
     return;

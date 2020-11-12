@@ -16,11 +16,15 @@ using namespace rlutil;
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
 void Usuario::setNombreUser(){
+    setlocale(LC_ALL, "es_ES");
+
     cout << "NOMBRE DE USUARIO: ";
 	cin>>this->nombreUser;
 }
 
 void Usuario::setPassword(){
+    setlocale(LC_ALL, "es_ES");
+
     cout << "CONTRASEÑA: ";
 	cin>>this->password;
 }
@@ -77,7 +81,7 @@ bool Usuario::leerDeDisco(int posicion){
 }
 
 bool Usuario::cambiarPasswordUser(){
-
+    setlocale(LC_ALL, "es_ES");
     int newPass, passAux, i=0;
     bool check = false;
     FILE *p;
@@ -95,10 +99,8 @@ bool Usuario::cambiarPasswordUser(){
             cout << "NUEVA CONTRASEÑA:\t";
             cin >> newPass;
             this->setPassword(newPass);
-            cout << "NUEVA CONTRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << this->getPassword() << endl;
             fseek(p, sizeof(Usuario)*i,SEEK_SET);
             check = fwrite(this,sizeof(Usuario),1,p);
-            cout << "check es igual a::::::::::::" << check << endl;
             system("pause");
             fclose(p);
             return check;
@@ -116,8 +118,8 @@ void crearUsuario(){
 
 	Usuario regAux;
     regAux.setNombreUser();
-    char * nombreAux = regAux.getNombreUser();
-    while(usuarioRepetido(nombreAux)==false){
+//    char * nombreAux = regAux.getNombreUser();
+    while(usuarioRepetido(regAux.getNombreUser())==false){
         regAux.setNombreUser();
     }
     regAux.setPassword();
@@ -153,7 +155,7 @@ void listarUsuarios(){
 }
 
 int login(){
-
+    setlocale(LC_ALL, "es_ES");
     Usuario userLog, usuAux;
     int passAux, i=0;
     char *nombreAux;
@@ -321,13 +323,18 @@ bool usuarioRepetido(char* nombreUsuario){
     Usuario usuAux;
     bool estadoAux;
     FILE *c;
+    int i=0;
 
-            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
+            while(usuAux.leerDeDisco(i)){
+//            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
                 if(strcmp(usuAux.getNombreUser(),nombreUsuario)==0){
+                    system("cls");
                     msj("NOMBRE NO DISPONIBLE",WHITE,RED,130,TEXT_LEFT);
                     return false;
                 }
+                i++;
             }
+            system("cls");
             msj("NOMBRE DISPONIBLE",WHITE,GREEN,130,TEXT_LEFT);
             return true;
 
