@@ -223,7 +223,7 @@ using namespace std;
             return -1;///codigo de error de que no halló el archivo.
         }
         while(fread(this, sizeof(Producto),1, p)==1){
-            if(id == idAux){
+            if(getId() == idAux){
                 fclose(p);
                 return contador;
             }

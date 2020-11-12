@@ -2,3 +2,44 @@ Cosas faltantes:
 
 - Arreglar autonumerico id's clase -> Usuario
 - Modificar funcion de listar todos los provedores
+
+
+COSAS QUE PUEDE LLEGAR A PEDIR ANGEL
+
+a) unificar los productos del mismo ID en la factura que en el detalle se hayan cargado por seprados.
+b) Truncar un char para limitar el ancho de un string a la hora de mostrarlo (no es recortar, es sol mostrar una cantidad det. de caracteres.).
+//posible solucion.
+    cout<<setw(30)<<truncar(dato.getRazonSocial(), 15)<<char[50] 
+    
+    string truncar(string Cadena, int tam){
+        char strDena[tam]={0};
+
+        for(int i=0; i < 15; i++ ){
+            strDena[i]=Cadena[i];
+        }
+        return strDena;
+    }
+c) validar campo email. podriamos hacer un struct como tipo de dato del tipo Email. 
+//VALIDADO FUNCIONNNNNAAAAAAA!!!!!!!    
+    struct Email{
+        char user[30];
+        char separador='@';
+        char dominio[10];
+    };
+    int main(){
+        Email correo;
+        cin.getline(correo.user,30, '@');
+    // cin.ignore();
+        cin.getline(correo.dominio,10);
+
+    cout<<correo.user<<endl;
+    cout<<correo.separador<<endl;
+    cout<<correo.dominio<<endl;
+
+        cout<<" ahora en formato EMAIL "<<correo.user<<correo.separador<<correo.dominio;
+    return 0;
+    }
+    
+d) Buscar por id una entidad desde cargarProductos()
+
+e) Usuario nuevo, debe verificar antes, si no existe en estado actvio o inactivo. 

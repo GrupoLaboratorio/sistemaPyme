@@ -21,7 +21,6 @@ using namespace std;
 
 Compras::Compras(){
     this->idCompras=crearIdXCompras();
-//    cout<<"este es el ID COMPRAS \n"<<idCompras;
 }
 void Compras::cargarCompras(){
     Compras();
@@ -65,6 +64,7 @@ void Compras::setTipoFact(){
 
 }
 void Compras::setIdEntidad(){
+    Entidad proveedor;
     proveedor.buscarRazonSocial(2);
     idEntidad=proveedor.getIdEntidad();
 }

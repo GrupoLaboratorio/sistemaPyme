@@ -22,23 +22,19 @@ using namespace std;
 #include "Compras.h"
 using namespace rlutil;
 
-const char *FILE_DET_COMPRAS="Archivos/DetalleCompras.dat" ;
-
 void DetalleCompra::cDetalleCompra(){
 setlocale(LC_CTYPE, "Spanish");
-Compras *datoCp;
-    datoCp= new Compras;
+Compras  datoCp;
     int i= crearIdXCompras()-2;
-    datoCp->leerDeDisco(i);//leer de Compras
+    datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
     do{
         this->idDetalle= crearIdDetalle();
-        this->tipoFactura= datoCp->getTipoFact();
-        ptoVta= datoCp->getPuntoVta();
-        nroFactura= datoCp->getNroFactura();
+        this->tipoFactura= datoCp.getTipoFact();
+        ptoVta= datoCp.getPuntoVta();
+        nroFactura= datoCp.getNroFactura();
         setIdProducto();
         setPrecio();
-//        Estado=true;
         grabarDetalleEnDisco();
 
         system("cls");
@@ -48,29 +44,35 @@ Compras *datoCp;
 
         cin>> continuar;
     }while(continuar==1);
-//    delete dato;
+    //DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
     return;
 }
 void DetalleCompra::setIdProducto(){
+    Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
-    prod.buscarProdxId(idProducto);
+    if (prod.buscarProdxId(idProducto-1) == -2){
+            prod.cargarProducto();
+            prod.mostrarProducto();
+            idProducto=prod.getId();
+    }
     cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
-//    cout<< prod.getIva();
-prod.setPrecioCosto();
+
+    prod.setPrecioCosto();
     setCantidad();
     prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
 }
-void DetalleCompra::setProveedor(){
-    this->proveedor.buscarRazonSocial(2);}
-void DetalleCompra::setIdProveedor(){
-    int idPrv= proveedor.getIdEntidad();}
-void DetalleCompra::setIdCuenta(){
-    int a;
-    cout<<"Cuenta Contable:"<<endl;
-    cin>>a;
-    this->idCuenta=a;
-}
+////void DetalleCompra::setProveedor(){}
+////void DetalleCompra::setIdProveedor(){
+////    Entidad proveedor;
+////   proveedor.buscarRazonSocial(2);
+////    int idPrv=proveedor.getIdEntidad();}
+//void DetalleCompra::setIdCuenta(){
+//    int a;
+//    cout<<"Cuenta Contable:"<<endl;
+//    cin>>a;
+//    this->idCuenta=a;
+//}
 void DetalleCompra::setPrecio(){
     cout<<"Precio :"<<endl;
     cin>>this->preBruto;
@@ -115,5 +117,4 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         return false;
     }
 }
-Entidad DetalleCompra::getProveedor(){
-    return this->proveedor;}
+//Entidad DetalleCompra::getProveedor(){}

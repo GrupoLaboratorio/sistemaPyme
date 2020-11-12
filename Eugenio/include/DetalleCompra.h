@@ -1,5 +1,6 @@
 #ifndef DETALLECOMPRA_H
 #define DETALLECOMPRA_H
+#define FILE_DET_COMPRAS "Archivos/DetalleCompras.dat"
 #include "Producto.h"
 #include "Entidad.h"
 #include "Compras.h"

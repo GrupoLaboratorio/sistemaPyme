@@ -369,8 +369,8 @@ void menuCompras(){
                 system("pause");
         break;
         case 4:
-                detComp.setProveedor();
-                detComp.setIdProveedor();
+//                detComp.setProveedor();
+//                detComp.setIdProveedor();
                 system("pause");
         break;
         case 5:

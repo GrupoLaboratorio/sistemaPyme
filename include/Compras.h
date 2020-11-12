@@ -1,14 +1,13 @@
 #ifndef COMPRAS_H
 #define COMPRAS_H
-#define FILE_COMPRAS "Compras.dat"
+#define FILE_COMPRAS "Archivos/Compras.dat"
 #include "Fecha.h"
 #include "DetalleCompra.h"
 #include "Calculadora.h"
 #include "Producto.h"
 #include "Entidad.h"
 
-class Compras
-{
+class Compras{
 
 private:
     int idCompras;///Debe ser autoincremental
@@ -16,14 +15,11 @@ private:
     int puntoVta;       ///Representa el numero de venta de la sucursal del proveedor( mayor a 0)
     int nroFactura;  ///Numero de factura autonumerico (-00000000)
     int idEntidad;
-    bool cierra;
     Fecha fechaFactura;
-    Entidad proveedor;
-//        Producto producto;
+
 public:
     Compras();
     void cargarCompras();  /// Carga los datos de las ventas
-//        void mostrarDetalleCompras(); /// Muestra los datos de las ventas
     void setTipoFact(); /// Asigna el tipo de factura
     void setPuntoVta();
     void setIdCuenta(); /// Asigna el numero de factura autonumerico
@@ -42,8 +38,6 @@ public:
     int getIdEntidad();
     bool leerDeDisco(int posicion);
     void listado_compras();
-//        int setIdProducto();
-//        int getIdProducto();
 
 };
 int crearIdXCompras();
