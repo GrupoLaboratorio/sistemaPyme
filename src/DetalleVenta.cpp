@@ -22,6 +22,7 @@ using namespace rlutil;
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
     Ventas dato;
+    //    Contable cont;
     int i= crearIdXFact()-2;
     dato.leerDeDisco(i);
     int continuar;
@@ -37,7 +38,7 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nCountinua comprando?. ";
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
-
+    //    cont.cargarMovimientos(1, getCodProducto(), dato.fechaVenta, getCantProducto());
         cin>> continuar;
     }while(continuar==1);
     imprimirFactura(getNroFactura());

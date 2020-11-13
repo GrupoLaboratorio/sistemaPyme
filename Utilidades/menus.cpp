@@ -375,8 +375,7 @@ void menuCompras(){
                 system("pause");
         break;
         case 4:
-//                detComp.setProveedor();
-//                detComp.setIdProveedor();
+                EntidadPiloto.buscarRazonSocial(2);
                 system("pause");
         break;
         case 5:
