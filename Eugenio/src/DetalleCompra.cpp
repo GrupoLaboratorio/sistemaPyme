@@ -11,6 +11,7 @@ using namespace std;
 #include "Productos.h"
 #include "Entidad.h"
 #include "Calculadora.h"
+#include "Contable.h"
 #include "../Utilidades/centrarTabla.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
@@ -25,6 +26,7 @@ using namespace rlutil;
 void DetalleCompra::cDetalleCompra(){
     setlocale(LC_CTYPE, "Spanish");
     Compras  datoCp;
+    Contable conta;
     int i= crearIdXCompras()-2;
     datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
@@ -35,6 +37,7 @@ void DetalleCompra::cDetalleCompra(){
         nroFactura= datoCp.getNroFactura();
         setIdProducto();
         grabarDetalleEnDisco();
+        conta.imputarCta(nroFactura, cantidad, 2, idProducto);
         system("cls");
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";

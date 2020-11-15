@@ -35,12 +35,12 @@ void DetalleVenta::cDetalleVenta(){
         setCodProducto();
         setPrecio();
         grabarDetalleEnDisco();
+        ctb.imputarCta(nroFactura, cantidad, 1, getCodProducto());
 
         system("cls");
         cout<<"\nCountinua comprando?. ";
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
-	ctb.imputarCta(idDetalle, cantidad, 1, getCodProducto());
     cin>> continuar;
     }while(continuar==1);
     imprimirFactura(getNroFactura());

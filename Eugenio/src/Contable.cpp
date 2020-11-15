@@ -31,19 +31,14 @@ using namespace rlutil;
     Fecha Contable::getFechaHasta(){}
 
     ///funciones
-    void Contable::imputarCta(  int _pos, int _cant,  int _tipoOp, int _idProd ){
+    void Contable::imputarCta(  int _nroFactura, int _cant,  int _tipoOp, int _idProd ){
             bool _deb;
             bool _hab;
             calculadora calc;
             Producto prod;
             prod.buscarProdxId(_idProd);
-
-            DetalleCompra deComp;
-            DetalleVenta deVtas;
-            deVtas.leerDeDiscoD(_pos-1);
-
              //-------**si es Ventas realizamos las imputaciones de vtas.**------
-            if(_tipoOp==1){
+            if(_tipoOp==1){///ESTO HAY Q SIMPLIFICARLO CON LOS BOOLEANOS.
 
                 //-----**seteo valores para usar desde cacluladora **------
                 ///Revisar si no conviene usar un destructors
@@ -62,16 +57,11 @@ using namespace rlutil;
                 //----------** imputación en Debe la salida de mercaderia **---------
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
-                    setNroFact(deVtas.getNroFactura());
-                    setNroCta(501);
+                    setNroFact(_nroFactura);
+                     setNroCta(405); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
                     setDebe(0.00);
                     setHaber(calc.getImponible());
                     setSaldo(getDebe()-getHaber());
-//                    cout<<" cta: "<<getNroCta();
-//                    cout<<" fac: "<<getNroFact();
-//                    cout<<" deb: "<<getDebe();
-//                    cout<<" hab: "<<getHaber();
-//                    cout<<" sal : "<<getSaldo()<<endl;
                         //------**grabamos el registro en disco**------
                             grabarEnDisco();
 
@@ -80,16 +70,12 @@ using namespace rlutil;
                 //----------** imputación en Debe el IVA debito fiscal **---------
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
-                    setNroFact(deVtas.getNroFactura());
+                    setNroFact(_nroFactura);
                     setNroCta(201);
                     setDebe(0.00);
                     setHaber(calc.getImpuesto());
                     setSaldo(getDebe()-getHaber());
-//                    cout<<" cta: "<<getNroCta();
-//                    cout<<" fac: "<<getNroFact();
-//                    cout<<" deb: "<<getDebe();
-//                    cout<<" hab: "<<getHaber();
-//                    cout<<" sal : "<<getSaldo()<<endl;
+
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
 
@@ -98,16 +84,12 @@ using namespace rlutil;
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
-                     setNroFact(deVtas.getNroFactura());
+                   setNroFact(_nroFactura);
                     setNroCta(101);
                     setDebe(calc.getImpuestoAplicado());
                     setHaber(0.00);
                     setSaldo(getDebe()-getHaber());
-//                    cout<<" cta: "<<getNroCta();
-//                    cout<<" fac: "<<getNroFact();
-//                    cout<<" deb: "<<getDebe();
-//                    cout<<" hab: "<<getHaber();
-//                    cout<<" sal : "<<getSaldo()<<endl;
+
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
 
@@ -115,7 +97,63 @@ using namespace rlutil;
 
             }
 //        listarMovimientos();
+
+
             if(_tipoOp==2){
+                 //-----**seteo valores para usar desde cacluladora **------
+                ///Revisar si no conviene usar un destructors
+                    calc.setExtraeIva(prod.getIva());///Valores a ingrear :10.5, 21
+                    calc.setImporteBruto(prod.getPrecioCosto());///Importe con iva incluido-
+                    calc.setImponible(_cant);/// Vende X cant de articulos y va el precio bruto
+                    calc.setDescuento(0);/// Descuento d euna venta por pago en efectivo
+                    calc.setDescuentoAplicado();///Aplica el descuento
+                    calc.setImpuesto(prod.getIva());///iva a calcular
+                    calc.setImpuestoAplicado();///aplica el impuesto
+
+
+
+                //-----**Fin del seteo de valores  **------
+
+                //----------** imputación en Debe la salida de mercaderia **---------
+                    ///setFechaDesde(deComp.getFecha()),
+                    setOperacion(_tipoOp);
+                    setNroFact(_nroFactura);
+                    setNroCta(102);
+                    setDebe(0.00);
+                    setHaber(calc.getImponible());
+                    setSaldo(getDebe()-getHaber());
+                        //------**grabamos el registro en disco**------
+                            grabarEnDisco();
+
+                //----------** Fin de imputación en Debe la salida de mercaderia **---------
+
+                //----------** imputación en Debe el IVA debito fiscal **---------
+                    ///setFechaDesde(deComp.getFecha()),
+                    setOperacion(_tipoOp);
+                    setNroFact(_nroFactura);
+                    setNroCta(202);
+                    setDebe(calc.getImpuesto());
+                    setHaber(0.00);
+                    setSaldo(getDebe()-getHaber());
+
+                    //------**grabamos el registro en disco**------
+                            grabarEnDisco();
+
+                //----------** Fin de imputación en Debe el IVA debito fiscal **---------
+
+                 //----------** Imputación en Haber la cuenta CAJA A+ **---------
+                    ///setFechaDesde(deComp.getFecha()),
+                    setOperacion(_tipoOp);
+                    setNroFact(_nroFactura);
+                    setNroCta(501); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
+                    setDebe(calc.getImpuestoAplicado());
+                    setHaber(0.00);
+                    setSaldo(getDebe()-getHaber());
+
+                    //------**grabamos el registro en disco**------
+                            grabarEnDisco();
+
+                //----------** Fin de Imputación  en Haber la cuenta CAJA A+**---------
 
             }
 
