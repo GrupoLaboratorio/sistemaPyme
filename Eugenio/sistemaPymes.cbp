@@ -34,6 +34,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Utilidades/backup.cpp" />
+		<Unit filename="Utilidades/backup.h" />
 		<Unit filename="Utilidades/centrarTabla.cpp" />
 		<Unit filename="Utilidades/centrarTabla.h" />
 		<Unit filename="Utilidades/menus.cpp" />

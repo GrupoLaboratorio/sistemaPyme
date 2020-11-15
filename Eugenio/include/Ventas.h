@@ -1,5 +1,6 @@
 #ifndef VENTAS_H
 #define VENTAS_H
+#define FILE_VENTAS "Archivos/Ventas.dat"
 #include "Fecha.h"
 #include "DetalleFactura.h"
 //#include "DetalleVenta.h"
@@ -12,13 +13,12 @@
 class Ventas
 {
 
-protected:
+public:
     int  idCliente;
     char tipoFactura;
     int  nroFactura;
     Fecha fechaVenta;
 public:
-    Entidad cliente;///preguntar a Angel
     Ventas();
     void cargarVtas();
     void setTipoFact();

@@ -1,18 +1,15 @@
 #ifndef DETALLEVENTA_H
 #define DETALLEVENTA_H
+#define FILE_DETALLE "Archivos/DetalleVentas.dat"
 #include "Ventas.h"
 
 class DetalleVenta{
     private:
-    int nroFactura, codProd, cantidad, idDetalle, idCliente;
+    int nroFactura, codProd, cantidad, idDetalle, idCliente, nroCta;
     float precio;
     char tipoFactura;
-    Ventas *dato; ///preguntar a Angel
-    calculadora calculo;
-    bool Estado;
-    public:
-    Producto prod; ///preguntar a Angel y lo mismo para Entidad
 
+    public:
     void cDetalleVenta();
     void setTipoFactura();
     char getTipoFactura();
@@ -25,17 +22,16 @@ class DetalleVenta{
     void setCodProducto();
     void setCantProducto();
     void setIdDetalle();
-    void setPrecio(){this->precio=prod.getPrecioCosto();}
+    void setPrecio(){Producto prod; this->precio=prod.getPrecioCosto();}
     int getIdDetalle(){return  idDetalle;}
     int getCodProducto(){return codProd;}
     int getCantProducto(){return cantidad;}
     float getPrecio(){return precio;}
     void mostrarDetalleVenta(int);
-   bool  ModificarVta();
    bool grabarDetalleEnDisco();
    bool leerDeDiscoD(int );
    void listado_detalle();
-void imprimirFactura();
+void imprimirFactura(int _n=0);
 };
 
 ///-----------------------------FUNCIONES GLOBALES------

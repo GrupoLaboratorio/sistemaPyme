@@ -1,6 +1,6 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
-
+#define FILE_PRODUCTOS "Archivos/Productos.dat"
 
 class Producto
 {
