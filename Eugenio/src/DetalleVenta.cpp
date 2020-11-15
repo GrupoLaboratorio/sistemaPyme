@@ -45,6 +45,7 @@ void DetalleVenta::cDetalleVenta(){
         cin>> continuar;
     }while(continuar==1);
     imprimirFactura(getNroFactura());
+    ctb.listarMovimientos();
     return;
 }
 void DetalleVenta::setCodProducto(){

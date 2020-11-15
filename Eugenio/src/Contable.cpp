@@ -1,36 +1,37 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
+#include <iomanip>
 using namespace std;
-
+#include "../Utilidades/centrarTabla.h"
+#include "../Utilidades/ui.h"
+#include "../Utilidades/rlutil.h"
 #include "Contable.h"
 #include "DetalleCompra.h"
 #include "DetalleVenta.h"
+using namespace rlutil;
+    ///setters
+    void Contable::setOperacion(int _tipo){ this-> operacion=_tipo;}
+    void Contable::setNroFact(int _nFac){ this->nroFact=_nFac;}
+    void Contable::setNroCta(int _nCta){ this->nroCta=_nCta;}
+    void Contable::setDebe(float _debe){ this->debe = _debe; }
+    void Contable::setHaber(float _haber){ this->haber= _haber;}
+    void Contable::setSaldo(float _saldo){ this->saldo= _saldo;}
+    void Contable::setFechaDesde(){}
+    void Contable::setFechaHasta(){}
 
-        ///setters
-        void Contable::setOperacion(int _tipo){ this-> operacion=_tipo;}
-        void Contable::setNroFact(int _nFac){ this->nroFact=_nFac;}
-        void Contable::setNroCta(int _nCta){ this->nroCta=_nCta;}
-        void Contable::setDebe(float _debe){ this->debe = _debe; }
-        void Contable::setHaber(float _haber){ this->haber= _haber;}
-        void Contable::setSaldo(float _saldo){ this->saldo= _saldo;}
-        void Contable::setFechaDesde(){}
-        void Contable::setFechaHasta(){}
+    ///getters
+    int  Contable::getOperacion(){}
+    int  Contable::getNroFact(){}
+    int  Contable::getNroCta(){}
+    float   Contable::getDebe(){return debe;}
+    float   Contable::getHaber(){return haber;}
+    float   Contable::getSaldo(){return saldo;}
+    Fecha Contable::getFechaDesde(){}
+    Fecha Contable::getFechaHasta(){}
 
-        ///getters
-        int  Contable::getOperacion(){}
-        int  Contable::getNroFact(){}
-        int  Contable::getNroCta(){}
-        float   Contable::getDebe(){return debe;}
-        float   Contable::getHaber(){return haber;}
-        float   Contable::getSaldo(){return saldo;}
-        Fecha Contable::getFechaDesde(){}
-        Fecha Contable::getFechaHasta(){}
-
-        ///funciones
-//        void Contable::imputarCta( int _pos, Fecha _fecha, int _cta, bool _deb, bool _hab, float _importe ){
-        void Contable::imputarCta(  int _pos, int _cant,  int _tipoOp, int _idProd ){
+    ///funciones
+    void Contable::imputarCta(  int _pos, int _cant,  int _tipoOp, int _idProd ){
             bool _deb;
             bool _hab;
             calculadora calc;
@@ -54,6 +55,8 @@ using namespace std;
                     calc.setImpuesto(prod.getIva());///iva a calcular
                     calc.setImpuestoAplicado();///aplica el impuesto
 
+
+
                 //-----**Fin del seteo de valores  **------
 
                 //----------** imputación en Debe la salida de mercaderia **---------
@@ -64,8 +67,13 @@ using namespace std;
                     setDebe(0.00);
                     setHaber(calc.getImponible());
                     setSaldo(getDebe()-getHaber());
+                    cout<<" cta: "<<getNroCta();
+                    cout<<" fac: "<<getNroFact();
+                    cout<<" deb: "<<getDebe();
+                    cout<<" hab: "<<getHaber();
+                    cout<<" sal : "<<getSaldo()<<endl;
                         //------**grabamos el registro en disco**------
-                            grabarEnDisco();
+//                            grabarEnDisco();
 
                 //----------** Fin de imputación en Debe la salida de mercaderia **---------
 
@@ -77,8 +85,13 @@ using namespace std;
                     setDebe(0.00);
                     setHaber(calc.getImpuesto());
                     setSaldo(getDebe()-getHaber());
+                    cout<<" cta: "<<getNroCta();
+                    cout<<" fac: "<<getNroFact();
+                    cout<<" deb: "<<getDebe();
+                    cout<<" hab: "<<getHaber();
+                    cout<<" sal : "<<getSaldo()<<endl;
                     //------**grabamos el registro en disco**------
-                            grabarEnDisco();
+//                            grabarEnDisco();
 
                 //----------** Fin de imputación en Debe el IVA debito fiscal **---------
 
@@ -90,8 +103,13 @@ using namespace std;
                     setDebe(calc.getImpuestoAplicado());
                     setHaber(0.00);
                     setSaldo(getDebe()-getHaber());
+                    cout<<" cta: "<<getNroCta();
+                    cout<<" fac: "<<getNroFact();
+                    cout<<" deb: "<<getDebe();
+                    cout<<" hab: "<<getHaber();
+                    cout<<" sal : "<<getSaldo()<<endl;
                     //------**grabamos el registro en disco**------
-                            grabarEnDisco();
+//                            grabarEnDisco();
 
                 //----------** Fin de Imputación  en Haber la cuenta CAJA A+**---------
 
@@ -102,7 +120,16 @@ using namespace std;
             }
 
         }///recibe parametros
-
+    bool Contable::leerDeDisco(int posicion){
+        bool leyo;
+        FILE *p;
+        p = fopen(FILE_DETALLE, "rb");
+        if (p == NULL){return false;}
+        fseek(p, posicion * sizeof(Contable), 0);
+        leyo = fread(this, sizeof(Contable), 1, p);
+        fclose(p);
+        return leyo;
+    }
     bool Contable::grabarEnDisco(){
 
         //    system("cls");
@@ -121,20 +148,47 @@ using namespace std;
             return false;
         }
    }///graba la imputacion linea por linea con "rb+"
+    void Contable::listarMovimientos(){
+        Contable mov;
+        int i = 0;
+        ///Inicio de cabecera
+         cls();
+        title("MAESTRO DE MOVIMIENTOS ",WHITE, RED);
+        cout<<endl;
+        setBackgroundColor(DARKGREY);
+        cout<<" "<<setw(15)<<centrar("Fecha", 15)<<"|";
+        cout<<" "<<setw(15)<<centrar("Operacion", 15)<<"|";
+        cout<<" "<<setw(10)<<centrar("Cuenta", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("#Documento", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Debe", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Haber", 10)<<"|";
+        cout<<" "<<setw(15)<<centrar("Saldo", 15)<<"|"<<endl;
+        setBackgroundColor(BLACK);
 
+        while (mov.leerDeDisco(i++)){
+        cout<<" "<<setw(15)<<centrar("11/11/2015", 15);
+        cout<<" "<<setw(15)<<mov.getOperacion();
+        cout<<" "<<setw(5)<<mov.getNroCta();
+        cout<<" "<<setw(5)<<mov.getNroFact();
+        cout<<" "<<setw(15)<<centrarfloat(mov.getDebe(), 15);
+        cout<<" "<<setw(15)<<centrarfloat(mov.getHaber(), 15);
+        cout<<" "<<setw(15)<<centrarfloat(mov.getSaldo(),15)<<endl;
+         }
+//        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
+        system("pause");
+    }
+    void Contable::listarLibroDiario(){
+        calculadora cal;
+        DetalleVenta  detVta;
+        int i=0;
+        while(detVta.leerDeDiscoD(i++)){
+                 setDebe(detVta.getPrecio());
+                 setHaber(0);
+                 setSaldo( getHaber() - getDebe());
+                cout<<"DEBE: "<<getDebe()<<endl;
+                cout<<"HABER: "<<getHaber()<<endl;
+                cout<<"SALDO: "<<getSaldo()<<endl;
+        }
 
-        void Contable::listarLibroDiario(){
-            calculadora cal;
-            DetalleVenta  detVta;
-            int i=0;
-            while(detVta.leerDeDiscoD(i++)){
-                     setDebe(detVta.getPrecio());
-                     setHaber(0);
-                     setSaldo( getHaber() - getDebe());
-                    cout<<"DEBE: "<<getDebe()<<endl;
-                    cout<<"HABER: "<<getHaber()<<endl;
-                    cout<<"SALDO: "<<getSaldo()<<endl;
-            }
-
-        }///lista todas las cuentas  de una fecha determinada
-        void Contable::listarLibroMayor(Fecha, Fecha, int){}
+    }///lista todas las cuentas  de una fecha determinada
+    void Contable::listarLibroMayor(Fecha, Fecha, int){}
