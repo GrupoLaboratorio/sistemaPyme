@@ -11,9 +11,9 @@ using namespace std;
 #include "DetalleVenta.h"
 using namespace rlutil;
     ///setters
-    void Contable::setOperacion(int _tipo){ this-> operacion=_tipo;}
-    void Contable::setNroFact(int _nFac){ this->nroFact=_nFac;}
-    void Contable::setNroCta(int _nCta){ this->nroCta=_nCta;}
+    void Contable::setOperacion(int _tipo){  this->operacion =_tipo;}
+    void Contable::setNroFact(int _nFac){ this->nroFact = _nFac;}
+    void Contable::setNroCta(int _nCta){ this->nroCta= _nCta;}
     void Contable::setDebe(float _debe){ this->debe = _debe; }
     void Contable::setHaber(float _haber){ this->haber= _haber;}
     void Contable::setSaldo(float _saldo){ this->saldo= _saldo;}
@@ -21,9 +21,9 @@ using namespace rlutil;
     void Contable::setFechaHasta(){}
 
     ///getters
-    int  Contable::getOperacion(){}
-    int  Contable::getNroFact(){}
-    int  Contable::getNroCta(){}
+    int  Contable::getOperacion(){  return operacion;}
+    int  Contable::getNroFact(){ return nroFact;}
+    int  Contable::getNroCta(){ return nroCta;}
     float   Contable::getDebe(){return debe;}
     float   Contable::getHaber(){return haber;}
     float   Contable::getSaldo(){return saldo;}
@@ -61,7 +61,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe la salida de mercaderia **---------
                     ///setFechaDesde(deVtas.getFecha()),
-                    setOperacion(1);
+                    setOperacion(_tipoOp);
                     setNroFact(deVtas.getNroFactura());
                     setNroCta(501);
                     setDebe(0.00);
@@ -79,7 +79,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe el IVA debito fiscal **---------
                     ///setFechaDesde(deVtas.getFecha()),
-                    setOperacion(1);
+                    setOperacion(_tipoOp);
                     setNroFact(deVtas.getNroFactura());
                     setNroCta(201);
                     setDebe(0.00);
@@ -97,8 +97,8 @@ using namespace rlutil;
 
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
                     ///setFechaDesde(deVtas.getFecha()),
-                    setOperacion(1);
-                    setNroFact(deVtas.getNroFactura());
+                    setOperacion(_tipoOp);
+                     setNroFact(deVtas.getNroFactura());
                     setNroCta(101);
                     setDebe(calc.getImpuestoAplicado());
                     setHaber(0.00);
@@ -114,7 +114,7 @@ using namespace rlutil;
                 //----------** Fin de Imputación  en Haber la cuenta CAJA A+**---------
 
             }
-
+//        listarMovimientos();
             if(_tipoOp==2){
 
             }
