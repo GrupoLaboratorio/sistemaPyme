@@ -67,13 +67,13 @@ using namespace rlutil;
                     setDebe(0.00);
                     setHaber(calc.getImponible());
                     setSaldo(getDebe()-getHaber());
-                    cout<<" cta: "<<getNroCta();
-                    cout<<" fac: "<<getNroFact();
-                    cout<<" deb: "<<getDebe();
-                    cout<<" hab: "<<getHaber();
-                    cout<<" sal : "<<getSaldo()<<endl;
+//                    cout<<" cta: "<<getNroCta();
+//                    cout<<" fac: "<<getNroFact();
+//                    cout<<" deb: "<<getDebe();
+//                    cout<<" hab: "<<getHaber();
+//                    cout<<" sal : "<<getSaldo()<<endl;
                         //------**grabamos el registro en disco**------
-//                            grabarEnDisco();
+                            grabarEnDisco();
 
                 //----------** Fin de imputación en Debe la salida de mercaderia **---------
 
@@ -85,13 +85,13 @@ using namespace rlutil;
                     setDebe(0.00);
                     setHaber(calc.getImpuesto());
                     setSaldo(getDebe()-getHaber());
-                    cout<<" cta: "<<getNroCta();
-                    cout<<" fac: "<<getNroFact();
-                    cout<<" deb: "<<getDebe();
-                    cout<<" hab: "<<getHaber();
-                    cout<<" sal : "<<getSaldo()<<endl;
+//                    cout<<" cta: "<<getNroCta();
+//                    cout<<" fac: "<<getNroFact();
+//                    cout<<" deb: "<<getDebe();
+//                    cout<<" hab: "<<getHaber();
+//                    cout<<" sal : "<<getSaldo()<<endl;
                     //------**grabamos el registro en disco**------
-//                            grabarEnDisco();
+                            grabarEnDisco();
 
                 //----------** Fin de imputación en Debe el IVA debito fiscal **---------
 
@@ -103,13 +103,13 @@ using namespace rlutil;
                     setDebe(calc.getImpuestoAplicado());
                     setHaber(0.00);
                     setSaldo(getDebe()-getHaber());
-                    cout<<" cta: "<<getNroCta();
-                    cout<<" fac: "<<getNroFact();
-                    cout<<" deb: "<<getDebe();
-                    cout<<" hab: "<<getHaber();
-                    cout<<" sal : "<<getSaldo()<<endl;
+//                    cout<<" cta: "<<getNroCta();
+//                    cout<<" fac: "<<getNroFact();
+//                    cout<<" deb: "<<getDebe();
+//                    cout<<" hab: "<<getHaber();
+//                    cout<<" sal : "<<getSaldo()<<endl;
                     //------**grabamos el registro en disco**------
-//                            grabarEnDisco();
+                            grabarEnDisco();
 
                 //----------** Fin de Imputación  en Haber la cuenta CAJA A+**---------
 
@@ -123,7 +123,7 @@ using namespace rlutil;
     bool Contable::leerDeDisco(int posicion){
         bool leyo;
         FILE *p;
-        p = fopen(FILE_DETALLE, "rb");
+        p = fopen(FILE_MOVIMIENTOS, "rb");
         if (p == NULL){return false;}
         fseek(p, posicion * sizeof(Contable), 0);
         leyo = fread(this, sizeof(Contable), 1, p);
@@ -131,8 +131,6 @@ using namespace rlutil;
         return leyo;
     }
     bool Contable::grabarEnDisco(){
-
-        //    system("cls");
         FILE *p;
         bool chequeo;
         p = fopen(FILE_MOVIMIENTOS,"ab");
@@ -151,8 +149,7 @@ using namespace rlutil;
     void Contable::listarMovimientos(){
         Contable mov;
         int i = 0;
-        ///Inicio de cabecera
-         cls();
+        cls();
         title("MAESTRO DE MOVIMIENTOS ",WHITE, RED);
         cout<<endl;
         setBackgroundColor(DARKGREY);
@@ -166,13 +163,14 @@ using namespace rlutil;
         setBackgroundColor(BLACK);
 
         while (mov.leerDeDisco(i++)){
-        cout<<" "<<setw(15)<<centrar("11/11/2015", 15);
-        cout<<" "<<setw(15)<<mov.getOperacion();
-        cout<<" "<<setw(5)<<mov.getNroCta();
-        cout<<" "<<setw(5)<<mov.getNroFact();
-        cout<<" "<<setw(15)<<centrarfloat(mov.getDebe(), 15);
-        cout<<" "<<setw(15)<<centrarfloat(mov.getHaber(), 15);
-        cout<<" "<<setw(15)<<centrarfloat(mov.getSaldo(),15)<<endl;
+        cout<<" "<<setw(16)<<centrar("11/11/2015", 16);
+        cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
+        cout<<right;
+        cout<<" "<<setw(11)<<mov.getDebe();
+        cout<<" "<<setw(11)<<mov.getHaber();
+        cout<<" "<<setw(16)<<mov.getSaldo()<<endl;
          }
 //        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
         system("pause");

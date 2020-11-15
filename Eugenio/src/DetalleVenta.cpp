@@ -41,11 +41,9 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
 	ctb.imputarCta(idDetalle, cantidad, 1, getCodProducto());
-    //    cont.cargarMovimientos(1, getCodProducto(), dato.fechaVenta, getCantProducto());
-        cin>> continuar;
+    cin>> continuar;
     }while(continuar==1);
     imprimirFactura(getNroFactura());
-    ctb.listarMovimientos();
     return;
 }
 void DetalleVenta::setCodProducto(){

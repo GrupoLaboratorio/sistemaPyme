@@ -15,6 +15,7 @@ using namespace rlutil;
 #include "../Utilidades/menus.h"
 #include "../Include/Entidad.h"
 #include "../Include/Ventas.h"
+#include "../Include/Contable.h"
 #include "../Include/Compras.h"
 #include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
@@ -60,7 +61,7 @@ void menuLogin(){
 ///---------------------------------------------- MENU MAESTRO
 
 void menuMaestro(){
-
+              Contable ctbl;
         const int POSMENUX = 0;
         const int POSMENUY = 0;
         const int COLOR_PANTALLA = BLACK;
@@ -144,25 +145,27 @@ void menuMaestro(){
                 menuEntidades();
         break;
         case 5:
-                calculadora calc;
-                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
-                calc.setImporteBruto(85.71);///Importe con iva incluido-
-                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
-                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
-                calc.setDescuentoAplicado();///Aplica el descuento
-                //calc.setRecargo(3);///recargo
-                //calc.setRecargoAplicado();///aplica el impuesto
-                calc.setImpuesto(21);///iva a calcular
-                calc.setImpuestoAplicado();///aplica el impuesto
 
-
-                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
-                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
-                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
-                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
-                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
-                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
-                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
+            ctbl.listarMovimientos();
+//                calculadora calc;
+//                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
+//                calc.setImporteBruto(85.71);///Importe con iva incluido-
+//                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
+//                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
+//                calc.setDescuentoAplicado();///Aplica el descuento
+//                //calc.setRecargo(3);///recargo
+//                //calc.setRecargoAplicado();///aplica el impuesto
+//                calc.setImpuesto(21);///iva a calcular
+//                calc.setImpuestoAplicado();///aplica el impuesto
+//
+//
+//                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
+//                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
+//                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
+//                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
+//                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
+//                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
+//                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
                 anykey();
         break;
         case 6:
