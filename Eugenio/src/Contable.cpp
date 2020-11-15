@@ -120,7 +120,7 @@ using namespace rlutil;
                     setNroFact(_nroFactura);
                     setNroCta(102);
                     setDebe(0.00);
-                    setHaber(calc.getImponible());
+                    setHaber(calc.getImpuestoAplicado());///DEBITAMOS CAJA POR LA COMPRA
                     setSaldo(getDebe()-getHaber());
                         //------**grabamos el registro en disco**------
                             grabarEnDisco();
@@ -131,8 +131,8 @@ using namespace rlutil;
                     ///setFechaDesde(deComp.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
-                    setNroCta(202);
-                    setDebe(calc.getImpuesto());
+                    setNroCta(204);
+                    setDebe(calc.getImpuesto());///CARGAMOS IVA CREDITO FISCAL
                     setHaber(0.00);
                     setSaldo(getDebe()-getHaber());
 
@@ -145,8 +145,8 @@ using namespace rlutil;
                     ///setFechaDesde(deComp.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
-                    setNroCta(501); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
-                    setDebe(calc.getImpuestoAplicado());
+                    setNroCta(501); ///IMPUTAMOS A CTA DE GASTOS POR COMPRAS DE MERCA
+                    setDebe(calc.getImponible());
                     setHaber(0.00);
                     setSaldo(getDebe()-getHaber());
 
@@ -210,7 +210,7 @@ using namespace rlutil;
         cout<<" "<<setw(11)<<mov.getHaber();
         cout<<" "<<setw(16)<<mov.getSaldo()<<endl;
          }
-//        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
+        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
         system("pause");
     }
     void Contable::listarLibroDiario(){

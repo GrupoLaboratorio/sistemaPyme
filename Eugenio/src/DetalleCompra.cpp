@@ -37,7 +37,7 @@ void DetalleCompra::cDetalleCompra(){
         nroFactura= datoCp.getNroFactura();
         setIdProducto();
         grabarDetalleEnDisco();
-        conta.imputarCta(nroFactura, cantidad, 2, idProducto);
+        conta.imputarCta(datoCp.getNroFactura(), cantidad, 2, idProducto);
         system("cls");
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";
