@@ -17,11 +17,13 @@ using namespace std;
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
 #include "../Utilidades/menus.h"
+#include "Contable.h"
 using namespace rlutil;
 
 void DetalleVenta::cDetalleVenta(){
  setlocale(LC_CTYPE, "Spanish");
     Ventas dato;
+        Contable ctb;
     //    Contable cont;
     int i= crearIdXFact()-2;
     dato.leerDeDisco(i);
@@ -38,6 +40,7 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nCountinua comprando?. ";
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
+	ctb.imputarCta(idDetalle, cantidad, 1, getCodProducto());
     //    cont.cargarMovimientos(1, getCodProducto(), dato.fechaVenta, getCantProducto());
         cin>> continuar;
     }while(continuar==1);
@@ -48,10 +51,14 @@ void DetalleVenta::setCodProducto(){
     Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>codProd;
-    prod.buscarProdxId(codProd);
-    cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
-    setCantProducto();
-    prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
+    while(codProd<=0){
+         cout<<"ERROR en el idProducto, Ingrese un codigo de producto valido : ";
+        cin>>codProd;
+    }
+        prod.buscarProdxId(codProd);
+        cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
+        setCantProducto();
+        prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
 void DetalleVenta::setCantProducto(){
     Producto prod;
