@@ -11,6 +11,7 @@ using namespace std;
 #include "Productos.h"
 #include "Entidad.h"
 #include "Calculadora.h"
+#include "Contable.h"
 #include "../Utilidades/centrarTabla.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
@@ -23,8 +24,9 @@ using namespace std;
 using namespace rlutil;
 
 void DetalleCompra::cDetalleCompra(){
-setlocale(LC_CTYPE, "Spanish");
-Compras  datoCp;
+    setlocale(LC_CTYPE, "Spanish");
+    Compras  datoCp;
+    Contable conta;
     int i= crearIdXCompras()-2;
     datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
@@ -34,9 +36,8 @@ Compras  datoCp;
         ptoVta= datoCp.getPuntoVta();
         nroFactura= datoCp.getNroFactura();
         setIdProducto();
-        setPrecio();
         grabarDetalleEnDisco();
-
+        conta.imputarCta(datoCp.getNroFactura(), cantidad, 2, idProducto);
         system("cls");
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";
@@ -44,35 +45,30 @@ Compras  datoCp;
 
         cin>> continuar;
     }while(continuar==1);
-    //DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
+    ///DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
     return;
 }
 void DetalleCompra::setIdProducto(){
     Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
-    if (prod.buscarProdxId(idProducto-1) == -2){
-            prod.cargarProducto();
-            prod.mostrarProducto();
-            idProducto=prod.getId();
+    if (prod.buscarProdxId(idProducto) == -2){
+        prod.cargarProducto();
+        prod.mostrarProducto();
+        idProducto=prod.getId();
+        cantidad=prod.getStock();
+        prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
+    }else{
+        if(prod.buscarProdxId(idProducto)>0){
+            cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
+            prod.setPrecioCosto();
+            setCantidad();
+            prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
+        }else{
+            return;
+        }
     }
-    cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
-
-    prod.setPrecioCosto();
-    setCantidad();
-    prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
 }
-////void DetalleCompra::setProveedor(){}
-////void DetalleCompra::setIdProveedor(){
-////    Entidad proveedor;
-////   proveedor.buscarRazonSocial(2);
-////    int idPrv=proveedor.getIdEntidad();}
-//void DetalleCompra::setIdCuenta(){
-//    int a;
-//    cout<<"Cuenta Contable:"<<endl;
-//    cin>>a;
-//    this->idCuenta=a;
-//}
 void DetalleCompra::setPrecio(){
     cout<<"Precio :"<<endl;
     cin>>this->preBruto;
@@ -96,7 +92,6 @@ int DetalleCompra::crearIdDetalle(){
     return cant+1;
 }
 bool DetalleCompra::grabarDetalleEnDisco(){
-
     system("cls");
     FILE *p;
     bool chequeo;
@@ -105,7 +100,6 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         cout << "Error al abrir el archivo \n";
         return false;
     }
-
     chequeo = fwrite(this, sizeof(DetalleCompra),1,p);
     if(chequeo==1)  {
         fclose(p);
@@ -117,4 +111,3 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         return false;
     }
 }
-//Entidad DetalleCompra::getProveedor(){}

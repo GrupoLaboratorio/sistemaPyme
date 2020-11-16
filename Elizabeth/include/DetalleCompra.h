@@ -23,22 +23,16 @@ public:
     void setCantidad();
     void setImpuesto();
     void setIdProducto();
-//    void setProveedor();
-//    void setIdProveedor();
 
 ///gettes
     float getPrecio();
     float getImpuesto();
     int getcantProd();
-//    int getIdProducto();
-//    Entidad getProveedor();
 
 ///Disco
     int crearIdDetalle();
     void cDetalleCompra();
     bool grabarDetalleEnDisco();
-
-///memoria
 
 };
 #endif // DETALLECOMPRA_H

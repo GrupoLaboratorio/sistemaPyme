@@ -41,7 +41,7 @@ void Compras::cargarCompras(){
             DetalleCompra  det;
             det.cDetalleCompra();
         }else{
-            cout<<"Error en la carga!!!. Volver a intentar ";
+            cout<<"Error en la carga. Volver a intentar ";
             return;
         }
     }
@@ -132,7 +132,9 @@ void Compras::listado_compras(){
 int Compras::getPuntoVta(){return puntoVta;}
 int Compras::getNroFactura(){return nroFactura;}
 char Compras::getTipoFact(){return tipoFactura;}
+
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
+
 int crearIdXCompras(){
     int bytes, cant;
     FILE *p = fopen(FILE_COMPRAS, "rb");

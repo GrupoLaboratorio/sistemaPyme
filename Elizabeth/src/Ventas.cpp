@@ -45,21 +45,21 @@ if(ok==1){
         DetalleVenta  det;
         det.cDetalleVenta();
     }    else{
-        cout<<"Fallo la grabacion, volver a intentar ";
+        cout<<" Venta no realizada ";
         system("pause");
         return;
     }
 }
 return;
 }
-void Ventas::setNroFact(){
-    this->nroFactura=crearIdXFact();
-}
 void Ventas::setIdCliente(){
     Entidad cliente;
     cliente.buscarRazonSocial(1);
     idCliente=cliente.getIdEntidad();
 }
+//void setNroFact(){
+// =crearIdXFact();
+//}
 void Ventas::setTipoFact(){
     char tipo;
     cout<<"FACTURA A o B? : ";
@@ -72,10 +72,9 @@ void Ventas::setTipoFact(){
         cout<<"Tipo de factura : ";
         cin>>tipo;
     }
-    if(tipo=='A'){
+    if(tipo =='A'){
         setIdCliente();
     }
-
     this->tipoFactura=tipo;
     int crearIdXFact();
 

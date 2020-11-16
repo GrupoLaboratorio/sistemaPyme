@@ -1,14 +1,13 @@
 #ifndef COMPRAS_H
 #define COMPRAS_H
-#define FILE_COMPRAS "Compras.dat"
+#define FILE_COMPRAS "Archivos/Compras.dat"
 #include "Fecha.h"
 #include "DetalleCompra.h"
 #include "Calculadora.h"
 #include "Producto.h"
 #include "Entidad.h"
 
-class Compras
-{
+class Compras{
 
 private:
     int idCompras;///Debe ser autoincremental
@@ -39,8 +38,6 @@ public:
     int getIdEntidad();
     bool leerDeDisco(int posicion);
     void listado_compras();
-//        int setIdProducto();
-//        int getIdProducto();
 
 };
 int crearIdXCompras();
