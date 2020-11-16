@@ -10,24 +10,24 @@
 class Compras{
 
 private:
-    int idCompras;///Debe ser autoincremental
-  char tipoFactura; ///Facturas de dos tipos (A: RI, C: monotributistas)
-    int puntoVta;       ///Representa el numero de venta de la sucursal del proveedor( mayor a 0)
-    int nroFactura;  ///Numero de factura autonumerico (-00000000)
+    int idCompras;
+  char tipoFactura;
+    int puntoVta;
+    int nroFactura;
     int idEntidad;
     Fecha fechaFactura;
 
 public:
     Compras();
-    void cargarCompras();  /// Carga los datos de las ventas
-    void setTipoFact(); /// Asigna el tipo de factura
+    void cargarCompras();
+    void setTipoFact();
     void setPuntoVta();
-    void setIdCuenta(); /// Asigna el numero de factura autonumerico
-    void setNroFactura(); /// Asigna el numero de factura autonumerico
-    void setIdProveedor(); /// Asigna el Id del proveedor
+    void setIdCuenta();
+    void setNroFactura();
+    void setIdProveedor();
     void setFechaFactura();
-    char getTipoFact();  /// Muestra el tipo de factura
-    int getNroFactura();  /// Muestra el numero de la factura
+    char getTipoFact();
+    int getNroFactura();
     int getPuntoVta();
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 

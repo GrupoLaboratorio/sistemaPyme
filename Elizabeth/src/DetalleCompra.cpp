@@ -31,10 +31,14 @@ void DetalleCompra::cDetalleCompra(){
     datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
     do{
-        this->idDetalle= crearIdDetalle();
-        this->tipoFactura= datoCp.getTipoFact();
-        ptoVta= datoCp.getPuntoVta();
-        nroFactura= datoCp.getNroFactura();
+        setIdDetalle();
+        setTipoFactura(datoCp.getTipoFact());
+        setPtoVta(datoCp.getPuntoVta());
+        setNroFactura(datoCp.getNroFactura());
+//        this->idDetalle= crearIdDetalle();
+//        this->tipoFactura= datoCp.getTipoFact();
+//        ptoVta= datoCp.getPuntoVta();
+//        nroFactura= datoCp.getNroFactura();
         setIdProducto();
         grabarDetalleEnDisco();
         conta.imputarCta(datoCp.getNroFactura(), cantidad, 2, idProducto);
@@ -42,8 +46,16 @@ void DetalleCompra::cDetalleCompra(){
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
-
         cin>> continuar;
+         while(!(continuar == 0 || continuar == 1)){
+        cout<<" Opcion incorrrecta : ";
+        system("pause");
+        system("cls");
+         cout<<"\nCountinua cargando?. "<<endl;
+        cout<<"\nSi: 1";
+        cout<<"\nNo : 0 "<<endl;
+        cin>> continuar;
+    }
     }while(continuar==1);
     ///DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
     return;
@@ -52,6 +64,13 @@ void DetalleCompra::setIdProducto(){
     Producto prod;
     cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
+     while(idProducto < 1){
+        cout<<"Codigo de producto incorrrecta : ";
+        system("pause");
+        system("cls");
+         cout<<"\nIngrese codigo producto : "<<endl;
+        cin>> idProducto;
+    }
     if (prod.buscarProdxId(idProducto) == -2){
         prod.cargarProducto();
         prod.mostrarProducto();
@@ -70,16 +89,43 @@ void DetalleCompra::setIdProducto(){
     }
 }
 void DetalleCompra::setPrecio(){
+    int precio;
     cout<<"Precio :"<<endl;
-    cin>>this->preBruto;
+    cin>>precio;
+    while(precio<1){
+    cout<<"Valor ingresado no valido : ";
+        system("pause");
+        system("cls");
+         cout<<"\nIngrese precio : "<<endl;
+        cin>> precio;
+    }
+    this->preBruto=precio;
 }
 void DetalleCompra::setCantidad(){
+    int cant;
     cout<<"Ingrese la cantidad: "<<endl;
-    cin>>this->cantidad;
+    cin>>cant;
+     while(cant<1){
+    cout<<"Valor ingresado no valido : ";
+        system("pause");
+        system("cls");
+         cout<<"\nIngrese cantidad : "<<endl;
+        cin>> cant;
+    }
+    this->cantidad=cant;
 }
 void DetalleCompra::setImpuesto(){
+    float imp;
     cout<<"Porcentaje de Iva"<<endl;
-    cin>>this->impuesto;
+    cin>>imp;
+    while(imp != 10.5 || imp != 21) {
+    cout<<"Valor ingresado no valido : ";
+        system("pause");
+        system("cls");
+         cout<<"\nIngrese impuesto : "<<endl;
+        cin>> imp;
+    }
+    this->impuesto=imp;
 }
 int DetalleCompra::crearIdDetalle(){
     int bytes, cant;

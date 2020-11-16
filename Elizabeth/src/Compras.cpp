@@ -37,12 +37,12 @@ void Compras::cargarCompras(){
     if(ok==1){
         bool grabo=grabarEnDisco();
         if(grabo==true )    {
-                cout<<"\nSe cargo la cabecera."<<endl;
+                cout<<"\n Cabecera de compra cargada."<<endl;
             DetalleCompra  det;
             det.cDetalleCompra();
-        }else{
-            cout<<"Error en la carga. Volver a intentar ";
-            return;
+        }else{if(ok==0){
+            cout<<"No se cargo la compra ";
+            return;  }
         }
     }
     return;
@@ -72,13 +72,29 @@ int Compras::getIdEntidad(){
     return this->idEntidad;
 }
 void Compras::setPuntoVta(){
+     int codigo;
      cout<<"\npunto de Vta: ";
-    cin>>this->puntoVta;
+    cin>>codigo;
+     while(codigo<1) {
+    cout<<"\nCodigo no valido";
+    system("pause");
+    system("cls");
+    cout<<"\npunto de Vta: ";
+    cin>>codigo;
+}
+    this->puntoVta=codigo;
 }
 void Compras::setNroFactura(){
     int a;
     cout<<"Numero de Factura: ";
     cin>>a;
+     while(a<0) {
+    cout<<"\nNumero no valido";
+    system("pause");
+    system("cls");
+    cout<<"\nNumero de Factura: ";
+    cin>>a;
+}
     this->nroFactura=a;
 }
 bool Compras::grabarEnDisco(){
@@ -120,7 +136,7 @@ void Compras::listado_compras(){
 
         while (aux.leerDeDisco(i++)){
             cout<<"|"<<setw(4)<<centrarInt(aux.idCompras, 4);
-            cout<<" "<<setw(7)<<aux.tipoFactura;
+            cout<<" "<<setw(7)<<aux.getTipoFact();
             cout<<" "<<setw(2)<<aux.fechaFactura.getDia()<<setw(1)<<"/";
             cout<<setw(2)<<aux.fechaFactura.getMes()<<setw(1)<<"/";
             cout<<setw(4)<<aux.fechaFactura.getAnio()<<setw(2)<<" ";

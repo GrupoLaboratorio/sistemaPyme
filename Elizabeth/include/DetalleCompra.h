@@ -19,6 +19,10 @@ private:
 
 public:
 ///setters
+    void setIdDetalle(){ this->idDetalle= crearIdDetalle();}
+    void setTipoFactura(char t){  this->tipoFactura= t;}
+    void setPtoVta(int n){this->ptoVta=n;}
+    void setNroFactura(int n){this->nroFactura=n;}
     void setPrecio();
     void setCantidad();
     void setImpuesto();
