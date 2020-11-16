@@ -33,15 +33,12 @@ void DetalleVenta::cDetalleVenta(){
         setNroFactura(dato.getNroFact());
         setCodProducto();
         setPrecio();
-        grabarDetalleEnDisco();
-        ctb.imputarCta(getNroFactura(), getCantProducto(), 1, getCodProducto());
-
         system("cls");
         cout<<"\nCountinua comprando?. "<<endl;
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
     cin>> continuar;
-    while(continuar != 0 || continuar != 1){
+    while(!(continuar == 0 || continuar == 1)){
         cout<<" Opcion incorrrecta : ";
         system("pause");
         system("cls");
@@ -51,6 +48,8 @@ void DetalleVenta::cDetalleVenta(){
         cin>> continuar;
     }
     }while(continuar==1);
+        grabarDetalleEnDisco();
+        ctb.imputarCta(getNroFactura(), getCantProducto(), 1, getCodProducto());
     imprimirFactura(getNroFactura());
     return;
 }

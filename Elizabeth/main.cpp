@@ -15,11 +15,19 @@ using namespace std;
 #include "Include/Ventas.h"
 #include "DetalleFactura.h"
 #include "Include/Usuario.h"
+#include <vector>
 
 
 int main(){
+     vector <DetalleVenta> vect;
+     for (int i=0; i<100;i++) {
+       vect.push_back(i+10);
+     }
+     for (int i=0; i<vect.size();i++) {
+        cout<<vect.at(i)<<endl;
+     }
 
-    menuLogin();
-//     menuMaestro();
+    //menuLogin();
+
     return 0;
 }
