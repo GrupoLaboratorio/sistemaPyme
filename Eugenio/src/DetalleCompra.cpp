@@ -34,10 +34,10 @@ void DetalleCompra::cDetalleCompra(){
         this->idDetalle= crearIdDetalle();
         this->tipoFactura= datoCp.getTipoFact();
         ptoVta= datoCp.getPuntoVta();
-        nroFactura= datoCp.getNroFactura();
+        this->nroFactura= datoCp.getNroFactura();
         setIdProducto();
         grabarDetalleEnDisco();
-        conta.imputarCta(datoCp.getNroFactura(), cantidad, 2, idProducto);
+        conta.imputarCta(nroFactura, cantidad, 2, idProducto);
         system("cls");
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";
@@ -110,4 +110,38 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         system("pause");
         return false;
     }
+}
+void DetalleCompra::listado_detalle(){
+    DetalleCompra aux;
+    int i = 0;
+    ///Inicio de cabecera
+    title("DETALLE DE FACTURAS",WHITE, RED);
+    cout<<endl;
+    setBackgroundColor(DARKGREY);
+    cout<<" "<<setw(15)<<centrar("Id", 15)<<"|";
+    cout<<" "<<setw(15)<<centrar("# Fact", 15)<<"|";
+    cout<<" "<<setw(38)<<centrar("Tipo de Factura", 38)<<"|"<<endl;
+    setBackgroundColor(BLACK);
+
+    while (aux.leerDeDiscoD(i++)){
+    cout<<" "<<setw(15)<<centrarInt(aux.idDetalle, 15);
+    cout<<" "<<setw(15)<<centrarInt(aux.ptoVta, 15);
+    cout<<" "<<setw(21)<<aux.idProducto<<endl;
+     }
+    cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+    system("pause");
+}
+bool DetalleCompra::leerDeDiscoD(int posicion){
+    bool leyo;
+    FILE *p;
+    p = fopen(FILE_DET_COMPRAS, "rb");
+    if (p == NULL)
+    {
+
+        return false;
+    }
+    fseek(p, posicion * sizeof(DetalleCompra), 0);
+    leyo = fread(this, sizeof(DetalleCompra), 1, p);
+    fclose(p);
+    return leyo;
 }

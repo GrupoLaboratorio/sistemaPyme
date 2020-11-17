@@ -18,12 +18,14 @@ using namespace std;
 #include "../Utilidades/ui.h"
 #include "../Utilidades/menus.h"
 #include "Entidad.h"
-
-Compras::Compras(){
-    this->idCompras=crearIdXCompras();
-}
+//
+//Compras::Compras(){
+//
+//}
 void Compras::cargarCompras(){
-    Compras();
+    this->idCompras=crearIdXCompras();
+//    Compras();
+//    ~Compras();
     setlocale(LC_CTYPE, "Spanish");
     setTipoFact();
     setPuntoVta();
@@ -114,6 +116,7 @@ void Compras::listado_compras(){
         cout<<"|"<<setw(4)<<centrar("ID", 4);
         cout<<"|"<<setw(7)<<centrar("TIPO", 7);
         cout<<"|"<<setw(12)<<centrar("FECHA", 12);
+        cout<<"|"<<setw(12)<<centrar("#FAC", 12);
         cout<<"|"<<setw(22)<<centrar("PROVEEDOR ", 22)<<"|"<<endl;
         cout<<"|"<<setw(105)<<setfill('_')<<"|"<<endl;
         cout<<" "<<setw(105)<<setfill(' ')<<" "<<endl;
@@ -124,6 +127,7 @@ void Compras::listado_compras(){
             cout<<" "<<setw(2)<<aux.fechaFactura.getDia()<<setw(1)<<"/";
             cout<<setw(2)<<aux.fechaFactura.getMes()<<setw(1)<<"/";
             cout<<setw(4)<<aux.fechaFactura.getAnio()<<setw(2)<<" ";
+            cout<<setw(12)<<aux.getNroFactura()<<setw(12)<<" ";
             cout<<" "<<setw(22)<<centrarInt(aux.getIdEntidad(), 22)<<endl;
         }
             cout<<setfill(' ')<<endl;
@@ -142,6 +146,6 @@ int crearIdXCompras(){
     fseek(p, 0, SEEK_END);
     bytes = ftell(p);
     fclose(p);
-    cant = bytes / sizeof(Ventas);
+    cant = bytes / sizeof(Compras);
     return cant+1;
 }

@@ -18,7 +18,8 @@ private:
     Fecha fechaFactura;
 
 public:
-    Compras();
+//    Compras();
+//    ~Compras();
     void cargarCompras();  /// Carga los datos de las ventas
     void setTipoFact(); /// Asigna el tipo de factura
     void setPuntoVta();

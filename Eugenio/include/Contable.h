@@ -8,7 +8,7 @@ class Contable
 {
     private:
         int operacion, nroCta, nroFact;
-        float debe, haber, saldo;
+        float debe, haber, saldo, saldoAnterior;
         Fecha fOpe, fDesde, fHasta;
     public:
 
@@ -19,6 +19,7 @@ class Contable
         void  setDebe(float);
         void  setHaber(float);
         void  setSaldo(float);
+        void  setSaldoAnterior(float);
         void setFechaOp();
         void setFechaDesde();
         void setFechaHasta();
@@ -30,6 +31,7 @@ class Contable
         float  getDebe();
         float  getHaber();
         float  getSaldo();
+        float  getSaldoAnterior();
         Fecha getFechaOp();
         Fecha getFechaDesde();
         Fecha getFechaHasta();
