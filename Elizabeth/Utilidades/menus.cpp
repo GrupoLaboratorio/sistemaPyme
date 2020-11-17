@@ -11,28 +11,29 @@ using namespace std;
 #include "ui.h"
 #include "rlutil.h"
 using namespace rlutil;
-#include "menus.h"
-#include "Entidad.h"
-#include "Ventas.h"
-#include "Compras.h"
-#include "DetalleVenta.h"
-#include "DetalleFactura.h"
-#include "DetalleCompra.h"
-#include "Producto.h"
-#include "Productos.h"
-#include "Usuario.h"
+#include "../Utilidades/Backup.h"
+#include "../Utilidades/menus.h"
+#include "../Include/Entidad.h"
+#include "../Include/Ventas.h"
+#include "../Include/Contable.h"
+#include "../Include/Compras.h"
+#include "../Include/DetalleVenta.h"
+#include "../Include/DetalleFactura.h"
+#include "../Include/DetalleCompra.h"
+#include "../Include/Producto.h"
+#include "../Include/Productos.h"
+#include "../Include/Usuario.h"
 
 
 ///---------------------------------------------- MENU LOGIN
 
 void menuLogin(){
-
+    setlocale(LC_ALL, "spanish");
 	int attempts = 3, chequeo=0;
 
     while(attempts != 0){
 		title("LOGIN", WHITE, RED);
 		cout << endl << endl;
-
         chequeo = login();
 
         if(chequeo == 1 || chequeo == 2){
@@ -41,11 +42,15 @@ void menuLogin(){
         attempts--;
 		}
 		system("cls");
+
     }
+
     if(chequeo == 1){
-    menuPrincipal();
+        menuPrincipal();
+        return;
     }else if(chequeo == 2){
-    menuMaestro();
+        menuMaestro();
+        return;
     }else{
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
         return;
@@ -56,7 +61,7 @@ void menuLogin(){
 ///---------------------------------------------- MENU MAESTRO
 
 void menuMaestro(){
-
+              Contable ctbl;
         const int POSMENUX = 0;
         const int POSMENUY = 0;
         const int COLOR_PANTALLA = BLACK;
@@ -75,10 +80,7 @@ void menuMaestro(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION - ADMINISTRADOR", WHITE, CYAN);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "COMPRAS";
@@ -143,35 +145,35 @@ void menuMaestro(){
                 menuEntidades();
         break;
         case 5:
-                calculadora calc;
-                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
-                calc.setImporteBruto(85.71);///Importe con iva incluido-
-                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
-                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
-                calc.setDescuentoAplicado();///Aplica el descuento
-                //calc.setRecargo(3);///recargo
-                //calc.setRecargoAplicado();///aplica el impuesto
-                calc.setImpuesto(21);///iva a calcular
-                calc.setImpuestoAplicado();///aplica el impuesto
 
-
-                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
-                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
-                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
-                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
-                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
-                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
-                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
+            ctbl.listarMovimientos();
+//                calculadora calc;
+//                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
+//                calc.setImporteBruto(85.71);///Importe con iva incluido-
+//                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
+//                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
+//                calc.setDescuentoAplicado();///Aplica el descuento
+//                //calc.setRecargo(3);///recargo
+//                //calc.setRecargoAplicado();///aplica el impuesto
+//                calc.setImpuesto(21);///iva a calcular
+//                calc.setImpuestoAplicado();///aplica el impuesto
+//
+//
+//                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
+//                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
+//                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
+//                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
+//                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
+//                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
+//                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
                 anykey();
         break;
         case 6:
                 menuConfiguracion();
         break;
         case 0:
-                menuLogin();
+                return;
         break;
-        default:cout<<" OPCION INCORRECTA"<<endl;
-                break;
       }
     }
     return;
@@ -186,9 +188,10 @@ void menuPrincipal(){
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
         const int FONDO = RED;
+        Usuario usuarioPiloto;
+        bool check;
 
     setlocale(LC_ALL, "spanish");
-//    setConsoleTitle("TONGA GESTION");
     const int ANCHO_MENU = 75;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
@@ -199,10 +202,7 @@ void menuPrincipal(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("TONGA GESTION", WHITE, RED);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "COMPRAS";
@@ -215,6 +215,8 @@ void menuPrincipal(){
       locate(POSMENUX+3,POSMENUY+7);
       cout << "CONTABILIDAD";
       locate(POSMENUX+3,POSMENUY+8);
+      cout << "CAMBIAR CONTRASEÑA";
+      locate(POSMENUX+3,POSMENUY+9);
       cout << "SALIR\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -225,7 +227,7 @@ void menuPrincipal(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 6){
+            if(opc < 7){
                 opc++;
             }else{
                 opc=1;
@@ -235,7 +237,7 @@ void menuPrincipal(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=6;
+                opc=7;
             }
             break;
         }
@@ -269,7 +271,14 @@ void menuPrincipal(){
                 system("pause");
         break;
         case 6:
-               menuLogin();
+            check = usuarioPiloto.cambiarPasswordUser();
+            if(check==true){
+            msj("CONTRASEÑA GUARDADA",WHITE,GREEN,130,TEXT_LEFT);
+            }
+            else msj("ERROR",WHITE,RED,130,TEXT_LEFT);
+        break;
+        case 7:
+            return;
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
                 break;
@@ -364,13 +373,12 @@ void menuCompras(){
         break;
         case 3:
                 EntidadPiloto.cargarCliente();
-                EntidadPiloto.grabarEnDisco(1);
+//                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
         case 4:
-//                detComp.setProveedor();
-//                detComp.setIdProveedor();
+                EntidadPiloto.buscarRazonSocial(2);
                 system("pause");
         break;
         case 5:
@@ -517,10 +525,7 @@ void menuInventario(){
       system("cls");
       opc=1;
       setColor(LETRA);
-//      setBackgroundColor(FONDO);
       locate(POSMENUX+5,POSMENUY+1);
-//      locate(POSMENUX+5,POSMENUY+2);
-//    cout<<"Usario Logueado: " ;oLogout.getUser();
       title("INVENTARIOS", WHITE, BLUE);
       locate(POSMENUX+3,POSMENUY+3);
       cout << "CARGAR PRODUCTO";
@@ -765,13 +770,13 @@ void menuConfiguracion(){
             crearUsuario();
         break;
         case 3:
-             bajaLogicaUsuario();
+            bajaLogicaUsuario();
         break;
         case 4:
             listarUsuarios();
         break;
         case 5:
-            cambiarPassword();
+            cambiarPasswordAdmin();
         break;
         case 6:
             return;
@@ -822,6 +827,10 @@ void menuBackup(){
       locate(POSMENUX+3,POSMENUY+7);
       cout << "PRODUCTOS";
       locate(POSMENUX+3,POSMENUY+8);
+      cout << "PLAN DE CUENTAS";
+      locate(POSMENUX+3,POSMENUY+9);
+      cout << "TODOS LOS ARCHIVOS";
+      locate(POSMENUX+3,POSMENUY+10);
       cout << "ATRAS\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -832,17 +841,17 @@ void menuBackup(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 5){
+            if(opc < 8){
                 opc++;
             }else{
-                opc=0;
+                opc=1;
             }
             break;
         case KEY_UP:
-            if(opc > 0){
+            if(opc > 1){
                 opc--;
             }else{
-                opc=5;
+                opc=8;
             }
             break;
         }
@@ -860,25 +869,30 @@ void menuBackup(){
       showcursor();
       switch(opc){
         case 1:
-//           vtas.cargarVtas();
+            backupArchivos(1);
         break;
         case 2:
-//            deta.imprimirFactura();
+            backupArchivos(2);
         break;
         case 3:
-//            deta.listado_detalle();
+            backupArchivos(3);
         break;
         case 4:
-//           vtas.listado_facturas();
+            backupArchivos(4);
         break;
         case 5:
-//            EntidadPiloto.buscarRazonSocial(1);
+            backupArchivos(5);
         break;
         case 6:
+            backupArchivos(6);
+        break;
+        case 7:
+            backupArchivos(7);
+        break;
+        case 8:
             return;
         break;
       }
     }
     return;
-
 }

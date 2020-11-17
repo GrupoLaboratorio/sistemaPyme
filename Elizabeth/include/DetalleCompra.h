@@ -29,6 +29,10 @@ public:
     void setIdProducto();
 
 ///gettes
+    int getIdDetalle(){ return idDetalle;}
+    char getTipoFactura(){  return tipoFactura;}
+    int getPtoVta(){return ptoVta;}
+    int getNroFactura(){return nroFactura;}
     float getPrecio();
     float getImpuesto();
     int getcantProd();

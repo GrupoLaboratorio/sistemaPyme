@@ -85,17 +85,17 @@ void Compras::setPuntoVta(){
     this->puntoVta=codigo;
 }
 void Compras::setNroFactura(){
-    int a;
+    int codigo;
     cout<<"Numero de Factura: ";
-    cin>>a;
-     while(a<0) {
+    cin>>codigo;
+     while(!(codigo>0)){
     cout<<"\nNumero no valido";
     system("pause");
     system("cls");
     cout<<"\nNumero de Factura: ";
-    cin>>a;
+    cin>>codigo;
 }
-    this->nroFactura=a;
+    this->nroFactura=codigo;
 }
 bool Compras::grabarEnDisco(){
     system("cls");
@@ -145,9 +145,9 @@ void Compras::listado_compras(){
             cout<<setfill(' ')<<endl;
 
 }
-int Compras::getPuntoVta(){return puntoVta;}
-int Compras::getNroFactura(){return nroFactura;}
-char Compras::getTipoFact(){return tipoFactura;}
+//int Compras::getPuntoVta(){return puntoVta;}
+//int Compras::getNroFactura(){return nroFactura;}
+//char Compras::getTipoFact(){return tipoFactura;}
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 
@@ -158,6 +158,6 @@ int crearIdXCompras(){
     fseek(p, 0, SEEK_END);
     bytes = ftell(p);
     fclose(p);
-    cant = bytes / sizeof(Ventas);
+    cant = bytes / sizeof(Compras);
     return cant+1;
 }

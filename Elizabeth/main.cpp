@@ -14,20 +14,17 @@ using namespace std;
 #include "Include/Entidad.h"
 #include "Include/Ventas.h"
 #include "DetalleFactura.h"
+#include "DetalleVenta.h"
+#include "DetalleCompra.h"
 #include "Include/Usuario.h"
-#include <vector>
+#include "Contable.h"
 
 
 int main(){
-     vector <DetalleVenta> vect;
-     for (int i=0; i<100;i++) {
-       vect.push_back(i+10);
-     }
-     for (int i=0; i<vect.size();i++) {
-        cout<<vect.at(i)<<endl;
-     }
-
-    //menuLogin();
-
+//   menuLogin();
+    Contable obj;
+//    obj.setNroFactura();
+      obj.listarMovimientos();
     return 0;
 }
+

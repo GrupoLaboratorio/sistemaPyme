@@ -47,9 +47,9 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nNo : 0 "<<endl;
         cin>> continuar;
     }
+    grabarDetalleEnDisco();
+    ctb.imputarCta(getNroFactura(), getCantProducto(), 1, getCodProducto());
     }while(continuar==1);
-        grabarDetalleEnDisco();
-        ctb.imputarCta(getNroFactura(), getCantProducto(), 1, getCodProducto());
     imprimirFactura(getNroFactura());
     return;
 }
@@ -154,7 +154,7 @@ void DetalleVenta::setIdCliente(){
     this->idCliente=dato.getIdCliente();}
 
 void DetalleVenta::imprimirFactura(int _n){
-    int pos= crearIdXFact()-2;
+    int pos= crearIdXFact()-1;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
     Ventas  dato;
@@ -165,6 +165,13 @@ void DetalleVenta::imprimirFactura(int _n){
     if(_n == 0){
     cout<<"\nIngrese el numero de factura que desea imprimir: ";
     cin>>f;
+    while(!(f>0 && f <= pos)){
+       cout<<"Numero de factura incorrecto ";
+       system("pause");
+       system("cls");
+       cout<<"\nIngrese el numero de factura que desea imprimir: ";
+       cin>>f;
+    }
     }else{
         f=_n;
     }

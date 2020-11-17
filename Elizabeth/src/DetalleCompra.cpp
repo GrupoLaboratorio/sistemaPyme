@@ -27,21 +27,18 @@ void DetalleCompra::cDetalleCompra(){
     setlocale(LC_CTYPE, "Spanish");
     Compras  datoCp;
     Contable conta;
-    int i= crearIdXCompras()-2;
+    int i=crearIdXCompras()-2;
     datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
+    cout<<datoCp.getNroFactura();
     do{
         setIdDetalle();
         setTipoFactura(datoCp.getTipoFact());
         setPtoVta(datoCp.getPuntoVta());
         setNroFactura(datoCp.getNroFactura());
-//        this->idDetalle= crearIdDetalle();
-//        this->tipoFactura= datoCp.getTipoFact();
-//        ptoVta= datoCp.getPuntoVta();
-//        nroFactura= datoCp.getNroFactura();
         setIdProducto();
         grabarDetalleEnDisco();
-        conta.imputarCta(datoCp.getNroFactura(), cantidad, 2, idProducto);
+        conta.imputarCta(getNroFactura(), cantidad, 2, idProducto);
         system("cls");
         cout<<"\nContinua cargando?. ";
         cout<<"\nSi: 1";

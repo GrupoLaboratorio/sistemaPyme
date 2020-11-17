@@ -26,9 +26,9 @@ public:
     void setNroFactura();
     void setIdProveedor();
     void setFechaFactura();
-    char getTipoFact();
-    int getNroFactura();
-    int getPuntoVta();
+    char getTipoFact(){return tipoFactura;}
+    int getNroFactura(){return nroFactura;}
+    int getPuntoVta(){return puntoVta;}
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 
     int setIdCompras();
