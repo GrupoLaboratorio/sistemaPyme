@@ -43,6 +43,7 @@ using namespace std;
             system("PAUSE");
             }
     }
+
     int Producto::setId(){
         int bytes, cant;
         FILE *p = fopen(FILE_PRODUCTOS, "rb");

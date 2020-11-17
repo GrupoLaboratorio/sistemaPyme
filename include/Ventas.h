@@ -9,6 +9,10 @@
 #include "Entidad.h"
 
 ///-----------------------CLASE VENTAS
+///-----------------------PROTOTIPOS GLOBALES
+
+int crearIdXFact();
+void listarVentas();
 
 class Ventas
 {
@@ -16,26 +20,23 @@ class Ventas
 public:
     int  idCliente;
     char tipoFactura;
-    int  nroFactura;
+    int nroFactura;
     Fecha fechaVenta;
 public:
     Ventas();
     void cargarVtas();
     void setTipoFact();
     void setIdCliente();
-    void setNroFact();
+    void setNroFact(){this->nroFactura=crearIdXFact();};
     int getIdCliente(){return idCliente;}
     char getTipoFact(){  return tipoFactura; }
     int getNroFact(){ return nroFactura;}
     bool grabarEnDisco();
     bool leerDeDisco(int);
     void listado_facturas();
+    Fecha getFecha(){return this->fechaVenta;}
 };
 
-///-----------------------PROTOTIPOS GLOBALES
-
-    int crearIdXFact();
-    void listarVentas();
 
 #endif // VENTAS_H
 

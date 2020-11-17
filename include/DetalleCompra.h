@@ -33,6 +33,9 @@ public:
     int crearIdDetalle();
     void cDetalleCompra();
     bool grabarDetalleEnDisco();
+    void listado_detalle();
+    bool leerDeDiscoD(int );
+    bool leyo;
 
 };
 #endif // DETALLECOMPRA_H

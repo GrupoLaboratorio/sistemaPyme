@@ -94,6 +94,8 @@ void menuMaestro(){
       locate(POSMENUX+3,POSMENUY+8);
       cout << "CONFIGURACION";
       locate(POSMENUX+3,POSMENUY+9);
+      cout << "CERRAR SESION\n";
+      locate(POSMENUX+3,POSMENUY+10);
       cout << "SALIR\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -104,7 +106,7 @@ void menuMaestro(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 6){
+            if(opc < 8){
                 opc++;
             }else{
                 opc=0;
@@ -114,14 +116,14 @@ void menuMaestro(){
             if(opc > 0){
                 opc--;
             }else{
-                opc=6;
+                opc=7;
             }
             break;
         }
         if(opc != 0){
             cursorY = opc + POSMENUY + 2;
         }else{
-            cursorY = POSMENUY + 9;
+            cursorY = POSMENUY + 10;
         }
         locate(cursorX,cursorY);
         cout<<">";
@@ -168,7 +170,10 @@ void menuMaestro(){
         case 6:
                 menuConfiguracion();
         break;
-        case 0:
+        case 7:
+               menuLogin();
+        break;
+        default:
                 return;
         break;
       }
@@ -214,6 +219,8 @@ void menuPrincipal(){
       locate(POSMENUX+3,POSMENUY+8);
       cout << "CAMBIAR CONTRASEÑA";
       locate(POSMENUX+3,POSMENUY+9);
+      cout << "CERRAR SESION\n";
+      locate(POSMENUX+3,POSMENUY+10);
       cout << "SALIR\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -224,7 +231,7 @@ void menuPrincipal(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 7){
+            if(opc < 8){
                 opc++;
             }else{
                 opc=1;
@@ -234,7 +241,7 @@ void menuPrincipal(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=7;
+                opc=8;
             }
             break;
         }
@@ -275,10 +282,11 @@ void menuPrincipal(){
             else msj("ERROR",WHITE,RED,130,TEXT_LEFT);
         break;
         case 7:
-            return;
+            menuLogin();
         break;
-        default:cout<<" OPCION INCORRECTA"<<endl;
-                break;
+        case 8:
+            return;
+        return;
       }
     }
     return;

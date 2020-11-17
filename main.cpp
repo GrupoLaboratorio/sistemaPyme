@@ -17,9 +17,11 @@ using namespace std;
 #include "Include/Usuario.h"
 
 
+
 int main(){
 
 	setlocale(LC_ALL, "spanish");
+
     menuLogin();
 
     return 0;
