@@ -19,7 +19,7 @@ using namespace std;
 #include "../Utilidades/menus.h"
 
 
-//const char * FILE_VENTAS = "Archivos/Ventas.dat";
+
 
 ///----------------------------METODOS CLASE VENTAS---------------------------
 
@@ -32,7 +32,7 @@ void Ventas::cargarVtas(){
     Ventas();
     setTipoFact();
     setNroFact();
-//char c;
+char c;
 system("cls");
 cout<<" Abrir una venta?. ";
 cout<<"\nSi: 1";

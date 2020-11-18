@@ -20,6 +20,7 @@ class DetalleVenta{
     void setIdDetalle(){this->idDetalle=crearIdDetalle();}
     void setCodProducto();
     void setCantProducto();
+    void setCantProducto(int n){this->cantidad=n;}
     void setPrecio(){Producto prod; this->precio=prod.getPrecioCosto();}
 
     char getTipoFactura(){return tipoFactura;}

@@ -31,7 +31,7 @@ public:
     int getNroFactura();  /// Muestra el numero de la factura
     int getPuntoVta();
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
-
+    Fecha getFecha(){return this->fechaFactura;}
     int setIdCompras();
     int getIdCompras();
 

@@ -23,7 +23,6 @@ class Entidad: public Persona{
 		void cargarCliente();
 		void cargarProveedor();
 		void mostrarEntidad();
-//        void setIdEntidad();
         void setRazonSocial(char *);
         void setMail(char *);
         void setTipoEntidad(int);

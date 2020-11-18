@@ -21,12 +21,15 @@ using namespace std;
 using namespace rlutil;
 
 void DetalleVenta::cDetalleVenta(){
- setlocale(LC_CTYPE, "Spanish");
+
+    setlocale(LC_CTYPE, "Spanish");
     Ventas dato;
     Contable ctb;
     int i= crearIdXFact()-2;
     dato.leerDeDisco(i);
     int continuar;
+
+
     do{
         setIdDetalle();
         setTipoFactura(dato.getTipoFact());
@@ -38,6 +41,7 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
     cin>> continuar;
+
     while(!(continuar == 0 || continuar == 1)){
         cout<<" Opcion incorrrecta : ";
         system("pause");
@@ -165,13 +169,6 @@ void DetalleVenta::imprimirFactura(int _n){
     if(_n == 0){
     cout<<"\nIngrese el numero de factura que desea imprimir: ";
     cin>>f;
-    while(!(f>0 && f <= pos)){
-       cout<<"Numero de factura incorrecto ";
-       system("pause");
-       system("cls");
-       cout<<"\nIngrese el numero de factura que desea imprimir: ";
-       cin>>f;
-    }
     }else{
         f=_n;
     }

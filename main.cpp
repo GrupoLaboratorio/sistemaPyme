@@ -24,5 +24,8 @@ int main(){
 
     menuLogin();
 
+//	crearUsuario();
+
     return 0;
 }
+

@@ -1,6 +1,6 @@
 #ifndef VENTAS_H
 #define VENTAS_H
-#define FILE_VENTAS "Archivos/Ventas.dat"
+#define FILE_VENTAS  "Archivos/Ventas.dat"
 #include "Fecha.h"
 #include "DetalleFactura.h"
 //#include "DetalleVenta.h"
@@ -14,8 +14,7 @@
 int crearIdXFact();
 void listarVentas();
 
-class Ventas
-{
+class Ventas{
 
 public:
     int  idCliente;
@@ -29,12 +28,12 @@ public:
     void setIdCliente();
     void setNroFact(){this->nroFactura=crearIdXFact();};
     int getIdCliente(){return idCliente;}
-    char getTipoFact(){  return tipoFactura; }
+    char getTipoFact(){return tipoFactura; }
     int getNroFact(){ return nroFactura;}
     bool grabarEnDisco();
     bool leerDeDisco(int);
     void listado_facturas();
-    Fecha getFecha(){return this->fechaVenta;}
+    Fecha getFecha(){return fechaVenta;}
 };
 
 

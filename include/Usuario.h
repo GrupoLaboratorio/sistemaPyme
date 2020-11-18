@@ -5,7 +5,8 @@
 class Usuario{
 	private:
 		char nombreUser[25];
-		int password;
+//		int password;
+		char password[20];
 		bool estado;
 		int idUser;
 	public:
@@ -13,7 +14,9 @@ class Usuario{
 //		virtual ~Usuario();
         void setNombreUser();
         void setPassword();
-        void setPassword(int newPass){this->password = newPass;}
+        void setNewPassword();
+//        void setPassword(int newPass){this->password = newPass;}
+        void setPassword(char * newPass){strcpy(this->password, newPass);}
         void setActivo(){this->estado = true;}
         void setInactivo(bool nuevoEstado){this->estado = nuevoEstado;}
         void ingresarUsuario();
@@ -22,7 +25,8 @@ class Usuario{
         bool grabarEnDisco();
         bool leerDeDisco(int);
         char* getNombreUser(){return this->nombreUser;}
-        int getPassword(){return password;}
+//        int getPassword(){return password;}
+        char* getPassword(){return password;}
         bool getEstado(){return estado;}
         int getIdUser(){return this->idUser;}
 };

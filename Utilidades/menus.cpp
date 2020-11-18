@@ -23,6 +23,13 @@ using namespace rlutil;
 #include "../Include/Productos.h"
 #include "../Include/Usuario.h"
 
+/// MENU CONTABILIDAD
+/// LIBRO MAYOR
+/// LIBRO DIARIO
+/// BALANCES
+/// PLAN DE CUENTAS
+/// SALIR
+
 
 ///---------------------------------------------- MENU LOGIN
 
@@ -52,6 +59,7 @@ void menuLogin(){
         return;
     }else{
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
+        chequeo = 4;
         return;
     }
     return;

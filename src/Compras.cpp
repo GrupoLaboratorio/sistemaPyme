@@ -18,47 +18,52 @@ using namespace std;
 #include "../Utilidades/ui.h"
 #include "../Utilidades/menus.h"
 #include "Entidad.h"
-//
-//Compras::Compras(){
-//
-//}
+
+
+
 void Compras::cargarCompras(){
     this->idCompras=crearIdXCompras();
-//    Compras();
-//    ~Compras();
     setlocale(LC_CTYPE, "Spanish");
     setTipoFact();
     setPuntoVta();
     setNroFactura();
     system("cls");
-    cout<<" Cargar la Compra?. ";
-    cout<<"\nSi: 1";
-    cout<<"\nNo : 0 "<<endl;
+
+    cout<<"¿CARGAR LA COMPRA?. ";
+    cout<<"\nSI: 1";
+    cout<<"\nNO : 0 "<<endl;
     int ok;
     cin>>ok;
-    if(ok==1){
-        bool grabo=grabarEnDisco();
-        if(grabo==true )    {
-                cout<<"\nSe cargo la cabecera."<<endl;
-            DetalleCompra  det;
-            det.cDetalleCompra();
-        }else{
-            cout<<"Error en la carga. Volver a intentar ";
-            return;
+        while(!(ok == 1 || ok == 0)){
+            cout << "CONFIRMACION INCORRECTA\n";
+            cout<<"¿CARGAR LA COMPRA?";
+            cout<<"\nSI: 1";
+            cout<<"\nNO: 0"<<endl;
+            int ok;
+            cin>>ok;
         }
-    }
+
+        if(ok==1){
+            bool grabo = grabarEnDisco();
+            if(grabo==true )    {
+                DetalleCompra det;
+                det.cDetalleCompra();
+            }else{
+                return;
+            }
+        }
     return;
 }
 void Compras::setTipoFact(){
     char tipo;
-    cout<<"FACTURA A o C? : ";
+    cout<<"¿FACTURA A o C? : ";
     cin>>tipo;
     while(!(tipo == 'A'  || tipo == 'C' ))
     {
-        cout<<"Tipo de factura incorrecta";
+        cout<<"TIPO FACTURA INCORRECTA";
         system("pause");
         system("cls");
-        cout<<"Tipo de factura : ";
+        cout<<"TIPO FACTURA:";
         cin>>tipo;
     }
     setIdEntidad();
@@ -79,7 +84,7 @@ void Compras::setPuntoVta(){
 }
 void Compras::setNroFactura(){
     int a;
-    cout<<"Numero de Factura: ";
+    cout<<"NUMERO FACTURA: ";
     cin>>a;
     this->nroFactura=a;
 }

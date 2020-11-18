@@ -48,6 +48,12 @@ void Persona::setCuit(){
 
     cout << "CUIT:\t";
     cin.getline(this->cuit,14,'\n');
+
+    while(strlen(this->cuit)!=13){
+        msj("CUIT NO VALIDO",WHITE,RED,130,TEXT_LEFT);
+        cout << "CUIT:\t";
+        cin.getline(this->cuit,14,'\n');
+    }
 }
 
 void Persona::setDomicilio(){this->domicilio.cargarDireccion();}

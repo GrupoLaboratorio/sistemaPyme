@@ -92,11 +92,9 @@ bool Entidad::grabarEnDisco(int _tipoEntidad){
         chequeo = fwrite(this, sizeof(Entidad),1,c);
         if(chequeo==1){
 
-            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-            cout << "Registro exitoso";
+            msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
             fclose(c);
-            system("pause");
-            // cls();
+            cls();
             return true;
         }
         else{
@@ -115,11 +113,9 @@ bool Entidad::grabarEnDisco(int _tipoEntidad){
         chequeo = fwrite(this, sizeof(Entidad),1,p);
         if(chequeo==1){
 
-            //msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
-            cout << "Registro exitoso";
-            fclose(p);
-            system("pause");
-            // cls();
+            msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
+            fclose(c);
+            cls();
             return true;
         }
         else{
@@ -335,10 +331,12 @@ Entidad Entidad::buscarEntidadXId(int tipoEnt, int pos,  Entidad *user){
 //    }
 //            return *user;
 }
-//void Entidad::setIdEntidad(){}
-	Entidad::~Entidad(){
 
-	}
+
+//void Entidad::setIdEntidad(){}
+Entidad::~Entidad(){}
+
+
 ///--------------------- GLOBALES -------------------------
 
 
@@ -418,7 +416,6 @@ bool existenciaEntidad(int idAux, int _tipoEntidad){
             }
     break;
     }
-
     return false;
 }
 
