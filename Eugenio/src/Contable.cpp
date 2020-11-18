@@ -17,6 +17,22 @@ using namespace rlutil;
     void Contable::setDebe(float _debe){ this->debe = _debe; }
     void Contable::setHaber(float _haber){ this->haber= _haber;}
     void Contable::setSaldo(float _saldo){ this->saldo= _saldo;}
+    void Contable::setSaldoAnterior(){
+        Contable reg;
+        this->saldoAnterior=0;
+        int bytes, cant=0;
+        FILE *p = fopen(FILE_MOVIMIENTOS, "rb");
+        if (p == NULL){ return ; }
+        fseek(p, 0, SEEK_END);
+        bytes = ftell(p);
+        cant = bytes / sizeof(Contable);
+        reg.leerDeDisco(cant-1);
+        if(cant>0){
+            this->saldoAnterior=reg.getSaldo();
+        }
+        fclose(p);
+        return;
+    }
     void Contable::setFechaDesde(){}
     void Contable::setFechaHasta(){}
 
@@ -27,13 +43,15 @@ using namespace rlutil;
     float   Contable::getDebe(){return debe;}
     float   Contable::getHaber(){return haber;}
     float   Contable::getSaldo(){return saldo;}
+    float   Contable::getSaldoAnterior(){return saldoAnterior;}
+
     Fecha Contable::getFechaDesde(){}
     Fecha Contable::getFechaHasta(){}
 
     ///funciones
     void Contable::imputarCta(  int _nroFactura, int _cant,  int _tipoOp, int _idProd ){
-            bool _deb;
-            bool _hab;
+
+
             calculadora calc;
             Producto prod;
             prod.buscarProdxId(_idProd);
@@ -55,26 +73,29 @@ using namespace rlutil;
                 //-----**Fin del seteo de valores  **------
 
                 //----------** imputación en Debe la salida de mercaderia **---------
+                    setSaldoAnterior();
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                      setNroCta(405); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
                     setDebe(0.00);
                     setHaber(calc.getImponible());
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
+
                         //------**grabamos el registro en disco**------
                             grabarEnDisco();
 
                 //----------** Fin de imputación en Debe la salida de mercaderia **---------
 
                 //----------** imputación en Debe el IVA debito fiscal **---------
+                    setSaldoAnterior();
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(201);
                     setDebe(0.00);
                     setHaber(calc.getImpuesto());
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
 
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
@@ -82,13 +103,14 @@ using namespace rlutil;
                 //----------** Fin de imputación en Debe el IVA debito fiscal **---------
 
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
+                    setSaldoAnterior();
                     ///setFechaDesde(deVtas.getFecha()),
                     setOperacion(_tipoOp);
                    setNroFact(_nroFactura);
-                    setNroCta(101);
+                    setNroCta(102);
                     setDebe(calc.getImpuestoAplicado());
                     setHaber(0.00);
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
 
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
@@ -115,26 +137,28 @@ using namespace rlutil;
                 //-----**Fin del seteo de valores  **------
 
                 //----------** imputación en Debe la salida de mercaderia **---------
+                setSaldoAnterior();
                     ///setFechaDesde(deComp.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(102);
                     setDebe(0.00);
                     setHaber(calc.getImpuestoAplicado());///DEBITAMOS CAJA POR LA COMPRA
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
                         //------**grabamos el registro en disco**------
                             grabarEnDisco();
 
                 //----------** Fin de imputación en Debe la salida de mercaderia **---------
 
                 //----------** imputación en Debe el IVA debito fiscal **---------
+                setSaldoAnterior();
                     ///setFechaDesde(deComp.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(204);
                     setDebe(calc.getImpuesto());///CARGAMOS IVA CREDITO FISCAL
                     setHaber(0.00);
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
 
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
@@ -142,13 +166,14 @@ using namespace rlutil;
                 //----------** Fin de imputación en Debe el IVA debito fiscal **---------
 
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
+                 setSaldoAnterior();
                     ///setFechaDesde(deComp.getFecha()),
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(501); ///IMPUTAMOS A CTA DE GASTOS POR COMPRAS DE MERCA
                     setDebe(calc.getImponible());
                     setHaber(0.00);
-                    setSaldo(getDebe()-getHaber());
+                    setSaldo(getSaldoAnterior()-getHaber()+getDebe());
 
                     //------**grabamos el registro en disco**------
                             grabarEnDisco();
@@ -197,34 +222,62 @@ using namespace rlutil;
         cout<<" "<<setw(10)<<centrar("#Documento", 10)<<"|";
         cout<<" "<<setw(10)<<centrar("Debe", 10)<<"|";
         cout<<" "<<setw(10)<<centrar("Haber", 10)<<"|";
-        cout<<" "<<setw(15)<<centrar("Saldo", 15)<<"|"<<endl;
+        cout<<" "<<setw(15)<<centrar("Saldo", 15)<<"|";
+        cout<<" "<<setw(15)<<centrar("S. Anterior", 15)<<"|"<<endl;
         setBackgroundColor(BLACK);
 
         while (mov.leerDeDisco(i++)){
+
         cout<<" "<<setw(16)<<centrar("11/11/2015", 16);
         cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
         cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
         cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
         cout<<right;
+        cout<<setfill(' ');
         cout<<" "<<setw(11)<<mov.getDebe();
         cout<<" "<<setw(11)<<mov.getHaber();
-        cout<<" "<<setw(16)<<mov.getSaldo()<<endl;
+        cout<<" "<<setw(16)<<mov.getSaldoAnterior()-mov.getHaber()+mov.getDebe();
+        cout<<" "<<setw(16)<<mov.getSaldoAnterior()<<endl;
          }
         cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
         system("pause");
     }
-    void Contable::listarLibroDiario(){
-        calculadora cal;
-        DetalleVenta  detVta;
-        int i=0;
-        while(detVta.leerDeDiscoD(i++)){
-                 setDebe(detVta.getPrecio());
-                 setHaber(0);
-                 setSaldo( getHaber() - getDebe());
-                cout<<"DEBE: "<<getDebe()<<endl;
-                cout<<"HABER: "<<getHaber()<<endl;
-                cout<<"SALDO: "<<getSaldo()<<endl;
-        }
+    void Contable::listarLibroDiario(){}///lista todas las cuentas  de una fecha determinada
+    void Contable::listarLibroMayor(int cta){
+       Contable mov;
+       float aux=0;
+        int i = 0;
+        cls();
+        title("MAESTRO DE MAYOR DE UNA CTA ",WHITE, RED);
+        cout<<endl;
+        setBackgroundColor(DARKGREY);
+        cout<<" "<<setw(15)<<centrar("Fecha", 15)<<"|";
+        cout<<" "<<setw(15)<<centrar("Operacion", 15)<<"|";
+        cout<<" "<<setw(10)<<centrar("Cuenta", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("#Documento", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Debe", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Haber", 10)<<"|";
+        cout<<" "<<setw(15)<<centrar("Saldo", 15)<<"|"<<endl;
+        setBackgroundColor(BLACK);
 
-    }///lista todas las cuentas  de una fecha determinada
-    void Contable::listarLibroMayor(Fecha, Fecha, int){}
+        while (mov.leerDeDisco(i++)){
+        if(mov.getNroCta()==cta){
+        cout<<" "<<setw(16)<<centrar("11/11/2015", 16);
+        cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
+        cout<<right;
+        cout<<setfill(' ');
+        cout<<" "<<setw(11)<<mov.getDebe();
+        cout<<" "<<setw(11)<<mov.getHaber();
+        cout<<" "<<setw(16)<<mov.getDebe()-mov.getHaber()<<endl;
+            aux+=mov.getDebe()-mov.getHaber();
+         }
+         }
+         cout<<endl;
+         cout<<endl;
+        cout<<" "<<setw(75)<<setfill(' ')<<"Mayor de la cuenta numero :"<< cta <<" Saldo $" <<aux<<" ";
+        cout<<endl<<endl;
+        cout<<endl<<endl;
+        system("pause");
+    }

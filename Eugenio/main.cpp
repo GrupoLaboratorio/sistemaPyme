@@ -8,7 +8,7 @@
 #include <algorithm>
 using namespace std;
 #include "Utilidades/menus.h"
-//#include "Include/Persona.h"
+//#include "Include/Contable.h"
 //#include "Utilidades/validaciones.h"
 //#include "Direccion.h"
 #include "Include/Entidad.h"

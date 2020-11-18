@@ -10,6 +10,7 @@ class Contable
         int operacion, nroCta, nroFact;
         float debe, haber, saldo, saldoAnterior;
         Fecha fOpe, fDesde, fHasta;
+
     public:
 
         ///setters
@@ -19,7 +20,7 @@ class Contable
         void  setDebe(float);
         void  setHaber(float);
         void  setSaldo(float);
-        void  setSaldoAnterior(float);
+        void  setSaldoAnterior();
         void setFechaOp();
         void setFechaDesde();
         void setFechaHasta();
@@ -43,7 +44,8 @@ class Contable
         bool grabarEnDisco();///graba la imputacion linea por linea con "rb+"
         void listarMovimientos();
         void listarLibroDiario();///lista todas las cuentas  de una fecha determinada
-        void listarLibroMayor(Fecha, Fecha, int);  ///de  un determinado mes y una determinada cuenta contable.
+//        void listarLibroMayor(Fecha, Fecha, int);  ///de  un determinado mes y una determinada cuenta contable.
+        void listarLibroMayor(int);  ///de  un determinado mes y una determinada cuenta contable.
 };
 
 #endif // CONTABLE_H

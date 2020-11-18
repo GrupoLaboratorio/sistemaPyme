@@ -146,6 +146,10 @@ void menuMaestro(){
         break;
         case 5:
             ctbl.listarMovimientos();
+            int cta;
+            cout<<"Listar Mayor de una cuenta: que nro de cta?: ";
+            cin>>cta;
+            ctbl.listarLibroMayor(cta);
                 anykey();
         break;
         case 6:
