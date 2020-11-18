@@ -9,8 +9,6 @@ using namespace std;
 
 ///ESTADO: CONTINUAR HACIENDO QUE LEA UN ARCHIVO DE PRODUCTOS QUE SERIA EL REGISTRO GENERAL DE PRODUCTOS.
 
-const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
-
 
     ///SETTERS
 

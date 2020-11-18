@@ -1,6 +1,6 @@
 #ifndef USUARIO_H
 #define USUARIO_H
-
+#define FILE_USUARIOS "Archivos/Usuarios.dat"
 
 class Usuario{
 	private:

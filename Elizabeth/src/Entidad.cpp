@@ -13,9 +13,6 @@ using namespace std;
 #include "../Utilidades/rlutil.h"
 using namespace rlutil;
 
-const char * FILE_CLIENTES = "Archivos/Clientes.dat";
-const char * FILE_PROVEEDORES = "Archivos/Proveedores.dat";
-
 Entidad::Entidad():Persona(){
 
 	strcpy(this->razonSocial, "NHHN");

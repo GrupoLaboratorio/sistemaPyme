@@ -39,7 +39,7 @@ void Compras::cargarCompras(){
         if(grabo==true )    {
                 cout<<"\n Cabecera de compra cargada."<<endl;
             DetalleCompra  det;
-            det.cDetalleCompra();
+//            det.cDetalleCompra();
         }else{if(ok==0){
             cout<<"No se cargo la compra ";
             return;  }
@@ -135,11 +135,11 @@ void Compras::listado_compras(){
         cout<<" "<<setw(105)<<setfill(' ')<<" "<<endl;
 
         while (aux.leerDeDisco(i++)){
-            cout<<"|"<<setw(4)<<centrarInt(aux.idCompras, 4);
+            cout<<"|"<<setw(4)<<centrarInt(aux.getIdCompras(), 4);
             cout<<" "<<setw(7)<<aux.getTipoFact();
-            cout<<" "<<setw(2)<<aux.fechaFactura.getDia()<<setw(1)<<"/";
-            cout<<setw(2)<<aux.fechaFactura.getMes()<<setw(1)<<"/";
-            cout<<setw(4)<<aux.fechaFactura.getAnio()<<setw(2)<<" ";
+            cout<<" "<<setw(2)<<aux.getFecha().getDia()<<setw(1)<<"/";
+            cout<<setw(2)<<aux.getFecha().getMes()<<setw(1)<<"/";
+            cout<<setw(4)<<aux.getFecha().getAnio()<<setw(2)<<" ";
             cout<<" "<<setw(22)<<centrarInt(aux.getIdEntidad(), 22)<<endl;
         }
             cout<<setfill(' ')<<endl;

@@ -37,6 +37,9 @@ public:
     int crearIdDetalle();
     void cDetalleCompra();
     bool grabarDetalleEnDisco();
-
+    void imprimirNotaCredito(int _n=0);
 };
+
+int posicionFact();
 #endif // DETALLECOMPRA_H
+

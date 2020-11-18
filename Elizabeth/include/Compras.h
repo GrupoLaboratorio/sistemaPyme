@@ -10,7 +10,7 @@
 class Compras{
 
 private:
-    int idCompras;
+  int idCompras;
   char tipoFactura;
     int puntoVta;
     int nroFactura;
@@ -26,13 +26,20 @@ public:
     void setNroFactura();
     void setIdProveedor();
     void setFechaFactura();
+<<<<<<< Updated upstream
     char getTipoFact();
     int getNroFactura();
     int getPuntoVta();
+=======
+    char getTipoFact(){return tipoFactura;}
+    int getNroFactura(){return nroFactura;}
+    int getPuntoVta(){return puntoVta;}
+    Fecha getFecha(){return fechaFactura;}
+>>>>>>> Stashed changes
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 
     int setIdCompras();
-    int getIdCompras();
+    int getIdCompras(){return idCompras;}
 
     void setIdEntidad();
     int getIdEntidad();

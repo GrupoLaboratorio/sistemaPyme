@@ -1,5 +1,7 @@
 #ifndef Entidad_H
 #define Entidad_H
+#define  FILE_CLIENTES  "Archivos/Clientes.dat"
+#define FILE_PROVEEDORES  "Archivos/Proveedores.dat"
 
 #include "../Include/Persona.h"
 
