@@ -8,7 +8,7 @@
 #include <algorithm>
 using namespace std;
 #include "Utilidades/menus.h"
-//#include "Include/Contable.h"
+#include "Include/Contable.h"
 //#include "Utilidades/validaciones.h"
 //#include "Direccion.h"
 #include "Include/Entidad.h"
@@ -20,6 +20,8 @@ using namespace std;
 int main(){
 
 	setlocale(LC_ALL, "spanish");
+	Contable ctn;
+	ctn.asientoManual();
     menuLogin();
 
     return 0;

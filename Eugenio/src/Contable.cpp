@@ -3,13 +3,13 @@
 #include <cstdio>
 #include <iomanip>
 using namespace std;
-#include "../Utilidades/centrarTabla.h"
 #include "../Utilidades/ui.h"
 #include "../Utilidades/rlutil.h"
+using namespace rlutil;
+#include "../Utilidades/centrarTabla.h"
 #include "Contable.h"
 #include "DetalleCompra.h"
 #include "DetalleVenta.h"
-using namespace rlutil;
     ///setters
     void Contable::setOperacion(int _tipo){  this->operacion =_tipo;}
     void Contable::setNroFact(int _nFac){ this->nroFact = _nFac;}
@@ -27,9 +27,7 @@ using namespace rlutil;
         bytes = ftell(p);
         cant = bytes / sizeof(Contable);
         reg.leerDeDisco(cant-1);
-        if(cant>0){
-            this->saldoAnterior=reg.getSaldo();
-        }
+        if(cant>0){this->saldoAnterior=reg.getSaldo();}
         fclose(p);
         return;
     }
@@ -40,7 +38,6 @@ using namespace rlutil;
             this->fOpe.setMes(_mes);
             this->fOpe.setAnio(_anio);
     }
-
     ///getters
     int  Contable::getOperacion(){  return operacion;}
     int  Contable::getNroFact(){ return nroFact;}
@@ -49,13 +46,9 @@ using namespace rlutil;
     float   Contable::getHaber(){return haber;}
     float   Contable::getSaldo(){return saldo;}
     float   Contable::getSaldoAnterior(){return saldoAnterior;}
-
     Fecha Contable::getFechaDesde(){}
     Fecha Contable::getFechaHasta(){}
-    Fecha Contable::getFechaOp(){
-        return fOpe;
-    }
-
+    Fecha Contable::getFechaOp(){return fOpe;}
     ///funciones
     void Contable::imputarCta(  int dia, int mes, int anio, int _nroFactura, int _cant,  int _tipoOp, int _idProd ){
 
@@ -85,7 +78,7 @@ using namespace rlutil;
                     setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
-                     setNroCta(405); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
+                    setNroCta(405); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
                     setDebe(0.00);
                     setHaber(calc.getImponible());
                     setSaldo(getSaldoAnterior()-getHaber()+getDebe());
@@ -236,27 +229,90 @@ using namespace rlutil;
 
         while (mov.leerDeDisco(i++)){
 
-          cout<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio();
+        cout<<setw(4)<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio()<<setw(3)<<" ";
         cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
         cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
         cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
         cout<<right;
         cout<<setfill(' ');
+             cout<<setprecision(2)<<fixed;
         cout<<" "<<setw(11)<<mov.getDebe();
         cout<<" "<<setw(11)<<mov.getHaber();
         cout<<" "<<setw(16)<<mov.getSaldoAnterior()-mov.getHaber()+mov.getDebe();
         cout<<" "<<setw(16)<<mov.getSaldoAnterior()<<endl;
          }
-        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl;
+        cout<<"|"<<setw(85)<<setfill(' ')<<"|"<<endl<<endl<<endl;
         system("pause");
+      cls();
     }
-    void Contable::listarLibroDiario(){}///lista todas las cuentas  de una fecha determinada
+    void Contable::listarLibroDiario(){///lista todas las cuentas  de una fecha determinada
+        int dia,mes, anio;
+
+        msj("SELECCIONE UNA  FECHA ",WHITE, LIGHTBLUE, 3,TEXT_CENTER );
+        fDesde.setFecha();
+        Contable mov;
+       float aux=0;
+        int i = 0;
+        cls();
+        title("LIBRO DIARIO  ",WHITE, BLUE);
+        cout<<endl;
+        setBackgroundColor(DARKGREY);
+        cout<<" "<<setw(15)<<centrar("Fecha", 15)<<"|";
+        cout<<" "<<setw(15)<<centrar("Operacion", 15)<<"|";
+        cout<<" "<<setw(10)<<centrar("Cuenta", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("#Documento", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Debe", 10)<<"|";
+        cout<<" "<<setw(10)<<centrar("Haber", 10)<<"|";
+        cout<<" "<<setw(15)<<centrar("Saldo", 15)<<"|"<<endl;
+        setBackgroundColor(BLACK);
+
+        while (mov.leerDeDisco(i++)){
+        if(mov.fOpe.getDia()==fDesde.getDia() &&
+           mov.fOpe.getMes()==fDesde.getMes() &&
+           mov.fOpe.getAnio()==fDesde.getAnio()
+           ){
+
+        cout<<setw(4)<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio()<<setw(3)<<" ";
+        cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
+        cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
+        cout<<right;
+        cout<<setfill(' ');
+        cout<<setprecision(2)<<fixed;
+        cout<<" "<<setw(11)<<mov.getDebe();
+        cout<<" "<<setw(11)<<mov.getHaber();
+        cout<<" "<<setw(16)<<mov.getDebe()-mov.getHaber()<<endl;
+            aux+=mov.getDebe()-mov.getHaber();
+         }
+         }
+         cout<<endl;
+         cout<<endl;
+        cout<<" "<<setw(75)<<setfill(' ');
+        if(aux==0){
+
+            msj("Los Movimientos están balanceados ",WHITE,GREEN,30, TEXT_CENTER);
+         }else{
+              msj("Conciliar movimintos de saldos",WHITE, RED, 30, TEXT_CENTER);
+
+         }
+        msj("DESEA CONSOLIDAR SALDOS?: 1->SI,  ",WHITE, RED, 30, TEXT_CENTER);
+        int key;
+        key = getkey();
+        if(key== KEY_ENTER){
+                //setSumasSaldos(aux, cta);
+            msj("SALDO CONSOLIDADO A LA FECHA",WHITE, GREEN, 32,TEXT_CENTER );
+        }else{
+            exit(1);
+        }
+        system("pause");
+        cls();
+    }
     void Contable::listarLibroMayor(int cta){
        Contable mov;
        float aux=0;
         int i = 0;
         cls();
-        title("MAESTRO DE MAYOR DE UNA CTA ",WHITE, RED);
+        title("MAESTRO DE MAYOR DE UNA CTA ",WHITE, GREEN);
         cout<<endl;
         setBackgroundColor(DARKGREY);
         cout<<" "<<setw(15)<<centrar("Fecha", 15)<<"|";
@@ -271,12 +327,13 @@ using namespace rlutil;
         while (mov.leerDeDisco(i++)){
         if(mov.getNroCta()==cta){
 
-        cout<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio();
+        cout<<setw(4)<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio()<<setw(3)<<" ";
         cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
         cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
         cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
         cout<<right;
         cout<<setfill(' ');
+        cout<<setprecision(2)<<fixed;
         cout<<" "<<setw(11)<<mov.getDebe();
         cout<<" "<<setw(11)<<mov.getHaber();
         cout<<" "<<setw(16)<<mov.getDebe()-mov.getHaber()<<endl;
@@ -286,7 +343,41 @@ using namespace rlutil;
          cout<<endl;
          cout<<endl;
         cout<<" "<<setw(75)<<setfill(' ')<<"Mayor de la cuenta numero :"<< cta <<" Saldo $" <<aux<<" ";
-        cout<<endl<<endl;
+        msj("DESEA CONSOLIDAR SALDOS?: 1->SI,  ",WHITE, RED, 30, TEXT_CENTER);
+        int key;
+        key = getkey();
+        if(key== KEY_ENTER){
+                //setSumasSaldos(aux, cta);
+            msj("SALDO CONSOLIDADO A LA FECHA",WHITE, LIGHTBLUE, 32,TEXT_CENTER );
+        }else{
+             exit(1);
+        }
+
         cout<<endl<<endl;
         system("pause");
+        cls();
     }
+    void Contable::asientoManual(){
+    int _nroFactura,  _cant,   _tipoOp,  _idPro;
+    fOpe.setFecha();
+    cout<<"Ingrese nro factura: ";
+    cin>>_nroFactura;
+    cout<<"Ingrese nro cantidad: ";
+    cin>>_cant;
+    cout<<"Ingrese nro prod: ";
+    cin>>_idPro;
+    cout<<"Ingrese operacion : ";
+    cin>>_tipoOp;
+
+
+ imputarCta(
+            fOpe.getDia(),
+             fOpe.getMes(),
+            fOpe.getAnio(),
+             _nroFactura, _cant,
+            _tipoOp,
+            _idPro);
+ ///recibe parametros
+
+}
+    void Contable::listarPlanCtas(){}
