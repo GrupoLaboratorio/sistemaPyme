@@ -21,7 +21,7 @@ class Contable
         void  setHaber(float);
         void  setSaldo(float);
         void  setSaldoAnterior();
-        void setFechaOp();
+        void setFechaOp(int, int, int);
         void setFechaDesde();
         void setFechaHasta();
 
@@ -39,7 +39,8 @@ class Contable
 
         ///funciones
 //        void imputarCta(Fecha, int, bool, bool, float );///recibe parametros
-        void imputarCta(int, int, int, int);///recibe parametros
+// ctb.imputarCta(dato.fechaVenta.getDia(), dato.fechaVenta.getMes(), dato.fechaVenta.getAnio(),  nroFactura, cantidad, 1, getCodProducto());
+        void imputarCta(int, int, int, int, int, int, int);///recibe parametros
         bool leerDeDisco(int);
         bool grabarEnDisco();///graba la imputacion linea por linea con "rb+"
         void listarMovimientos();

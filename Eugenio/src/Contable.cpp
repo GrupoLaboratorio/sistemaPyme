@@ -35,6 +35,11 @@ using namespace rlutil;
     }
     void Contable::setFechaDesde(){}
     void Contable::setFechaHasta(){}
+    void Contable::setFechaOp(int _dia, int _mes, int _anio){
+            this->fOpe.setDia(_dia);
+            this->fOpe.setMes(_mes);
+            this->fOpe.setAnio(_anio);
+    }
 
     ///getters
     int  Contable::getOperacion(){  return operacion;}
@@ -47,9 +52,12 @@ using namespace rlutil;
 
     Fecha Contable::getFechaDesde(){}
     Fecha Contable::getFechaHasta(){}
+    Fecha Contable::getFechaOp(){
+        return fOpe;
+    }
 
     ///funciones
-    void Contable::imputarCta(  int _nroFactura, int _cant,  int _tipoOp, int _idProd ){
+    void Contable::imputarCta(  int dia, int mes, int anio, int _nroFactura, int _cant,  int _tipoOp, int _idProd ){
 
 
             calculadora calc;
@@ -74,7 +82,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe la salida de mercaderia **---------
                     setSaldoAnterior();
-                    ///setFechaDesde(deVtas.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                      setNroCta(405); ///REVISAR CUENTA DE GANANCIAS EN EL PLAN
@@ -89,7 +97,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe el IVA debito fiscal **---------
                     setSaldoAnterior();
-                    ///setFechaDesde(deVtas.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(201);
@@ -104,7 +112,7 @@ using namespace rlutil;
 
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
                     setSaldoAnterior();
-                    ///setFechaDesde(deVtas.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                    setNroFact(_nroFactura);
                     setNroCta(102);
@@ -138,7 +146,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe la salida de mercaderia **---------
                 setSaldoAnterior();
-                    ///setFechaDesde(deComp.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(102);
@@ -152,7 +160,7 @@ using namespace rlutil;
 
                 //----------** imputación en Debe el IVA debito fiscal **---------
                 setSaldoAnterior();
-                    ///setFechaDesde(deComp.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(204);
@@ -167,7 +175,7 @@ using namespace rlutil;
 
                  //----------** Imputación en Haber la cuenta CAJA A+ **---------
                  setSaldoAnterior();
-                    ///setFechaDesde(deComp.getFecha()),
+                    setFechaOp(dia, mes, anio);
                     setOperacion(_tipoOp);
                     setNroFact(_nroFactura);
                     setNroCta(501); ///IMPUTAMOS A CTA DE GASTOS POR COMPRAS DE MERCA
@@ -228,7 +236,7 @@ using namespace rlutil;
 
         while (mov.leerDeDisco(i++)){
 
-        cout<<" "<<setw(16)<<centrar("11/11/2015", 16);
+          cout<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio();
         cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
         cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
         cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);
@@ -262,7 +270,8 @@ using namespace rlutil;
 
         while (mov.leerDeDisco(i++)){
         if(mov.getNroCta()==cta){
-        cout<<" "<<setw(16)<<centrar("11/11/2015", 16);
+
+        cout<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio();
         cout<<" "; if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);}else{cout<<setw(15)<<centrar("Compra",15);}
         cout<<" "<<setw(11)<<centrarInt(mov.getNroCta(),11);
         cout<<" "<<setw(11)<<centrarInt(mov.getNroFact(),11);

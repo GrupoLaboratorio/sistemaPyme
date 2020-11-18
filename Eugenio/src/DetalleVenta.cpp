@@ -27,6 +27,7 @@ void DetalleVenta::cDetalleVenta(){
     //    Contable cont;
     int i= crearIdXFact()-2;
     dato.leerDeDisco(i);
+
     int continuar;
     do{
         this->idDetalle= crearIdDetalle();
@@ -35,7 +36,7 @@ void DetalleVenta::cDetalleVenta(){
         setCodProducto();
         setPrecio();
         grabarDetalleEnDisco();
-        ctb.imputarCta(nroFactura, cantidad, 1, getCodProducto());
+        ctb.imputarCta(dato.fechaVenta.getDia(), dato.fechaVenta.getMes(), dato.fechaVenta.getAnio(),  nroFactura, cantidad, 1, getCodProducto());
 
         system("cls");
         cout<<"\nCountinua comprando?. ";
