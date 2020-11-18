@@ -13,8 +13,6 @@ using namespace std;
 using namespace rlutil;
 
 
-const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
-
 void Usuario::setNombreUser(){
     setlocale(LC_CTYPE, "Spanish");
     cout << "NOMBRE DE USUARIO: ";

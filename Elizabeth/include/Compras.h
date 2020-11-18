@@ -22,20 +22,16 @@ public:
     void cargarCompras();
     void setTipoFact();
     void setPuntoVta();
-    void setIdCuenta();
     void setNroFactura();
+    void setIdCuenta();
     void setIdProveedor();
-    void setFechaFactura();
-<<<<<<< Updated upstream
-    char getTipoFact();
-    int getNroFactura();
-    int getPuntoVta();
-=======
     char getTipoFact(){return tipoFactura;}
     int getNroFactura(){return nroFactura;}
     int getPuntoVta(){return puntoVta;}
+    int getIdCuenta(){return idCompras;}
+    int getIdProveedor(){return idEntidad;}
     Fecha getFecha(){return fechaFactura;}
->>>>>>> Stashed changes
+
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
 
     int setIdCompras();

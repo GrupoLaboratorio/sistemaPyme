@@ -9,9 +9,10 @@ class DetalleCompra{
 
 private:
     char tipoFactura;
-       int nroFactura, ptoVta;
-       int idDetalle;
+    int nroFactura, ptoVta;
+    int idDetalle;
     int idProducto;
+    int idCompras;
     int cantidad;
     int impuesto;
     float preBruto;
@@ -19,6 +20,7 @@ private:
 
 public:
 ///setters
+    void setIdCompras(int d){this->idCompras=d;}
     void setIdDetalle(){ this->idDetalle= crearIdDetalle();}
     void setTipoFactura(char t){  this->tipoFactura= t;}
     void setPtoVta(int n){this->ptoVta=n;}
@@ -29,17 +31,25 @@ public:
     void setIdProducto();
 
 ///gettes
-    float getPrecio();
-    float getImpuesto();
-    int getcantProd();
+    int getIdCompras(){return idCompras;}
+    int getIdDetalle(){ return idDetalle;}
+    char getTipoFactura(){ return tipoFactura;}
+    int getPtoVta(){return ptoVta;}
+    int getNroFactura(){return nroFactura;}
+    int getIdProducto(){return idProducto;}
+    float getPrecio(){return preBruto;}
+    float getImpuesto(){return impuesto;}
+    int getcantProd(){return cantidad;}
 
 ///Disco
     int crearIdDetalle();
     void cDetalleCompra();
     bool grabarDetalleEnDisco();
-    void imprimirNotaCredito(int _n=0);
+    bool leerDeDisco(int posicion);
+    void listado_detalle();
+    void imprimirOrdenCompra(int _n=0);
 };
 
-int posicionFact();
+int posicionFact(int f);
 #endif // DETALLECOMPRA_H
 
