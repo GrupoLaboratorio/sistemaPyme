@@ -23,14 +23,6 @@ using namespace rlutil;
 #include "../Include/Productos.h"
 #include "../Include/Usuario.h"
 
-/// MENU CONTABILIDAD
-/// LIBRO MAYOR
-/// LIBRO DIARIO
-/// BALANCES
-/// PLAN DE CUENTAS
-/// SALIR
-
-
 ///---------------------------------------------- MENU LOGIN
 
 void menuLogin(){
@@ -154,26 +146,27 @@ void menuMaestro(){
                 menuEntidades();
         break;
         case 5:
-                calculadora calc;
-                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
-                calc.setImporteBruto(85.71);///Importe con iva incluido-
-                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
-                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
-                calc.setDescuentoAplicado();///Aplica el descuento
-                //calc.setRecargo(3);///recargo
-                //calc.setRecargoAplicado();///aplica el impuesto
-                calc.setImpuesto(21);///iva a calcular
-                calc.setImpuestoAplicado();///aplica el impuesto
-
-
-                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
-                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
-                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
-                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
-                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
-                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
-                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
-                anykey();
+                menuContabilidad();
+//                calculadora calc;
+//                calc.setExtraeIva(21);///valores a ingrear :10.5, 21
+//                calc.setImporteBruto(85.71);///Importe con iva incluido-
+//                calc.setImponible(1);/// vende 3 articulos y va el precio bruto
+//                calc.setDescuento(0);/// descuento d euna venta por pago en efectivo
+//                calc.setDescuentoAplicado();///Aplica el descuento
+//                //calc.setRecargo(3);///recargo
+//                //calc.setRecargoAplicado();///aplica el impuesto
+//                calc.setImpuesto(21);///iva a calcular
+//                calc.setImpuestoAplicado();///aplica el impuesto
+//
+//
+//                cout<<"Establece el valor para obtener el cociente de un importe con IVA incluido: "<<calc.getExtraeIva()<<endl;
+//                cout<<"Extrae el iva y genera el importe bruto unitario a partir del precio de costo: "<<calc.getImporteBruto()<<endl;
+//                cout<<"Genera el imponible a partir de la cantidad de prod: "<<calc.getImponible()<<endl;
+//                cout<<"Genera un descuento por pago en efectivo (podria configurarse en APERTURA INCIAL DE CAJA): "<<calc.getDescuento()<<endl;
+//                cout<<"Aplica el descuento: "<<calc.getDescuentoAplicado()<<endl;
+//                cout<<"Realiza el calculo del nuevo impuesto: "<< calc.getImpuesto()<<endl;
+//                cout<<"Aplica el impuesto: "<<calc.getImpuestoAplicado()<<endl;
+//                anykey();
         break;
         case 6:
                 menuConfiguracion();
@@ -279,8 +272,7 @@ void menuPrincipal(){
                 menuEntidades();
         break;
         case 5:
-                cout << "Opcion 5";
-                system("pause");
+                menuContabilidad();
         break;
         case 6:
             check = usuarioPiloto.cambiarPasswordUser();
@@ -294,6 +286,7 @@ void menuPrincipal(){
         break;
         case 8:
             return;
+        break;
         return;
       }
     }
@@ -608,6 +601,103 @@ void menuInventario(){
     return;
 }
 
+///---------------------------------------------- MENU CONTABILIDAD
+
+void menuContabilidad(){
+
+       const int POSMENUX = 0;
+        const int POSMENUY = 1;
+        const int COLOR_PANTALLA = BLACK;
+        const int LETRA = WHITE;
+        const int FONDO = BLUE;
+        Entidad EntidadPiloto;
+        Compras cmpr;
+        DetalleCompra detComp;
+
+
+    setlocale(LC_ALL, "spanish");
+    setConsoleTitle("TONGA GESTION");
+    const int ANCHO_MENU = 75;
+    const int ALTO_MENU = 8;
+    int key, opc, cursorX, cursorY;
+    while(true){
+      cursorX=POSMENUX+1;
+      cursorY=POSMENUY + 3;
+      setBackgroundColor(COLOR_PANTALLA);
+      system("cls");
+      opc=1;
+      setColor(LETRA);
+      //setBackgroundColor(FONDO);
+      locate(POSMENUX+5,POSMENUY+1);
+      title("CONTABILIDAD", WHITE, BLUE);
+      locate(POSMENUX+3,POSMENUY+3);
+      cout << "LIBRO MAYOR";
+      locate(POSMENUX+3,POSMENUY+4);
+      cout << "LIBRO DIARIO";
+      locate(POSMENUX+3,POSMENUY+5);
+      cout << "BALANCES";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "PLAN DE CUENTAS";
+      locate(POSMENUX+3,POSMENUY+7);
+      cout << "ATRAS\n";
+      hidecursor();
+      locate(cursorX,cursorY);
+      cout<<">";
+      key = getkey();
+      while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 5){
+                opc++;
+            }else{
+                opc=1;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 1){
+                opc--;
+            }else{
+                opc=5;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 2;
+        }else{
+            cursorY = POSMENUY + 8;
+        }
+        locate(cursorX,cursorY);
+        cout<<">";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+      switch(opc){
+        case 1:
+            cout << "OPCION 1";
+        break;
+        case 2:
+            cout << "OPCION 2";
+        break;
+        case 3:
+            cout << "OPCION 3";
+        break;
+        case 4:
+            cout << "OPCION 4";
+        break;
+        case 5:
+        return;
+        break;
+        default:cout<<" OPCION INCORRECTA"<<endl;
+                break;
+      }
+    }
+    return;
+}
+
 ///---------------------------------------------- MENU ENTIDADES
 
 void menuEntidades(){
@@ -909,3 +999,5 @@ void menuBackup(){
     }
     return;
 }
+
+

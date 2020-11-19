@@ -19,4 +19,6 @@ void menuConfiguracion();
 
 void menuBackup();
 
+void menuContabilidad();
+
 #endif // MENUS_H_INCLUDED

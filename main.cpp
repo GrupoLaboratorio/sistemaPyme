@@ -22,9 +22,7 @@ int main(){
 
 	setlocale(LC_ALL, "spanish");
 
-    menuLogin();
-
-//	crearUsuario();
+	menuLogin();
 
     return 0;
 }

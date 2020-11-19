@@ -22,32 +22,32 @@ void Usuario::setNombreUser(){
 	cin>>this->nombreUser;
 }
 
-//void Usuario::setPassword(){
-//    setlocale(LC_ALL, "es_ES");
-//
-//    cout << "CONTRASEÑA: ";
-//	cin>>this->password;
-//}
-
 void Usuario::setPassword(){
+
     setlocale(LC_ALL, "es_ES");
+    int ch, i=0, contador = 0;;
+
     cout << "CONTRASEÑA:";
-    int count=0,ch;
-     while(ch=getch()){
-      if(ch == 10){ //check ch after press RETURN key;
+
+    while(strlen(this->password) < 20){
+        ch = getch();
+
+    if(ch == 13){ ///ENTER
+        this->password[i] = NULL;
         return;
-      }
-      else if(ch==8){ //check ch after press BACKSPACE key;
-       if(strlen(this->password)>0){//set condition blocking error while input
-        cout<<"\b \b";//remove Mask * on screen;
-         //erase String length
-         strlen(this->password)-1;
-       }
-      }
-      else{
-      cout<<"*";
-      }
-     }
+    }else if(ch == 8){ ///BACKSPACE
+          i--;
+          if(strlen(this->password)>=0){
+          cout<<"\b \b";
+          strlen(this->password)-1;
+          this->password[i] = NULL;
+          }
+    }else{ ///SI NO ES NINGUNA LA CONTRASEÑA EN I TOMA EL VALOR DE EL CARACTER
+        this->password[i] = ch;
+        cout<<"*";
+    }
+    i++;
+    }
 }
 
 
@@ -108,39 +108,6 @@ bool Usuario::leerDeDisco(int posicion){
             return leyo;
 
 }
-
-
-//bool Usuario::cambiarPasswordUser(){
-//    setlocale(LC_ALL, "es_ES");
-//    int newPass, passAux, i=0;
-//    bool check = false;
-//    FILE *p;
-//
-//    cout << "INGRESE SU CONTRASEÑA ACTUAL:\t";
-//    cin >> passAux;
-//
-//    p = fopen(FILE_USUARIOS, "rb+");
-//        if(p==NULL){
-//            return false;
-//        }
-//
-//    while(this->leerDeDisco(i)){
-//        if(this->password == passAux){
-//            cout << "NUEVA CONTRASEÑA:\t";
-//            cin >> newPass;
-//            this->setPassword(newPass);
-//            fseek(p, sizeof(Usuario)*i,SEEK_SET);
-//            check = fwrite(this,sizeof(Usuario),1,p);
-//            system("pause");
-//            fclose(p);
-//            return check;
-//        }
-//        i++;
-//    }
-//    fclose(p);
-//    system("pause");
-//    return check;
-//}
 
 bool Usuario::cambiarPasswordUser(){
     setlocale(LC_ALL, "es_ES");
@@ -216,47 +183,6 @@ void listarUsuarios(){
         return;
 }
 
-//int login(){
-//    setlocale(LC_ALL, "es_ES");
-//    Usuario userLog, usuAux;
-//    int passAux, i=0;
-//    char *nombreAux;
-//    bool estadoAux;
-//    const int POSMENUX = 35;
-//    const int POSMENUY = 2;
-//
-//    locate(POSMENUX+5,POSMENUY+1);
-//    userLog.setNombreUser();
-//    locate(POSMENUX+5,POSMENUY+2);
-//    userLog.setPassword();
-//
-//
-//    if(strcmp(userLog.getNombreUser(), "ADMIN")== 0){
-//        if(userLog.getPassword() == 1234){
-//            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
-//            return 2;
-//        }
-//    }
-//            while(usuAux.leerDeDisco(i++)){
-//
-//                if(usuAux.getEstado() == true){
-//
-//                    if(strcmp(userLog.getNombreUser(), usuAux.getNombreUser())== 0){
-//                        if(userLog.getPassword() == usuAux.getPassword()){
-//                            msj("INGRESO EXITOSO",WHITE,GREEN,130,TEXT_LEFT);
-//                            return 1;
-//                        }else{
-//							msj("CONTRASEÑA INCORRECTA",WHITE,RED,130,TEXT_LEFT);
-//							return 0;
-//							cout << endl;
-//                        }
-//                }
-//            }
-//        }
-//        msj("USUARIO INEXISTENTE",WHITE,RED,130,TEXT_LEFT);
-//        cout << endl;
-//		return 0;
-//}
 
 int login(){
     setlocale(LC_ALL, "es_ES");
