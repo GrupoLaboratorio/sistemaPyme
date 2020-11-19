@@ -47,10 +47,10 @@ class Contable
         bool grabarEnDisco();///graba la imputacion linea por linea con "rb+"
         void listarMovimientos();
         void listarLibroDiario();///lista todas las cuentas  de una fecha determinada
-        void listarLibroMayor(int);  ///de  un determinado mes y una determinada cuenta contable.
+        void listarLibroMayor();  ///de  un determinado mes y una determinada cuenta contable.
 //        void listarSumasSaldos();
         void asientoManual();
-        void listarPlanCtas();
 };
+        void listarPlanCtas();
 
 #endif // CONTABLE_H

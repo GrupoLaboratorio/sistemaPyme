@@ -74,14 +74,30 @@ int Compras::getIdEntidad(){
     return this->idEntidad;
 }
 void Compras::setPuntoVta(){
+     int codigo;
      cout<<"\npunto de Vta: ";
-    cin>>this->puntoVta;
+    cin>>codigo;
+     while(codigo < 1) {
+    cout<<"\nCodigo no valido";
+    system("pause");
+    system("cls");
+    cout<<"\npunto de Vta: ";
+    cin>>codigo;
+}
+    this->puntoVta=codigo;
 }
 void Compras::setNroFactura(){
-    int a;
+    int codigo;
     cout<<"Numero de Factura: ";
-    cin>>a;
-    this->nroFactura=a;
+    cin>>codigo;
+     while(codigo<0) {
+    cout<<"\nNumero no valido";
+    system("pause");
+    system("cls");
+    cout<<"\nNumero de Factura: ";
+    cin>>codigo;
+}
+    this->nroFactura=codigo;
 }
 bool Compras::grabarEnDisco(){
     system("cls");
@@ -122,20 +138,17 @@ void Compras::listado_compras(){
         cout<<" "<<setw(105)<<setfill(' ')<<" "<<endl;
 
         while (aux.leerDeDisco(i++)){
-            cout<<"|"<<setw(4)<<centrarInt(aux.idCompras, 4);
-            cout<<" "<<setw(7)<<aux.tipoFactura;
+            cout<<"|"<<setw(4)<<centrarInt(aux.getIdCompras(), 4);
+            cout<<" "<<setw(7)<<aux.getTipoFact();
             cout<<" "<<setw(2)<<aux.fechaFactura.getDia()<<setw(1)<<"/";
             cout<<setw(2)<<aux.fechaFactura.getMes()<<setw(1)<<"/";
             cout<<setw(4)<<aux.fechaFactura.getAnio()<<setw(2)<<" ";
-            cout<<setw(12)<<aux.getNroFactura()<<setw(12)<<" ";
             cout<<" "<<setw(22)<<centrarInt(aux.getIdEntidad(), 22)<<endl;
         }
             cout<<setfill(' ')<<endl;
 
 }
-int Compras::getPuntoVta(){return puntoVta;}
-int Compras::getNroFactura(){return nroFactura;}
-char Compras::getTipoFact(){return tipoFactura;}
+
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 

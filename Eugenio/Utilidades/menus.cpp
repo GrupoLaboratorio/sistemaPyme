@@ -61,7 +61,7 @@ void menuLogin(){
 ///---------------------------------------------- MENU MAESTRO
 
 void menuMaestro(){
-              Contable ctbl;
+
         const int POSMENUX = 0;
         const int POSMENUY = 0;
         const int COLOR_PANTALLA = BLACK;
@@ -145,13 +145,7 @@ void menuMaestro(){
                 menuEntidades();
         break;
         case 5:
-            ctbl.listarMovimientos();
-            int cta;
-            msj("Listar Mayor de una cuenta: que nro de cta?:",WHITE, GREEN, 3,TEXT_CENTER );
-
-            cin>>cta;
-            ctbl.listarLibroMayor(cta);
-            ctbl.listarLibroDiario();
+            menuContable();
                 anykey();
         break;
         case 6:
@@ -882,3 +876,111 @@ void menuBackup(){
     }
     return;
 }
+///---------------------------------------------- MENU CONTABLE
+
+void menuContable(){
+ Contable ctbl;
+        const int POSMENUX = 0;
+        const int POSMENUY = 1;
+        const int COLOR_PANTALLA = BLACK;
+        const int LETRA = WHITE;
+        const int FONDO = BLUE;
+        Entidad EntidadPiloto;
+        Compras cmpr;
+        DetalleCompra detComp;
+
+
+    setlocale(LC_ALL, "spanish");
+    setConsoleTitle("TONGA GESTION");
+    const int ANCHO_MENU = 75;
+    const int ALTO_MENU = 8;
+    int key, opc, cursorX, cursorY;
+    while(true){
+      cursorX=POSMENUX+1;
+      cursorY=POSMENUY + 3;
+      setBackgroundColor(COLOR_PANTALLA);
+      system("cls");
+      opc=1;
+      setColor(LETRA);
+      //setBackgroundColor(FONDO);
+      locate(POSMENUX+5,POSMENUY+1);
+      title("CONTABILIDAD", WHITE, BLUE);
+      locate(POSMENUX+3,POSMENUY+3);
+      cout << "LISTAR MAYOR DE UNA CUENTA";
+      locate(POSMENUX+3,POSMENUY+4);
+      cout << "LISTAR TODOS LOS MOVIMIENTOS";
+      locate(POSMENUX+3,POSMENUY+5);
+      cout << "LISTAR UN LIBRO DIARIO";
+      locate(POSMENUX+3,POSMENUY+6);
+      cout << "GENERAR UN ASIENTO MANUAL";
+      locate(POSMENUX+3,POSMENUY+7);
+      cout << "LISTAR PLAN DE CUENTAS";
+      locate(POSMENUX+3,POSMENUY+8);
+      cout << "ATRAS\n";
+      hidecursor();
+      locate(cursorX,cursorY);
+      cout<<">";
+      key = getkey();
+      while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 5){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 0){
+                opc--;
+            }else{
+                opc=5;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 2;
+        }else{
+            cursorY = POSMENUY + 8;
+        }
+        locate(cursorX,cursorY);
+        cout<<">";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+      switch(opc){
+        case 1:
+            ctbl.listarLibroMayor();
+            anykey();
+        break;
+        case 2:
+            ctbl.listarMovimientos();
+            anykey();
+        break;
+        case 3:
+           ctbl.listarLibroDiario();
+            anykey();
+        break;
+        case 4:
+            ctbl.asientoManual();
+            anykey();
+        break;
+        case 5:
+            listarPlanCtas() ;
+            anykey();
+       break;
+        case 0:
+        return;
+        break;
+        default:cout<<" OPCION INCORRECTA"<<endl;
+                break;
+      }
+    }
+    return;
+
+}
+

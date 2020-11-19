@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string.h>
+#include <conio.h>
 #include <cstdio>
 #include <cctype>
 #include <algorithm>
@@ -20,8 +21,8 @@ using namespace std;
 int main(){
 
 	setlocale(LC_ALL, "spanish");
-	Contable ctn;
-	ctn.asientoManual();
+
+
     menuLogin();
 
     return 0;
