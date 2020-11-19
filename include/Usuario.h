@@ -9,7 +9,7 @@ class Usuario{
 		bool estado;
 		int idUser;
 	public:
-
+		void crearUsuario();
         void setNombreUser();
         void setPassword();
         void setNewPassword();

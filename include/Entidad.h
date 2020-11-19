@@ -23,9 +23,9 @@ class Entidad: public Persona{
 		void cargarCliente();
 		void cargarProveedor();
 		void mostrarEntidad();
-        void setRazonSocial(char *);
-        void setMail(char *);
-        void setTipoEntidad(int);
+        void setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razonSocial);}
+		void setMail(char * _mail){strcpy(this->mail,_mail);}
+		void setTipoEntidad(int _tipo){this->tipoEntidad = _tipo;}
         bool grabarEnDisco(int);
         bool leerDeDisco(int, int);
         const char* getRazonSocial(){return this->razonSocial;}
@@ -33,11 +33,9 @@ class Entidad: public Persona{
         int getTipoEntidad(){return this->tipoEntidad;}
         int getIdEntidad(){return this->idEntidad;}
         const char * getCuit(){return this->cuit;}
-//        void listarEntidadesTabla(int); /// Lista todos los Entidads del archivo
         Entidad buscarRazonSocial(int);
         Entidad buscarEntidadXId(int, int, Entidad *);
-
-void listarEntidadesTabla(int);
+		void listarEntidadesTabla(int);
 
 };
 

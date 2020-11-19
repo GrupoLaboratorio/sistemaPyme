@@ -27,6 +27,7 @@ using namespace rlutil;
 
 void menuLogin(){
     setlocale(LC_ALL, "spanish");
+
 	int attempts = 3, chequeo=0;
 
     while(attempts != 0){
@@ -51,7 +52,6 @@ void menuLogin(){
         return;
     }else{
         msj("HA SUPERADO EL LIMITE DE INTENTOS",WHITE,RED,130,TEXT_LEFT);
-        chequeo = 4;
         return;
     }
     return;
@@ -325,14 +325,16 @@ void menuCompras(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "CARGAR COMPRA";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "LISTAR TODAS LAS COMPRAS";
+      cout << "IMPRIMIR ORDEN DE COMPRA";
       locate(POSMENUX+3,POSMENUY+5);
-      cout << "CARGAR PROVEEDOR";
+      cout << "LISTAR TODAS LAS COMPRAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "BUSCAR PROVEEDOR POR CUIT";
+      cout << "CARGAR PROVEEDOR";
       locate(POSMENUX+3,POSMENUY+7);
-      cout << "LISTAR PROVEEDORES";
+      cout << "BUSCAR PROVEEDOR POR CUIT";
       locate(POSMENUX+3,POSMENUY+8);
+      cout << "LISTAR PROVEEDORES";
+      locate(POSMENUX+3,POSMENUY+9);
       cout << "ATRAS\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -343,17 +345,17 @@ void menuCompras(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 5){
+            if(opc < 7){
                 opc++;
             }else{
-                opc=0;
+                opc=1;
             }
             break;
         case KEY_UP:
-            if(opc > 0){
+            if(opc > 1){
                 opc--;
             }else{
-                opc=5;
+                opc=7;
             }
             break;
         }
@@ -374,23 +376,26 @@ void menuCompras(){
                 cmpr.cargarCompras();
         break;
         case 2:
+                detComp.imprimirOrdenCompra();
+        break;
+        case 3:
                 cmpr.listado_compras();
                 system("pause");
         break;
-        case 3:
+        case 4:
                 EntidadPiloto.cargarCliente();
 //                EntidadPiloto.grabarEnDisco(1);
                 EntidadPiloto.mostrarEntidad();
                 system("pause");
         break;
-        case 4:
+        case 5:
                 EntidadPiloto.buscarRazonSocial(2);
                 system("pause");
         break;
-        case 5:
-                    EntidadPiloto.listarEntidadesTabla(2);
+        case 6:
+                EntidadPiloto.listarEntidadesTabla(2);
         break;
-        case 0:
+        case 7:
         return;
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
@@ -435,7 +440,7 @@ void menuVentas(){
       locate(POSMENUX+3,POSMENUY+5);
       cout << "LISTAR DETALLE DE TODAS LAS VENTAS";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "LISTADO DE FACTURAS EMITIDAS"; /// ver como validad que no cargue en el arhcivo incorrecto
+      cout << "LISTADO DE FACTURAS EMITIDAS";
       locate(POSMENUX+3,POSMENUY+7);
       cout << "BUSCAR CLIENTE POR CUIT";
       locate(POSMENUX+3,POSMENUY+8);
@@ -592,9 +597,6 @@ void menuInventario(){
         break;
         case 4:
                 return;
-        break;
-        default:
-            cout<<" OPCION INCORRECTA"<<endl;
         break;
       }
     }
@@ -803,8 +805,6 @@ void menuConfiguracion(){
         const int LETRA = WHITE;
         const int FONDO = RED;
 
-        Entidad EntidadPiloto;
-
     setlocale(LC_ALL, "spanish");
     const int ANCHO_MENU = 75;
     const int ALTO_MENU = 8;
@@ -870,7 +870,7 @@ void menuConfiguracion(){
             menuBackup();
         break;
         case 2:
-            crearUsuario();
+            usuarioPiloto.crearUsuario();
         break;
         case 3:
             bajaLogicaUsuario();

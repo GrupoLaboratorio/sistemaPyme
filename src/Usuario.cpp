@@ -15,6 +15,20 @@ using namespace rlutil;
 
 const char * FILE_USUARIOS = "Archivos/Usuarios.dat";
 
+void Usuario::crearUsuario(){
+
+
+    setNombreUser();
+    while(usuarioRepetido(getNombreUser())==false){
+        setNombreUser();
+    }
+    setNewPassword();
+    setIdUser(crearIdUsuario());
+	setActivo();
+	grabarEnDisco();
+
+}
+
 void Usuario::setNombreUser(){
     setlocale(LC_ALL, "es_ES");
 
@@ -79,13 +93,12 @@ bool Usuario::grabarEnDisco(){
         chequeo = fwrite(this, sizeof(Usuario),1,c);
         if(chequeo==1){
 
-            msj("Carga exitosa",WHITE,GREEN,130,TEXT_LEFT);
+            msj("CARGA EXITOSA",WHITE,GREEN,130,TEXT_LEFT);
             fclose(c);
             system("cls");
             return true;
         }
         else{
-            cout << "El registro no pudo guardarse en clientes\n\n";
             fclose(c);
             system("pause");
             return false;
@@ -142,20 +155,20 @@ bool Usuario::cambiarPasswordUser(){
 
 ///--------------------------------- GLOBAL
 
-void crearUsuario(){
-
-	Usuario regAux;
-    regAux.setNombreUser();
-//    char * nombreAux = regAux.getNombreUser();
-    while(usuarioRepetido(regAux.getNombreUser())==false){
-        regAux.setNombreUser();
-    }
-    regAux.setPassword();
-    regAux.setIdUser(crearIdUsuario());
-	regAux.setActivo();
-	regAux.grabarEnDisco();
-
-}
+//void crearUsuario(){
+//
+//	Usuario regAux;
+//    regAux.setNombreUser();
+////    char * nombreAux = regAux.getNombreUser();
+//    while(usuarioRepetido(regAux.getNombreUser())==false){
+//        regAux.setNombreUser();
+//    }
+//    regAux.setNewPassword();
+//    regAux.setIdUser(crearIdUsuario());
+//	regAux.setActivo();
+//	regAux.grabarEnDisco();
+//
+//}
 
 void listarUsuarios(){
 
@@ -170,11 +183,10 @@ void listarUsuarios(){
                 return;
         }
             int i = 0;
-//            while(fread(&usuAux,sizeof(Usuario),1,c)==1){
             while(usuAux.leerDeDisco(i)){
                 estadoAux = usuAux.getEstado();
                 if(estadoAux == true || estadoAux == 1){
-                    cout  << "USER:" << usuAux.getNombreUser() << "\t"<< "PASSWORD:" << usuAux.getPassword() << "\tID\t" << usuAux.getIdUser() << endl;
+                    cout  << "USER:" << usuAux.getNombreUser() << "\t\t"<< "PASSWORD:" << usuAux.getPassword() << "\t\tID\t" << usuAux.getIdUser() << endl;
                 }
             i++;
             }
@@ -310,43 +322,6 @@ int crearIdUsuario(){
     return cant+1;
 
 }
-
-//void cambiarPasswordAdmin(){
-//
-//    Usuario usuAux;
-//    bool estadoAux;
-//    FILE *c;
-//    int newPass;
-//    int idAux, i=0;
-//
-//    cout << "INGESE ID:\t";
-//    cin >> idAux;
-//
-//        c = fopen(FILE_USUARIOS, "rb+");
-//        if(c==NULL){
-//                cout << "Error de archivo usuarios\n";
-//                system("pause");
-//                return;
-//        }
-//
-//            while(fread(&usuAux,sizeof(Usuario),1,c) == 1){
-//                if(usuAux.getIdUser() == idAux){
-//                    cout << "NUEVA CONTRASEÑA:\t";
-//                    cin >> newPass;
-//                    usuAux.setPassword(newPass);
-//                    fseek(c, sizeof(Usuario)*i, SEEK_SET);
-//                    fwrite(&usuAux,sizeof(Usuario),1,c);
-//                    fclose(c);
-//                    msj("CONTRASEÑA GUARDADA",WHITE,GREEN,130,TEXT_LEFT);
-//                    return;
-//                }
-//                i++;
-//            }
-//        msj("USUARIO NO ENCONTRADO",WHITE,RED,130,TEXT_LEFT);
-//        system("pause");
-//        fclose(c);
-//        return;
-//}
 
 void cambiarPasswordAdmin(){
 

@@ -21,9 +21,6 @@ Entidad::Entidad():Persona(){
 
 }
 
-//Entidad::~Entidad(){cout << "El Entidad murio";}
-
-
 void Entidad::cargarCliente(){
 
     //title("NUEVO CLIENTE", BLACK, CYAN); //-> ARREGLAR
@@ -68,12 +65,6 @@ void Entidad::mostrarEntidad(){
 	cout << setw(40) << "ID:" << setw(30) << this->idEntidad << endl;
 
 }
-
-void Entidad::setRazonSocial(char * _razonSocial){strcpy(this->razonSocial,_razonSocial);}
-
-void Entidad::setMail(char * _mail){strcpy(this->mail,_mail);}
-
-void Entidad::setTipoEntidad(int _tipo){this->tipoEntidad = _tipo;}
 
 bool Entidad::grabarEnDisco(int _tipoEntidad){
 
@@ -176,7 +167,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     const int ANCHO_MENU = 124;
     const int ALTO_MENU = 8;
     int key, opc, cursorX, cursorY;
-    //
+
       cursorX=POSMENUX+0;
       cursorY=POSMENUY +1;
       setBackgroundColor(COLOR_PANTALLA);
@@ -207,7 +198,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
             cout<<"|"<<setw(20)<<centrar("EMAIL",20)<<"|"<<endl;
         setBackgroundColor(BLACK);
 
-        while (aux.leerDeDisco(i++, 1)){
+        while(aux.leerDeDisco(i++, 1)){
             estadoAux = aux.getEstado();
             if(estadoAux == true){
                 cout<<left;
@@ -265,6 +256,7 @@ void Entidad::listarEntidadesTabla(int _tipoEntidad){
     }
 }
 Entidad Entidad::buscarRazonSocial(int tipoEnt){
+
     FILE *archivo;
     Entidad user;
     char cuit[14];
@@ -272,17 +264,15 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
 
     cout<<"\nIngrese el CUIT: ";
     fflush(stdin);
-//    cin.ignore();
     cin.getline(cuit, 14, '\n');
-    ///abrimos el archivo
     if(tipoEnt==1){
         archivo = fopen(FILE_CLIENTES,"rb");
-    }else{
+    }else if(tipoEnt == 2){
         archivo = fopen(FILE_PROVEEDORES,"rb");
     }
 
-    while (this->leerDeDisco(i++, tipoEnt)){
-       if( strcmp(this->cuit, cuit)==0 ){//busca un valor string en el archivo
+    while(this->leerDeDisco(i++, tipoEnt)){
+       if(strcmp(this->cuit, cuit)==0){
                 cls();
                 cout<<"\nRAZON SOCIAL: "<<this->getRazonSocial()<<endl;
                 cout<<"CUIT: "<<this->cuit<<endl;
@@ -293,14 +283,14 @@ Entidad Entidad::buscarRazonSocial(int tipoEnt){
     }
 
        if(tipoEnt==1){
-        cls();
-       cout<<"\nEl Cliente no existe, Por favor ingrese el nuevo cliente:"<<endl;
-        this->cargarCliente();
+       cls();
+       cout<<"\nCLIENTE INTEXISTENTE, INGRESE NUEVO CLIENTE:"<<endl;
+       this->cargarCliente();
 
        system("pause");
        }else{
          cls();
-       cout<<"\nEl Proveedor no existe, Por favor ingrese el nuevo Proveedor:"<<endl;
+       cout<<"\nPROVEEDOR INTEXISTENTE, INGRESE NUEVO PROVEEDOR:"<<endl;
        this->cargarProveedor();
 
        system("pause");

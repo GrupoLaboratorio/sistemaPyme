@@ -27,39 +27,41 @@ Ventas::Ventas(){
     idCliente=0;
     tipoFactura='B';
 }
+
 void Ventas::cargarVtas(){
     setlocale(LC_CTYPE, "Spanish");
     Ventas();
     setTipoFact();
     setNroFact();
-char c;
-system("cls");
-cout<<" Abrir una venta?. ";
-cout<<"\nSi: 1";
-cout<<"\nNo : 0 "<<endl;
-int ok;
-cin>>ok;
-if(ok==1){
-    bool grabo=grabarEnDisco();
-    if(grabo==true )    {
-        DetalleVenta  det;
-        det.cDetalleVenta();
-    }    else{
-        cout<<" Venta no realizada ";
-        system("pause");
-        return;
+    char c;
+    system("cls");
+    cout<<"¿ABRIR UNA VENTA?";
+    cout<<"\nSI: 1";
+    cout<<"\nN0: 0 "<<endl;
+    int ok;
+    cin>>ok;
+
+    if(ok==1){
+        bool grabo=grabarEnDisco();
+        if(grabo==true ){
+            DetalleVenta  det;
+            det.cDetalleVenta();
+        }else{
+            cout<<"VENTA NO REALIZADA";
+            system("pause");
+            return;
+        }
     }
+    return;
 }
-return;
-}
+
 void Ventas::setIdCliente(){
     Entidad cliente;
     cliente.buscarRazonSocial(1);
     idCliente=cliente.getIdEntidad();
 }
-//void setNroFact(){
-// =crearIdXFact();
-//}
+
+
 void Ventas::setTipoFact(){
     char tipo;
     cout<<"FACTURA A o B? : ";

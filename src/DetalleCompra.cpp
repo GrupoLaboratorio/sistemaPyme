@@ -23,64 +23,53 @@ using namespace std;
 #include "Compras.h"
 using namespace rlutil;
 
-bool DetalleCompra::leerDeDisco(int posicion){
-    bool leyo;
-    FILE *p;
-        p = fopen(FILE_DET_COMPRAS, "rb");
-        if (p == NULL)
-        {
-            return false;
-        }
-        fseek(p, posicion * sizeof(DetalleCompra), 0);
-        leyo = fread(this, sizeof(DetalleCompra), 1, p);
-        fclose(p);
-        return leyo;
-}
-
 void DetalleCompra::cDetalleCompra(){
+
     setlocale(LC_CTYPE, "Spanish");
 
     Compras  datoCp;
     Contable conta;
-    int i=crearIdXCompras()-2;
-    datoCp.leerDeDisco(i);
+    int i = crearIdXCompras()-2;
+    datoCp.leerDeDisco(i);//leer de Compras
     int continuar;
-
     do{
+        setIdCompras(datoCp.getIdCompras());
         setIdDetalle();
         setTipoFactura(datoCp.getTipoFact());
         setPtoVta(datoCp.getPuntoVta());
         setNroFactura(datoCp.getNroFactura());
+        /// Los 5 de arriba salen de la cabecera
         setIdProducto();
         grabarDetalleEnDisco();
-        conta.imputarCta(datoCp.getFecha(),datoCp.getNroFactura(), cantidad, 2, idProducto);
+        conta.imputarCta(datoCp.fechaFactura.getDia(), datoCp.fechaFactura.getMes(), datoCp.fechaFactura.getAnio(), getNroFactura(), getcantProd(), 2, getIdProducto());
         system("cls");
-        cout<<"\n¿CONTINUA CARGANDO?";
+        cout<<"\n¿CONTINUA COMPRANDO?";
         cout<<"\nSI: 1";
         cout<<"\nNO: 0 "<<endl;
         cin>> continuar;
          while(!(continuar == 0 || continuar == 1)){
-        cout<<" OPCION INCORRECTA";
+        cout<<"INCORRECTO";
         system("pause");
         system("cls");
-        cout<<"\n¿CONTINUA CARGANDO?";
+        cout<<"\n¿CONTINUA COMPRANDO?";
         cout<<"\nSI: 1";
         cout<<"\nNO: 0 "<<endl;
         cin>> continuar;
     }
     }while(continuar==1);
-    imprimirNotaCredito(datoCp.getNroFactura());
+    ///DEBERIA MOSTRAR EL DETALLE DE LA COMPRA O LA ORDEN DE COMPRA
+    imprimirOrdenCompra(getIdCompras());
     return;
 }
 void DetalleCompra::setIdProducto(){
     Producto prod;
-    cout<<"CODIGO DE PRODUCTO:";
+    cout<<"Ingrese codigo producto : ";
     cin>>idProducto;
      while(idProducto < 1){
-        cout<<"CODIGO INCORRECTO";
+        cout<<"Codigo de producto incorrrecta : ";
         system("pause");
         system("cls");
-         cout<<"\nCODIGO DE PRODUCTO:"<<endl;
+         cout<<"\nIngrese codigo producto : "<<endl;
         cin>> idProducto;
     }
     if (prod.buscarProdxId(idProducto) == -2){
@@ -91,7 +80,7 @@ void DetalleCompra::setIdProducto(){
         prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
     }else{
         if(prod.buscarProdxId(idProducto)>0){
-            cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
+            cout<<"PRECIO: $"<< prod.getPrecioCosto()<<endl;
             prod.setPrecioCosto();
             setCantidad();
             prod.setMod(idProducto, 2, cantidad,  prod.getPrecioCosto());
@@ -102,39 +91,39 @@ void DetalleCompra::setIdProducto(){
 }
 void DetalleCompra::setPrecio(){
     int precio;
-    cout<<"PRECIO:"<<endl;
+    cout<<"PRECIO: "<<endl;
     cin>>precio;
     while(precio<1){
-    cout<<"PRECIO NO VALIDO";
+    cout<<"VALOR NO VALIDO";
         system("pause");
         system("cls");
-         cout<<"\nPRECIO:"<<endl;
+         cout<<"\nPRECIO: "<<endl;
         cin>> precio;
     }
     this->preBruto=precio;
 }
 void DetalleCompra::setCantidad(){
     int cant;
-    cout<<"CANTIDAD:"<<endl;
+    cout<<"CANTIDAD: "<<endl;
     cin>>cant;
      while(cant<1){
-    cout<<"CANTIDAD NO VALIDA";
+    cout<<"VALOR NO VALIDO: ";
         system("pause");
         system("cls");
-         cout<<"\nCANTIDAD"<<endl;
+         cout<<"\nCANTIDAD: "<<endl;
         cin>> cant;
     }
     this->cantidad=cant;
 }
 void DetalleCompra::setImpuesto(){
     float imp;
-    cout<<"IVA"<<endl;
+    cout<<"% DE IVA"<<endl;
     cin>>imp;
     while(imp != 10.5 || imp != 21) {
-    cout<<"IVA NO VALIDO";
+    cout<<"IVA NO VALIDO: ";
         system("pause");
         system("cls");
-         cout<<"\nIMPUESTO:"<<endl;
+         cout<<"\n% DE IVA: "<<endl;
         cin>> imp;
     }
     this->impuesto=imp;
@@ -169,125 +158,88 @@ bool DetalleCompra::grabarDetalleEnDisco(){
         return false;
     }
 }
-
-//void DetalleVenta::listado_detalle(){
-//    DetalleVenta aux;
-//    int i = 0;
-//    ///Inicio de cabecera
-//    title("DETALLE DE FACTURAS",WHITE, RED);
-//    cout<<endl;
-//    setBackgroundColor(DARKGREY);
-//    cout<<" "<<setw(15)<<centrar("Id", 15)<<"|";
-//    cout<<" "<<setw(15)<<centrar("# Fact", 15)<<"|";
-//    cout<<" "<<setw(38)<<centrar("Tipo de Factura", 38)<<"|"<<endl;
-//    setBackgroundColor(BLACK);
-//
-//    while (aux.leerDeDiscoD(i++)){
-//    cout<<" "<<setw(15)<<centrarInt(aux.idDetalle, 15);
-//    cout<<" "<<setw(15)<<centrarInt(aux.getNroFactura(), 15);
-//    cout<<" "<<setw(21)<<aux.getTipoFactura()<<endl;
-//     }
-//    cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
-//    system("pause");
-//}
-
-int posicionFact(){
-    Compras reg;
-    int factura, contador=0, opcion;
-    bool b=false;
-   do{
-   cout<<"N° FACTURA:";
-   cin>>factura;
-   while(factura < 0) {
-       cout<<"N° FACTURA INCORRECTO";
-       system("pause");
-       system("cls");
-       cout<<"\nN° DE FACTURA A IMPRIMIR";
-       cin>>factura;
-   }
-
-   FILE *p=fopen(FILE_COMPRAS,"rb");
-   if(p == NULL)return -1;
-
-   while(fread(p,sizeof(Compras), 1, p)){
-    if(reg.getNroFactura() == factura){
-            fclose(p);
-            b=true;
-        return contador;
+bool DetalleCompra::leerDeDisco(int posicion){
+    bool leyo;
+    FILE *p;
+    p = fopen(FILE_DET_COMPRAS, "rb");
+    if (p == NULL)
+    {
+        return false;
     }
-    contador++;
-   }
-    cout<<"NUMERO DE FACTURA INEXISTENTE";
+    fseek(p, posicion * sizeof(DetalleCompra), 0);
+    leyo = fread(this, sizeof(DetalleCompra), 1, p);
     fclose(p);
+    return leyo;
+}
+
+void DetalleCompra::listado_detalle(){
+    DetalleCompra aux;
+    int i = 0;
+    ///Inicio de cabecera
+    title("DETALLE DE FACTURAS",WHITE, RED);
+    cout<<endl;
+    setBackgroundColor(DARKGREY);
+    cout<<" "<<setw(15)<<centrar("ID", 15)<<"|";
+    cout<<" "<<setw(15)<<centrar("N° FACT", 15)<<"|";
+    cout<<" "<<setw(38)<<centrar("TIPO FACTURA", 38)<<"|"<<endl;
+    setBackgroundColor(BLACK);
+
+    while (aux.leerDeDisco(i++)){
+    cout<<" "<<setw(15)<<centrarInt(aux.getIdDetalle(), 15);
+    cout<<" "<<setw(15)<<centrarInt(aux.getNroFactura(), 15);
+    cout<<" "<<setw(21)<<aux.getTipoFactura()<<endl;
+     }
+    cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
     system("pause");
-    system("cls");
+}
 
-    cout<<"\n¿INGRESARA N° DE FACTURA?";
-    cout<<"\nSI: 1";
-      cout<<"\nNO: 0 "<<endl;
-        cin>> opcion;
-         while(!(opcion == 0 || opcion == 1)){
-        cout<<"OPCION INCORRECTA";
-        system("pause");
-        system("cls");
-         cout<<"\n¿CONTINUA CARGANDO?"<<endl;
-        cout<<"\nSI: 1";
-        cout<<"\nNO: 0 "<<endl;
-        cin>> opcion;
-    }  if(opcion==1){
-         b=false;
-//        listado_detalle();
-        system("pause");
-        system("cls");
-    }else{return -2;}
-    }while(b == false);  }
-
-
-void DetalleCompra::imprimirNotaCredito(int _n){
+void DetalleCompra::imprimirOrdenCompra(int _n){
 
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     Compras  dato;
-    Entidad cliente;
+    Entidad proveedor;
     Producto prod;
-    DetalleCompra aux;
-    int i =0, f;
+    int i =0, f, pos;
     cls();
 
     if(_n == 0){
-    f = posicionFact();
-    if(f == -2){
-    return;
-    }
-    }else{
-        f = _n -1;
-    }
-    cls();
-    dato.leerDeDisco(f);
-    cliente.leerDeDisco(dato.getIdEntidad()-1,1);
-    char a[30];
-        if(dato.getTipoFact() =='A'){
-             system("color 0E");
-           setBackgroundColor(BLUE);
-        }else{
-             system("color 0F");
-            setBackgroundColor(RED);
+        cout<<"INGRESE NUMERO DE ORDEN COMPRA: ";
+        cin>>f;
+        while(checkOrdenCompra(f)==false){
+             cout<<"N° DE OC INEXISTENTE\n";
+             system("pause");
+             system("cls");
+             cout<<"\nINGRESE NUMERO DE ORDEN COMPRA: ";
+             cin >> f;
         }
-            strcpy(a, "FACTURA ");
+
+    }else{
+        f = _n ;
+    }
+
+    if(pos >= 0){
+    cls();
+    dato.leerDeDisco(f-1);
+    proveedor.leerDeDisco(dato.getIdEntidad()-1,2);
+    char a[30];
+
+    strcpy(a, "ORDEN DE COMPRA ");
             cout<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(88)<<centrar(a, 87)<<"|"<<endl;
             cout<<"|"<<setw(88)<<dato.getTipoFact()<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;            cout<<"|"<<setw(69)<<""<<dato.getPuntoVta()<<derechaInt(f, 5)<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<<setw(69)<<""<<derechaInt(dato.getPuntoVta(),4)<<"-"<<derechaInt(dato.getNroFactura(), 5)<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
+            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
+            cout<<"|"<< getTipoFactura()<<endl;
+            cout<<"|"<< proveedor.getMail()<<endl;
+            cout<<"|"<< proveedor.getDomicilio().getCalle()<<endl;
+            cout<<"|"<< proveedor.getCuit()<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<right;
-            cout<<"|"<< "TONGA GESTION SRL   "<<setw(31)<<""; if(dato.getTipoFact()=='A'){cout<<"R.SOCIAL :"<<setw(27)<<cliente.getRazonSocial() <<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<< "info@tongagest.com  "<<setw(31)<<"";if(dato.getTipoFact()=='A'){cout<<"MAIL     :"<<setw(27)<<cliente.getMail()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<< "Dir: Yrigoyen 197   "<<setw(31)<<"";if(dato.getTipoFact()=='A'){cout<<"DIR      :"<<setw(27)<<cliente.getDomicilio().getCalle()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<< "Cod Post : 1640     "<<setw(31)<<"";if(dato.getTipoFact()=='A'){cout<<"CUIT     :"<<setw(27)<<cliente.getCuit()<<"|"<<endl;}else{cout<<setw(37)<<" "<<"|"<<endl;}
-            cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-            cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(9)<<centrar("CODPROD", 9);
             cout<<"|"<<setw(28)<<centrar("DESCRIPCION", 28);
             cout<<"|"<<setw(10)<<centrar("CANTIDAD", 10);
@@ -295,29 +247,28 @@ void DetalleCompra::imprimirNotaCredito(int _n){
             cout<<"|"<<setw(10)<<centrar("IVA", 10);
             cout<<"|"<<setw(16)<<centrar("SUB TOT", 16)<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
-        while(aux.leerDeDisco(i++)){
-        if(aux.getNroFactura()==f){
-            prod.leerDeDisco(prod.buscarProdxId(aux.getCodProducto()));
+        while ( leerDeDisco(i++)){
+        if(getIdCompras()==f){
+             prod.leerDeDisco(prod.buscarProdxId(getIdProducto()));
                 cout<<setfill(' ');
-                cout<<"|"<< setw(9)<<centrarInt(aux.getCodProducto(), 9);
+                cout<<"|"<< setw(9)<<centrarInt(getIdProducto(), 9);
                 cout<<left;
                 cout<<"|"<< setw(28)<<prod.getDescripcion();
                 cout<<right;
-                cout<<"|"<< setw(10)<<centrarInt(aux.getCantProducto(), 10);
-                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<aux.getPrecio();
-                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(aux.getPrecio()*prod.getIva()/100);
-                cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((aux.getPrecio()+(aux.getPrecio()*prod.getIva()/100))*aux.getCantProducto())<<"|"<<endl;
-                tPrUn+=aux.getPrecio();
-                sTot+=(aux.getPrecio()*aux.getCantProducto());
-                sIva+=((aux.getPrecio()*prod.getIva())/100*aux.getCantProducto());
-            }
+                cout<<"|"<< setw(10)<<centrarInt(getcantProd(), 10);
+                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<prod.getPrecioCosto();
+                cout<<"|"<< setw(10)<<fixed<<setprecision(2)<<(prod.getPrecioCosto()*prod.getIva()/100);
+                cout<<"|"<<setw(16)<<fixed<<setprecision(2)<<((prod.getPrecioCosto()+(prod.getPrecioCosto()*prod.getIva()/100))*getcantProd())<<"|"<<endl;
+                tPrUn += prod.getPrecioCosto();
+                sTot += (prod.getPrecioCosto()*getcantProd());
+                sIva += ((prod.getPrecioCosto()*prod.getIva()) / 100*getcantProd());
         }
-            tTot+=(sIva+sTot);
+        }
+                tTot+=(sIva+sTot);
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<< right;
-            cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
+           cout<<"|"<<setw(80)<<"SubTotal:$"<<setw(8)<<fixed<<setprecision(2)<<sTot<<"|"<<endl;
             cout<<"|"<<setw(80)<<"Total Iva:$"<<setw(8)<<fixed<<setprecision(2)<<sIva<<"|"<<endl;
             cout<<"|"<<setw(80)<<"Total Final:$"<<setw(8)<<fixed<<setprecision(2)<<tTot<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
@@ -326,6 +277,20 @@ void DetalleCompra::imprimirNotaCredito(int _n){
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
             cout<<"|"<<setw(89)<<setfill('_')<<"|"<<endl;
-
     system("pause");
+}
+}
+
+bool checkOrdenCompra(int ordenCheck){
+
+    Compras regAux;
+    int i=0;
+
+    while(regAux.leerDeDisco(i)){
+        if(regAux.getIdCompras() == ordenCheck){
+            return true;
+        }
+        i++;
+    }
+    return false;
 }

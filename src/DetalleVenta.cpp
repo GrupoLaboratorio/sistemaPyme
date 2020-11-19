@@ -21,75 +21,49 @@ using namespace std;
 using namespace rlutil;
 
 void DetalleVenta::cDetalleVenta(){
-
-    setlocale(LC_CTYPE, "Spanish");
+ setlocale(LC_CTYPE, "Spanish");
     Ventas dato;
-    Contable ctb;
+        Contable ctb;
+    //    Contable cont;
     int i= crearIdXFact()-2;
     dato.leerDeDisco(i);
+
     int continuar;
-
-
     do{
-        setIdDetalle();
-        setTipoFactura(dato.getTipoFact());
-        setNroFactura(dato.getNroFact());
+        this->idDetalle= crearIdDetalle();
+        tipoFactura= dato.getTipoFact();
+        nroFactura= dato.getNroFact();
         setCodProducto();
         setPrecio();
+        grabarDetalleEnDisco();
+        ctb.imputarCta(dato.fechaVenta.getDia(), dato.fechaVenta.getMes(), dato.fechaVenta.getAnio(),  nroFactura, cantidad, 1, getCodProducto());
+
         system("cls");
-        cout<<"\nCountinua comprando?. "<<endl;
+        cout<<"\nCountinua comprando?. ";
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
     cin>> continuar;
-
-    while(!(continuar == 0 || continuar == 1)){
-        cout<<" Opcion incorrrecta : ";
-        system("pause");
-        system("cls");
-         cout<<"\nCountinua comprando?. "<<endl;
-        cout<<"\nSi: 1";
-        cout<<"\nNo : 0 "<<endl;
-        cin>> continuar;
-    }
     }while(continuar==1);
-        grabarDetalleEnDisco();
-        ctb.imputarCta(dato.getFecha(),getNroFactura(), getCantProducto(), 1, getCodProducto());
     imprimirFactura(getNroFactura());
     return;
 }
 void DetalleVenta::setCodProducto(){
     Producto prod;
-    int codigo;
-
     cout<<"Ingrese codigo producto : ";
-    cin>>codigo;
-    while(codigo<=0){
-         cout<<"Codigo Incorrecto : ";
-         system("pause");
-         system("cls");
-         cout<<"Ingrese un codigo : ";
-        cin>>codigo;
+    cin>>codProd;
+    while(codProd<=0){
+         cout<<"ERROR en el idProducto, Ingrese un codigo de producto valido : ";
+        cin>>codProd;
     }
-
-     this->codProd=codigo;
         prod.buscarProdxId(codProd);
         cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
         setCantProducto();
-        prod.setMod(getCodProducto(), 1, getCantProducto(),  prod.getPrecioCosto());
+        prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
 void DetalleVenta::setCantProducto(){
     Producto prod;
-    int cant;
-    cout<<"Cantidad : ";
-    cin>>cant;
-     while(cant <1){
-        cout<<" Opcion incorrrecta : ";
-        system("pause");
-        system("cls");
-        cout<<"Ingrese cantidad : ";
-        cin>> cant;
-    }
-    this->cantidad=cant;
+    prod.setStock(0);
+    this->cantidad=prod.getStock();
 }
 bool DetalleVenta::grabarDetalleEnDisco(){
 
@@ -153,10 +127,20 @@ void DetalleVenta::listado_detalle(){
     cout<<"|"<<setw(89)<<setfill(' ')<<"|"<<endl;
     system("pause");
 }
+char DetalleVenta::getTipoFactura(){
+    return tipoFactura;}
 void DetalleVenta::setIdCliente(){
     Ventas dato;
     this->idCliente=dato.getIdCliente();}
-
+char DetalleVenta::getIdCliente(){
+    return idCliente;}
+void DetalleVenta::setNroFactura(){
+     Ventas dato;
+    this->nroFactura=dato.getNroFact();}
+void DetalleVenta::setIdDetalle(){
+    this->idDetalle=crearIdDetalle();}
+int DetalleVenta::getNroFactura(){
+    return nroFactura;}
 void DetalleVenta::imprimirFactura(int _n){
     int pos= crearIdXFact()-2;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
@@ -240,22 +224,22 @@ void DetalleVenta::imprimirFactura(int _n){
 }
 ///----------------------FUNCIONES GLOBALES-----------------
 
-//int buscarXCodProd(int codigo){
-//    FILE *p;
-//    DetalleVenta reg;
-//    int posicion=0;
-//    p=fopen(FILE_DETALLE, "rb");
-//    if(p == NULL){return -1;  }
-//    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1){
-//        if(reg.getCodProducto() == codigo){
-//            fclose(p);
-//            return posicion;
-//        }
-//        posicion++;
-//    }
-//    fclose(p);
-//    return -2;
-//}
+int buscarXCodProd(int codigo){
+    FILE *p;
+    DetalleVenta reg;
+    int posicion=0;
+    p=fopen(FILE_DETALLE, "rb");
+    if(p == NULL){return -1;  }
+    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1){
+        if(reg.getCodProducto() == codigo){
+            fclose(p);
+            return posicion;
+        }
+        posicion++;
+    }
+    fclose(p);
+    return -2;
+}
 int crearIdDetalle(){
     int bytes, cant;
 

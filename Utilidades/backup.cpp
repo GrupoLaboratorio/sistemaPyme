@@ -15,14 +15,6 @@ using namespace rlutil;
 #include "Producto.h"
 #include "Productos.h"
 
-//const char * FILE_PROVEEDORES = "Archivos/Proveedores.dat";
-//const char * FILE_CLIENTES = "Archivos/Clientes.dat";
-//const char * FILE_DETALLE="Archivos/DetalleVentas.dat" ;
-//const char * FILE_VENTAS = "Archivos/Ventas.dat";
-//const char * FILE_COMPRAS="Archivos/Compras.dat";
-//const char * FILE_PRODUCTOS = "Archivos/Productos.dat";
-//const char * FILE_DET_COMPRAS="Archivos/DetalleCompras.dat";
-
 bool validarBackup(){
 
 	const int POSMENUX = 30;
@@ -30,10 +22,11 @@ bool validarBackup(){
 	int codConf, codAux;
 
 	srand(time(NULL));
-	codAux = 127+(rand()%(10000-1));
+	codAux = 127+(rand()%(100000-1));
 	locate(POSMENUX+5,POSMENUY+1);
 	cout << "INGRESE " << codAux << " PARA CONFIRMAR LA OPERACION\n";
 	locate(POSMENUX+5,POSMENUY+2);
+	cout << ">  ";
 	cin >> codConf;
 
 	if(codConf == codAux){
@@ -69,7 +62,6 @@ void backupArchivos(int opcion){
 			if(validarBackup()==true){
 				CopyFile(FILE_DETALLE,"Backup/DetalleVentas.bkp", FALSE);
 				CopyFile(FILE_VENTAS,"Backup/Ventas.bkp", FALSE);
-				/// FALTA PLAN DE CUENTAS
 				msj("COPIA DE SEGURIDAD EXITOSA",WHITE,GREEN,130,TEXT_LEFT);
 			}else{
 				msj("COPIA DE SEGURIDAD FALLIDA",WHITE,RED,130,TEXT_LEFT);
@@ -87,7 +79,6 @@ void backupArchivos(int opcion){
 		case 5:
 			if(validarBackup()==true){
 				CopyFile(FILE_PRODUCTOS,"Backup/Productos.bkp", FALSE);
-				/// FALTA PLAN DE CUENTAS
 				msj("COPIA DE SEGURIDAD EXITOSA",WHITE,GREEN,130,TEXT_LEFT);
 			}else{
 				msj("COPIA DE SEGURIDAD FALLIDA",WHITE,RED,130,TEXT_LEFT);
@@ -116,22 +107,3 @@ void backupArchivos(int opcion){
 
 	return;
 }
-
-
-//void  restaurarCopia(){
-//        int opcion;
-//      title("RESTAURAR COPIA DE SEGURIDAD DE COPIA A ARCHIVOS",BLACK,CYAN);
-//       gotoxy(1,3);
-//      cout<<"1. RESTAURAR COPIA"<<endl;
-//      cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
-//      cin>>opcion;
-//      if(opcion==1){
-//        CopyFile( "archivos/Entrenamientos.bkp", "archivos/Entrenamientos.dat", FALSE);
-//        CopyFile("archivos/usuarios.bkp", "archivos/usuarios.dat",  FALSE);
-//        cout<<"\n\t\t\tse realizo la restauracion  de  la copia de seguridad correctamente"<<endl;
-//        system("PAUSE");
-//      }else{
-//          menu();
-//      }
-//
-//        }

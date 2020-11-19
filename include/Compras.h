@@ -15,11 +15,9 @@ private:
     int puntoVta;       ///Representa el numero de venta de la sucursal del proveedor( mayor a 0)
     int nroFactura;  ///Numero de factura autonumerico (-00000000)
     int idEntidad;
-    Fecha fechaFactura;
 
 public:
-//    Compras();
-//    ~Compras();
+    Fecha fechaFactura;
     void cargarCompras();  /// Carga los datos de las ventas
     void setTipoFact(); /// Asigna el tipo de factura
     void setPuntoVta();
@@ -27,13 +25,13 @@ public:
     void setNroFactura(); /// Asigna el numero de factura autonumerico
     void setIdProveedor(); /// Asigna el Id del proveedor
     void setFechaFactura();
-    char getTipoFact();  /// Muestra el tipo de factura
-    int getNroFactura();  /// Muestra el numero de la factura
-    int getPuntoVta();
     bool grabarEnDisco();///GRABA EN UN ARCHIVO UN REGISTRO DE TIPO PRODUCTO **HECHA**
     Fecha getFecha(){return this->fechaFactura;}
     int setIdCompras();
-    int getIdCompras();
+    int getIdCompras(){return this->idCompras;}
+    int getPuntoVta(){return puntoVta;}
+    int getNroFactura(){return nroFactura;}
+    char getTipoFact(){return tipoFactura;}
 
     void setIdEntidad();
     int getIdEntidad();

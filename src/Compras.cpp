@@ -22,8 +22,9 @@ using namespace std;
 
 
 void Compras::cargarCompras(){
-    this->idCompras=crearIdXCompras();
     setlocale(LC_CTYPE, "Spanish");
+
+    this->idCompras=crearIdXCompras();
     setTipoFact();
     setPuntoVta();
     setNroFactura();
@@ -31,7 +32,7 @@ void Compras::cargarCompras(){
 
     cout<<"¿CARGAR LA COMPRA?. ";
     cout<<"\nSI: 1";
-    cout<<"\nNO : 0 "<<endl;
+    cout<<"\nNO: 0 "<<endl;
     int ok;
     cin>>ok;
         while(!(ok == 1 || ok == 0)){
@@ -45,7 +46,7 @@ void Compras::cargarCompras(){
 
         if(ok==1){
             bool grabo = grabarEnDisco();
-            if(grabo==true )    {
+            if(grabo==true ){
                 DetalleCompra det;
                 det.cDetalleCompra();
             }else{
@@ -138,9 +139,7 @@ void Compras::listado_compras(){
             cout<<setfill(' ')<<endl;
 
 }
-int Compras::getPuntoVta(){return puntoVta;}
-int Compras::getNroFactura(){return nroFactura;}
-char Compras::getTipoFact(){return tipoFactura;}
+
 
 ///--------------------------------------FUNCIONES GLOBALES------------------------------------
 
