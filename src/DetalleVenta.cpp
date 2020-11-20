@@ -43,17 +43,29 @@ void DetalleVenta::cDetalleVenta(){
         cout<<"\nSi: 1";
         cout<<"\nNo : 0 "<<endl;
     cin>> continuar;
+      while(!(continuar == 0 || continuar == 1)){
+        cout<<" Opcion incorrrecta : ";
+        system("pause");
+        system("cls");
+         cout<<"\nCountinua comprando?. "<<endl;
+        cout<<"\nSi: 1";
+        cout<<"\nNo : 0 "<<endl;
+        cin>> continuar;
+    }
     }while(continuar==1);
     imprimirFactura(getNroFactura());
     return;
 }
 void DetalleVenta::setCodProducto(){
     Producto prod;
-    cout<<"Ingrese codigo producto : ";
-    cin>>codProd;
-    while(codProd<=0){
-         cout<<"ERROR en el idProducto, Ingrese un codigo de producto valido : ";
-        cin>>codProd;
+  cout<<"Ingrese codigo producto : ";
+    cin>>codigo;
+    while(codigo<=0){
+         cout<<"Codigo Incorrecto : ";
+         system("pause");
+         system("cls");
+         cout<<"Ingrese un codigo : ";
+        cin>>codigo;
     }
         prod.buscarProdxId(codProd);
         cout<<"Precio: $"<< prod.getPrecioCosto()<<endl;
@@ -61,9 +73,17 @@ void DetalleVenta::setCodProducto(){
         prod.setMod(codProd, 1, cantidad,  prod.getPrecioCosto());
 }
 void DetalleVenta::setCantProducto(){
-    Producto prod;
-    prod.setStock(0);
-    this->cantidad=prod.getStock();
+    int cant;
+    cout<<"Cantidad : ";
+    cin>>cant;
+     while(cant <1){
+        cout<<" Opcion incorrrecta : ";
+        system("pause");
+        system("cls");
+        cout<<"Ingrese cantidad : ";
+        cin>> cant;
+    }
+    this->cantidad=cant;
 }
 bool DetalleVenta::grabarDetalleEnDisco(){
 
@@ -231,22 +251,22 @@ void DetalleVenta::imprimirFactura(int _n){
 }
 ///----------------------FUNCIONES GLOBALES-----------------
 
-int buscarXCodProd(int codigo){
-    FILE *p;
-    DetalleVenta reg;
-    int posicion=0;
-    p=fopen(FILE_DETALLE, "rb");
-    if(p == NULL){return -1;  }
-    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1){
-        if(reg.getCodProducto() == codigo){
-            fclose(p);
-            return posicion;
-        }
-        posicion++;
-    }
-    fclose(p);
-    return -2;
-}
+//int buscarXCodProd(int codigo){
+//    FILE *p;
+//    DetalleVenta reg;
+//    int posicion=0;
+//    p=fopen(FILE_DETALLE, "rb");
+//    if(p == NULL){return -1;  }
+//    while( fread(&reg, sizeof(DetalleVenta), 1, p) == 1){
+//        if(reg.getCodProducto() == codigo){
+//            fclose(p);
+//            return posicion;
+//        }
+//        posicion++;
+//    }
+//    fclose(p);
+//    return -2;
+//}
 int crearIdDetalle(){
     int bytes, cant;
 

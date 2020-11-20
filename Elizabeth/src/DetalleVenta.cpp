@@ -74,7 +74,6 @@ void DetalleVenta::setCodProducto(){
         prod.setMod(getCodProducto(), 1, getCantProducto(),  prod.getPrecioCosto());
 }
 void DetalleVenta::setCantProducto(){
-    Producto prod;
     int cant;
     cout<<"Cantidad : ";
     cin>>cant;
