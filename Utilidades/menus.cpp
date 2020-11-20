@@ -16,6 +16,7 @@ using namespace rlutil;
 #include "../Include/Entidad.h"
 #include "../Include/Ventas.h"
 #include "../Include/Compras.h"
+#include "../Include/Contable.h"
 #include "../Include/DetalleVenta.h"
 #include "../Include/DetalleFactura.h"
 #include "../Include/DetalleCompra.h"
@@ -606,8 +607,8 @@ void menuInventario(){
 ///---------------------------------------------- MENU CONTABILIDAD
 
 void menuContabilidad(){
-
-       const int POSMENUX = 0;
+ Contable ctbl;
+        const int POSMENUX = 0;
         const int POSMENUY = 1;
         const int COLOR_PANTALLA = BLACK;
         const int LETRA = WHITE;
@@ -635,12 +636,14 @@ void menuContabilidad(){
       locate(POSMENUX+3,POSMENUY+3);
       cout << "LIBRO MAYOR";
       locate(POSMENUX+3,POSMENUY+4);
-      cout << "LIBRO DIARIO";
+      cout << "LISTAR TODOS LOS MOVIMIENTOS";
       locate(POSMENUX+3,POSMENUY+5);
-      cout << "BALANCES";
+      cout << "LIBRO DIARIO";
       locate(POSMENUX+3,POSMENUY+6);
-      cout << "PLAN DE CUENTAS";
+      cout << "GENERAR UN ASIENTO MANUAL";
       locate(POSMENUX+3,POSMENUY+7);
+      cout << "LISTAR PLAN DE CUENTAS";
+      locate(POSMENUX+3,POSMENUY+8);
       cout << "ATRAS\n";
       hidecursor();
       locate(cursorX,cursorY);
@@ -651,7 +654,7 @@ void menuContabilidad(){
         cout<<" ";
         switch(key){
         case KEY_DOWN:
-            if(opc < 5){
+            if(opc < 6){
                 opc++;
             }else{
                 opc=1;
@@ -661,7 +664,7 @@ void menuContabilidad(){
             if(opc > 1){
                 opc--;
             }else{
-                opc=5;
+                opc=6;
             }
             break;
         }
@@ -679,18 +682,28 @@ void menuContabilidad(){
       showcursor();
       switch(opc){
         case 1:
-            cout << "OPCION 1";
+            ctbl.listarLibroMayor();
+            anykey();
         break;
         case 2:
-            cout << "OPCION 2";
+            ctbl.listarMovimientos();
+            anykey();
         break;
         case 3:
-            cout << "OPCION 3";
+           ctbl.listarLibroDiario();
+            anykey();
         break;
         case 4:
-            cout << "OPCION 4";
+//            if(login.isAdmin()){
+                ctbl.asientoManual();
+//            }
+            anykey();
         break;
         case 5:
+            listarPlanCtas() ;
+            anykey();
+        break;
+        case 6:
         return;
         break;
         default:cout<<" OPCION INCORRECTA"<<endl;
