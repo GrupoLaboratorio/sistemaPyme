@@ -142,7 +142,7 @@ void DetalleVenta::setIdDetalle(){
 int DetalleVenta::getNroFactura(){
     return nroFactura;}
 void DetalleVenta::imprimirFactura(int _n){
-    int pos= crearIdXFact()-2;
+    int pos= crearIdXFact()-1;
     float  sTot=0, sIva=0, tTot=0, tPrUn=0;
     DetalleVenta aux;
     Ventas  dato;
@@ -151,8 +151,15 @@ void DetalleVenta::imprimirFactura(int _n){
     int i =0,  f;
     cls();
     if(_n == 0){
-    cout<<"\nIngrese el numero de factura que desea imprimir: ";
+    cout<<"\nINGRESE EL NUMERO DE FACTURA: ";
     cin>>f;
+    while(!(f>0 || f<pos)) {
+            cout<<"NUMERO DE FACTURA INCORRECTO ";
+            system("pause");
+            system("cls");
+            cout<<"NUMERO DE FACTURA INCORRECTO ";
+            cin>>f;
+    }
     }else{
         f=_n;
     }

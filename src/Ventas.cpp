@@ -59,6 +59,7 @@ void Ventas::setIdCliente(){
     Entidad cliente;
     cliente.buscarRazonSocial(1);
     idCliente=cliente.getIdEntidad();
+    system("pause");
 }
 
 
