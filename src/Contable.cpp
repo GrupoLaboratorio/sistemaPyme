@@ -213,6 +213,7 @@ using namespace rlutil;
    }///graba la imputacion linea por linea con "rb+"
     void Contable::listarMovimientos(){
         Contable mov;
+         fDesde.setFecha();
         int i = 0;
         cls();
         title("MAESTRO DE MOVIMIENTOS GRAL ",WHITE, RED);
@@ -232,6 +233,7 @@ using namespace rlutil;
 
         cout<<setw(4)<<" "<<setw(2)<<mov.fOpe.getDia()<<"/"<<setw(2)<<mov.fOpe.getMes()<<"/"<<setw(4)<<mov.fOpe.getAnio()<<setw(3)<<" ";
         cout<<" ";
+
         if(mov.getOperacion()==1){cout<<setw(15)<<centrar("Venta",15);
         } else if(mov.getOperacion()==2){cout<<setw(15)<<centrar("Compra",15);
         }else{cout<<setw(15)<<centrar("Asiman",15);}

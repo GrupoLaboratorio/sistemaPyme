@@ -239,7 +239,7 @@ void Producto::Modificar_en_disco(int pos, int  cantidad, float _pre){
     this->setPrecioCosto(_pre);
     p=fopen(FILE_PRODUCTOS,"rb+");
     if(p==NULL){cout<<"Error de archivo";exit(1);}
-    fseek(p,(pos)*sizeof *this,0);
-    fwrite(this,sizeof *this,1,p);
+    fseek(p,(pos)*sizeof(this),0);
+    fwrite(this,sizeof(this),1,p);
     fclose(p);
 }

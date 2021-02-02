@@ -58,6 +58,7 @@ void DetalleVenta::cDetalleVenta(){
 }
 void DetalleVenta::setCodProducto(){
     Producto prod;
+    int codigo;
   cout<<"Ingrese codigo producto : ";
     cin>>codigo;
     while(codigo<=0){
