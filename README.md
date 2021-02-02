@@ -1,21 +1,27 @@
-﻿# The Includer 
-**[Integrantes:]**
-------------------------------
-
-**AYALA, Elizabeth C.**
-
-**QUINTEROS, David**
-
-**AREVALO, R. Eugenio**
-
-------------------------------
-
+﻿cargar productos de forma manual o podrán aumentar mediante una compra realizada
+por la empresa o disminuir por una venta realizada.
+*Sotck:*
+!["Prodcutos"](https://github.com/reugenioarevalo/proyecto_gestion/blob/master/productos.JPG?raw=true )
+MODULOS
 ------------
-The Includer: 
+Contaría con los siguientes módulos estimativos
+CONTABILIDAD
 ------------
-En un rincón muy lejano de este basto mundo, existe un ser llamado Includer, 
-que luchará contra las adversidades y restricciones que sufren los habitantes del lugar.
-En la Búsqueda de un mundo mejor, y más equitativo para tod@s, The Includer, 
-tomará lo peor de éste y lo transformará en herramientas para mejorar el día a día de tod@s los seres.
- 
-
+- Libro Mayor
+- Libro Diario
+- Asientos Manuales
+- Sumas y saldos
+- Cierre de caja
+- Apertura de caja
+VENTAS
+------------
+- Registro de Ventas
+- Emisión de comprobante
+COMPRAS
+------------
+- Orden de compras
+- Pagos a proveedores
+STOCK/PRODUCTOS
+------------
+- Inventario
+- Carga de almacén
